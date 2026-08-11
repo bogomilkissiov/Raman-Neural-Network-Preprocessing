@@ -1,9 +1,11 @@
 import torch
 import torch.optim as optim
 from torch.utils.data import TensorDataset, DataLoader
+import numpy as np
 
-# Import the existing generator and network model
-from spectra_generator import generate_spectra
+# Import the existing network model
+import os
+import glob
 from dual_supervised_resnet import DualSupervisedNet, LogCoshLoss
 
 def train():
@@ -13,92 +15,102 @@ def train():
     device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
     print(f"Training on device: {device}")
 
-    num_samples = 64
-    batch_size = 16
-    learning_rate = 0.01
-    epochs = 100
+    batch_size = 48
+    learning_rate = 0.001
+    epochs = 10
 
     # -----------------------------------------------------------------
-    # 2. GENERATE SYNTHETIC DATA & PREPARE DATALOADER
+    # 2. FIND DATASET FILES & PREPARE
     # -----------------------------------------------------------------
-    print(f"Generating {num_samples} synthetic spectra... This may take a moment.")
-    pure_matrix, pure_noise_cosmic_matrix, full_matrix = generate_spectra(
-        batch_size=num_samples,
-        wavenum_range=[0, 1200],          
-        num_peaks_range=[5, 30],
-        amplitude_range=[0.1, 1.0],
-        width_range=[2, 30],
-        degree_range=[1, 7],
-        offset_range=[0.0, 0.5],
-        max_coeff=1.0,
-        min_peak_ratio=2,
-        std_range=[0.01, 0.05],
-        probability_cosmic=0.0001,
-        intensity_range_cosmic=[3.0, 7.0]
-    )
+    # Find all generated_spectra folders and the old "generated spectra" folder
+    all_dirs = [d for d in glob.glob("generated_spectra*") if os.path.isdir(d)]
+    if os.path.isdir("generated spectra"):
+        all_dirs.append("generated spectra")
 
-    print("Data generation complete. Converting to PyTorch Tensors...")
-    
-    # Convert numpy matrices directly into 3D PyTorch tensors: Shape (N, 1, L)
-    X = torch.tensor(full_matrix, dtype=torch.float32).unsqueeze(1)
-    Y_bc = torch.tensor(pure_noise_cosmic_matrix, dtype=torch.float32).unsqueeze(1)
-    Y_clean = torch.tensor(pure_matrix, dtype=torch.float32).unsqueeze(1)
+    if all_dirs:
+        # Get the most recently modified/created dataset folder
+        latest_dir = max(all_dirs, key=os.path.getmtime)
+        print(f"Loading datasets from the most recent folder: {latest_dir}")
+        file_list = sorted(glob.glob(os.path.join(latest_dir, "*.npz")))
+    else:
+        # Fallback to checking the current directory
+        file_list = sorted(glob.glob("dataset_part_*.npz"))
+        
+    print(f"Found {len(file_list)} dataset files for training.")
+    if len(file_list) == 0:
+        raise FileNotFoundError("No .npz dataset files found. Please run create_dataset.py first.")
 
-    # Wrap into PyTorch's native TensorDataset and DataLoader
-    dataset = TensorDataset(X, Y_bc, Y_clean)
-    loader = DataLoader(
-        dataset, 
-        batch_size=batch_size, 
-        shuffle=True, 
-        num_workers=4 if device.type != 'cpu' else 0,  # Use workers if on GPU/MPS
-        pin_memory=True if device.type != 'cpu' else False
-    )
+    # Determine input spectrum length from first file
+    sample_data = np.load(file_list[0])
+    input_length = sample_data["full_matrix"].shape[1]
+    sample_data.close()
 
     # -----------------------------------------------------------------
     # 3. INITIALIZE MODEL, LOSS, AND SGD OPTIMIZER
     # -----------------------------------------------------------------
     print("Initializing Model, Loss Function, and Optimizer...")
-    input_length = X.shape[-1]
     model = DualSupervisedNet(input_length=input_length).to(device)
     
     criterion = LogCoshLoss()
     optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=1e-4)
 
     # -----------------------------------------------------------------
-    # 4. TRAINING LOOP
+    # 4. TRAINING LOOP (Iterating over files)
     # -----------------------------------------------------------------
     print("Starting training loop...")
     for epoch in range(epochs):
         model.train()
         running_loss = 0.0
+        total_batches = 0
 
-        for batch_idx, (batch_x, batch_y_bc, batch_y_clean) in enumerate(loader):
-            # Move tensors to the target device
-            batch_x = batch_x.to(device)
-            batch_y_bc = batch_y_bc.to(device)
-            batch_y_clean = batch_y_clean.to(device)
+        # Shuffle file order each epoch for randomness
+        np.random.shuffle(file_list)
 
-            # Forward pass: get intermediate (baseline removal) and final (clean) predictions
-            pred_bc, pred_clean = model(batch_x)
+        for file_idx, filepath in enumerate(file_list):
+            # Load ONE file into memory at a time
+            data = np.load(filepath)
+            
+            X = torch.tensor(data["full_matrix"], dtype=torch.float32).unsqueeze(1)
+            Y_bc = torch.tensor(data["pure_noise_cosmic_matrix"], dtype=torch.float32).unsqueeze(1)
+            Y_clean = torch.tensor(data["pure_matrix"], dtype=torch.float32).unsqueeze(1)
+            
+            data.close()
 
-            # Simple sum of LogCosh losses for both supervision targets
-            loss_bc = criterion(pred_bc, batch_y_bc)
-            loss_clean = criterion(pred_clean, batch_y_clean)
-            loss = loss_bc + loss_clean
+            dataset = TensorDataset(X, Y_bc, Y_clean)
+            loader = DataLoader(
+                dataset, 
+                batch_size=batch_size, 
+                shuffle=True,
+                pin_memory=True if device.type != 'cpu' else False
+            )
 
-            # Zero gradients, backward pass, and SGD optimization step
-            optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
+            for batch_idx, (batch_x, batch_y_bc, batch_y_clean) in enumerate(loader):
+                batch_x = batch_x.to(device)
+                batch_y_bc = batch_y_bc.to(device)
+                batch_y_clean = batch_y_clean.to(device)
 
-            running_loss += loss.item()
+                pred_bc, pred_clean = model(batch_x)
 
-            # Optional: Print progress every 100 batches
-            if (batch_idx + 1) % 100 == 0:
-                print(f"Epoch [{epoch+1}/{epochs}], Step [{batch_idx+1}/{len(loader)}], Loss: {loss.item():.6f}")
+                loss_bc = criterion(pred_bc, batch_y_bc)
+                loss_clean = criterion(pred_clean, batch_y_clean)
+                loss = loss_bc + loss_clean
 
-        # Average loss for the entire epoch
-        epoch_loss = running_loss / len(loader)
+                optimizer.zero_grad()
+                loss.backward()
+                optimizer.step()
+
+                running_loss += loss.item()
+                total_batches += 1
+
+                # Optional: Print progress every 100 batches
+                if (batch_idx + 1) % 100 == 0:
+                    print(f"Epoch [{epoch+1}/{epochs}], File [{file_idx+1}/{len(file_list)}], Step [{batch_idx+1}/{len(loader)}], Loss: {loss.item():.6f}")
+
+            # Deliberately clear memory before opening next file
+            del X, Y_bc, Y_clean, dataset, loader
+
+        # Average loss for the entire epoch across all files
+        epoch_loss = running_loss / total_batches if total_batches > 0 else 0
         print(f"==> Epoch [{epoch+1}/{epochs}] completed. Average Loss: {epoch_loss:.6f}")
 
     # -----------------------------------------------------------------

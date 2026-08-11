@@ -1,17 +1,4 @@
 import numpy as np
-import torch
-from spectra_class import spectra
-
-# for parallel spectra generation
-import os
-from concurrent.futures import ProcessPoolExecutor
-from itertools import repeat
-
-# SciPy for signal processing, noise, and fitting functions
-from scipy import signal
-from scipy.special import voigt_profile  # Alternative direct math implementation for Voigt profiles
-
-# Astropy for 1D peak models (Gaussian, Lorentzian, Voigt, Moffat)
 from astropy.modeling.models import Gaussian1D, Lorentz1D, Voigt1D, Moffat1D, Polynomial1D
 from astropy.modeling import Fittable1DModel
 
@@ -36,7 +23,12 @@ def get_voigt_amplitude(amplitude : float, fwhm_L : float, fwhm_G : float) -> fl
     amplitude_L = amplitude / unit_height
     return amplitude_L
 
-def init_peak(peak_type : type[Fittable1DModel], amplitude_range : list, center_range : list, width_range : list, rng : np.random.Generator = None) -> Fittable1DModel:
+def init_peak(
+    peak_type : type[Fittable1DModel], 
+    amplitude_range : list, 
+    center_range : list, 
+    width_range : list, 
+    rng : np.random.Generator = None) -> Fittable1DModel:
     """helper function to take in a peak type + parameter range and return initialized peak.
     Input range lists should be [min, max].
     """
@@ -70,7 +62,12 @@ def init_peak(peak_type : type[Fittable1DModel], amplitude_range : list, center_
         alpha = rng.uniform(low=width_range[0], high=width_range[1])
         return Moffat1D(amplitude=amplitude, x_0=center, gamma=gamma, alpha=alpha)
 
-def generate_single_pure_spectrum(wavenumber_range : list, num_peaks_range : list, amplitude_range : list, width_range : list, rng : np.random.Generator = None) -> tuple[Fittable1DModel, list[Fittable1DModel]]:
+def generate_single_pure_spectrum(
+    wavenumber_range : list, 
+    num_peaks_range : list, 
+    amplitude_range : list, 
+    width_range : list, 
+    rng : np.random.Generator = None) -> tuple[Fittable1DModel, list[Fittable1DModel]]:
     """
     This function will generate a peak-only spectra based on the parameters you pass.
     wavnumber_range: list of 2 values [start, end]
@@ -93,44 +90,46 @@ def generate_single_pure_spectrum(wavenumber_range : list, num_peaks_range : lis
 
     return sum(pure_spectra[1:], start=pure_spectra[0]), pure_spectra
 
-def generate_pure_spectra_batch(batch_size : int, wavenumber_range : list, num_peaks_range : list, amplitude_range : list, width_range : list, rng : np.random.Generator = None, n_jobs : int = -1) -> tuple[list[Fittable1DModel], list[list[Fittable1DModel]]]:
+def generate_pure_spectra_batch(
+    batch_size : int, 
+    wavenumber_range : list, 
+    num_peaks_range : list, 
+    amplitude_range : list, 
+    width_range : list, 
+    rng : np.random.Generator = None) -> tuple[list[Fittable1DModel], list[list[Fittable1DModel]]]:
     """
-    This function will generate a batch of peak-only spectra based on the parameters you pass, running in parallel.
+    This function will generate a batch of peak-only spectra based on the parameters you pass.
     batch_size: number of spectra to generate
     wavenumber_range: list of 2 values [start, end]
     num_peaks_range: list of 2 values [min_peaks, max_peaks]
     amplitude_range: list of 2 values [min_amplitude, max_amplitude]
     width_range: list of 2 values [min_width, max_width]
     rng: random number generator
-    n_jobs: number of parallel processes to run (-1 for all cores)
     """
 
     if rng is None:
         rng = np.random.default_rng()
 
-    if n_jobs == -1:
-        n_jobs = os.cpu_count() or 1
-
-    # Generate distinct random generators for each process
-    seeds = rng.integers(0, 2**31 - 1, size=batch_size)
-    rngs = [np.random.default_rng(seed) for seed in seeds]
+    batch_spectra = []
+    batch_spectra_lists = []
     
-    # ProcessPoolExecutor.map can take multiple iterables. 
-    # repeat() passes the static arguments infinitely, while rngs dictates the iteration length.
-    with ProcessPoolExecutor(max_workers=n_jobs) as executor:
-        results = list(executor.map(
-            generate_single_pure_spectrum,
-            repeat(wavenumber_range),
-            repeat(num_peaks_range),
-            repeat(amplitude_range),
-            repeat(width_range),
-            rngs
-        ))
-    batch_spectra, batch_spectra_lists = zip(*results)
+    for _ in range(batch_size):
+        single_spectrum, single_spectrum_list = generate_single_pure_spectrum(
+            wavenumber_range, num_peaks_range, amplitude_range, width_range, rng
+        )
+        batch_spectra.append(single_spectrum)
+        batch_spectra_lists.append(single_spectrum_list)
+
     return batch_spectra, batch_spectra_lists
 
 # polynomial baseline generation (up to 7th order)
-def generate_baseline(wavenumber_range: list, degree: int, offset_range: list = [0.0, 0.5], max_coeff: float = 1.0, domain_mapping: list = [-1.0, 1.0], rng: np.random.Generator = None) -> Polynomial1D:
+def generate_baseline(
+    wavenumber_range: list, 
+    degree: int, 
+    offset_range: list = [0.0, 0.5], 
+    max_coeff: float = 1.0, 
+    domain_mapping: list = [-1.0, 1.0], 
+    rng: np.random.Generator = None) -> Polynomial1D:
     
     if rng is None:
         rng = np.random.default_rng()
@@ -152,9 +151,16 @@ def generate_baseline(wavenumber_range: list, degree: int, offset_range: list = 
         
     return poly
 
-def generate_baseline_batch(batch_size, wavenumber_range: list, degree_range: list = [1, 7], offset_range: list = [0.0, 0.5], max_coeff: float = 1.0, domain_mapping: list = [-1.0, 1.0], rng: np.random.Generator = None, n_jobs: int = -1) -> list[Polynomial1D]:
+def generate_baseline_batch(
+    batch_size : int, 
+    wavenumber_range: list, 
+    degree_range: list = [1, 7], 
+    offset_range: list = [0.0, 0.5], 
+    max_coeff: float = 1.0, 
+    domain_mapping: list = [-1.0, 1.0], 
+    rng: np.random.Generator = None) -> list[Polynomial1D]:
     """
-    This function will generate a batch of baseline-only spectra based on the parameters you pass, running in parallel.
+    This function will generate a batch of baseline-only spectra based on the parameters you pass.
     batch_size: number of spectra to generate
     wavenumber_range: list of 2 values [start, end]
     degree_range: list of 2 values [min_degree, max_degree] to randomly select degrees from
@@ -162,34 +168,21 @@ def generate_baseline_batch(batch_size, wavenumber_range: list, degree_range: li
     max_coeff: maximum coefficient value
     domain_mapping: domain mapping to the baseline [-1.0, 1.0]
     rng: random number generator
-    n_jobs: number of parallel processes to run (-1 for all cores)
     """
 
     if rng is None:
         rng = np.random.default_rng()
 
-    if n_jobs == -1:
-        n_jobs = os.cpu_count() or 1
-
     # Pre-select random degrees for each baseline in the batch
     degrees = rng.integers(low=degree_range[0], high=degree_range[1] + 1, size=batch_size)
 
-    # Generate distinct random generators for each process
-    seeds = rng.integers(0, 2**31 - 1, size=batch_size)
-    rngs = [np.random.default_rng(seed) for seed in seeds]
+    batch_spectra = []
     
-    # ProcessPoolExecutor.map can take multiple iterables. 
-    # repeat() passes the static arguments infinitely, while degrees and rngs dictate the iteration length.
-    with ProcessPoolExecutor(max_workers=n_jobs) as executor:
-        batch_spectra = list(executor.map(
-            generate_baseline,
-            repeat(wavenumber_range),
-            degrees,
-            repeat(offset_range),
-            repeat(max_coeff),
-            repeat(domain_mapping),
-            rngs
-        ))
+    for degree_item in degrees:
+        baseline = generate_baseline(
+            wavenumber_range, degree_item, offset_range, max_coeff, domain_mapping, rng
+        )
+        batch_spectra.append(baseline)
 
     return batch_spectra
 
@@ -210,7 +203,12 @@ def get_min_peak_amplitude(pure_spectra_list : list[Fittable1DModel]) -> float:
             
     return min(peak_heights)
 
-def gaussian_noise_vector(pure_spectra_list, bins : int=1200, min_peak_ratio : float=2.0, std_range: list = [0.01, 0.05], rng: np.random.Generator = None) -> np.ndarray:
+def gaussian_noise_vector(
+    pure_spectra_list, 
+    bins : int=1200, 
+    min_peak_ratio : float=2.0, 
+    std_range: list = [0.01, 0.05], 
+    rng: np.random.Generator = None) -> np.ndarray:
     """
     Creates a gaussian noise vector based off the pure spectra astropy functions.
     Variance of the noise is random but also scaled off of the min peak amplitude of the input pure spectra.
@@ -229,7 +227,12 @@ def gaussian_noise_vector(pure_spectra_list, bins : int=1200, min_peak_ratio : f
     
     return gaussian_noise
 
-def gaussian_noise_batch(pure_spectra_batch_list, bins : int=1200, min_peak_ratio : float=2.0, std_range: list = [0.01, 0.05], rng: np.random.Generator = None, n_jobs: int = -1) -> np.ndarray:
+def gaussian_noise_batch(
+    pure_spectra_batch_list, 
+    bins : int=1200, 
+    min_peak_ratio : float=2.0, 
+    std_range: list = [0.01, 0.05], 
+    rng: np.random.Generator = None) -> np.ndarray:
     """
     Creates gaussian noise matrix based off the pure spectra astropy functions.
     The gaussian noise vectors generated by gaussian_noise_vector are rows in the returned matrix.
@@ -237,31 +240,25 @@ def gaussian_noise_batch(pure_spectra_batch_list, bins : int=1200, min_peak_rati
     if rng is None:
         rng = np.random.default_rng()
 
-    if n_jobs == -1:
-        n_jobs = os.cpu_count() or 1
-
-    # Generate distinct random generators for each process
-    seeds = rng.integers(0, 2**31 - 1, size=len(pure_spectra_batch_list))
-    rngs = [np.random.default_rng(seed) for seed in seeds]
+    batch_noise = []
     
-    # ProcessPoolExecutor.map can take multiple iterables. 
-    # repeat() passes the static arguments infinitely, while rngs dictates the iteration length.
-    with ProcessPoolExecutor(max_workers=n_jobs) as executor:
-        batch_noise = list(executor.map(
-            gaussian_noise_vector,
-            pure_spectra_batch_list,
-            repeat(bins),
-            repeat(min_peak_ratio),
-            repeat(std_range),
-            rngs
-        ))
+    for pure_spectra_item in pure_spectra_batch_list:
+        noise = gaussian_noise_vector(
+            pure_spectra_item, bins, min_peak_ratio, std_range, rng
+        )
+        batch_noise.append(noise)
 
     return np.array(batch_noise)
 
-def add_cosmic_rays(batch : np.ndarray, probability : float, intensity_range : list = [10.0, 100.0], rng : np.random.Generator = None) -> np.ndarray:
+def add_cosmic_rays(
+    batch : np.ndarray, 
+    probability : float, 
+    intensity_range : list = [10.0, 100.0], 
+    rng : np.random.Generator = None) -> np.ndarray:
     """
     Takes in a matrix of intensity (row) vectors and uses probability to randomly
-    add cosmic rays to the matrix.
+    add cosmic rays to the matrix. Directly takes in the noise matrix from
+    gaussian_noise_batch.
     """
     if rng is None:
         rng = np.random.default_rng()
@@ -277,6 +274,7 @@ def add_cosmic_rays(batch : np.ndarray, probability : float, intensity_range : l
         result[mask] += ray_intensities
     return result
 
+# Combined spectra generation
 def generate_spectra(
     batch_size: int,
     wavenum_range: list,
@@ -291,8 +289,7 @@ def generate_spectra(
     probability_cosmic: float,
     intensity_range_cosmic: list,
     domain_mapping: list = [-1.0, 1.0],
-    rng: np.random.Generator = None,
-    n_jobs: int = -1) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    rng: np.random.Generator = None) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
     Generates a full batch of synthetic spectra, including baseline, noise, and cosmic rays,
     and returns them directly as numpy arrays.
@@ -311,8 +308,7 @@ def generate_spectra(
         num_peaks_range=num_peaks_range,
         amplitude_range=amplitude_range,
         width_range=width_range,
-        rng=rng,
-        n_jobs=n_jobs
+        rng=rng
     )
     
     baseline_models = generate_baseline_batch(
@@ -322,8 +318,7 @@ def generate_spectra(
         offset_range=offset_range,
         max_coeff=max_coeff,
         domain_mapping=domain_mapping,
-        rng=rng,
-        n_jobs=n_jobs
+        rng=rng
     )
     
     # 3. Evaluate models on the x vector to get intensity matrices
@@ -339,8 +334,7 @@ def generate_spectra(
         min_peak_ratio=min_peak_ratio,
         bins=bins,
         std_range=std_range,
-        rng=rng,
-        n_jobs=n_jobs
+        rng=rng
     )
     
     noise_and_cosmic_matrix = add_cosmic_rays(
@@ -358,12 +352,3 @@ def generate_spectra(
     return pure_intensities, pure_noise_cosmic_matrix, final_matrix
 
 
-# POTENTIALLY MIGHT WANT TO UPDATE THE BASELINE BATCH GENERATION FUNCTION TO
-# RANDOMIZE THE DOMAIN_RANGE INSTEAD OF HARDCODING IT...
-
-# adding peaks together right away in generate_single_pure spectrum
-# might be causing issues in the get_min_peak_amplitude function...
-# might have to update the functions so that the pure spectra stay as a function of lists
-# until necessary or so that the pure spectra generation functions output a tuple containing
-# min amplitude (peak) and the multifunction astropy oobject...
-# idk...
