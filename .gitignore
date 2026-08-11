@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv/
+
+# macOS
+.DS_Store
+
+# PyTorch / Model Checkpoints & Large Files
+*.pth
+*.pt
+*.onnx
+*.bin
+*.ckpt
+
+# PDF Briefs & Research Docs (Local reference)
+*.pdf
+
+# Output plots / generated images
+*.png
+*.jpg
+*.jpeg
+
+# IDE & Editor Settings
+.vscode/
+.idea/
+.gemini/
