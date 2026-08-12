@@ -1,9 +1,10 @@
 import os
+import gc
 import numpy as np
 from spectra_generator import generate_spectra
 
-num_files = 10
-samples_per_file = 48
+num_files = 240
+samples_per_file = 1000
 base_dir = "generated_spectra"
 output_dir = base_dir
 counter = 1
@@ -32,7 +33,7 @@ for i in range(num_files):
         intensity_range_cosmic=[3.0, 10.0]
     )
     
-    # Save immediately and free memory
+    # Save immediately
     np.savez_compressed(
         filename,
         pure_matrix=pure,
@@ -40,3 +41,7 @@ for i in range(num_files):
         full_matrix=full
     )
     print(f"Saved {filename}! Memory cleared.")
+
+    # Explicitly free memory and collect garbage after each file
+    del pure, noise_cosmic, full
+    gc.collect()

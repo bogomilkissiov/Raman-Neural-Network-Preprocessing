@@ -21,13 +21,16 @@ env/
 *.bin
 *.ckpt
 
-# PDF Briefs & Research Docs (Local reference)
-*.pdf
 
 # Output plots / generated images
 *.png
 *.jpg
 *.jpeg
+
+# Datasets & Generated Spectra
+generated_spectra*/
+generated spectra*/
+*.npz
 
 # IDE & Editor Settings
 .vscode/
