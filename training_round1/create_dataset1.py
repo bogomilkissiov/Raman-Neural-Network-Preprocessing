@@ -1,9 +1,12 @@
+import sys
 import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import gc
 import numpy as np
 from spectra_generator import generate_spectra
 
-num_files = 240
+num_files = 1
 samples_per_file = 1000
 base_dir = "generated_spectra"
 output_dir = base_dir

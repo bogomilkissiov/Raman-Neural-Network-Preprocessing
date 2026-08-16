@@ -291,10 +291,53 @@ def generate_spectra(
     probability_cosmic: float,
     intensity_range_cosmic: list,
     domain_mapping: list = [-1.0, 1.0],
-    rng: np.random.Generator = None) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    rng: np.random.Generator = None,
+    min_value: float = None) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
-    Generates a full batch of synthetic spectra, including baseline, noise, and cosmic rays,
-    and returns them directly as numpy arrays.
+    Generates a full batch of synthetic Raman spectra (pure peaks, baseline, noise, and cosmic rays),
+    returning them directly as three NumPy 2D arrays: (pure_list, pure_noise_cosmic_list, full_list).
+
+    Parameters:
+    -----------
+    batch_size : int
+        Number of synthetic spectra to generate in the batch.
+    wavenum_range : list [min_wn, max_wn]
+        The wavenumber range [start, end] in cm^-1 (e.g., [0, 1200]). Step size is 1.
+    num_peaks_range : list [min_peaks, max_peaks]
+        Inclusive range for the random number of Raman peaks sampled per spectrum.
+    amplitude_range : list [min_amp, max_amp]
+        Range of peak amplitudes (intensities/heights) for each sampled peak profile.
+    width_range : list [min_width, max_width]
+        Range of peak widths (FWHM / standard deviation / gamma) across peak models.
+    degree_range : list [min_degree, max_degree]
+        Range of polynomial degrees for the synthetic baseline (e.g., [1, 7]).
+    offset_range : list [min_offset, max_offset]
+        Vertical offset range added to shift the baseline polynomial's absolute minimum.
+    max_coeff : float
+        Maximum coefficient magnitude sampled for the Chebyshev/polynomial baseline terms.
+    min_peak_ratio : float
+        Multiplier scaling factor applied to the smallest peak amplitude when calculating noise level.
+    std_range : list [min_std, max_std]
+        Relative noise standard deviation range (scaled by smallest peak amplitude * min_peak_ratio).
+    probability_cosmic : float
+        Per-wavenumber bin probability of encountering a cosmic ray spike (e.g., 1/12000).
+    intensity_range_cosmic : list [min_spike, max_spike]
+        Intensity range added to bins that trigger a cosmic ray spike.
+    domain_mapping : list [min_domain, max_domain], default=[-1.0, 1.0]
+        Window used to remap the wavenumber domain when evaluating baseline polynomials for numerical stability.
+    rng : np.random.Generator, optional
+        NumPy random number generator instance for reproducible sampling.
+    min_value : float, optional
+        If provided, shifts each spectrum in final_matrix along the y-axis so its minimum value equals min_value.
+
+    Returns:
+    --------
+    pure_list : np.ndarray
+        Shape (batch_size, bins): Pure synthesized Raman peaks only.
+    pure_noise_cosmic_list : np.ndarray
+        Shape (batch_size, bins): Pure peaks + Gaussian noise + Cosmic ray spikes (no baseline).
+    full_list : np.ndarray
+        Shape (batch_size, bins): Pure peaks + Polynomial baseline + Gaussian noise + Cosmic ray spikes.
     """
     if rng is None:
         rng = np.random.default_rng()
@@ -350,7 +393,12 @@ def generate_spectra(
     pure_noise_cosmic_matrix = pure_intensities + noise_and_cosmic_matrix
     final_matrix = clean_spectra_matrix + noise_and_cosmic_matrix
     
-    # 7. Return matrices directly
+    # 7. Shift final_matrix if min_value is specified
+    if min_value is not None:
+        mins = np.min(final_matrix, axis=1, keepdims=True)
+        final_matrix = final_matrix - mins + min_value
+
+    # 8. Return matrices directly
     return pure_intensities, pure_noise_cosmic_matrix, final_matrix
 
 

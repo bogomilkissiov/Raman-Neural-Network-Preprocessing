@@ -80,7 +80,7 @@ class BaselineNet(nn.Module):
     Sub-Network 1 (Encoder): Evaluates and extracts the baseline profile.
     Composed of 15 blocks grouped into 5 stages.
     """
-    def __init__(self, input_length=1000):
+    def __init__(self, input_length=1016):
         super(BaselineNet, self).__init__()
         self.input_length = input_length
 
@@ -147,7 +147,7 @@ class DenoisingNet(nn.Module):
     Sub-Network 2 (Decoder): Filters noise and spike artifacts.
     Starts with a standard 1D Convolution followed by 3 residual stages.
     """
-    def __init__(self, input_length=1000):
+    def __init__(self, input_length=1016):
         super(DenoisingNet, self).__init__()
         self.input_length = input_length
 
@@ -201,7 +201,7 @@ class DualSupervisedNet(nn.Module):
     Cooperative Double-ResNet Architecture.
     Trains the encoder to remove baselines, and the decoder to denoise.
     """
-    def __init__(self, input_length=1000):
+    def __init__(self, input_length=1016):
         super(DualSupervisedNet, self).__init__()
         self.encoder = BaselineNet(input_length=input_length)  # Sub-Net 1
         self.decoder = DenoisingNet(input_length=input_length) # Sub-Net 2

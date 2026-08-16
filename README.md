@@ -19,8 +19,11 @@ cd raman-preprocessing
 python3 -m venv venv
 source venv/bin/activate
 
-# Install dependencies
+# Install dependencies (will fetch Raman-Plotting-Pipeline directly from GitHub)
 pip install -r requirements.txt
+
+# (Optional for local development): If you want live editable updates from a local clone of Raman-Plotting-Pipeline
+# pip install -e "../raman plotting"
 ```
 
 ## Quick Start

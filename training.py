@@ -8,6 +8,7 @@ PAUSE AND RESUME FEATURE:
 """
 
 import torch
+import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import TensorDataset, DataLoader
 import numpy as np
@@ -27,6 +28,30 @@ def load_file_data(filepath):
     return X, Y_bc, Y_clean
 from dual_supervised_resnet import DualSupervisedNet, LogCoshLoss
 
+# =====================================================================
+# LOSS FUNCTION WITH ASYMMETRIC PENALTY (PREVENTS PEAK HALLUCINATION)
+# =====================================================================
+class AsymmetricLogCoshLoss(nn.Module):
+    """
+    Log-Cosh Loss with an asymmetric multiplier to penalize over-predictions 
+    (y_pred > y_true, i.e., hallucinating peaks/intensity) more heavily than under-predictions.
+    """
+    def __init__(self, overpred_penalty=2.0):
+        super(AsymmetricLogCoshLoss, self).__init__()
+        self.penalty = overpred_penalty
+
+    def forward(self, y_pred, y_true):
+        x = y_pred - y_true
+        # Numerically stable Log-Cosh pointwise loss
+        pointwise_loss = (
+            torch.abs(x) +
+            torch.log1p(torch.exp(-2.0 * torch.abs(x))) -
+            torch.log(torch.tensor(2.0, device=x.device))
+        )
+        # Apply asymmetric penalty when prediction > ground truth
+        weights = torch.where(x > 0, self.penalty, 1.0)
+        return torch.mean(weights * pointwise_loss)
+
 def train():
     # -----------------------------------------------------------------
     # 1. SETUP DEVICE & HYPERPARAMETERS
@@ -36,7 +61,13 @@ def train():
 
     batch_size = 250
     learning_rate = 0.0004
-    epochs = 60
+    epochs = 140
+
+    # Loss weighting & regularization factors
+    lambda_bc = 1.5           # Increased scaling factor for latent output (baseline subtraction)
+    lambda_clean = 1.0        # Scaling factor for final denoised/clean output
+    lambda_l2 = 1e-4          # Tiny L2 norm penalty on pred_clean to discourage hallucinating peaks
+    overpred_penalty = 2.0     # Multiplier to penalize over-predicted peaks (Option A)
 
     # -----------------------------------------------------------------
     # 2. FIND DATASET FILES & PREPARE
@@ -70,10 +101,11 @@ def train():
     print("Initializing Model, Loss Function, Optimizer, and Scheduler...")
     model = DualSupervisedNet(input_length=input_length).to(device)
     
-    criterion = LogCoshLoss()
-    optimizer = optim.AdamW(model.parameters(), lr=learning_rate, weight_decay=1e-4)
-    # Cosine annealing scheduler that goes down to a minimum lr of 1e-6
-    scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs, eta_min=1e-6)
+    criterion_bc = LogCoshLoss()
+    criterion_clean = AsymmetricLogCoshLoss(overpred_penalty=overpred_penalty)
+    optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=1e-4)
+    # Slower, gentler cosine decay schedule (extended T_max horizon and higher minimum LR floor)
+    scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=int(epochs * 1.5), eta_min=1e-5)
 
     # -----------------------------------------------------------------
     # 3.5 CHECKPOINT RESUME
@@ -84,8 +116,11 @@ def train():
         print(f"Found checkpoint at '{checkpoint_path}'. Resuming training...")
         checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=False)
         model.load_state_dict(checkpoint['model_state_dict'])
-        optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-        scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
+        try:
+            optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+            scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
+        except Exception as e:
+            print(f"Note: Could not restore optimizer/scheduler state ({e}). Using new SGD optimizer.")
         start_epoch = checkpoint['epoch'] + 1
         print(f"Resumed from epoch {start_epoch}.")
     else:
@@ -133,9 +168,15 @@ def train():
 
                     pred_bc, pred_clean = model(batch_x)
 
-                    loss_bc = criterion(pred_bc, batch_y_bc)
-                    loss_clean = criterion(pred_clean, batch_y_clean)
-                    loss = loss_bc + loss_clean
+                    # 1. Latent baseline loss and clean reconstruction loss
+                    loss_bc = criterion_bc(pred_bc, batch_y_bc)
+                    loss_clean = criterion_clean(pred_clean, batch_y_clean)
+
+                    # 2. Output L2 norm regularization to slightly penalize excess energy/peaks
+                    loss_l2 = torch.mean(pred_clean ** 2)
+
+                    # Total composite loss with weighted latent term
+                    loss = (lambda_bc * loss_bc) + (lambda_clean * loss_clean) + (lambda_l2 * loss_l2)
 
                     optimizer.zero_grad()
                     loss.backward()
