@@ -38,3 +38,6 @@ generated spectra*/
 .vscode/
 .idea/
 .gemini/
+
+# Scratch & Testing Scripts
+testing_round1.py
