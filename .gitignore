@@ -31,6 +31,8 @@ env/
 generated_spectra*/
 generated spectra*/
 *.npz
+*.wdf
+*.spc
 
 # IDE & Editor Settings
 .vscode/

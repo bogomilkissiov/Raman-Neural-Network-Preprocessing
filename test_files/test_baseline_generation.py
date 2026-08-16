@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import spectra_generator as g
 # pyrefly: ignore [missing-import]
 from astropy.modeling.models import Gaussian1D, Lorentz1D, Voigt1D, Moffat1D, Polynomial1D
@@ -52,7 +56,3 @@ if __name__ == "__main__":
     plt.tight_layout()
     plt.show()
     print("\n")
-
-
-    
-

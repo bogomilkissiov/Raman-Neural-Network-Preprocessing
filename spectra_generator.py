@@ -7,6 +7,8 @@ from astropy.modeling import Fittable1DModel
 #--------------------------------------------------------------------------------#
 # generation pipeline: peaks + baseline --> noise + cosmic rays --> add together
 
+# spectra are generated as ROW vectors!!!
+
 # peak generation (gaussian, lorentzian, voigt, moffat)
 def pick_profile(rng : np.random.Generator = None):
     "helper function for picking a peak type"

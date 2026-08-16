@@ -1,3 +1,7 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import numpy as np
 import matplotlib.pyplot as plt
 from astropy.modeling.models import Gaussian1D, Lorentz1D, Voigt1D, Moffat1D
@@ -58,7 +62,3 @@ plt.savefig("peak_profiles_comparison.png")
 # max gamma = 30
 
 # basically just put width/fhwm/gamma in a similar range...
-
-    
-
-
