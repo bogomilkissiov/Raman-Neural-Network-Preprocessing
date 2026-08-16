@@ -54,13 +54,21 @@ class AsymmetricLogCoshLoss(nn.Module):
 
 def train():
     # -----------------------------------------------------------------
-    # 1. SETUP DEVICE & HYPERPARAMETERS
+    # 1. SETUP DEVICE, CUDA ACCELERATION & HYPERPARAMETERS
     # -----------------------------------------------------------------
     device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
     print(f"Training on device: {device}")
 
-    batch_size = 250
-    learning_rate = 0.0004
+    # CUDA & cuDNN Performance optimizations (NVIDIA DGX / Tensor Cores)
+    if device.type == "cuda":
+        torch.backends.cudnn.benchmark = True
+        torch.backends.cuda.matmul.allow_tf32 = True
+        torch.backends.cudnn.allow_tf32 = True
+        print(f"CUDA Optimizations Enabled: cuDNN Benchmark=True, TF32 Math=True (GPU: {torch.cuda.get_device_name(0)})")
+
+    # Scale batch size and learning rate for DGX Tensor Cores
+    batch_size = 1024 if device.type == "cuda" else 250
+    learning_rate = 0.0016 if device.type == "cuda" else 0.0004
     epochs = 140
 
     # Loss weighting & regularization factors
@@ -88,7 +96,7 @@ def train():
         
     print(f"Found {len(file_list)} dataset files for training.")
     if len(file_list) == 0:
-        raise FileNotFoundError("No .npz dataset files found. Please run create_dataset.py first.")
+        raise FileNotFoundError("No .npz dataset files found. Please run create_dataset2.py first.")
 
     # Determine input spectrum length from first file
     sample_data = np.load(file_list[0])
@@ -96,16 +104,34 @@ def train():
     sample_data.close()
 
     # -----------------------------------------------------------------
-    # 3. INITIALIZE MODEL, LOSS, OPTIMIZER, AND SCHEDULER
+    # 3. INITIALIZE MODEL, LOSS, OPTIMIZER, SCHEDULER & AMP
     # -----------------------------------------------------------------
     print("Initializing Model, Loss Function, Optimizer, and Scheduler...")
     model = DualSupervisedNet(input_length=input_length).to(device)
     
+    # Kernel Fusion with torch.compile on CUDA
+    if hasattr(torch, "compile") and device.type == "cuda":
+        try:
+            print("Compiling model graph with torch.compile for maximum kernel fusion...")
+            model = torch.compile(model)
+        except Exception as e:
+            print(f"Note: torch.compile skipped ({e}). Continuing with standard eager execution.")
+
     criterion_bc = LogCoshLoss()
     criterion_clean = AsymmetricLogCoshLoss(overpred_penalty=overpred_penalty)
     optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9, weight_decay=1e-4)
     # Slower, gentler cosine decay schedule (extended T_max horizon and higher minimum LR floor)
     scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=int(epochs * 1.5), eta_min=1e-5)
+
+    # Automatic Mixed Precision (AMP) setup (bfloat16 for A100/H100, float16 + GradScaler fallback)
+    use_amp = (device.type == "cuda")
+    if use_amp:
+        amp_dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
+        print(f"Automatic Mixed Precision (AMP) enabled with dtype: {amp_dtype}")
+        scaler = torch.amp.GradScaler('cuda', enabled=(amp_dtype == torch.float16))
+    else:
+        amp_dtype = torch.float32
+        scaler = None
 
     # -----------------------------------------------------------------
     # 3.5 CHECKPOINT RESUME
@@ -115,7 +141,16 @@ def train():
     if os.path.exists(checkpoint_path):
         print(f"Found checkpoint at '{checkpoint_path}'. Resuming training...")
         checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=False)
-        model.load_state_dict(checkpoint['model_state_dict'])
+        # Unwrap torch.compile prefix '_orig_mod.' if needed
+        state_dict = checkpoint['model_state_dict']
+        try:
+            model.load_state_dict(state_dict)
+        except RuntimeError:
+            # If checkpoint was saved without compile or vice-versa, load into raw model
+            raw_model = model._orig_mod if hasattr(model, "_orig_mod") else model
+            cleaned_state_dict = {k.replace('_orig_mod.', ''): v for k, v in state_dict.items()}
+            raw_model.load_state_dict(cleaned_state_dict)
+            
         try:
             optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
             scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
@@ -131,7 +166,7 @@ def train():
     # -----------------------------------------------------------------
     print("Starting training loop...")
     # Executor for asynchronous file loading
-    executor = ThreadPoolExecutor(max_workers=1)
+    executor = ThreadPoolExecutor(max_workers=2 if device.type == "cuda" else 1)
 
     try:
         for epoch in range(start_epoch, epochs):
@@ -158,35 +193,46 @@ def train():
                     dataset, 
                     batch_size=batch_size, 
                     shuffle=True,
-                    pin_memory=False  # Removed for Apple Silicon Unified Memory
+                    pin_memory=(device.type == "cuda")  # Fast page-locked DMA transfer for CUDA
                 )
 
                 for batch_idx, (batch_x, batch_y_bc, batch_y_clean) in enumerate(loader):
-                    batch_x = batch_x.to(device)
-                    batch_y_bc = batch_y_bc.to(device)
-                    batch_y_clean = batch_y_clean.to(device)
+                    # Non-blocking host-to-device asynchronous memory transfer
+                    batch_x = batch_x.to(device, non_blocking=(device.type == "cuda"))
+                    batch_y_bc = batch_y_bc.to(device, non_blocking=(device.type == "cuda"))
+                    batch_y_clean = batch_y_clean.to(device, non_blocking=(device.type == "cuda"))
 
-                    pred_bc, pred_clean = model(batch_x)
+                    optimizer.zero_grad(set_to_none=True)
 
-                    # 1. Latent baseline loss and clean reconstruction loss
-                    loss_bc = criterion_bc(pred_bc, batch_y_bc)
-                    loss_clean = criterion_clean(pred_clean, batch_y_clean)
+                    # Autocast forward pass for Tensor Core acceleration
+                    if use_amp:
+                        with torch.amp.autocast(device_type="cuda", dtype=amp_dtype):
+                            pred_bc, pred_clean = model(batch_x)
+                            loss_bc = criterion_bc(pred_bc, batch_y_bc)
+                            loss_clean = criterion_clean(pred_clean, batch_y_clean)
+                            loss_l2 = torch.mean(pred_clean ** 2)
+                            loss = (lambda_bc * loss_bc) + (lambda_clean * loss_clean) + (lambda_l2 * loss_l2)
+                    else:
+                        pred_bc, pred_clean = model(batch_x)
+                        loss_bc = criterion_bc(pred_bc, batch_y_bc)
+                        loss_clean = criterion_clean(pred_clean, batch_y_clean)
+                        loss_l2 = torch.mean(pred_clean ** 2)
+                        loss = (lambda_bc * loss_bc) + (lambda_clean * loss_clean) + (lambda_l2 * loss_l2)
 
-                    # 2. Output L2 norm regularization to slightly penalize excess energy/peaks
-                    loss_l2 = torch.mean(pred_clean ** 2)
-
-                    # Total composite loss with weighted latent term
-                    loss = (lambda_bc * loss_bc) + (lambda_clean * loss_clean) + (lambda_l2 * loss_l2)
-
-                    optimizer.zero_grad()
-                    loss.backward()
-                    optimizer.step()
+                    # Backward step with GradScaler if using float16 AMP
+                    if scaler is not None and scaler.is_enabled():
+                        scaler.scale(loss).backward()
+                        scaler.step(optimizer)
+                        scaler.update()
+                    else:
+                        loss.backward()
+                        optimizer.step()
 
                     running_loss += loss.item()
                     total_batches += 1
 
                     # Optional: Print progress every 100 batches
-                    if (batch_idx + 1) % 100 == 0:
+                    if (batch_idx + 1) % 100 == 0 or (batch_idx + 1) == len(loader):
                         print(f"Epoch [{epoch+1}/{epochs}], File [{file_idx+1}/{len(file_list)}], Step [{batch_idx+1}/{len(loader)}], Loss: {loss.item():.6f}")
 
                 # Deliberately clear memory before opening next file
@@ -200,10 +246,11 @@ def train():
             current_lr = scheduler.get_last_lr()[0]
             print(f"==> Epoch [{epoch+1}/{epochs}] completed. Average Loss: {epoch_loss:.6f}, LR: {current_lr:.6f}")
 
-            # Save checkpoint periodically (every epoch, overwriting to save space)
+            # Save checkpoint periodically (unwrap torch.compile model if present)
+            raw_model = model._orig_mod if hasattr(model, "_orig_mod") else model
             torch.save({
                 'epoch': epoch,
-                'model_state_dict': model.state_dict(),
+                'model_state_dict': raw_model.state_dict(),
                 'optimizer_state_dict': optimizer.state_dict(),
                 'scheduler_state_dict': scheduler.state_dict(),
                 'loss': epoch_loss,
@@ -220,7 +267,8 @@ def train():
     # 5. SAVE THE TRAINED MODEL
     # -----------------------------------------------------------------
     save_path = "dual_supervised_resnet.pth"
-    torch.save(model.state_dict(), save_path)
+    raw_model = model._orig_mod if hasattr(model, "_orig_mod") else model
+    torch.save(raw_model.state_dict(), save_path)
     print(f"Training complete! Model weights saved to '{save_path}'")
 
 if __name__ == "__main__":

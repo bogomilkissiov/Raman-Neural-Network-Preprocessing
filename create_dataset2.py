@@ -8,8 +8,8 @@ from spectra_generator import generate_spectra
 # -----------------------------------------------------------------------------
 # Configuration
 # -----------------------------------------------------------------------------
-num_files = 10
-samples_per_file = 20000
+num_files = 16
+samples_per_file = 16384
 base_dir = "generated_spectra"
 
 # Parameters for spectra generation
@@ -26,8 +26,7 @@ GENERATION_PARAMS = {
     "probability_cosmic": 1 / 12000,
     "intensity_range_cosmic": [3.0, 10.0],
     "domain_mapping": [-1.0, 1.0],
-    "min_value": 0
-}
+    "min_value": 0}
 
 def generate_and_save_chunk(args):
     """
