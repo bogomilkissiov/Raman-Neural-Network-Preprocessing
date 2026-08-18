@@ -41,13 +41,12 @@ if __name__ == "__main__":
     amplitude_range = [0,1]
     center_range = [0, 1200]
     width_range = [2, 30]
-    single_peak = g.init_peak(profile, amplitude_range, center_range, width_range, rng)
     x = np.arange(0, 1201, 1)
-    y = single_peak(x)
+    single_peak_vec, peak_amp = g.init_peak(profile, amplitude_range, center_range, width_range, x, rng)
 
     plt.figure(figsize=(10, 5), dpi=120)
-    plt.plot(x, y, label=f"Single Peak ({single_peak.__class__.__name__})", color="#1f77b4")
-    plt.title(f"Test Initialized Peak: {single_peak.__class__.__name__}")
+    plt.plot(x, single_peak_vec, label=f"Single Peak ({profile.__name__})", color="#1f77b4")
+    plt.title(f"Test Initialized Peak: {profile.__name__} (amp: {peak_amp:.4f})")
     plt.xlabel("Wavenumber (cm⁻¹)")
     plt.ylabel("Intensity")
     plt.grid(True, linestyle="--", alpha=0.5)
@@ -59,12 +58,11 @@ if __name__ == "__main__":
     # Test generate_single_pure_spectrum
     print(f"Testing generate_single_pure_spectrum...")
     num_peaks_range = [5, 10]
-    single_spectrum, single_spectrum_list = g.generate_single_pure_spectrum(center_range, num_peaks_range, amplitude_range, width_range, rng)
-    y = single_spectrum(x)
+    single_spectrum_vec, min_peak_amplitude = g.generate_single_pure_spectrum(center_range, num_peaks_range, amplitude_range, width_range, rng, x=x)
 
     plt.figure(figsize=(10, 5), dpi=120)
-    plt.plot(x, y, label=f"Single Spectrum ({single_spectrum.__class__.__name__})", color="#1f77b4")
-    plt.title(f"Test Generated Single Spectrum: {single_spectrum.__class__.__name__}")
+    plt.plot(x, single_spectrum_vec, label="Single Pure Spectrum (Vector)", color="#1f77b4")
+    plt.title(f"Test Generated Single Spectrum (min amp: {min_peak_amplitude:.4f})")
     plt.xlabel("Wavenumber (cm⁻¹)")
     plt.ylabel("Intensity")
     plt.grid(True, linestyle="--", alpha=0.5)
@@ -75,13 +73,12 @@ if __name__ == "__main__":
 
     # Test generate_pure_spectra_batch
     print(f"Testing generate_pure_spectra_batch...")
-    batch_spectrum, batch_spectrum_list = g.generate_pure_spectra_batch(100, center_range, num_peaks_range, amplitude_range, width_range, rng)
-    random_choice = batch_spectrum[69]
-    y = random_choice(x)
+    batch_spectra, batch_min_amps = g.generate_pure_spectra_batch(100, center_range, num_peaks_range, amplitude_range, width_range, rng)
+    random_choice = batch_spectra[69]
 
     plt.figure(figsize=(10, 5), dpi=120)
-    plt.plot(x, y, label=f"Random Choice ({random_choice.__class__.__name__})", color="#1f77b4")
-    plt.title(f"Test Random Choice: {random_choice.__class__.__name__}")
+    plt.plot(x, random_choice, label="Random Choice (Vector)", color="#1f77b4")
+    plt.title(f"Test Random Choice (min amp: {batch_min_amps[69]:.4f})")
     plt.xlabel("Wavenumber (cm⁻¹)")
     plt.ylabel("Intensity")
     plt.grid(True, linestyle="--", alpha=0.5)

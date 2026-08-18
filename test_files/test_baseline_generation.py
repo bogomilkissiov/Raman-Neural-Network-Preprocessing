@@ -42,12 +42,11 @@ if __name__ == "__main__":
     print("Testing batch baseline generation...")
     batch_size = 100
     degree_range = [1,7]
-    batch_baselines = g.generate_baseline_batch(batch_size, wavenumber_range, degree_range, offset_range, max_coef, domain_mapping, rng)
-    random_baseline = batch_baselines[80]
-    y2 = random_baseline(x)
+    batch_baselines = g.generate_baseline_batch(batch_size, wavenumber_range, degree_range, offset_range, max_coef, domain_mapping, rng, x=x)
+    random_baseline_vec = batch_baselines[80]
 
     plt.figure(figsize=(10, 5), dpi=120)
-    plt.plot(x, y2, label=f"Random Baseline", color="#ff7f0e")
+    plt.plot(x, random_baseline_vec, label=f"Random Baseline (Vector)", color="#ff7f0e")
     plt.title(f"Test Random Baseline")
     plt.xlabel("Wavenumber (cm⁻¹)")
     plt.ylabel("Intensity")

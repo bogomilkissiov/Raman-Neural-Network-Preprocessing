@@ -10,119 +10,131 @@ from astropy.modeling import Fittable1DModel
 # spectra are generated as ROW vectors!!!
 
 # peak generation (gaussian, lorentzian, voigt, moffat)
-def pick_profile(rng : np.random.Generator = None):
-    "helper function for picking a peak type"
+def pick_profile(rng: np.random.Generator = None):
+    """Helper function for picking a peak profile type."""
     if rng is None:
         rng = np.random.default_rng()
 
     profiles = [Gaussian1D, Lorentz1D, Voigt1D, Moffat1D]
     return rng.choice(profiles)
 
-def get_voigt_amplitude(amplitude : float, fwhm_L : float, fwhm_G : float) -> float:
-    "Takes in a desired general amplitude and calculates necessary amplitude_L for Voigt1D."
+def get_voigt_amplitude(amplitude: float, fwhm_L: float, fwhm_G: float) -> float:
+    """Takes in a desired general amplitude and calculates necessary amplitude_L for Voigt1D."""
     v_unit = Voigt1D(x_0=0, amplitude_L=1.0, fwhm_L=fwhm_L, fwhm_G=fwhm_G)
     unit_height = v_unit(0.0)
     amplitude_L = amplitude / unit_height
     return amplitude_L
 
 def init_peak(
-    peak_type : type[Fittable1DModel], 
-    amplitude_range : list, 
-    center_range : list, 
-    width_range : list, 
-    rng : np.random.Generator = None) -> Fittable1DModel:
-    """helper function to take in a peak type + parameter range and return initialized peak.
+    peak_type: type[Fittable1DModel], 
+    amplitude_range: list, 
+    center_range: list, 
+    width_range: list, 
+    x: np.ndarray,
+    rng: np.random.Generator = None) -> tuple[np.ndarray, float]:
+    """
+    Initializes an Astropy peak model, samples it immediately onto x, and returns (peak_vector, amplitude).
     Input range lists should be [min, max].
     """
     if rng is None:
         rng = np.random.default_rng()
 
+    amplitude = rng.uniform(low=amplitude_range[0], high=amplitude_range[1])
+    center = rng.uniform(low=center_range[0], high=center_range[1])
+
     if peak_type == Gaussian1D:
-        amplitude = rng.uniform(low=amplitude_range[0], high=amplitude_range[1])
-        center = rng.uniform(low=center_range[0], high=center_range[1])
         width = rng.uniform(low=width_range[0], high=width_range[1])
-        return Gaussian1D(amplitude=amplitude, mean=center, stddev=width)
-    
+        model = Gaussian1D(amplitude=amplitude, mean=center, stddev=width)
     elif peak_type == Lorentz1D:
-        amplitude = rng.uniform(low=amplitude_range[0], high=amplitude_range[1])
-        center = rng.uniform(low=center_range[0], high=center_range[1])
         width = rng.uniform(low=width_range[0], high=width_range[1])
-        return Lorentz1D(amplitude=amplitude, x_0=center, fwhm=width)
-    
+        model = Lorentz1D(amplitude=amplitude, x_0=center, fwhm=width)
     elif peak_type == Voigt1D:
-        amplitude = rng.uniform(low=amplitude_range[0], high=amplitude_range[1])
-        center = rng.uniform(low=center_range[0], high=center_range[1])
         widthL = rng.uniform(low=width_range[0], high=width_range[1])
         widthG = rng.uniform(low=width_range[0], high=width_range[1])
         amplitude_L = get_voigt_amplitude(amplitude, widthL, widthG)
-        return Voigt1D(x_0=center, amplitude_L=amplitude_L, fwhm_L=widthL, fwhm_G=widthG)
-    
+        model = Voigt1D(x_0=center, amplitude_L=amplitude_L, fwhm_L=widthL, fwhm_G=widthG)
     elif peak_type == Moffat1D:
-        amplitude = rng.uniform(low=amplitude_range[0], high=amplitude_range[1])
-        center = rng.uniform(low=center_range[0], high=center_range[1])
         gamma = rng.uniform(low=width_range[0], high=width_range[1])
         alpha = rng.uniform(low=width_range[0], high=width_range[1])
-        return Moffat1D(amplitude=amplitude, x_0=center, gamma=gamma, alpha=alpha)
+        model = Moffat1D(amplitude=amplitude, x_0=center, gamma=gamma, alpha=alpha)
+    else:
+        raise ValueError(f"Unsupported peak type: {peak_type}")
+
+    # Immediately sample model onto x vector into float64 array
+    return model(x), amplitude
 
 def generate_single_pure_spectrum(
-    wavenumber_range : list, 
-    num_peaks_range : list, 
-    amplitude_range : list, 
-    width_range : list, 
-    rng : np.random.Generator = None) -> tuple[Fittable1DModel, list[Fittable1DModel]]:
+    wavenumber_range: list, 
+    num_peaks_range: list, 
+    amplitude_range: list, 
+    width_range: list, 
+    rng: np.random.Generator = None,
+    x: np.ndarray = None) -> tuple[np.ndarray, float]:
     """
-    This function will generate a peak-only spectra based on the parameters you pass.
-    wavnumber_range: list of 2 values [start, end]
+    Generates a pure peak-only spectrum row vector by summing immediately sampled peak vectors.
+    wavenumber_range: list of 2 values [start, end]
     num_peaks_range: list of 2 values [min_peaks, max_peaks]
     amplitude_range: list of 2 values [min_amplitude, max_amplitude]
     width_range: list of 2 values [min_width, max_width]
     rng: random number generator
-    Returns: tuple of (sum(pure_spectra), pure_spectra) where pure_spectra is list of individual peaks
+    x: optional precomputed wavenumber array np.arange(start, end + 1, 1)
+    Returns: tuple of (spectrum_vector, min_peak_amplitude)
     """
     if rng is None:
         rng = np.random.default_rng()
 
+    if x is None:
+        x = np.arange(wavenumber_range[0], wavenumber_range[1] + 1, 1, dtype=np.float64)
+
     num_peaks = rng.integers(low=num_peaks_range[0], high=num_peaks_range[1])
-    pure_spectra = []
+    spectrum_vec = np.zeros_like(x, dtype=np.float64)
+    min_peak_amplitude = float('inf')
 
-    for i in range(num_peaks):
+    for _ in range(num_peaks):
         peak_type = pick_profile(rng)
-        peak = init_peak(peak_type, amplitude_range, wavenumber_range, width_range, rng)
-        pure_spectra.append(peak)
+        peak_vec, amp = init_peak(peak_type, amplitude_range, wavenumber_range, width_range, x, rng)
+        spectrum_vec += peak_vec
+        if amp < min_peak_amplitude:
+            min_peak_amplitude = amp
 
-    return sum(pure_spectra[1:], start=pure_spectra[0]), pure_spectra
+    return spectrum_vec, min_peak_amplitude
 
 def generate_pure_spectra_batch(
-    batch_size : int, 
-    wavenumber_range : list, 
-    num_peaks_range : list, 
-    amplitude_range : list, 
-    width_range : list, 
-    rng : np.random.Generator = None) -> tuple[list[Fittable1DModel], list[list[Fittable1DModel]]]:
+    batch_size: int, 
+    wavenumber_range: list, 
+    num_peaks_range: list, 
+    amplitude_range: list, 
+    width_range: list, 
+    rng: np.random.Generator = None) -> tuple[np.ndarray, np.ndarray]:
     """
-    This function will generate a batch of peak-only spectra based on the parameters you pass.
+    Generates a batch of pure peak spectra directly as a 2D NumPy array.
     batch_size: number of spectra to generate
     wavenumber_range: list of 2 values [start, end]
     num_peaks_range: list of 2 values [min_peaks, max_peaks]
     amplitude_range: list of 2 values [min_amplitude, max_amplitude]
     width_range: list of 2 values [min_width, max_width]
     rng: random number generator
+    Returns:
+        batch_spectra: np.ndarray of shape (batch_size, bins)
+        min_amplitudes: np.ndarray of shape (batch_size,) containing min peak amplitude per spectrum
     """
-
     if rng is None:
         rng = np.random.default_rng()
 
-    batch_spectra = []
-    batch_spectra_lists = []
-    
-    for _ in range(batch_size):
-        single_spectrum, single_spectrum_list = generate_single_pure_spectrum(
-            wavenumber_range, num_peaks_range, amplitude_range, width_range, rng
-        )
-        batch_spectra.append(single_spectrum)
-        batch_spectra_lists.append(single_spectrum_list)
+    x = np.arange(wavenumber_range[0], wavenumber_range[1] + 1, 1, dtype=np.float64)
+    bins = len(x)
 
-    return batch_spectra, batch_spectra_lists
+    batch_spectra = np.empty((batch_size, bins), dtype=np.float64)
+    min_amplitudes = np.empty(batch_size, dtype=np.float64)
+    
+    for i in range(batch_size):
+        single_spectrum_vec, min_amp = generate_single_pure_spectrum(
+            wavenumber_range, num_peaks_range, amplitude_range, width_range, rng, x=x
+        )
+        batch_spectra[i] = single_spectrum_vec
+        min_amplitudes[i] = min_amp
+
+    return batch_spectra, min_amplitudes
 
 # polynomial baseline generation (up to 7th order)
 def generate_baseline(
@@ -132,7 +144,9 @@ def generate_baseline(
     max_coeff: float = 1.0, 
     domain_mapping: list = [-1.0, 1.0], 
     rng: np.random.Generator = None) -> Polynomial1D:
-    
+    """
+    Generates a random Polynomial1D baseline with minimum shifted within offset_range.
+    """
     if rng is None:
         rng = np.random.default_rng()
         
@@ -154,113 +168,97 @@ def generate_baseline(
     return poly
 
 def generate_baseline_batch(
-    batch_size : int, 
+    batch_size: int, 
     wavenumber_range: list, 
     degree_range: list = [1, 7], 
     offset_range: list = [0.0, 0.5], 
     max_coeff: float = 1.0, 
     domain_mapping: list = [-1.0, 1.0], 
-    rng: np.random.Generator = None) -> list[Polynomial1D]:
+    rng: np.random.Generator = None,
+    x: np.ndarray = None) -> np.ndarray:
     """
-    This function will generate a batch of baseline-only spectra based on the parameters you pass.
+    Generates a batch of baseline-only spectra evaluated directly as a 2D NumPy array.
     batch_size: number of spectra to generate
     wavenumber_range: list of 2 values [start, end]
-    degree_range: list of 2 values [min_degree, max_degree] to randomly select degrees from
+    degree_range: list of 2 values [min_degree, max_degree]
     offset_range: list of 2 values [min_offset, max_offset]
     max_coeff: maximum coefficient value
     domain_mapping: domain mapping to the baseline [-1.0, 1.0]
     rng: random number generator
+    x: optional precomputed wavenumber array np.arange(start, end + 1, 1)
+    Returns:
+        batch_spectra: np.ndarray of shape (batch_size, bins)
     """
-
     if rng is None:
         rng = np.random.default_rng()
 
-    # Pre-select random degrees for each baseline in the batch
-    degrees = rng.integers(low=degree_range[0], high=degree_range[1] + 1, size=batch_size)
+    if x is None:
+        x = np.arange(wavenumber_range[0], wavenumber_range[1] + 1, 1, dtype=np.float64)
+    bins = len(x)
 
-    batch_spectra = []
+    degrees = rng.integers(low=degree_range[0], high=degree_range[1] + 1, size=batch_size)
+    batch_spectra = np.empty((batch_size, bins), dtype=np.float64)
     
-    for degree_item in degrees:
-        baseline = generate_baseline(
+    for i, degree_item in enumerate(degrees):
+        baseline_poly = generate_baseline(
             wavenumber_range, degree_item, offset_range, max_coeff, domain_mapping, rng
         )
-        batch_spectra.append(baseline)
+        batch_spectra[i] = baseline_poly(x)
 
     return batch_spectra
 
 # noise and cosmic ray generation
-def get_min_peak_amplitude(pure_spectra_list : list[Fittable1DModel]) -> float:
-    """Returns the smallest peak height among a list of peaks from generate_single_pure_spectrum."""
-    
-    peak_heights = []
-    
-    for peak in pure_spectra_list:
-        if isinstance(peak, Voigt1D):
-            # Voigt1D has no single peak parameter; evaluate at its center x_0
-            center = peak.x_0.value
-            peak_heights.append(peak(center))
-        elif isinstance(peak, (Gaussian1D, Lorentz1D, Moffat1D)):
-            # Access the amplitude Parameter object and extract its float value
-            peak_heights.append(peak.amplitude.value)
-            
-    return min(peak_heights)
+def get_min_peak_amplitude(amplitudes) -> float:
+    """
+    Returns the smallest peak amplitude from a float scalar or array/list of amplitudes.
+    """
+    if isinstance(amplitudes, (int, float, np.floating)):
+        return float(amplitudes)
+    return float(np.min(amplitudes))
 
 def gaussian_noise_vector(
-    pure_spectra_list, 
-    bins : int=1200, 
-    min_peak_ratio : float=2.0, 
+    min_peak_amplitude: float, 
+    bins: int = 1200, 
+    min_peak_ratio: float = 2.0, 
     std_range: list = [0.01, 0.05], 
     rng: np.random.Generator = None) -> np.ndarray:
     """
-    Creates a gaussian noise vector based off the pure spectra astropy functions.
-    Variance of the noise is random but also scaled off of the min peak amplitude of the input pure spectra.
-    std_range: tuple of 2 values [min_std, max_std] in the context of the minimal peak amplitude of the input pure spectra
+    Creates a gaussian noise vector scaled by the minimum peak amplitude.
     """
     if rng is None:
         rng = np.random.default_rng()
     
-    a = get_min_peak_amplitude(pure_spectra_list)
-    
-    # Sample a random standard deviation (noise level)
+    a = get_min_peak_amplitude(min_peak_amplitude)
     noise_std = rng.uniform(std_range[0], std_range[1])
-    
-    # Generate Gaussian white noise centered at 0
-    gaussian_noise = rng.normal(loc=0.0, scale=noise_std * a * min_peak_ratio, size=bins)
-    
-    return gaussian_noise
+    return rng.normal(loc=0.0, scale=noise_std * a * min_peak_ratio, size=bins)
 
 def gaussian_noise_batch(
-    pure_spectra_batch_list, 
-    bins : int=1200, 
-    min_peak_ratio : float=2.0, 
+    min_amplitudes: np.ndarray, 
+    bins: int = 1200, 
+    min_peak_ratio: float = 2.0, 
     std_range: list = [0.01, 0.05], 
     rng: np.random.Generator = None) -> np.ndarray:
     """
-    Creates gaussian noise matrix based off the pure spectra astropy functions.
-    The gaussian noise vectors generated by gaussian_noise_vector are rows in the returned matrix.
+    Creates a gaussian noise matrix based off minimum peak amplitudes in a single vectorized call.
+    min_amplitudes: 1D NumPy array or list of min amplitudes for each spectrum in the batch.
     """
     if rng is None:
         rng = np.random.default_rng()
 
-    batch_noise = []
-    
-    for pure_spectra_item in pure_spectra_batch_list:
-        noise = gaussian_noise_vector(
-            pure_spectra_item, bins, min_peak_ratio, std_range, rng
-        )
-        batch_noise.append(noise)
-
-    return np.array(batch_noise)
+    min_amps = np.asarray(min_amplitudes, dtype=np.float64)
+    batch_size = len(min_amps)
+    noise_stds = rng.uniform(std_range[0], std_range[1], size=batch_size)
+    scales = noise_stds * min_amps * min_peak_ratio
+    return rng.normal(loc=0.0, scale=scales[:, None], size=(batch_size, bins))
 
 def add_cosmic_rays(
-    batch : np.ndarray, 
-    probability : float, 
-    intensity_range : list = [10.0, 100.0], 
-    rng : np.random.Generator = None) -> np.ndarray:
+    batch: np.ndarray, 
+    probability: float, 
+    intensity_range: list = [10.0, 100.0], 
+    rng: np.random.Generator = None) -> np.ndarray:
     """
     Takes in a matrix of intensity (row) vectors and uses probability to randomly
-    add cosmic rays to the matrix. Directly takes in the noise matrix from
-    gaussian_noise_batch.
+    add cosmic rays to the matrix.
     """
     if rng is None:
         rng = np.random.default_rng()
@@ -343,11 +341,11 @@ def generate_spectra(
         rng = np.random.default_rng()
         
     # 1. Generate x vector (wavenumbers) with step size of 1
-    x = np.arange(wavenum_range[0], wavenum_range[1] + 1, 1)
+    x = np.arange(wavenum_range[0], wavenum_range[1] + 1, 1, dtype=np.float64)
     bins = len(x)
     
-    # 2. Generate pure spectra and baseline batches (Astropy models)
-    pure_models, pure_models_lists = generate_pure_spectra_batch(
+    # 2. Generate pure spectra and min amplitudes with immediate sampling
+    pure_intensities, min_amplitudes = generate_pure_spectra_batch(
         batch_size=batch_size,
         wavenumber_range=wavenum_range,
         num_peaks_range=num_peaks_range,
@@ -356,28 +354,26 @@ def generate_spectra(
         rng=rng
     )
     
-    baseline_models = generate_baseline_batch(
+    # 3. Generate baseline batch evaluated directly on x
+    baseline_intensities = generate_baseline_batch(
         batch_size=batch_size,
         wavenumber_range=wavenum_range,
         degree_range=degree_range,
         offset_range=offset_range,
         max_coeff=max_coeff,
         domain_mapping=domain_mapping,
-        rng=rng
+        rng=rng,
+        x=x
     )
     
-    # 3. Evaluate models on the x vector to get intensity matrices
-    pure_intensities = np.array([model(x) for model in pure_models])
-    baseline_intensities = np.array([model(x) for model in baseline_models])
-    
-    # 4. Add them together
+    # 4. Add clean spectra
     clean_spectra_matrix = pure_intensities + baseline_intensities
     
     # 5. Generate noise and cosmic rays
     noise_matrix = gaussian_noise_batch(
-        pure_spectra_batch_list=pure_models_lists,
-        min_peak_ratio=min_peak_ratio,
+        min_amplitudes=min_amplitudes,
         bins=bins,
+        min_peak_ratio=min_peak_ratio,
         std_range=std_range,
         rng=rng
     )
@@ -400,5 +396,3 @@ def generate_spectra(
 
     # 8. Return matrices directly
     return pure_intensities, pure_noise_cosmic_matrix, final_matrix
-
-
