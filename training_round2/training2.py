@@ -1,6 +1,6 @@
 """
-TRAINING SCRIPT (Local & Multi-Hardware Optimized)
--------------------------------------------------
+TRAINING SCRIPT - ROUND 2 (Local & Multi-Hardware Optimized)
+------------------------------------------------------------
 Optimized for local computers (Apple Silicon Mac via MPS, local CUDA GPUs, and CPU)
 as well as scalable cluster execution.
 
@@ -9,14 +9,14 @@ FEATURES:
 - Easy-to-edit configuration variables at the top of the file
 - Memory-efficient streaming of .npz dataset chunks
 - Live progress metrics (spectra/sec throughput, loss breakdown, ETA)
-- Safe pause-and-resume on Ctrl+C (saves to `training_checkpoint.pth`)
+- Safe pause-and-resume on Ctrl+C (saves to `training_checkpoint2.pth`)
 
 USAGE:
   # 1. Simply edit the CONFIGURATION block below and run:
-  python training.py
+  python training2.py
 
   # 2. Or optionally override parameters via command-line arguments:
-  python training.py --epochs 50 --lr 0.0002
+  python training2.py --epochs 50 --lr 0.0002
 """
 
 import os
@@ -33,6 +33,13 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import TensorDataset, DataLoader
 
+# Configure paths so imports resolve whether running from project root or inside training_round2
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, '..'))
+for path in [PROJECT_ROOT, SCRIPT_DIR]:
+    if path not in sys.path:
+        sys.path.insert(0, path)
+
 # Import the existing network model and base loss
 from dual_supervised_resnet import DualSupervisedNet, LogCoshLoss
 
@@ -44,7 +51,7 @@ EPOCHS = 140                 # Total number of training epochs
 BATCH_SIZE = None            # Batch size (None = auto: 128 for MPS/Mac, 256 for CUDA, 64 for CPU)
 LEARNING_RATE = 0.0005       # Initial learning rate
 DEVICE = "auto"              # Hardware: "auto", "mps" (Mac GPU), "cuda" (NVIDIA GPU), "cpu"
-DATA_DIR = None              # Path to dataset folder (None = auto-detects latest generated_spectra*)
+DATA_DIR = None              # Path to dataset folder (None = auto-detects training_spectra2)
 MAX_FILES = None             # Limit to first N dataset files for fast tests (None = use all files)
 CHECKPOINT_PATH = "training_checkpoint2.pth"   # Checkpoint file for pause/resume
 SAVE_MODEL_PATH = "dual_supervised_resnet2.pth" # Final trained model weights file
@@ -73,7 +80,7 @@ def parse_args():
     parser.add_argument("--device", type=str, default=DEVICE, choices=["auto", "mps", "cuda", "cpu"],
                         help="Hardware device to train on")
     parser.add_argument("--data-dir", type=str, default=DATA_DIR, 
-                        help="Directory containing .npz dataset files (default: most recent generated_spectra* folder)")
+                        help="Directory containing .npz dataset files (default: training_spectra2)")
     parser.add_argument("--max-files", type=int, default=MAX_FILES, 
                         help="Limit training to the first N dataset files (useful for quick local tests)")
     parser.add_argument("--checkpoint", type=str, default=CHECKPOINT_PATH, 
@@ -209,20 +216,33 @@ def train():
             raise FileNotFoundError(f"Specified dataset folder does not exist: {data_dir}")
         file_list = sorted(glob.glob(os.path.join(data_dir, "*.npz")))
     else:
-        # Find all generated_spectra folders and legacy folder names
-        all_dirs = [d for d in glob.glob("generated_spectra*") if os.path.isdir(d)]
-        if os.path.isdir("generated spectra"):
-            all_dirs.append("generated spectra")
+        # Search candidate directories with priority for training_spectra2
+        candidate_dirs = [
+            os.path.join(SCRIPT_DIR, "training_spectra2"),
+            os.path.join(PROJECT_ROOT, "training_round2", "training_spectra2"),
+            "training_spectra2",
+            os.path.join(SCRIPT_DIR, "training_spectra"),
+            "training_spectra",
+        ]
+        # Also check any wildcard matches
+        candidate_dirs.extend(glob.glob(os.path.join(SCRIPT_DIR, "training_spectra*")))
+        candidate_dirs.extend(glob.glob(os.path.join(SCRIPT_DIR, "generated_spectra*")))
+        candidate_dirs.extend(glob.glob("training_spectra*"))
+        candidate_dirs.extend(glob.glob("generated_spectra*"))
 
-        if all_dirs:
-            data_dir = max(all_dirs, key=os.path.getmtime)
+        # Filter existing directories while preserving order
+        valid_dirs = [d for d in dict.fromkeys(candidate_dirs) if os.path.isdir(d)]
+
+        if valid_dirs:
+            data_dir = valid_dirs[0]
+            print(f"Loading training spectra from: {data_dir}")
             file_list = sorted(glob.glob(os.path.join(data_dir, "*.npz")))
         else:
             data_dir = "."
             file_list = sorted(glob.glob("dataset_part_*.npz"))
 
     if not file_list:
-        raise FileNotFoundError(f"No .npz dataset files found in '{data_dir}'. Please run create_dataset2.py first.")
+        raise FileNotFoundError(f"No .npz dataset files found in '{data_dir}'. Please verify dataset folder.")
 
     if args.max_files is not None and args.max_files > 0:
         file_list = file_list[:args.max_files]
@@ -262,6 +282,10 @@ def train():
     # -----------------------------------------------------------------
     start_epoch = 0
     checkpoint_path = args.checkpoint
+    if not os.path.isabs(checkpoint_path):
+        if os.path.exists(os.path.join(SCRIPT_DIR, checkpoint_path)):
+            checkpoint_path = os.path.join(SCRIPT_DIR, checkpoint_path)
+
     if not args.no_resume and os.path.exists(checkpoint_path):
         print(f"Found checkpoint at '{checkpoint_path}'. Resuming training...")
         checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=False)
@@ -420,6 +444,9 @@ def train():
             )
 
             # Save checkpoint
+            save_checkpoint_target = checkpoint_path
+            if not os.path.isabs(save_checkpoint_target):
+                save_checkpoint_target = os.path.join(SCRIPT_DIR, save_checkpoint_target)
             raw_model = model._orig_mod if hasattr(model, "_orig_mod") else model
             torch.save({
                 'epoch': epoch,
@@ -427,15 +454,15 @@ def train():
                 'optimizer_state_dict': optimizer.state_dict(),
                 'scheduler_state_dict': scheduler.state_dict(),
                 'loss': avg_loss,
-            }, checkpoint_path)
-            print(f"    Saved checkpoint to '{checkpoint_path}'")
+            }, save_checkpoint_target)
+            print(f"    Saved checkpoint to '{save_checkpoint_target}'")
             print("-" * 78)
 
     except KeyboardInterrupt:
         print("\n" + "!" * 78)
         print("Training safely paused by user (Ctrl+C).")
         print(f"Checkpoint preserved at: '{checkpoint_path}'")
-        print(f"Resume anytime by running: python training.py")
+        print(f"Resume anytime by running: python training2.py")
         print("!" * 78 + "\n")
     finally:
         executor.shutdown(wait=False)
@@ -444,6 +471,8 @@ def train():
     # 5. SAVE FINAL TRAINED MODEL
     # -----------------------------------------------------------------
     save_path = args.save_model
+    if not os.path.isabs(save_path):
+        save_path = os.path.join(SCRIPT_DIR, save_path)
     raw_model = model._orig_mod if hasattr(model, "_orig_mod") else model
     torch.save(raw_model.state_dict(), save_path)
     print(f"\nFinal model weights successfully saved to '{save_path}'")

@@ -30,6 +30,8 @@ env/
 # Datasets & Generated Spectra
 generated_spectra*/
 generated spectra*/
+training_spectra*/
+test_spectra*/
 *.npz
 *.wdf
 *.spc
