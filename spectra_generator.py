@@ -293,7 +293,7 @@ def generate_spectra(
     min_value: float = None) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
     Generates a full batch of synthetic Raman spectra (pure peaks, baseline, noise, and cosmic rays),
-    returning them directly as three NumPy 2D arrays: (pure_list, pure_noise_cosmic_list, full_list).
+    returning them directly as three NumPy 2D arrays: (pure, pure_noise_cosmic, full).
 
     Parameters:
     -----------
@@ -351,8 +351,7 @@ def generate_spectra(
         num_peaks_range=num_peaks_range,
         amplitude_range=amplitude_range,
         width_range=width_range,
-        rng=rng
-    )
+        rng=rng)
     
     # 3. Generate baseline batch evaluated directly on x
     baseline_intensities = generate_baseline_batch(
@@ -363,8 +362,7 @@ def generate_spectra(
         max_coeff=max_coeff,
         domain_mapping=domain_mapping,
         rng=rng,
-        x=x
-    )
+        x=x)
     
     # 4. Add clean spectra
     clean_spectra_matrix = pure_intensities + baseline_intensities
@@ -375,15 +373,13 @@ def generate_spectra(
         bins=bins,
         min_peak_ratio=min_peak_ratio,
         std_range=std_range,
-        rng=rng
-    )
+        rng=rng)
     
     noise_and_cosmic_matrix = add_cosmic_rays(
         batch=noise_matrix,
         probability=probability_cosmic,
         intensity_range=intensity_range_cosmic,
-        rng=rng
-    )
+        rng=rng)
     
     # 6. Sum components for different outputs
     pure_noise_cosmic_matrix = pure_intensities + noise_and_cosmic_matrix
