@@ -329,15 +329,48 @@ def shift_to_zero(wavenumbers, intensities):
 # ==========================================
 # PREPROCESSING PIPELINE
 # ==========================================
-def preprocess_pipeline(data):
+def preprocess_pipeline(
+    data,
+    despike: bool = True,
+    denoise: bool = True,
+    baseline: bool = True,
+    normalize: bool = True,
+    shift: bool = True,
+    **kwargs
+):
     """
     Takes in a single spectrum object, a list of spectrum objects, or a spectra object.
     Runs them through the preprocessing pipeline modifying the objects in place.
     Pipeline steps: despike -> denoise -> baseline removal -> normalization -> shift_to_zero
+
+    Parameters:
+    -----------
+    data : spectrum, list[spectrum], or spectra
+    despike : bool, default True
+        Whether to run cosmic ray / spike removal.
+    denoise : bool, default True
+        Whether to run wavelet denoising.
+    baseline : bool, default True
+        Whether to run baseline removal.
+    normalize : bool, default True
+        Whether to run min-max normalization.
+    shift : bool, default True
+        Whether to shift spectra so minimum intensity is 0.
     """
-    despike_spectra(data)
-    denoise_spectra(data)
-    remove_baseline(data)
-    normalize_spectra(data)
-    shift_to_zero(data)
+    run_despike = kwargs.get("despike_spectra", despike)
+    run_denoise = kwargs.get("denoise_spectra", denoise)
+    run_baseline = kwargs.get("remove_baseline", baseline)
+    run_normalize = kwargs.get("normalize_spectra", normalize)
+    run_shift = kwargs.get("shift_to_zero", shift)
+
+    if run_despike:
+        despike_spectra(data)
+    if run_denoise:
+        denoise_spectra(data)
+    if run_baseline:
+        remove_baseline(data)
+    if run_normalize:
+        normalize_spectra(data)
+    if run_shift:
+        shift_to_zero(data)
     return data

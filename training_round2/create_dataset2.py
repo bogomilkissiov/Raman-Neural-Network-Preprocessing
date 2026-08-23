@@ -5,8 +5,13 @@ import time
 import numpy as np
 from multiprocessing import Pool
 
-# Add parent directory if needed
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# Configure paths so imports and outputs resolve whether running from project root or inside training_round2
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, '..'))
+for path in [PROJECT_ROOT, SCRIPT_DIR]:
+    if path not in sys.path:
+        sys.path.insert(0, path)
+
 from spectra_generator import generate_spectra
 
 # -----------------------------------------------------------------------------
@@ -15,7 +20,7 @@ from spectra_generator import generate_spectra
 num_files = 16
 samples_per_file = 16384
 num_workers = 2
-base_dir = "generated_spectra"
+base_dir = os.path.join(SCRIPT_DIR, "generated_spectra")
 
 # Parameters for spectra generation
 GENERATION_PARAMS = {

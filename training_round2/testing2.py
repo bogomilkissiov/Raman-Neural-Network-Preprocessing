@@ -8,6 +8,7 @@ for path in [PROJECT_ROOT, SCRIPT_DIR]:
 
 import glob
 import copy
+import time
 import numpy as np
 import matplotlib.pyplot as plt
 import torch
@@ -28,7 +29,7 @@ if not os.path.exists(test_spectra_dir):
 if not os.path.exists(test_spectra_dir):
     test_spectra_dir = "test_spectra2"
 
-# Sort files naturally by part number
+# Sort files naturally by part number (loads both 16,384 spectra files)
 test_files = sorted(
     glob.glob(os.path.join(test_spectra_dir, "dataset_part_*.npz")),
     key=lambda f: int(os.path.splitext(os.path.basename(f))[0].split('_')[-1])
@@ -87,8 +88,12 @@ print("PyTorch tensors initialized.\n")
 # -----------------------------------------------------------------------------
 # 4. APPLY PREPROCESSING PIPELINE TO RAW SPECTRA (Conventional)
 # -----------------------------------------------------------------------------
-print("Applying conventional preprocessing pipeline (baseline + despike + denoise)...")
-processed_spectra = pp.preprocess_pipeline(raw_spectra, normalize=False, shift=False)
+print(f"Applying conventional preprocessing pipeline to {len(raw_tensor):,} spectra...")
+t0_conv = time.perf_counter()
+processed_spectra = pp.preprocess_pipeline(copy.deepcopy(raw_spectra))
+t1_conv = time.perf_counter()
+conv_duration = t1_conv - t0_conv
+print(f"Conventional pipeline completed in {conv_duration:.3f}s ({len(raw_tensor)/conv_duration:.1f} spectra/s).\n")
 
 # -----------------------------------------------------------------------------
 # 5. RUN RAW TENSORS THROUGH TRAINED NEURAL NETWORK (ROUND 2)
@@ -112,13 +117,26 @@ print(f"Neural network loaded successfully from {model_weights_path}.\n")
 # 3. Set to evaluation mode
 model.eval()
 
-print("Running neural network inference on test batch...")
-# 4. Forward pass
+print(f"Running neural network inference on {len(raw_tensor):,} test spectra...")
+# 4. Forward pass with mini-batching (prevents GPU memory exhaustion)
+t0_nn = time.perf_counter()
+eval_batch_size = 256
+latent_bc_list = []
+processed_list = []
+
 with torch.no_grad():
-    inputs = raw_tensor.to(device)
-    latent_bc_tensor, processed_tensor = model(inputs)
-    processed_tensor = processed_tensor.cpu()
-    latent_bc_tensor = latent_bc_tensor.cpu()
+    for start_idx in range(0, len(raw_tensor), eval_batch_size):
+        end_idx = min(start_idx + eval_batch_size, len(raw_tensor))
+        batch_inputs = raw_tensor[start_idx:end_idx].to(device)
+        batch_latent_bc, batch_processed = model(batch_inputs)
+        latent_bc_list.append(batch_latent_bc.cpu())
+        processed_list.append(batch_processed.cpu())
+
+latent_bc_tensor = torch.cat(latent_bc_list, dim=0)
+processed_tensor = torch.cat(processed_list, dim=0)
+t1_nn = time.perf_counter()
+nn_duration = t1_nn - t0_nn
+print(f"Neural network inference completed in {nn_duration:.3f}s ({len(raw_tensor)/nn_duration:.1f} spectra/s).\n")
 
 # -----------------------------------------------------------------------------
 # 6. CONVERT PREDICTIONS TO NUMPY ARRAYS
@@ -126,12 +144,11 @@ with torch.no_grad():
 # Squeeze out channel dimension (N, 1, L) -> (N, L)
 processed_matrix = processed_tensor.squeeze(1).numpy()
 latent_bc_matrix = latent_bc_tensor.squeeze(1).numpy()
-print("Neural network inference completed.\n")
 
 # -----------------------------------------------------------------------------
-# 7. CALCULATE AVERAGE COSINE, MSE, LOG COSH
+# 7. CALCULATE AVERAGE COSINE, MSE, LOG COSH & PRINT MINI REPORT
 # -----------------------------------------------------------------------------
-print("Calculating metrics...")
+print("Calculating quantitative metrics...")
 def calculate_metrics(y_true, y_pred):
     """
     Computes spectral metrics between ground truth and predicted matrices.
@@ -161,20 +178,28 @@ def calculate_metrics(y_true, y_pred):
 ground_truth = pure_spectra.intensity_matrix
 conv_pred = processed_spectra.intensity_matrix
 nn_pred = processed_matrix
+num_tested = ground_truth.shape[0]
 
 metrics_conv = calculate_metrics(ground_truth, conv_pred)
 metrics_nn = calculate_metrics(ground_truth, nn_pred)
 
-print("\n" + "=" * 65)
-print(f"{'EVALUATION RESULTS vs PURE SPECTRA (N = ' + str(ground_truth.shape[0]) + ')':^65}")
-print("=" * 65)
-print(f"{'Metric':<22} | {'Conventional Pipeline':<18} | {'Neural Network':<18}")
-print("-" * 65)
+speedup = conv_duration / nn_duration if nn_duration > 0 else 0
+
+print("\n" + "=" * 78)
+print(f"{'EVALUATION BENCHMARK REPORT (N = ' + f'{num_tested:,}' + ' Spectra)':^78}")
+print("=" * 78)
+print(f"{'Metric / Parameter':<26} | {'Conventional Pipeline':<23} | {'Neural Network (Round 2)':<23}")
+print("-" * 78)
 for metric in ["Cosine Similarity", "MSE", "Log-Cosh"]:
     conv_val, conv_std = metrics_conv[metric]
     nn_val, nn_std = metrics_nn[metric]
-    print(f"{metric:<22} | {conv_val:10.6f} (±{conv_std:.4f}) | {nn_val:10.6f} (±{nn_std:.4f})")
-print("=" * 65 + "\n")
+    print(f"{metric:<26} | {conv_val:10.6f} (±{conv_std:.4f})  | {nn_val:10.6f} (±{nn_std:.4f})")
+print("-" * 78)
+print(f"{'Total Execution Time':<26} | {conv_duration:10.3f} s             | {nn_duration:10.3f} s")
+print(f"{'Throughput':<26} | {num_tested/conv_duration:10.1f} spectra/s       | {num_tested/nn_duration:10.1f} spectra/s")
+print(f"{'Time per Spectrum':<26} | {(conv_duration/num_tested)*1000:10.2f} ms            | {(nn_duration/num_tested)*1000:10.4f} ms")
+print(f"{'Speedup Factor':<26} | {'1.0x (Baseline)':<23} | {f'{speedup:.1f}x Faster':<23}")
+print("=" * 78 + "\n")
 
 # -----------------------------------------------------------------------------
 # 8. PLOTTING INDIVIDUAL SPECTRA
@@ -306,7 +331,9 @@ else:
     )
 
 # Only normalize and shift so NN can process it
-real_raw_spectra = pp.preprocess_pipeline(copy.deepcopy(real_raw_data), despike=False, denoise=False, baseline=False)
+real_raw_spectra = copy.deepcopy(real_raw_data)
+pp.normalize_spectra(real_raw_spectra)
+pp.shift_to_zero(real_raw_spectra)
 
 # Convert to tensor: shape (20, 1, L_orig)
 real_raw_tensor_orig = torch.tensor(real_raw_spectra.intensity_matrix, dtype=torch.float32).unsqueeze(1)
@@ -323,7 +350,11 @@ with torch.no_grad():
 real_processed_matrix = real_processed_tensor.squeeze(1).numpy()
 real_latent_bc_matrix = real_latent_bc_tensor.squeeze(1).numpy()
 
-real_processed_spectra = pp.preprocess_pipeline(copy.deepcopy(real_raw_data), despike=True, denoise=True, baseline=True, normalize=False, shift=True)
+real_processed_spectra = copy.deepcopy(real_raw_data)
+pp.despike_spectra(real_processed_spectra)
+pp.denoise_spectra(real_processed_spectra)
+pp.remove_baseline(real_processed_spectra)
+pp.shift_to_zero(real_processed_spectra)
 
 # Interpolate real wavenumbers to match the resampled NN spectra points
 orig_wn = real_raw_data.wavenumber_matrix[0]
