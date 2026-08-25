@@ -8,15 +8,19 @@ Trains the input-size agnostic PolyGaussNet architecture:
 
 FEATURES:
 - Log-Cosh loss evaluated on both Latent (Baseline-Corrected) and Final (Pure) spectra
-- Scheduled learning rate (Cosine Annealing with minimum lr)
+- Scheduled learning rate (ReduceLROnPlateau with minimum lr)
 - Centralized configuration parameters at the top of the file
-- Direct Apple Silicon Mac hardware acceleration (MPS)
+- Direct Apple Silicon Mac hardware acceleration (MPS) & CUDA / CPU fallback
 - Fast asynchronous dataset streaming
+- Safe pause-and-resume on Ctrl+C (saves to `training_checkpoint3.pth`)
+- Checkpoints automatically saved at the end of every epoch
 """
 
 import os
+import sys
 import time
 import glob
+import argparse
 import gc
 from concurrent.futures import ThreadPoolExecutor
 
@@ -33,26 +37,62 @@ from polygaussnet import PolyGaussNet
 # =====================================================================
 # 1. TRAINING CONFIGURATION & HYPERPARAMETERS
 # =====================================================================
-EPOCHS = 64                 # Total number of training epochs
-BATCH_SIZE = 512             # Batch size for training
-LEARNING_RATE = 0.001        # Initial learning rate for AdamW
-MIN_LEARNING_RATE = 1e-6     # Minimum learning rate for Cosine Annealing scheduler
-WEIGHT_DECAY = 1e-4          # Weight decay for AdamW optimizer
+EPOCHS = 128                     # Total number of training epochs
+BATCH_SIZE = 512                 # Batch size for training
+LEARNING_RATE = 8e-6             # Initial learning rate for AdamW
+MIN_LEARNING_RATE = 1e-7         # Minimum learning rate for scheduler
+WEIGHT_DECAY = 1e-4              # Weight decay for AdamW optimizer
 
-DATA_DIR = "training_spectra3"   # Dataset directory
+DATA_DIR = "training_spectra3"       # Dataset directory
 SAVE_MODEL_PATH = "polygaussnet3.pth"  # Final trained model weights file
+CHECKPOINT_PATH = "training_checkpoint3.pth"  # Checkpoint file for pause/resume
+NO_RESUME = False                # True = ignore existing checkpoint and start from scratch
 
 # Model Hyperparameters
-POLY_ORDER = 15              # Order of the baseline polynomial
-FILTER_KERNEL_SIZE = 31      # Odd kernel window size for adaptive filter
+POLY_ORDER = 15                  # Order of the baseline polynomial
+FILTER_KERNEL_SIZE = 31          # Odd kernel window size for adaptive filter
 
 # Loss Weighting Factors (Dual Supervision)
-LAMBDA_BC = 1.0              # Scaling factor for baseline-corrected latent loss
-LAMBDA_CLEAN = 1.0           # Scaling factor for final pure/clean output loss
+LAMBDA_BC = 1.0                  # Scaling factor for baseline-corrected latent loss
+LAMBDA_CLEAN = 1.0               # Scaling factor for final pure/clean output loss
 
 
 # =====================================================================
-# 2. NUMERICALLY STABLE LOG-COSH LOSS
+# 2. CLI ARGUMENT PARSER
+# =====================================================================
+def parse_args():
+    """Parse command-line arguments, defaulting to the variables defined above."""
+    parser = argparse.ArgumentParser(
+        description="Train PolyGaussNet for Raman spectral preprocessing with pause/resume support.",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    parser.add_argument("--epochs", type=int, default=EPOCHS,
+                        help="Number of training epochs")
+    parser.add_argument("--batch-size", type=int, default=BATCH_SIZE,
+                        help="Batch size for training")
+    parser.add_argument("--lr", type=float, default=LEARNING_RATE,
+                        help="Initial learning rate")
+    parser.add_argument("--min-lr", type=float, default=MIN_LEARNING_RATE,
+                        help="Minimum learning rate")
+    parser.add_argument("--weight-decay", type=float, default=WEIGHT_DECAY,
+                        help="Weight decay for AdamW")
+    parser.add_argument("--data-dir", type=str, default=DATA_DIR,
+                        help="Directory containing .npz dataset files")
+    parser.add_argument("--save-model", type=str, default=SAVE_MODEL_PATH,
+                        help="Path to save the best model weights")
+    parser.add_argument("--checkpoint", type=str, default=CHECKPOINT_PATH,
+                        help="Checkpoint filename to save/resume training state")
+    parser.add_argument("--no-resume", action="store_true", default=NO_RESUME,
+                        help="Ignore existing checkpoint and start training from scratch")
+    parser.add_argument("--poly-order", type=int, default=POLY_ORDER,
+                        help="Order of the baseline polynomial")
+    parser.add_argument("--filter-kernel-size", type=int, default=FILTER_KERNEL_SIZE,
+                        help="Odd kernel window size for adaptive filter")
+    return parser.parse_args()
+
+
+# =====================================================================
+# 3. NUMERICALLY STABLE LOG-COSH LOSS
 # =====================================================================
 class LogCoshLoss(nn.Module):
     """
@@ -74,7 +114,7 @@ class LogCoshLoss(nn.Module):
 
 
 # =====================================================================
-# 3. DATA LOADING HELPER
+# 4. DATA LOADING HELPER
 # =====================================================================
 def load_file_data(filepath: str):
     """Load an .npz dataset file from disk into PyTorch float tensors."""
@@ -87,32 +127,41 @@ def load_file_data(filepath: str):
 
 
 # =====================================================================
-# 4. MAIN TRAINING ROUTINE
+# 5. MAIN TRAINING ROUTINE WITH PAUSE / RESUME
 # =====================================================================
-def train():
-    # Direct Apple Silicon Mac device setup
-    device = torch.device("mps") if torch.backends.mps.is_available() else torch.device("cpu")
+def train(args=None):
+    if args is None:
+        args = parse_args()
+
+    # Hardware device setup
+    if torch.backends.mps.is_available():
+        device = torch.device("mps")
+    elif torch.cuda.is_available():
+        device = torch.device("cuda")
+    else:
+        device = torch.device("cpu")
 
     print("=" * 78)
-    print(" PolyGaussNet Training (Apple Silicon MPS) ")
+    print(" PolyGaussNet Training (Apple Silicon MPS / CUDA / CPU) ")
     print("=" * 78)
     print(f"  - Device:             {device}")
-    print(f"  - Batch Size:         {BATCH_SIZE}")
-    print(f"  - Initial LR:         {LEARNING_RATE}")
-    print(f"  - Min LR:             {MIN_LEARNING_RATE}")
-    print(f"  - Total Epochs:       {EPOCHS}")
-    print(f"  - Polynomial Order:   {POLY_ORDER}")
-    print(f"  - Filter Kernel Size: {FILTER_KERNEL_SIZE}")
-    print(f"  - Save Model Path:    {SAVE_MODEL_PATH}")
+    print(f"  - Batch Size:         {args.batch_size}")
+    print(f"  - Initial LR:         {args.lr}")
+    print(f"  - Min LR:             {args.min_lr}")
+    print(f"  - Total Epochs:       {args.epochs}")
+    print(f"  - Polynomial Order:   {args.poly_order}")
+    print(f"  - Filter Kernel Size: {args.filter_kernel_size}")
+    print(f"  - Checkpoint Path:    {args.checkpoint}")
+    print(f"  - Save Model Path:    {args.save_model}")
     print("=" * 78)
 
     # Locate dataset files
-    if not os.path.isdir(DATA_DIR):
-        raise FileNotFoundError(f"Could not find dataset directory '{DATA_DIR}'.")
+    if not os.path.isdir(args.data_dir):
+        raise FileNotFoundError(f"Could not find dataset directory '{args.data_dir}'.")
 
-    file_list = sorted(glob.glob(os.path.join(DATA_DIR, "*.npz")))
+    file_list = sorted(glob.glob(os.path.join(args.data_dir, "*.npz")))
     if not file_list:
-        raise FileNotFoundError(f"No .npz files found in '{DATA_DIR}'.")
+        raise FileNotFoundError(f"No .npz files found in '{args.data_dir}'.")
 
     # Read metadata from first file
     sample_data = np.load(file_list[0])
@@ -123,130 +172,211 @@ def train():
 
     # Initialize model, loss, optimizer, and scheduler
     model = PolyGaussNet(
-        poly_order=POLY_ORDER, 
-        filter_kernel_size=FILTER_KERNEL_SIZE
+        poly_order=args.poly_order, 
+        filter_kernel_size=args.filter_kernel_size
     ).to(device)
 
     criterion = LogCoshLoss()
-    optimizer = optim.AdamW(model.parameters(), lr=LEARNING_RATE, weight_decay=WEIGHT_DECAY)
-    scheduler = optim.lr_scheduler.CosineAnnealingLR(
+    optimizer = optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
+    scheduler = optim.lr_scheduler.ReduceLROnPlateau(
         optimizer, 
-        T_max=EPOCHS, 
-        eta_min=MIN_LEARNING_RATE
+        mode='min',
+        factor=0.5,
+        patience=1,
+        min_lr=args.min_lr
     )
 
+    # -----------------------------------------------------------------
+    # Checkpoint Resume Logic
+    # -----------------------------------------------------------------
+    start_epoch = 0
+    best_loss = float('inf')
+    checkpoint_path = args.checkpoint
+
+    if not args.no_resume and os.path.exists(checkpoint_path):
+        print(f"Found checkpoint at '{checkpoint_path}'. Resuming training...")
+        checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=False)
+        model.load_state_dict(checkpoint['model_state_dict'])
+
+        if 'optimizer_state_dict' in checkpoint:
+            try:
+                optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+            except Exception as e:
+                print(f"Note: Could not restore optimizer state ({e}). Continuing with initialized optimizer.")
+
+        if 'scheduler_state_dict' in checkpoint:
+            try:
+                scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
+            except Exception as e:
+                print(f"Note: Could not restore scheduler state ({e}). Continuing with initialized scheduler.")
+
+        best_loss = checkpoint.get('best_loss', checkpoint.get('loss', float('inf')))
+        scheduler.best = best_loss
+        start_epoch = checkpoint.get('epoch', 0) + 1
+        print(f"Successfully resumed from Epoch {start_epoch + 1} of {args.epochs} (Previous best loss: {best_loss:.6f}).\n")
+    else:
+        if args.no_resume:
+            print("(no_resume=True): Starting training from scratch.\n")
+        else:
+            print("No checkpoint found. Starting training from scratch.\n")
+
+    if start_epoch >= args.epochs:
+        print(f"Model has already been trained for {start_epoch} epochs (target: {args.epochs}).")
+        print(f"To train further, increase epochs (e.g., pass --epochs {start_epoch + 50}).")
+        return
+
     print("=" * 78)
-    print(f"Starting Training: Epochs 1 to {EPOCHS}")
+    print(f"Starting Training: Epochs {start_epoch + 1} to {args.epochs}")
     print("=" * 78)
 
     executor = ThreadPoolExecutor(max_workers=1)
-    best_loss = float('inf')
 
-    for epoch in range(EPOCHS):
-        epoch_start = time.time()
-        model.train()
+    try:
+        for epoch in range(start_epoch, args.epochs):
+            epoch_start = time.time()
+            model.train()
 
-        running_total_loss = 0.0
-        running_bc_loss = 0.0
-        running_clean_loss = 0.0
-        total_samples = 0
+            running_total_loss = 0.0
+            running_bc_loss = 0.0
+            running_clean_loss = 0.0
+            total_samples = 0
 
-        # Shuffle dataset file chunks for randomness across epochs
-        epoch_files = list(file_list)
-        np.random.shuffle(epoch_files)
+            # Shuffle dataset file chunks for randomness across epochs
+            epoch_files = list(file_list)
+            np.random.shuffle(epoch_files)
 
-        # Asynchronously prefetch the first file
-        future = executor.submit(load_file_data, epoch_files[0])
+            # Asynchronously prefetch the first file
+            future = executor.submit(load_file_data, epoch_files[0])
 
-        for file_idx in range(len(epoch_files)):
-            X, Y_bc, Y_clean = future.result()
+            for file_idx in range(len(epoch_files)):
+                X, Y_bc, Y_clean = future.result()
 
-            # Prefetch next file in background
-            if file_idx + 1 < len(epoch_files):
-                future = executor.submit(load_file_data, epoch_files[file_idx + 1])
+                # Prefetch next file in background
+                if file_idx + 1 < len(epoch_files):
+                    future = executor.submit(load_file_data, epoch_files[file_idx + 1])
 
-            dataset = TensorDataset(X, Y_bc, Y_clean)
-            loader = DataLoader(
-                dataset,
-                batch_size=BATCH_SIZE,
-                shuffle=True,
-                drop_last=False
-            )
+                dataset = TensorDataset(X, Y_bc, Y_clean)
+                loader = DataLoader(
+                    dataset,
+                    batch_size=args.batch_size,
+                    shuffle=True,
+                    drop_last=False
+                )
 
-            file_start_time = time.time()
-            file_total_loss = 0.0
-            file_bc_loss = 0.0
-            file_clean_loss = 0.0
-            file_samples = 0
+                file_start_time = time.time()
+                file_total_loss = 0.0
+                file_bc_loss = 0.0
+                file_clean_loss = 0.0
+                file_samples = 0
 
-            for batch_idx, (batch_x, batch_y_bc, batch_y_clean) in enumerate(loader):
-                batch_x = batch_x.to(device)
-                batch_y_bc = batch_y_bc.to(device)
-                batch_y_clean = batch_y_clean.to(device)
+                for batch_idx, (batch_x, batch_y_bc, batch_y_clean) in enumerate(loader):
+                    batch_x = batch_x.to(device)
+                    batch_y_bc = batch_y_bc.to(device)
+                    batch_y_clean = batch_y_clean.to(device)
 
-                # Forward pass
-                clean_pred, pred_baseline, bc_pred, latent_params = model(batch_x)
+                    # Forward pass
+                    clean_pred, pred_baseline, bc_pred, latent_params = model(batch_x)
 
-                # Dual Supervised Log-Cosh Loss
-                loss_bc = criterion(bc_pred, batch_y_bc)
-                loss_clean = criterion(clean_pred, batch_y_clean)
-                total_loss = LAMBDA_BC * loss_bc + LAMBDA_CLEAN * loss_clean
+                    # Dual Supervised Log-Cosh Loss
+                    loss_bc = criterion(bc_pred, batch_y_bc)
+                    loss_clean = criterion(clean_pred, batch_y_clean)
+                    total_loss = LAMBDA_BC * loss_bc + LAMBDA_CLEAN * loss_clean
 
-                # Backward & Step
-                optimizer.zero_grad()
-                total_loss.backward()
-                optimizer.step()
+                    # Backward & Step
+                    optimizer.zero_grad()
+                    total_loss.backward()
+                    optimizer.step()
 
-                bs = batch_x.size(0)
-                file_total_loss += total_loss.item() * bs
-                file_bc_loss += loss_bc.item() * bs
-                file_clean_loss += loss_clean.item() * bs
-                file_samples += bs
+                    bs = batch_x.size(0)
+                    file_total_loss += total_loss.item() * bs
+                    file_bc_loss += loss_bc.item() * bs
+                    file_clean_loss += loss_clean.item() * bs
+                    file_samples += bs
 
-                running_total_loss += total_loss.item() * bs
-                running_bc_loss += loss_bc.item() * bs
-                running_clean_loss += loss_clean.item() * bs
-                total_samples += bs
+                    running_total_loss += total_loss.item() * bs
+                    running_bc_loss += loss_bc.item() * bs
+                    running_clean_loss += loss_clean.item() * bs
+                    total_samples += bs
 
-            # Per-file update printout (printed for each of the 16 dataset files in training_history.txt style)
-            file_duration = time.time() - file_start_time
-            file_avg_loss = file_total_loss / file_samples
-            file_avg_bc = file_bc_loss / file_samples
-            file_avg_clean = file_clean_loss / file_samples
-            file_throughput = file_samples / file_duration if file_duration > 0 else 0
-            print(
-                f"Epoch [{epoch + 1:3d}/{EPOCHS}] | File [{file_idx + 1:2d}/{len(epoch_files)}] | "
-                f"Batch [{len(loader):3d}/{len(loader)}] | "
-                f"Loss: {file_avg_loss:.5f} (BC: {file_avg_bc:.4f}, Clean: {file_avg_clean:.4f}) | {file_throughput:6.1f} spectra/s"
-            )
+                # Per-file update printout
+                file_duration = time.time() - file_start_time
+                file_avg_loss = file_total_loss / file_samples if file_samples > 0 else 0
+                file_avg_bc = file_bc_loss / file_samples if file_samples > 0 else 0
+                file_avg_clean = file_clean_loss / file_samples if file_samples > 0 else 0
+                file_throughput = file_samples / file_duration if file_duration > 0 else 0
+                print(
+                    f"Epoch [{epoch + 1:3d}/{args.epochs}] | File [{file_idx + 1:2d}/{len(epoch_files)}] | "
+                    f"Batch [{len(loader):3d}/{len(loader)}] | "
+                    f"Loss: {file_avg_loss:.5f} (BC: {file_avg_bc:.4f}, Clean: {file_avg_clean:.4f}) | {file_throughput:6.1f} spectra/s"
+                )
 
-            del X, Y_bc, Y_clean, dataset, loader
-            gc.collect()
+                del X, Y_bc, Y_clean, dataset, loader
+                gc.collect()
+                if device.type == "mps":
+                    torch.mps.empty_cache()
+                elif device.type == "cuda":
+                    torch.cuda.empty_cache()
 
-        epoch_duration = time.time() - epoch_start
-        avg_loss = running_total_loss / total_samples
-        avg_bc_loss = running_bc_loss / total_samples
-        avg_clean_loss = running_clean_loss / total_samples
-        throughput = total_samples / epoch_duration
+            epoch_duration = time.time() - epoch_start
+            avg_loss = running_total_loss / total_samples if total_samples > 0 else 0
+            avg_bc_loss = running_bc_loss / total_samples if total_samples > 0 else 0
+            avg_clean_loss = running_clean_loss / total_samples if total_samples > 0 else 0
+            throughput = total_samples / epoch_duration if epoch_duration > 0 else 0
 
-        scheduler.step()
-        current_lr = scheduler.get_last_lr()[0]
+            scheduler.step(avg_loss)
+            current_lr = optimizer.param_groups[0]['lr']
 
-        # Epoch completion summary matching training_history.txt
-        print("-" * 78)
-        print(f"==> Epoch [{epoch + 1:3d}/{EPOCHS}] Completed in {epoch_duration:.1f}s ({throughput:.1f} spectra/s)")
-        print(f"    Avg Total Loss: {avg_loss:.6f} | Avg BC Loss: {avg_bc_loss:.6f} | Avg Clean Loss: {avg_clean_loss:.6f}")
-        print(f"    Learning Rate:  {current_lr:.6e}")
+            # Epoch completion summary
+            print("-" * 78)
+            print(f"==> Epoch [{epoch + 1:3d}/{args.epochs}] Completed in {epoch_duration:.1f}s ({throughput:.1f} spectra/s)")
+            print(f"    Avg Total Loss: {avg_loss:.6f} | Avg BC Loss: {avg_bc_loss:.6f} | Avg Clean Loss: {avg_clean_loss:.6f}")
+            print(f"    Learning Rate:  {current_lr:.6e}")
 
-        # Best model auto-save
-        if avg_loss < best_loss:
-            best_loss = avg_loss
-            torch.save(model.state_dict(), SAVE_MODEL_PATH)
-            print(f"    ★ New best model saved to '{SAVE_MODEL_PATH}' (Loss: {best_loss:.6f})")
+            # Best model auto-save
+            if avg_loss < best_loss:
+                best_loss = avg_loss
+                torch.save(model.state_dict(), args.save_model)
+                print(f"    ★ New best model saved to '{args.save_model}' (Loss: {best_loss:.6f})")
 
-        print("-" * 78)
+            # Save full training checkpoint for pause/resume
+            torch.save({
+                'epoch': epoch,
+                'model_state_dict': model.state_dict(),
+                'optimizer_state_dict': optimizer.state_dict(),
+                'scheduler_state_dict': scheduler.state_dict(),
+                'best_loss': best_loss,
+                'loss': avg_loss,
+            }, checkpoint_path)
+            print(f"    Saved checkpoint to '{checkpoint_path}'")
+            print("-" * 78)
 
-    print(f"\nTraining complete! Best overall loss: {best_loss:.6f}. Model saved to '{SAVE_MODEL_PATH}'.")
+        print(f"\nTraining complete! Best overall loss: {best_loss:.6f}. Model saved to '{args.save_model}'.")
+
+    except KeyboardInterrupt:
+        print("\n" + "=" * 78)
+        print(" Training safely paused by user (Ctrl+C).")
+        if os.path.exists(checkpoint_path):
+            print(f" Checkpoint preserved at: '{checkpoint_path}'")
+        else:
+            # If interrupted in epoch 0 before epoch 1 completed, save current progress
+            torch.save({
+                'epoch': max(0, start_epoch - 1),
+                'model_state_dict': model.state_dict(),
+                'optimizer_state_dict': optimizer.state_dict(),
+                'scheduler_state_dict': scheduler.state_dict(),
+                'best_loss': best_loss,
+                'loss': avg_loss if 'avg_loss' in locals() else (running_total_loss / total_samples if total_samples > 0 else float('inf')),
+            }, checkpoint_path)
+            print(f" Checkpoint saved to: '{checkpoint_path}'")
+        print(f" Resume anytime by running: python training3.py")
+        print("=" * 78 + "\n")
+    finally:
+        executor.shutdown(wait=False)
+        gc.collect()
+        if device.type == "mps":
+            torch.mps.empty_cache()
+        elif device.type == "cuda":
+            torch.cuda.empty_cache()
 
 
 if __name__ == "__main__":

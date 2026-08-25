@@ -20,6 +20,8 @@ env/
 *.onnx
 *.bin
 *.ckpt
+training_checkpoint*.pth
+!polygaussnet3.pth
 
 
 # Output plots / generated images
