@@ -16,10 +16,12 @@ import torch
 import matplotlib.pyplot as plt
 from renishawWiRE import WDFReader
 
-# Configure imports
+# Configure imports so they resolve whether running from project root or inside training_round3
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-CONVENTIONAL_DIR = os.path.join(SCRIPT_DIR, "test_files", "conventional")
-for p in [SCRIPT_DIR, CONVENTIONAL_DIR]:
+PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
+CONVENTIONAL_DIR = os.path.join(PROJECT_ROOT, "test_files", "conventional")
+
+for p in [PROJECT_ROOT, SCRIPT_DIR, CONVENTIONAL_DIR]:
     if p not in sys.path:
         sys.path.insert(0, p)
 
@@ -58,9 +60,14 @@ def main():
     print(" Processing Real Experimental Dataset: 2s_100lp_map-2 (1).wdf")
     print("=" * 78)
 
-    wdf_filename = "2s_100lp_map-2 (1).wdf"
-    if not os.path.exists(wdf_filename):
-        raise FileNotFoundError(f"Cannot find WDF file '{wdf_filename}'")
+    possible_wdf_paths = [
+        "2s_100lp_map-2 (1).wdf",
+        os.path.join(SCRIPT_DIR, "2s_100lp_map-2 (1).wdf"),
+        os.path.join(PROJECT_ROOT, "2s_100lp_map-2 (1).wdf"),
+    ]
+    wdf_filename = next((p for p in possible_wdf_paths if os.path.exists(p)), None)
+    if wdf_filename is None:
+        raise FileNotFoundError("Cannot find WDF file '2s_100lp_map-2 (1).wdf'")
 
     # 1. Load WDF dataset
     print(f"Loading '{wdf_filename}' with WDFReader...")
@@ -95,7 +102,20 @@ def main():
     print("Running PolyGaussNet3 (Model: polygaussnet3.pth)...")
     device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
     model = PolyGaussNet().to(device)
-    model.load_state_dict(torch.load("polygaussnet3.pth", map_location=device))
+
+    possible_model_paths = [
+        "polygaussnet3.pth",
+        "test_polygaussnet3.pth",
+        os.path.join(SCRIPT_DIR, "polygaussnet3.pth"),
+        os.path.join(SCRIPT_DIR, "test_polygaussnet3.pth"),
+        os.path.join(PROJECT_ROOT, "training_round3", "polygaussnet3.pth"),
+        os.path.join(PROJECT_ROOT, "training_round3", "test_polygaussnet3.pth"),
+    ]
+    model_path = next((p for p in possible_model_paths if os.path.exists(p)), None)
+    if model_path is None:
+        raise FileNotFoundError("Could not find polygaussnet3.pth or test_polygaussnet3.pth")
+
+    model.load_state_dict(torch.load(model_path, map_location=device))
     model.eval()
 
     # Step A: Shift min to 0

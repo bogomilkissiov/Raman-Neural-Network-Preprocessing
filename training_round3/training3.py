@@ -30,6 +30,13 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import TensorDataset, DataLoader
 
+# Configure paths so imports and models resolve whether running from project root or inside training_round3
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, '..'))
+for path in [PROJECT_ROOT, SCRIPT_DIR]:
+    if path not in sys.path:
+        sys.path.insert(0, path)
+
 # Import PolyGaussNet
 from polygaussnet import PolyGaussNet
 
@@ -155,13 +162,23 @@ def train(args=None):
     print(f"  - Save Model Path:    {args.save_model}")
     print("=" * 78)
 
-    # Locate dataset files
-    if not os.path.isdir(args.data_dir):
+    # Locate dataset files (check relative to current dir, SCRIPT_DIR, and PROJECT_ROOT)
+    data_dir = args.data_dir
+    if not os.path.isdir(data_dir):
+        candidate_dir = os.path.join(SCRIPT_DIR, data_dir)
+        if os.path.isdir(candidate_dir):
+            data_dir = candidate_dir
+        else:
+            candidate_dir = os.path.join(PROJECT_ROOT, "training_round3", data_dir)
+            if os.path.isdir(candidate_dir):
+                data_dir = candidate_dir
+
+    if not os.path.isdir(data_dir):
         raise FileNotFoundError(f"Could not find dataset directory '{args.data_dir}'.")
 
-    file_list = sorted(glob.glob(os.path.join(args.data_dir, "*.npz")))
+    file_list = sorted(glob.glob(os.path.join(data_dir, "*.npz")))
     if not file_list:
-        raise FileNotFoundError(f"No .npz files found in '{args.data_dir}'.")
+        raise FileNotFoundError(f"No .npz files found in '{data_dir}'.")
 
     # Read metadata from first file
     sample_data = np.load(file_list[0])

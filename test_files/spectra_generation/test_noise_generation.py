@@ -64,7 +64,7 @@ if __name__ == '__main__':
 
     # Test gaussian_noise_batch
     print("Testing gaussian_noise_batch:")
-    noise_batch = g.gaussian_noise_batch(batch_min_amps, bins=1201, min_peak_ratio=2.0, std_range=[0.1, 0.5], rng=rng)
+    noise_batch = g.gaussian_noise_batch(batch_min_amps, bins=1201, min_peak_ratio=4.0, std_range=[0.4, 10], rng=rng)
     pure_intensities = batch_spectra
     mix = pure_intensities + noise_batch
 

@@ -22,12 +22,17 @@ import numpy as np
 import torch
 import matplotlib.pyplot as plt
 
-# Add conventional directory to sys.path
+# Configure paths so imports resolve whether running from project root or training_round3
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(SCRIPT_DIR, "test_files", "conventional"))
+PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
+CONVENTIONAL_DIR = os.path.join(PROJECT_ROOT, "test_files", "conventional")
+
+for p in [PROJECT_ROOT, SCRIPT_DIR, CONVENTIONAL_DIR]:
+    if p not in sys.path:
+        sys.path.insert(0, p)
+
 import pre
 from spectra_class import spectra
-
 from polygaussnet import PolyGaussNet
 
 
@@ -44,9 +49,13 @@ def run_comparison():
     print("=" * 78)
 
     # 1. Load exact 1,024 test dataset
-    data_file = "training_spectra3/dataset_part_1.npz"
+    data_file = os.path.join(SCRIPT_DIR, "training_spectra3", "dataset_part_1.npz")
     if not os.path.exists(data_file):
-        raise FileNotFoundError(f"Cannot find dataset file '{data_file}'")
+        data_file = os.path.join(PROJECT_ROOT, "training_round3", "training_spectra3", "dataset_part_1.npz")
+    if not os.path.exists(data_file):
+        data_file = "training_spectra3/dataset_part_1.npz"
+    if not os.path.exists(data_file):
+        raise FileNotFoundError(f"Cannot find dataset file 'training_spectra3/dataset_part_1.npz'")
 
     data = np.load(data_file)
     n_samples = 1024
@@ -57,7 +66,6 @@ def run_comparison():
 
     L = raw_np.shape[1]
     wavenumbers_np = np.tile(np.arange(L, dtype=np.float32), (n_samples, 1))
-
     print(f"Loaded {n_samples:,} spectra (Spectral length: {L} bins)\n")
 
     # -----------------------------------------------------------------
@@ -90,7 +98,19 @@ def run_comparison():
     device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
     model = PolyGaussNet().to(device)
     
-    model_path = "test_polygaussnet3.pth" if os.path.exists("test_polygaussnet3.pth") else "polygaussnet3.pth"
+    # Check for weights file locally or in training_round3
+    possible_model_paths = [
+        os.path.join(SCRIPT_DIR, "test_polygaussnet3.pth"),
+        os.path.join(SCRIPT_DIR, "polygaussnet3.pth"),
+        os.path.join(PROJECT_ROOT, "training_round3", "test_polygaussnet3.pth"),
+        os.path.join(PROJECT_ROOT, "training_round3", "polygaussnet3.pth"),
+        "test_polygaussnet3.pth",
+        "polygaussnet3.pth"
+    ]
+    model_path = next((p for p in possible_model_paths if os.path.exists(p)), None)
+    if model_path is None:
+        raise FileNotFoundError("Could not find test_polygaussnet3.pth or polygaussnet3.pth")
+        
     model.load_state_dict(torch.load(model_path, map_location=device))
     model.eval()
 

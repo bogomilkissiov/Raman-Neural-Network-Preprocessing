@@ -41,10 +41,12 @@ import matplotlib.pyplot as plt
 import torch
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
-# Configure paths so imports resolve cleanly
+# Configure paths so imports resolve cleanly whether running from project root or inside training_round3
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-CONVENTIONAL_DIR = os.path.join(SCRIPT_DIR, "test_files", "conventional")
-for p in [SCRIPT_DIR, CONVENTIONAL_DIR]:
+PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
+CONVENTIONAL_DIR = os.path.join(PROJECT_ROOT, "test_files", "conventional")
+
+for p in [PROJECT_ROOT, SCRIPT_DIR, CONVENTIONAL_DIR]:
     if p not in sys.path:
         sys.path.insert(0, p)
 
@@ -222,18 +224,28 @@ def main():
     # -----------------------------------------------------------------
     # 4.1 Load Test Dataset
     # -----------------------------------------------------------------
-    if not os.path.isdir(args.data_dir):
+    data_dir = args.data_dir
+    if not os.path.isdir(data_dir):
+        candidate_dir = os.path.join(SCRIPT_DIR, data_dir)
+        if os.path.isdir(candidate_dir):
+            data_dir = candidate_dir
+        else:
+            candidate_dir = os.path.join(PROJECT_ROOT, "training_round3", data_dir)
+            if os.path.isdir(candidate_dir):
+                data_dir = candidate_dir
+
+    if not os.path.isdir(data_dir):
         raise FileNotFoundError(f"Cannot find test directory '{args.data_dir}'")
 
     test_files = sorted(
-        glob.glob(os.path.join(args.data_dir, "*.npz")),
+        glob.glob(os.path.join(data_dir, "*.npz")),
         key=lambda f: int(os.path.splitext(os.path.basename(f))[0].split('_')[-1]) if os.path.splitext(os.path.basename(f))[0].split('_')[-1].isdigit() else f
     )
 
     if not test_files:
-        raise FileNotFoundError(f"No .npz files found in '{args.data_dir}'")
+        raise FileNotFoundError(f"No .npz files found in '{data_dir}'")
 
-    print(f"Loading {len(test_files)} dataset files from '{args.data_dir}':")
+    print(f"Loading {len(test_files)} dataset files from '{data_dir}':")
     for f in test_files:
         print(f"  • {os.path.basename(f)}")
 
@@ -304,13 +316,18 @@ def main():
     ).to(device)
 
     # Locate model checkpoint weights
-    model_path = args.model_path
-    if not os.path.exists(model_path):
-        if os.path.exists("test_polygaussnet3.pth"):
-            model_path = "test_polygaussnet3.pth"
-            print(f"Note: '{args.model_path}' not found, using '{model_path}' instead.")
-        else:
-            raise FileNotFoundError(f"Model weights file '{args.model_path}' not found.")
+    possible_model_paths = [
+        args.model_path,
+        os.path.join(SCRIPT_DIR, args.model_path),
+        os.path.join(PROJECT_ROOT, "training_round3", args.model_path),
+        os.path.join(SCRIPT_DIR, "test_polygaussnet3.pth"),
+        os.path.join(PROJECT_ROOT, "training_round3", "test_polygaussnet3.pth"),
+        os.path.join(SCRIPT_DIR, "polygaussnet3.pth"),
+        os.path.join(PROJECT_ROOT, "training_round3", "polygaussnet3.pth"),
+    ]
+    model_path = next((p for p in possible_model_paths if os.path.exists(p)), None)
+    if model_path is None:
+        raise FileNotFoundError(f"Model weights file '{args.model_path}' not found.")
 
     model.load_state_dict(torch.load(model_path, map_location=device, weights_only=False))
     model.eval()
