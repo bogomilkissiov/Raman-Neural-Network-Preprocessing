@@ -6,14 +6,6 @@
 
 An end-to-end research framework and production pipeline for **Raman spectral preprocessing**, **synthetic spectra generation**, and **deep neural network architectures**. 
 
-This project tackles major analytical challenges in Raman spectroscopy:
-- **Severe Fluorescence Baselines**: High-order polynomial, exponentially decaying, and arbitrary background interference.
-- **Detector and Shot Noise**: Low signal-to-noise ratios (SNR) in low-exposure and high-throughput spectral mappings.
-- **Cosmic Ray Artifacts & Dead Pixels**: Narrow, high-intensity spike contaminants.
-- **Substrate Interference**: Characteristic non-linear background signals (such as second-order optical phonons in silicon substrates).
-- **Arbitrary Spectral Resolutions & Bandwidths**: Dynamic, input-size agnostic neural networks capable of processing Raman spectra of any sequence length $L$ without resizing or interpolation artifacts.
-
----
 
 ## Table of Contents
 
