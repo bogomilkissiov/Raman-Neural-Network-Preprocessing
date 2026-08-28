@@ -26,10 +26,7 @@ if __name__ == '__main__':
     random_choice_min_amp = batch_min_amps[69]
     random_choice = batch_spectra[69]
     
-    print("Testing min_peak_amplitude:")
-    min_peak_amplitude = g.get_min_peak_amplitude(random_choice_min_amp)
-    
-    print(f"min_peak_amplitude: {min_peak_amplitude}")
+    print(f"min_peak_amplitude: {random_choice_min_amp}")
 
     print("\n")
 

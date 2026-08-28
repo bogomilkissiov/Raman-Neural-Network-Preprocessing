@@ -22,6 +22,8 @@ env/
 *.ckpt
 training_checkpoint*.pth
 !polygaussnet3.pth
+!polygaussnet4.pth
+!training_round4/polygaussnet4.pth
 
 
 # Output plots / generated images

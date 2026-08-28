@@ -97,6 +97,9 @@ def generate_single_pure_spectrum(
         if amp < min_peak_amplitude:
             min_peak_amplitude = amp
 
+    if min_peak_amplitude == float('inf'):
+        min_peak_amplitude = 0.0
+
     return spectrum_vec, min_peak_amplitude
 
 def generate_pure_spectra_batch(
@@ -208,14 +211,6 @@ def generate_baseline_batch(
     return batch_spectra
 
 # noise and cosmic ray generation
-def get_min_peak_amplitude(amplitudes) -> float:
-    """
-    Returns the smallest peak amplitude from a float scalar or array/list of amplitudes.
-    """
-    if isinstance(amplitudes, (int, float, np.floating)):
-        return float(amplitudes)
-    return float(np.min(amplitudes))
-
 def gaussian_noise_vector(
     min_peak_amplitude: float, 
     bins: int = 1200, 
@@ -224,13 +219,14 @@ def gaussian_noise_vector(
     rng: np.random.Generator = None) -> np.ndarray:
     """
     Creates a gaussian noise vector scaled by the minimum peak amplitude.
+    If min_peak_amplitude is 0, it defaults to noise_std.
     """
     if rng is None:
         rng = np.random.default_rng()
     
-    a = get_min_peak_amplitude(min_peak_amplitude)
     noise_std = rng.uniform(std_range[0], std_range[1])
-    return rng.normal(loc=0.0, scale=noise_std * a * min_peak_ratio, size=bins)
+    amp = noise_std if min_peak_amplitude == 0 else min_peak_amplitude
+    return rng.normal(loc=0.0, scale=noise_std * amp * min_peak_ratio, size=bins)
 
 def gaussian_noise_batch(
     min_amplitudes: np.ndarray, 
@@ -241,6 +237,7 @@ def gaussian_noise_batch(
     """
     Creates a gaussian noise matrix based off minimum peak amplitudes in a single vectorized call.
     min_amplitudes: 1D NumPy array or list of min amplitudes for each spectrum in the batch.
+    If a spectrum has min_peak_amplitude == 0, it defaults to its corresponding noise_std.
     """
     if rng is None:
         rng = np.random.default_rng()
@@ -248,7 +245,8 @@ def gaussian_noise_batch(
     min_amps = np.asarray(min_amplitudes, dtype=np.float64)
     batch_size = len(min_amps)
     noise_stds = rng.uniform(std_range[0], std_range[1], size=batch_size)
-    scales = noise_stds * min_amps * min_peak_ratio
+    effective_amps = np.where(min_amps == 0, noise_stds, min_amps)
+    scales = noise_stds * effective_amps * min_peak_ratio
     return rng.normal(loc=0.0, scale=scales[:, None], size=(batch_size, bins))
 
 def add_cosmic_rays(
@@ -290,7 +288,8 @@ def generate_spectra(
     intensity_range_cosmic: list,
     domain_mapping: list = [-1.0, 1.0],
     rng: np.random.Generator = None,
-    min_value: float = None) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    min_value: float = None,
+    normalize: bool = False) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
     Generates a full batch of synthetic Raman spectra (pure peaks, baseline, noise, and cosmic rays),
     returning them directly as three NumPy 2D arrays: (pure, pure_noise_cosmic, full).
@@ -327,6 +326,9 @@ def generate_spectra(
         NumPy random number generator instance for reproducible sampling.
     min_value : float, optional
         If provided, shifts each spectrum in final_matrix along the y-axis so its minimum value equals min_value.
+    normalize : bool, default=False
+        If True, scales each spectrum in final_matrix to the range [0, 1], and applies the exact same
+        scaling factor (1 / (max - min)) to pure_intensities and pure_noise_cosmic_matrix.
 
     Returns:
     --------
@@ -390,5 +392,16 @@ def generate_spectra(
         mins = np.min(final_matrix, axis=1, keepdims=True)
         final_matrix = final_matrix - mins + min_value
 
-    # 8. Return matrices directly
+    # 8. Normalize if specified
+    if normalize:
+        mins = np.min(final_matrix, axis=1, keepdims=True)
+        maxs = np.max(final_matrix, axis=1, keepdims=True)
+        ranges = maxs - mins
+        ranges = np.where(ranges == 0, 1.0, ranges)
+        
+        final_matrix = (final_matrix - mins) / ranges
+        pure_intensities = pure_intensities / ranges
+        pure_noise_cosmic_matrix = pure_noise_cosmic_matrix / ranges
+
+    # 9. Return matrices directly
     return pure_intensities, pure_noise_cosmic_matrix, final_matrix
