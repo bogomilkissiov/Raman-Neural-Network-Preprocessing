@@ -1,0 +1,833 @@
+================================================================================
+ ROUND 5: SEQUENTIAL HEAD-TO-HEAD TRAINING (16 Epochs Each) 
+================================================================================
+  - Dataset Location:    /Users/bogiekissiov/Desktop/raman preprocessing/training_round4/training_data4
+  - Dataset Files:       16 chunks found
+  - Device:              mps
+  - Epochs per Model:    16
+  - Batch Size:          512
+================================================================================
+
+
+================================================================================
+ TRAINING: PolyGaussNet2 (Target: 16 Epochs) 
+================================================================================
+  - Model Architecture: PolyGaussNet2
+  - Total Parameters:   148,393
+  - Device:             mps
+  - Batch Size:         512
+  - Initial LR:         0.0001
+  - Min LR:             9e-08
+  - Polynomial Order:   Degree 7
+  - Filter Kernel Size: 31
+  - Weights Destination:/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet2.pth
+================================================================================
+
+[PolyGaussNet2] Ep [ 1/16] | File [ 1/16] | Loss: 0.20545 (BC: 0.0984, Clean: 0.0977, Asym: 0.0093) |  641.8 spec/s
+[PolyGaussNet2] Ep [ 1/16] | File [ 2/16] | Loss: 0.13076 (BC: 0.0605, Clean: 0.0586, Asym: 0.0116) |  673.9 spec/s
+[PolyGaussNet2] Ep [ 1/16] | File [ 3/16] | Loss: 0.10309 (BC: 0.0462, Clean: 0.0441, Asym: 0.0127) |  674.0 spec/s
+[PolyGaussNet2] Ep [ 1/16] | File [ 4/16] | Loss: 0.09263 (BC: 0.0418, Clean: 0.0397, Asym: 0.0111) |  677.5 spec/s
+[PolyGaussNet2] Ep [ 1/16] | File [ 5/16] | Loss: 0.08304 (BC: 0.0380, Clean: 0.0359, Asym: 0.0091) |  678.5 spec/s
+[PolyGaussNet2] Ep [ 1/16] | File [ 6/16] | Loss: 0.07602 (BC: 0.0345, Clean: 0.0325, Asym: 0.0090) |  680.5 spec/s
+[PolyGaussNet2] Ep [ 1/16] | File [ 7/16] | Loss: 0.07523 (BC: 0.0342, Clean: 0.0322, Asym: 0.0088) |  671.7 spec/s
+[PolyGaussNet2] Ep [ 1/16] | File [ 8/16] | Loss: 0.06650 (BC: 0.0297, Clean: 0.0279, Asym: 0.0088) |  666.3 spec/s
+[PolyGaussNet2] Ep [ 1/16] | File [ 9/16] | Loss: 0.06066 (BC: 0.0278, Clean: 0.0260, Asym: 0.0068) |  675.6 spec/s
+[PolyGaussNet2] Ep [ 1/16] | File [10/16] | Loss: 0.06176 (BC: 0.0279, Clean: 0.0261, Asym: 0.0078) |  678.5 spec/s
+[PolyGaussNet2] Ep [ 1/16] | File [11/16] | Loss: 0.06680 (BC: 0.0299, Clean: 0.0281, Asym: 0.0088) |  678.1 spec/s
+[PolyGaussNet2] Ep [ 1/16] | File [12/16] | Loss: 0.05825 (BC: 0.0257, Clean: 0.0240, Asym: 0.0085) |  679.0 spec/s
+[PolyGaussNet2] Ep [ 1/16] | File [13/16] | Loss: 0.05481 (BC: 0.0249, Clean: 0.0232, Asym: 0.0067) |  679.4 spec/s
+[PolyGaussNet2] Ep [ 1/16] | File [14/16] | Loss: 0.05103 (BC: 0.0227, Clean: 0.0211, Asym: 0.0072) |  678.7 spec/s
+[PolyGaussNet2] Ep [ 1/16] | File [15/16] | Loss: 0.05164 (BC: 0.0232, Clean: 0.0215, Asym: 0.0069) |  679.4 spec/s
+[PolyGaussNet2] Ep [ 1/16] | File [16/16] | Loss: 0.04906 (BC: 0.0213, Clean: 0.0197, Asym: 0.0080) |  679.3 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet2] Epoch [ 1/16] Finished in 393.6s (666.1 spec/s)
+    Avg Loss: 0.080420 | BC: 0.036686 | Clean: 0.034905 | Asym: 0.008829
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet2 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet2.pth' (Loss: 0.080420)
+--------------------------------------------------------------------------------
+[PolyGaussNet2] Ep [ 2/16] | File [ 1/16] | Loss: 0.04919 (BC: 0.0223, Clean: 0.0207, Asym: 0.0062) |  673.0 spec/s
+[PolyGaussNet2] Ep [ 2/16] | File [ 2/16] | Loss: 0.04583 (BC: 0.0203, Clean: 0.0187, Asym: 0.0068) |  678.0 spec/s
+[PolyGaussNet2] Ep [ 2/16] | File [ 3/16] | Loss: 0.04768 (BC: 0.0212, Clean: 0.0195, Asym: 0.0070) |  679.4 spec/s
+[PolyGaussNet2] Ep [ 2/16] | File [ 4/16] | Loss: 0.04860 (BC: 0.0216, Clean: 0.0200, Asym: 0.0070) |  678.7 spec/s
+[PolyGaussNet2] Ep [ 2/16] | File [ 5/16] | Loss: 0.04573 (BC: 0.0207, Clean: 0.0191, Asym: 0.0060) |  678.7 spec/s
+[PolyGaussNet2] Ep [ 2/16] | File [ 6/16] | Loss: 0.04464 (BC: 0.0199, Clean: 0.0183, Asym: 0.0065) |  679.4 spec/s
+[PolyGaussNet2] Ep [ 2/16] | File [ 7/16] | Loss: 0.04761 (BC: 0.0213, Clean: 0.0196, Asym: 0.0067) |  656.1 spec/s
+[PolyGaussNet2] Ep [ 2/16] | File [ 8/16] | Loss: 0.04529 (BC: 0.0199, Clean: 0.0183, Asym: 0.0071) |  605.6 spec/s
+[PolyGaussNet2] Ep [ 2/16] | File [ 9/16] | Loss: 0.04387 (BC: 0.0194, Clean: 0.0178, Asym: 0.0066) |  606.6 spec/s
+[PolyGaussNet2] Ep [ 2/16] | File [10/16] | Loss: 0.04504 (BC: 0.0199, Clean: 0.0183, Asym: 0.0069) |  473.6 spec/s
+[PolyGaussNet2] Ep [ 2/16] | File [11/16] | Loss: 0.04844 (BC: 0.0216, Clean: 0.0200, Asym: 0.0069) |  590.5 spec/s
+[PolyGaussNet2] Ep [ 2/16] | File [12/16] | Loss: 0.04458 (BC: 0.0197, Clean: 0.0182, Asym: 0.0067) |  653.2 spec/s
+[PolyGaussNet2] Ep [ 2/16] | File [13/16] | Loss: 0.04034 (BC: 0.0180, Clean: 0.0165, Asym: 0.0059) |  683.6 spec/s
+[PolyGaussNet2] Ep [ 2/16] | File [14/16] | Loss: 0.04306 (BC: 0.0192, Clean: 0.0176, Asym: 0.0063) |  681.4 spec/s
+[PolyGaussNet2] Ep [ 2/16] | File [15/16] | Loss: 0.04008 (BC: 0.0177, Clean: 0.0162, Asym: 0.0061) |  680.0 spec/s
+[PolyGaussNet2] Ep [ 2/16] | File [16/16] | Loss: 0.04079 (BC: 0.0181, Clean: 0.0165, Asym: 0.0062) |  676.7 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet2] Epoch [ 2/16] Finished in 419.8s (624.4 spec/s)
+    Avg Loss: 0.045051 | BC: 0.020043 | Clean: 0.018455 | Asym: 0.006553
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet2 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet2.pth' (Loss: 0.045051)
+--------------------------------------------------------------------------------
+[PolyGaussNet2] Ep [ 3/16] | File [ 1/16] | Loss: 0.03880 (BC: 0.0174, Clean: 0.0159, Asym: 0.0055) |  677.3 spec/s
+[PolyGaussNet2] Ep [ 3/16] | File [ 2/16] | Loss: 0.04119 (BC: 0.0180, Clean: 0.0165, Asym: 0.0067) |  680.5 spec/s
+[PolyGaussNet2] Ep [ 3/16] | File [ 3/16] | Loss: 0.03961 (BC: 0.0173, Clean: 0.0159, Asym: 0.0064) |  679.8 spec/s
+[PolyGaussNet2] Ep [ 3/16] | File [ 4/16] | Loss: 0.04273 (BC: 0.0196, Clean: 0.0180, Asym: 0.0051) |  680.3 spec/s
+[PolyGaussNet2] Ep [ 3/16] | File [ 5/16] | Loss: 0.03859 (BC: 0.0167, Clean: 0.0153, Asym: 0.0066) |  678.9 spec/s
+[PolyGaussNet2] Ep [ 3/16] | File [ 6/16] | Loss: 0.03714 (BC: 0.0164, Clean: 0.0150, Asym: 0.0058) |  667.7 spec/s
+[PolyGaussNet2] Ep [ 3/16] | File [ 7/16] | Loss: 0.03768 (BC: 0.0167, Clean: 0.0152, Asym: 0.0058) |  677.7 spec/s
+[PolyGaussNet2] Ep [ 3/16] | File [ 8/16] | Loss: 0.03768 (BC: 0.0167, Clean: 0.0152, Asym: 0.0058) |  681.4 spec/s
+[PolyGaussNet2] Ep [ 3/16] | File [ 9/16] | Loss: 0.03574 (BC: 0.0157, Clean: 0.0143, Asym: 0.0058) |  684.1 spec/s
+[PolyGaussNet2] Ep [ 3/16] | File [10/16] | Loss: 0.03491 (BC: 0.0156, Clean: 0.0142, Asym: 0.0051) |  682.5 spec/s
+[PolyGaussNet2] Ep [ 3/16] | File [11/16] | Loss: 0.03431 (BC: 0.0150, Clean: 0.0137, Asym: 0.0057) |  672.5 spec/s
+[PolyGaussNet2] Ep [ 3/16] | File [12/16] | Loss: 0.03574 (BC: 0.0155, Clean: 0.0142, Asym: 0.0060) |  682.4 spec/s
+[PolyGaussNet2] Ep [ 3/16] | File [13/16] | Loss: 0.04149 (BC: 0.0188, Clean: 0.0174, Asym: 0.0053) |  683.0 spec/s
+[PolyGaussNet2] Ep [ 3/16] | File [14/16] | Loss: 0.03540 (BC: 0.0154, Clean: 0.0140, Asym: 0.0060) |  683.6 spec/s
+[PolyGaussNet2] Ep [ 3/16] | File [15/16] | Loss: 0.03456 (BC: 0.0152, Clean: 0.0138, Asym: 0.0055) |  683.2 spec/s
+[PolyGaussNet2] Ep [ 3/16] | File [16/16] | Loss: 0.03229 (BC: 0.0143, Clean: 0.0130, Asym: 0.0049) |  684.9 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet2] Epoch [ 3/16] Finished in 389.9s (672.4 spec/s)
+    Avg Loss: 0.037364 | BC: 0.016518 | Clean: 0.015094 | Asym: 0.005753
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet2 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet2.pth' (Loss: 0.037364)
+--------------------------------------------------------------------------------
+[PolyGaussNet2] Ep [ 4/16] | File [ 1/16] | Loss: 0.03211 (BC: 0.0142, Clean: 0.0129, Asym: 0.0050) |  678.2 spec/s
+[PolyGaussNet2] Ep [ 4/16] | File [ 2/16] | Loss: 0.03195 (BC: 0.0140, Clean: 0.0127, Asym: 0.0052) |  682.0 spec/s
+[PolyGaussNet2] Ep [ 4/16] | File [ 3/16] | Loss: 0.03289 (BC: 0.0146, Clean: 0.0132, Asym: 0.0051) |  679.0 spec/s
+[PolyGaussNet2] Ep [ 4/16] | File [ 4/16] | Loss: 0.03584 (BC: 0.0156, Clean: 0.0142, Asym: 0.0060) |  672.8 spec/s
+[PolyGaussNet2] Ep [ 4/16] | File [ 5/16] | Loss: 0.04139 (BC: 0.0184, Clean: 0.0168, Asym: 0.0061) |  539.2 spec/s
+[PolyGaussNet2] Ep [ 4/16] | File [ 6/16] | Loss: 0.03277 (BC: 0.0147, Clean: 0.0133, Asym: 0.0047) |  388.1 spec/s
+[PolyGaussNet2] Ep [ 4/16] | File [ 7/16] | Loss: 0.03098 (BC: 0.0138, Clean: 0.0125, Asym: 0.0048) |  393.5 spec/s
+[PolyGaussNet2] Ep [ 4/16] | File [ 8/16] | Loss: 0.03107 (BC: 0.0137, Clean: 0.0125, Asym: 0.0049) |  414.0 spec/s
+[PolyGaussNet2] Ep [ 4/16] | File [ 9/16] | Loss: 0.03150 (BC: 0.0137, Clean: 0.0124, Asym: 0.0054) |  400.9 spec/s
+[PolyGaussNet2] Ep [ 4/16] | File [10/16] | Loss: 0.03021 (BC: 0.0137, Clean: 0.0124, Asym: 0.0041) |  411.0 spec/s
+[PolyGaussNet2] Ep [ 4/16] | File [11/16] | Loss: 0.02944 (BC: 0.0130, Clean: 0.0118, Asym: 0.0046) |  394.7 spec/s
+[PolyGaussNet2] Ep [ 4/16] | File [12/16] | Loss: 0.02937 (BC: 0.0129, Clean: 0.0117, Asym: 0.0048) |  415.5 spec/s
+[PolyGaussNet2] Ep [ 4/16] | File [13/16] | Loss: 0.02955 (BC: 0.0131, Clean: 0.0118, Asym: 0.0046) |  403.3 spec/s
+[PolyGaussNet2] Ep [ 4/16] | File [14/16] | Loss: 0.03050 (BC: 0.0133, Clean: 0.0121, Asym: 0.0051) |  410.6 spec/s
+[PolyGaussNet2] Ep [ 4/16] | File [15/16] | Loss: 0.03017 (BC: 0.0133, Clean: 0.0121, Asym: 0.0048) |  399.5 spec/s
+[PolyGaussNet2] Ep [ 4/16] | File [16/16] | Loss: 0.03738 (BC: 0.0167, Clean: 0.0153, Asym: 0.0054) |  395.7 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet2] Epoch [ 4/16] Finished in 580.0s (452.0 spec/s)
+    Avg Loss: 0.032320 | BC: 0.014293 | Clean: 0.012989 | Asym: 0.005038
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet2 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet2.pth' (Loss: 0.032320)
+--------------------------------------------------------------------------------
+[PolyGaussNet2] Ep [ 5/16] | File [ 1/16] | Loss: 0.02932 (BC: 0.0130, Clean: 0.0118, Asym: 0.0046) |  396.8 spec/s
+[PolyGaussNet2] Ep [ 5/16] | File [ 2/16] | Loss: 0.02827 (BC: 0.0124, Clean: 0.0113, Asym: 0.0046) |  389.3 spec/s
+[PolyGaussNet2] Ep [ 5/16] | File [ 3/16] | Loss: 0.02808 (BC: 0.0125, Clean: 0.0113, Asym: 0.0042) |  388.1 spec/s
+[PolyGaussNet2] Ep [ 5/16] | File [ 4/16] | Loss: 0.02749 (BC: 0.0121, Clean: 0.0109, Asym: 0.0045) |  415.7 spec/s
+[PolyGaussNet2] Ep [ 5/16] | File [ 5/16] | Loss: 0.02723 (BC: 0.0119, Clean: 0.0107, Asym: 0.0046) |  430.7 spec/s
+[PolyGaussNet2] Ep [ 5/16] | File [ 6/16] | Loss: 0.02786 (BC: 0.0125, Clean: 0.0113, Asym: 0.0041) |  441.7 spec/s
+[PolyGaussNet2] Ep [ 5/16] | File [ 7/16] | Loss: 0.02656 (BC: 0.0117, Clean: 0.0106, Asym: 0.0043) |  421.4 spec/s
+[PolyGaussNet2] Ep [ 5/16] | File [ 8/16] | Loss: 0.02953 (BC: 0.0131, Clean: 0.0119, Asym: 0.0045) |  414.7 spec/s
+[PolyGaussNet2] Ep [ 5/16] | File [ 9/16] | Loss: 0.02763 (BC: 0.0120, Clean: 0.0108, Asym: 0.0049) |  393.7 spec/s
+[PolyGaussNet2] Ep [ 5/16] | File [10/16] | Loss: 0.02798 (BC: 0.0124, Clean: 0.0113, Asym: 0.0043) |  364.5 spec/s
+[PolyGaussNet2] Ep [ 5/16] | File [11/16] | Loss: 0.02681 (BC: 0.0119, Clean: 0.0108, Asym: 0.0041) |  447.1 spec/s
+[PolyGaussNet2] Ep [ 5/16] | File [12/16] | Loss: 0.02703 (BC: 0.0120, Clean: 0.0108, Asym: 0.0042) |  664.4 spec/s
+[PolyGaussNet2] Ep [ 5/16] | File [13/16] | Loss: 0.02523 (BC: 0.0113, Clean: 0.0101, Asym: 0.0038) |  663.6 spec/s
+[PolyGaussNet2] Ep [ 5/16] | File [14/16] | Loss: 0.02433 (BC: 0.0107, Clean: 0.0096, Asym: 0.0040) |  664.7 spec/s
+[PolyGaussNet2] Ep [ 5/16] | File [15/16] | Loss: 0.02594 (BC: 0.0115, Clean: 0.0104, Asym: 0.0041) |  665.6 spec/s
+[PolyGaussNet2] Ep [ 5/16] | File [16/16] | Loss: 0.02524 (BC: 0.0112, Clean: 0.0101, Asym: 0.0040) |  667.6 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet2] Epoch [ 5/16] Finished in 569.9s (460.0 spec/s)
+    Avg Loss: 0.027158 | BC: 0.012015 | Clean: 0.010849 | Asym: 0.004294
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet2 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet2.pth' (Loss: 0.027158)
+--------------------------------------------------------------------------------
+[PolyGaussNet2] Ep [ 6/16] | File [ 1/16] | Loss: 0.02780 (BC: 0.0123, Clean: 0.0111, Asym: 0.0044) |  662.4 spec/s
+[PolyGaussNet2] Ep [ 6/16] | File [ 2/16] | Loss: 0.02716 (BC: 0.0118, Clean: 0.0107, Asym: 0.0047) |  665.8 spec/s
+[PolyGaussNet2] Ep [ 6/16] | File [ 3/16] | Loss: 0.02517 (BC: 0.0111, Clean: 0.0100, Asym: 0.0041) |  666.1 spec/s
+[PolyGaussNet2] Ep [ 6/16] | File [ 4/16] | Loss: 0.02383 (BC: 0.0107, Clean: 0.0096, Asym: 0.0036) |  662.9 spec/s
+[PolyGaussNet2] Ep [ 6/16] | File [ 5/16] | Loss: 0.02362 (BC: 0.0105, Clean: 0.0094, Asym: 0.0038) |  657.1 spec/s
+[PolyGaussNet2] Ep [ 6/16] | File [ 6/16] | Loss: 0.02453 (BC: 0.0106, Clean: 0.0095, Asym: 0.0045) |  664.9 spec/s
+[PolyGaussNet2] Ep [ 6/16] | File [ 7/16] | Loss: 0.02433 (BC: 0.0108, Clean: 0.0097, Asym: 0.0038) |  663.4 spec/s
+[PolyGaussNet2] Ep [ 6/16] | File [ 8/16] | Loss: 0.02358 (BC: 0.0106, Clean: 0.0096, Asym: 0.0034) |  662.8 spec/s
+[PolyGaussNet2] Ep [ 6/16] | File [ 9/16] | Loss: 0.02253 (BC: 0.0098, Clean: 0.0087, Asym: 0.0040) |  656.8 spec/s
+[PolyGaussNet2] Ep [ 6/16] | File [10/16] | Loss: 0.02541 (BC: 0.0112, Clean: 0.0101, Asym: 0.0041) |  662.6 spec/s
+[PolyGaussNet2] Ep [ 6/16] | File [11/16] | Loss: 0.02445 (BC: 0.0106, Clean: 0.0095, Asym: 0.0043) |  661.5 spec/s
+[PolyGaussNet2] Ep [ 6/16] | File [12/16] | Loss: 0.02336 (BC: 0.0103, Clean: 0.0092, Asym: 0.0039) |  662.6 spec/s
+[PolyGaussNet2] Ep [ 6/16] | File [13/16] | Loss: 0.02332 (BC: 0.0102, Clean: 0.0092, Asym: 0.0040) |  663.6 spec/s
+[PolyGaussNet2] Ep [ 6/16] | File [14/16] | Loss: 0.02327 (BC: 0.0104, Clean: 0.0094, Asym: 0.0035) |  663.2 spec/s
+[PolyGaussNet2] Ep [ 6/16] | File [15/16] | Loss: 0.02296 (BC: 0.0101, Clean: 0.0091, Asym: 0.0037) |  644.7 spec/s
+[PolyGaussNet2] Ep [ 6/16] | File [16/16] | Loss: 0.02417 (BC: 0.0104, Clean: 0.0094, Asym: 0.0044) |  629.5 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet2] Epoch [ 6/16] Finished in 402.9s (650.7 spec/s)
+    Avg Loss: 0.024343 | BC: 0.010705 | Clean: 0.009622 | Asym: 0.004016
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet2 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet2.pth' (Loss: 0.024343)
+--------------------------------------------------------------------------------
+[PolyGaussNet2] Ep [ 7/16] | File [ 1/16] | Loss: 0.02319 (BC: 0.0101, Clean: 0.0090, Asym: 0.0041) |  620.9 spec/s
+[PolyGaussNet2] Ep [ 7/16] | File [ 2/16] | Loss: 0.02223 (BC: 0.0097, Clean: 0.0087, Asym: 0.0038) |  650.4 spec/s
+[PolyGaussNet2] Ep [ 7/16] | File [ 3/16] | Loss: 0.02147 (BC: 0.0097, Clean: 0.0087, Asym: 0.0031) |  665.4 spec/s
+[PolyGaussNet2] Ep [ 7/16] | File [ 4/16] | Loss: 0.02256 (BC: 0.0098, Clean: 0.0088, Asym: 0.0040) |  662.6 spec/s
+[PolyGaussNet2] Ep [ 7/16] | File [ 5/16] | Loss: 0.02171 (BC: 0.0096, Clean: 0.0086, Asym: 0.0036) |  657.6 spec/s
+[PolyGaussNet2] Ep [ 7/16] | File [ 6/16] | Loss: 0.02233 (BC: 0.0097, Clean: 0.0087, Asym: 0.0039) |  648.9 spec/s
+[PolyGaussNet2] Ep [ 7/16] | File [ 7/16] | Loss: 0.02107 (BC: 0.0092, Clean: 0.0082, Asym: 0.0036) |  661.8 spec/s
+[PolyGaussNet2] Ep [ 7/16] | File [ 8/16] | Loss: 0.02135 (BC: 0.0095, Clean: 0.0085, Asym: 0.0034) |  664.6 spec/s
+[PolyGaussNet2] Ep [ 7/16] | File [ 9/16] | Loss: 0.02077 (BC: 0.0091, Clean: 0.0081, Asym: 0.0035) |  666.7 spec/s
+[PolyGaussNet2] Ep [ 7/16] | File [10/16] | Loss: 0.02226 (BC: 0.0097, Clean: 0.0087, Asym: 0.0038) |  665.3 spec/s
+[PolyGaussNet2] Ep [ 7/16] | File [11/16] | Loss: 0.02280 (BC: 0.0098, Clean: 0.0087, Asym: 0.0043) |  659.6 spec/s
+[PolyGaussNet2] Ep [ 7/16] | File [12/16] | Loss: 0.02176 (BC: 0.0098, Clean: 0.0088, Asym: 0.0032) |  664.2 spec/s
+[PolyGaussNet2] Ep [ 7/16] | File [13/16] | Loss: 0.02260 (BC: 0.0098, Clean: 0.0087, Asym: 0.0041) |  665.5 spec/s
+[PolyGaussNet2] Ep [ 7/16] | File [14/16] | Loss: 0.02103 (BC: 0.0093, Clean: 0.0083, Asym: 0.0034) |  664.9 spec/s
+[PolyGaussNet2] Ep [ 7/16] | File [15/16] | Loss: 0.02170 (BC: 0.0096, Clean: 0.0085, Asym: 0.0036) |  665.5 spec/s
+[PolyGaussNet2] Ep [ 7/16] | File [16/16] | Loss: 0.02224 (BC: 0.0097, Clean: 0.0086, Asym: 0.0040) |  654.6 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet2] Epoch [ 7/16] Finished in 403.1s (650.4 spec/s)
+    Avg Loss: 0.021941 | BC: 0.009624 | Clean: 0.008605 | Asym: 0.003713
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet2 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet2.pth' (Loss: 0.021941)
+--------------------------------------------------------------------------------
+[PolyGaussNet2] Ep [ 8/16] | File [ 1/16] | Loss: 0.02096 (BC: 0.0092, Clean: 0.0082, Asym: 0.0036) |  656.2 spec/s
+[PolyGaussNet2] Ep [ 8/16] | File [ 2/16] | Loss: 0.02043 (BC: 0.0090, Clean: 0.0080, Asym: 0.0035) |  663.7 spec/s
+[PolyGaussNet2] Ep [ 8/16] | File [ 3/16] | Loss: 0.02164 (BC: 0.0094, Clean: 0.0084, Asym: 0.0038) |  662.2 spec/s
+[PolyGaussNet2] Ep [ 8/16] | File [ 4/16] | Loss: 0.02043 (BC: 0.0090, Clean: 0.0080, Asym: 0.0034) |  664.8 spec/s
+[PolyGaussNet2] Ep [ 8/16] | File [ 5/16] | Loss: 0.02102 (BC: 0.0091, Clean: 0.0081, Asym: 0.0039) |  655.4 spec/s
+[PolyGaussNet2] Ep [ 8/16] | File [ 6/16] | Loss: 0.02033 (BC: 0.0089, Clean: 0.0080, Asym: 0.0034) |  661.7 spec/s
+[PolyGaussNet2] Ep [ 8/16] | File [ 7/16] | Loss: 0.02216 (BC: 0.0097, Clean: 0.0087, Asym: 0.0037) |  665.6 spec/s
+[PolyGaussNet2] Ep [ 8/16] | File [ 8/16] | Loss: 0.02761 (BC: 0.0122, Clean: 0.0110, Asym: 0.0045) |  666.3 spec/s
+[PolyGaussNet2] Ep [ 8/16] | File [ 9/16] | Loss: 0.02104 (BC: 0.0091, Clean: 0.0081, Asym: 0.0038) |  667.1 spec/s
+[PolyGaussNet2] Ep [ 8/16] | File [10/16] | Loss: 0.01964 (BC: 0.0087, Clean: 0.0077, Asym: 0.0032) |  666.8 spec/s
+[PolyGaussNet2] Ep [ 8/16] | File [11/16] | Loss: 0.01936 (BC: 0.0086, Clean: 0.0076, Asym: 0.0032) |  665.9 spec/s
+[PolyGaussNet2] Ep [ 8/16] | File [12/16] | Loss: 0.02196 (BC: 0.0097, Clean: 0.0086, Asym: 0.0037) |  664.9 spec/s
+[PolyGaussNet2] Ep [ 8/16] | File [13/16] | Loss: 0.02122 (BC: 0.0091, Clean: 0.0081, Asym: 0.0040) |  665.2 spec/s
+[PolyGaussNet2] Ep [ 8/16] | File [14/16] | Loss: 0.02114 (BC: 0.0093, Clean: 0.0083, Asym: 0.0036) |  666.6 spec/s
+[PolyGaussNet2] Ep [ 8/16] | File [15/16] | Loss: 0.01909 (BC: 0.0083, Clean: 0.0074, Asym: 0.0034) |  666.3 spec/s
+[PolyGaussNet2] Ep [ 8/16] | File [16/16] | Loss: 0.02015 (BC: 0.0088, Clean: 0.0078, Asym: 0.0036) |  668.5 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet2] Epoch [ 8/16] Finished in 399.0s (657.0 spec/s)
+    Avg Loss: 0.021135 | BC: 0.009249 | Clean: 0.008241 | Asym: 0.003645
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet2 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet2.pth' (Loss: 0.021135)
+--------------------------------------------------------------------------------
+[PolyGaussNet2] Ep [ 9/16] | File [ 1/16] | Loss: 0.01971 (BC: 0.0086, Clean: 0.0076, Asym: 0.0036) |  664.5 spec/s
+[PolyGaussNet2] Ep [ 9/16] | File [ 2/16] | Loss: 0.01972 (BC: 0.0086, Clean: 0.0076, Asym: 0.0036) |  667.0 spec/s
+[PolyGaussNet2] Ep [ 9/16] | File [ 3/16] | Loss: 0.01987 (BC: 0.0086, Clean: 0.0076, Asym: 0.0037) |  666.7 spec/s
+[PolyGaussNet2] Ep [ 9/16] | File [ 4/16] | Loss: 0.02185 (BC: 0.0095, Clean: 0.0085, Asym: 0.0038) |  666.9 spec/s
+[PolyGaussNet2] Ep [ 9/16] | File [ 5/16] | Loss: 0.02221 (BC: 0.0097, Clean: 0.0087, Asym: 0.0038) |  667.8 spec/s
+[PolyGaussNet2] Ep [ 9/16] | File [ 6/16] | Loss: 0.02120 (BC: 0.0091, Clean: 0.0081, Asym: 0.0039) |  666.2 spec/s
+[PolyGaussNet2] Ep [ 9/16] | File [ 7/16] | Loss: 0.02056 (BC: 0.0089, Clean: 0.0080, Asym: 0.0037) |  665.1 spec/s
+[PolyGaussNet2] Ep [ 9/16] | File [ 8/16] | Loss: 0.01928 (BC: 0.0084, Clean: 0.0074, Asym: 0.0034) |  665.6 spec/s
+[PolyGaussNet2] Ep [ 9/16] | File [ 9/16] | Loss: 0.02141 (BC: 0.0093, Clean: 0.0083, Asym: 0.0038) |  664.4 spec/s
+[PolyGaussNet2] Ep [ 9/16] | File [10/16] | Loss: 0.02190 (BC: 0.0096, Clean: 0.0086, Asym: 0.0037) |  663.0 spec/s
+[PolyGaussNet2] Ep [ 9/16] | File [11/16] | Loss: 0.02078 (BC: 0.0089, Clean: 0.0079, Asym: 0.0041) |  664.2 spec/s
+[PolyGaussNet2] Ep [ 9/16] | File [12/16] | Loss: 0.03716 (BC: 0.0164, Clean: 0.0150, Asym: 0.0058) |  664.9 spec/s
+[PolyGaussNet2] Ep [ 9/16] | File [13/16] | Loss: 0.02922 (BC: 0.0129, Clean: 0.0117, Asym: 0.0046) |  664.6 spec/s
+[PolyGaussNet2] Ep [ 9/16] | File [14/16] | Loss: 0.02126 (BC: 0.0092, Clean: 0.0082, Asym: 0.0038) |  662.9 spec/s
+[PolyGaussNet2] Ep [ 9/16] | File [15/16] | Loss: 0.02003 (BC: 0.0084, Clean: 0.0075, Asym: 0.0042) |  661.0 spec/s
+[PolyGaussNet2] Ep [ 9/16] | File [16/16] | Loss: 0.02023 (BC: 0.0088, Clean: 0.0078, Asym: 0.0037) |  665.8 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet2] Epoch [ 9/16] Finished in 398.5s (657.8 spec/s)
+    Avg Loss: 0.022275 | BC: 0.009682 | Clean: 0.008656 | Asym: 0.003937
+    Learning Rate: 1.000000e-04
+--------------------------------------------------------------------------------
+[PolyGaussNet2] Ep [10/16] | File [ 1/16] | Loss: 0.01911 (BC: 0.0083, Clean: 0.0073, Asym: 0.0035) |  661.2 spec/s
+[PolyGaussNet2] Ep [10/16] | File [ 2/16] | Loss: 0.01878 (BC: 0.0082, Clean: 0.0072, Asym: 0.0034) |  666.3 spec/s
+[PolyGaussNet2] Ep [10/16] | File [ 3/16] | Loss: 0.01921 (BC: 0.0084, Clean: 0.0074, Asym: 0.0034) |  657.0 spec/s
+[PolyGaussNet2] Ep [10/16] | File [ 4/16] | Loss: 0.01926 (BC: 0.0085, Clean: 0.0075, Asym: 0.0033) |  661.5 spec/s
+[PolyGaussNet2] Ep [10/16] | File [ 5/16] | Loss: 0.01930 (BC: 0.0084, Clean: 0.0074, Asym: 0.0035) |  661.8 spec/s
+[PolyGaussNet2] Ep [10/16] | File [ 6/16] | Loss: 0.01905 (BC: 0.0085, Clean: 0.0075, Asym: 0.0031) |  659.9 spec/s
+[PolyGaussNet2] Ep [10/16] | File [ 7/16] | Loss: 0.02053 (BC: 0.0087, Clean: 0.0077, Asym: 0.0041) |  662.7 spec/s
+[PolyGaussNet2] Ep [10/16] | File [ 8/16] | Loss: 0.02032 (BC: 0.0088, Clean: 0.0078, Asym: 0.0037) |  656.1 spec/s
+[PolyGaussNet2] Ep [10/16] | File [ 9/16] | Loss: 0.01892 (BC: 0.0083, Clean: 0.0074, Asym: 0.0032) |  660.3 spec/s
+[PolyGaussNet2] Ep [10/16] | File [10/16] | Loss: 0.01834 (BC: 0.0080, Clean: 0.0071, Asym: 0.0032) |  661.6 spec/s
+[PolyGaussNet2] Ep [10/16] | File [11/16] | Loss: 0.01773 (BC: 0.0078, Clean: 0.0069, Asym: 0.0031) |  655.4 spec/s
+[PolyGaussNet2] Ep [10/16] | File [12/16] | Loss: 0.01815 (BC: 0.0080, Clean: 0.0070, Asym: 0.0032) |  660.2 spec/s
+[PolyGaussNet2] Ep [10/16] | File [13/16] | Loss: 0.03172 (BC: 0.0139, Clean: 0.0126, Asym: 0.0052) |  654.7 spec/s
+[PolyGaussNet2] Ep [10/16] | File [14/16] | Loss: 0.02471 (BC: 0.0107, Clean: 0.0096, Asym: 0.0044) |  659.8 spec/s
+[PolyGaussNet2] Ep [10/16] | File [15/16] | Loss: 0.02017 (BC: 0.0086, Clean: 0.0077, Asym: 0.0039) |  665.6 spec/s
+[PolyGaussNet2] Ep [10/16] | File [16/16] | Loss: 0.01905 (BC: 0.0083, Clean: 0.0073, Asym: 0.0034) |  667.5 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet2] Epoch [10/16] Finished in 401.6s (652.8 spec/s)
+    Avg Loss: 0.020272 | BC: 0.008833 | Clean: 0.007844 | Asym: 0.003594
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet2 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet2.pth' (Loss: 0.020272)
+--------------------------------------------------------------------------------
+[PolyGaussNet2] Ep [11/16] | File [ 1/16] | Loss: 0.01818 (BC: 0.0080, Clean: 0.0070, Asym: 0.0031) |  659.1 spec/s
+[PolyGaussNet2] Ep [11/16] | File [ 2/16] | Loss: 0.01830 (BC: 0.0079, Clean: 0.0070, Asym: 0.0035) |  661.4 spec/s
+[PolyGaussNet2] Ep [11/16] | File [ 3/16] | Loss: 0.01904 (BC: 0.0083, Clean: 0.0073, Asym: 0.0034) |  659.2 spec/s
+[PolyGaussNet2] Ep [11/16] | File [ 4/16] | Loss: 0.01863 (BC: 0.0081, Clean: 0.0072, Asym: 0.0033) |  663.7 spec/s
+[PolyGaussNet2] Ep [11/16] | File [ 5/16] | Loss: 0.01874 (BC: 0.0084, Clean: 0.0074, Asym: 0.0030) |  662.7 spec/s
+[PolyGaussNet2] Ep [11/16] | File [ 6/16] | Loss: 0.01932 (BC: 0.0083, Clean: 0.0073, Asym: 0.0037) |  664.5 spec/s
+[PolyGaussNet2] Ep [11/16] | File [ 7/16] | Loss: 0.01848 (BC: 0.0082, Clean: 0.0072, Asym: 0.0032) |  664.6 spec/s
+[PolyGaussNet2] Ep [11/16] | File [ 8/16] | Loss: 0.01965 (BC: 0.0084, Clean: 0.0074, Asym: 0.0038) |  655.5 spec/s
+[PolyGaussNet2] Ep [11/16] | File [ 9/16] | Loss: 0.01861 (BC: 0.0080, Clean: 0.0071, Asym: 0.0035) |  666.4 spec/s
+[PolyGaussNet2] Ep [11/16] | File [10/16] | Loss: 0.01793 (BC: 0.0077, Clean: 0.0068, Asym: 0.0034) |  665.5 spec/s
+[PolyGaussNet2] Ep [11/16] | File [11/16] | Loss: 0.01807 (BC: 0.0078, Clean: 0.0069, Asym: 0.0034) |  655.9 spec/s
+[PolyGaussNet2] Ep [11/16] | File [12/16] | Loss: 0.01882 (BC: 0.0082, Clean: 0.0073, Asym: 0.0033) |  658.3 spec/s
+[PolyGaussNet2] Ep [11/16] | File [13/16] | Loss: 0.01792 (BC: 0.0076, Clean: 0.0067, Asym: 0.0036) |  651.4 spec/s
+[PolyGaussNet2] Ep [11/16] | File [14/16] | Loss: 0.01870 (BC: 0.0083, Clean: 0.0074, Asym: 0.0030) |  676.1 spec/s
+[PolyGaussNet2] Ep [11/16] | File [15/16] | Loss: 0.01797 (BC: 0.0079, Clean: 0.0070, Asym: 0.0031) |  667.6 spec/s
+[PolyGaussNet2] Ep [11/16] | File [16/16] | Loss: 0.01798 (BC: 0.0077, Clean: 0.0068, Asym: 0.0035) |  680.5 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet2] Epoch [11/16] Finished in 400.0s (655.3 spec/s)
+    Avg Loss: 0.018521 | BC: 0.008056 | Clean: 0.007107 | Asym: 0.003357
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet2 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet2.pth' (Loss: 0.018521)
+--------------------------------------------------------------------------------
+[PolyGaussNet2] Ep [12/16] | File [ 1/16] | Loss: 0.01826 (BC: 0.0080, Clean: 0.0070, Asym: 0.0033) |  675.1 spec/s
+[PolyGaussNet2] Ep [12/16] | File [ 2/16] | Loss: 0.01776 (BC: 0.0078, Clean: 0.0069, Asym: 0.0030) |  680.0 spec/s
+[PolyGaussNet2] Ep [12/16] | File [ 3/16] | Loss: 0.01822 (BC: 0.0078, Clean: 0.0068, Asym: 0.0036) |  671.4 spec/s
+[PolyGaussNet2] Ep [12/16] | File [ 4/16] | Loss: 0.01799 (BC: 0.0079, Clean: 0.0070, Asym: 0.0031) |  671.2 spec/s
+[PolyGaussNet2] Ep [12/16] | File [ 5/16] | Loss: 0.01688 (BC: 0.0075, Clean: 0.0066, Asym: 0.0029) |  674.6 spec/s
+[PolyGaussNet2] Ep [12/16] | File [ 6/16] | Loss: 0.01767 (BC: 0.0078, Clean: 0.0068, Asym: 0.0031) |  679.2 spec/s
+[PolyGaussNet2] Ep [12/16] | File [ 7/16] | Loss: 0.01940 (BC: 0.0086, Clean: 0.0076, Asym: 0.0033) |  678.1 spec/s
+[PolyGaussNet2] Ep [12/16] | File [ 8/16] | Loss: 0.01793 (BC: 0.0077, Clean: 0.0067, Asym: 0.0035) |  683.0 spec/s
+[PolyGaussNet2] Ep [12/16] | File [ 9/16] | Loss: 0.01801 (BC: 0.0079, Clean: 0.0069, Asym: 0.0032) |  676.3 spec/s
+[PolyGaussNet2] Ep [12/16] | File [10/16] | Loss: 0.01785 (BC: 0.0077, Clean: 0.0068, Asym: 0.0033) |  663.6 spec/s
+[PolyGaussNet2] Ep [12/16] | File [11/16] | Loss: 0.01775 (BC: 0.0075, Clean: 0.0066, Asym: 0.0037) |  658.6 spec/s
+[PolyGaussNet2] Ep [12/16] | File [12/16] | Loss: 0.01743 (BC: 0.0077, Clean: 0.0068, Asym: 0.0030) |  676.6 spec/s
+[PolyGaussNet2] Ep [12/16] | File [13/16] | Loss: 0.01751 (BC: 0.0076, Clean: 0.0067, Asym: 0.0032) |  674.4 spec/s
+[PolyGaussNet2] Ep [12/16] | File [14/16] | Loss: 0.01832 (BC: 0.0078, Clean: 0.0069, Asym: 0.0036) |  681.5 spec/s
+[PolyGaussNet2] Ep [12/16] | File [15/16] | Loss: 0.01736 (BC: 0.0076, Clean: 0.0067, Asym: 0.0030) |  678.0 spec/s
+[PolyGaussNet2] Ep [12/16] | File [16/16] | Loss: 0.01685 (BC: 0.0074, Clean: 0.0065, Asym: 0.0030) |  681.1 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet2] Epoch [12/16] Finished in 393.2s (666.7 spec/s)
+    Avg Loss: 0.017824 | BC: 0.007764 | Clean: 0.006823 | Asym: 0.003236
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet2 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet2.pth' (Loss: 0.017824)
+--------------------------------------------------------------------------------
+[PolyGaussNet2] Ep [13/16] | File [ 1/16] | Loss: 0.01719 (BC: 0.0075, Clean: 0.0066, Asym: 0.0032) |  675.5 spec/s
+[PolyGaussNet2] Ep [13/16] | File [ 2/16] | Loss: 0.01684 (BC: 0.0073, Clean: 0.0064, Asym: 0.0031) |  669.6 spec/s
+[PolyGaussNet2] Ep [13/16] | File [ 3/16] | Loss: 0.01822 (BC: 0.0080, Clean: 0.0070, Asym: 0.0033) |  666.4 spec/s
+[PolyGaussNet2] Ep [13/16] | File [ 4/16] | Loss: 0.01949 (BC: 0.0085, Clean: 0.0076, Asym: 0.0034) |  674.4 spec/s
+[PolyGaussNet2] Ep [13/16] | File [ 5/16] | Loss: 0.01688 (BC: 0.0074, Clean: 0.0065, Asym: 0.0030) |  675.2 spec/s
+[PolyGaussNet2] Ep [13/16] | File [ 6/16] | Loss: 0.01768 (BC: 0.0078, Clean: 0.0068, Asym: 0.0030) |  676.9 spec/s
+[PolyGaussNet2] Ep [13/16] | File [ 7/16] | Loss: 0.01744 (BC: 0.0076, Clean: 0.0066, Asym: 0.0032) |  669.2 spec/s
+[PolyGaussNet2] Ep [13/16] | File [ 8/16] | Loss: 0.01830 (BC: 0.0077, Clean: 0.0068, Asym: 0.0038) |  661.9 spec/s
+[PolyGaussNet2] Ep [13/16] | File [ 9/16] | Loss: 0.01737 (BC: 0.0077, Clean: 0.0067, Asym: 0.0029) |  668.7 spec/s
+[PolyGaussNet2] Ep [13/16] | File [10/16] | Loss: 0.01989 (BC: 0.0087, Clean: 0.0077, Asym: 0.0035) |  666.4 spec/s
+[PolyGaussNet2] Ep [13/16] | File [11/16] | Loss: 0.01918 (BC: 0.0083, Clean: 0.0074, Asym: 0.0035) |  671.2 spec/s
+[PolyGaussNet2] Ep [13/16] | File [12/16] | Loss: 0.01806 (BC: 0.0080, Clean: 0.0071, Asym: 0.0030) |  671.2 spec/s
+[PolyGaussNet2] Ep [13/16] | File [13/16] | Loss: 0.01858 (BC: 0.0077, Clean: 0.0068, Asym: 0.0041) |  676.7 spec/s
+[PolyGaussNet2] Ep [13/16] | File [14/16] | Loss: 0.01892 (BC: 0.0083, Clean: 0.0073, Asym: 0.0033) |  674.0 spec/s
+[PolyGaussNet2] Ep [13/16] | File [15/16] | Loss: 0.01763 (BC: 0.0077, Clean: 0.0067, Asym: 0.0032) |  673.8 spec/s
+[PolyGaussNet2] Ep [13/16] | File [16/16] | Loss: 0.02003 (BC: 0.0086, Clean: 0.0076, Asym: 0.0038) |  677.6 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet2] Epoch [13/16] Finished in 395.3s (663.1 spec/s)
+    Avg Loss: 0.018231 | BC: 0.007931 | Clean: 0.006978 | Asym: 0.003321
+    Learning Rate: 1.000000e-04
+--------------------------------------------------------------------------------
+[PolyGaussNet2] Ep [14/16] | File [ 1/16] | Loss: 0.01733 (BC: 0.0075, Clean: 0.0066, Asym: 0.0032) |  673.3 spec/s
+[PolyGaussNet2] Ep [14/16] | File [ 2/16] | Loss: 0.01691 (BC: 0.0075, Clean: 0.0066, Asym: 0.0029) |  671.4 spec/s
+[PolyGaussNet2] Ep [14/16] | File [ 3/16] | Loss: 0.01956 (BC: 0.0084, Clean: 0.0074, Asym: 0.0037) |  668.2 spec/s
+[PolyGaussNet2] Ep [14/16] | File [ 4/16] | Loss: 0.01854 (BC: 0.0080, Clean: 0.0070, Asym: 0.0035) |  675.7 spec/s
+[PolyGaussNet2] Ep [14/16] | File [ 5/16] | Loss: 0.01739 (BC: 0.0077, Clean: 0.0068, Asym: 0.0029) |  667.3 spec/s
+[PolyGaussNet2] Ep [14/16] | File [ 6/16] | Loss: 0.01779 (BC: 0.0078, Clean: 0.0068, Asym: 0.0032) |  652.4 spec/s
+[PolyGaussNet2] Ep [14/16] | File [ 7/16] | Loss: 0.01743 (BC: 0.0076, Clean: 0.0067, Asym: 0.0031) |  669.7 spec/s
+[PolyGaussNet2] Ep [14/16] | File [ 8/16] | Loss: 0.01650 (BC: 0.0071, Clean: 0.0062, Asym: 0.0031) |  664.4 spec/s
+[PolyGaussNet2] Ep [14/16] | File [ 9/16] | Loss: 0.01773 (BC: 0.0078, Clean: 0.0068, Asym: 0.0031) |  649.0 spec/s
+[PolyGaussNet2] Ep [14/16] | File [10/16] | Loss: 0.01727 (BC: 0.0075, Clean: 0.0065, Asym: 0.0033) |  622.9 spec/s
+[PolyGaussNet2] Ep [14/16] | File [11/16] | Loss: 0.01606 (BC: 0.0072, Clean: 0.0063, Asym: 0.0025) |  611.9 spec/s
+[PolyGaussNet2] Ep [14/16] | File [12/16] | Loss: 0.01657 (BC: 0.0072, Clean: 0.0063, Asym: 0.0030) |  648.7 spec/s
+[PolyGaussNet2] Ep [14/16] | File [13/16] | Loss: 0.01636 (BC: 0.0072, Clean: 0.0063, Asym: 0.0029) |  659.6 spec/s
+[PolyGaussNet2] Ep [14/16] | File [14/16] | Loss: 0.01726 (BC: 0.0074, Clean: 0.0065, Asym: 0.0034) |  661.5 spec/s
+[PolyGaussNet2] Ep [14/16] | File [15/16] | Loss: 0.01718 (BC: 0.0076, Clean: 0.0067, Asym: 0.0029) |  659.5 spec/s
+[PolyGaussNet2] Ep [14/16] | File [16/16] | Loss: 0.01689 (BC: 0.0073, Clean: 0.0064, Asym: 0.0032) |  663.5 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet2] Epoch [14/16] Finished in 405.1s (647.0 spec/s)
+    Avg Loss: 0.017298 | BC: 0.007548 | Clean: 0.006616 | Asym: 0.003134
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet2 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet2.pth' (Loss: 0.017298)
+--------------------------------------------------------------------------------
+[PolyGaussNet2] Ep [15/16] | File [ 1/16] | Loss: 0.02211 (BC: 0.0097, Clean: 0.0087, Asym: 0.0038) |  655.5 spec/s
+[PolyGaussNet2] Ep [15/16] | File [ 2/16] | Loss: 0.01835 (BC: 0.0077, Clean: 0.0067, Asym: 0.0039) |  657.1 spec/s
+[PolyGaussNet2] Ep [15/16] | File [ 3/16] | Loss: 0.01659 (BC: 0.0074, Clean: 0.0065, Asym: 0.0027) |  659.1 spec/s
+[PolyGaussNet2] Ep [15/16] | File [ 4/16] | Loss: 0.01655 (BC: 0.0071, Clean: 0.0062, Asym: 0.0032) |  656.4 spec/s
+[PolyGaussNet2] Ep [15/16] | File [ 5/16] | Loss: 0.01804 (BC: 0.0077, Clean: 0.0068, Asym: 0.0035) |  660.6 spec/s
+[PolyGaussNet2] Ep [15/16] | File [ 6/16] | Loss: 0.01720 (BC: 0.0076, Clean: 0.0066, Asym: 0.0030) |  662.0 spec/s
+[PolyGaussNet2] Ep [15/16] | File [ 7/16] | Loss: 0.01630 (BC: 0.0072, Clean: 0.0063, Asym: 0.0028) |  658.6 spec/s
+[PolyGaussNet2] Ep [15/16] | File [ 8/16] | Loss: 0.01636 (BC: 0.0071, Clean: 0.0062, Asym: 0.0030) |  660.9 spec/s
+[PolyGaussNet2] Ep [15/16] | File [ 9/16] | Loss: 0.01671 (BC: 0.0072, Clean: 0.0063, Asym: 0.0032) |  651.6 spec/s
+[PolyGaussNet2] Ep [15/16] | File [10/16] | Loss: 0.01628 (BC: 0.0070, Clean: 0.0061, Asym: 0.0031) |  654.0 spec/s
+[PolyGaussNet2] Ep [15/16] | File [11/16] | Loss: 0.01555 (BC: 0.0070, Clean: 0.0061, Asym: 0.0025) |  652.6 spec/s
+[PolyGaussNet2] Ep [15/16] | File [12/16] | Loss: 0.01653 (BC: 0.0071, Clean: 0.0062, Asym: 0.0032) |  646.5 spec/s
+[PolyGaussNet2] Ep [15/16] | File [13/16] | Loss: 0.01780 (BC: 0.0076, Clean: 0.0067, Asym: 0.0035) |  657.3 spec/s
+[PolyGaussNet2] Ep [15/16] | File [14/16] | Loss: 0.01696 (BC: 0.0075, Clean: 0.0065, Asym: 0.0030) |  655.6 spec/s
+[PolyGaussNet2] Ep [15/16] | File [15/16] | Loss: 0.01674 (BC: 0.0074, Clean: 0.0064, Asym: 0.0029) |  656.3 spec/s
+[PolyGaussNet2] Ep [15/16] | File [16/16] | Loss: 0.01571 (BC: 0.0069, Clean: 0.0060, Asym: 0.0027) |  663.7 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet2] Epoch [15/16] Finished in 404.3s (648.3 spec/s)
+    Avg Loss: 0.017112 | BC: 0.007450 | Clean: 0.006525 | Asym: 0.003136
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet2 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet2.pth' (Loss: 0.017112)
+--------------------------------------------------------------------------------
+[PolyGaussNet2] Ep [16/16] | File [ 1/16] | Loss: 0.01673 (BC: 0.0073, Clean: 0.0064, Asym: 0.0030) |  654.1 spec/s
+[PolyGaussNet2] Ep [16/16] | File [ 2/16] | Loss: 0.01662 (BC: 0.0072, Clean: 0.0063, Asym: 0.0031) |  658.7 spec/s
+[PolyGaussNet2] Ep [16/16] | File [ 3/16] | Loss: 0.01728 (BC: 0.0077, Clean: 0.0067, Asym: 0.0029) |  662.7 spec/s
+[PolyGaussNet2] Ep [16/16] | File [ 4/16] | Loss: 0.01743 (BC: 0.0075, Clean: 0.0066, Asym: 0.0033) |  661.3 spec/s
+[PolyGaussNet2] Ep [16/16] | File [ 5/16] | Loss: 0.01722 (BC: 0.0074, Clean: 0.0065, Asym: 0.0034) |  652.1 spec/s
+[PolyGaussNet2] Ep [16/16] | File [ 6/16] | Loss: 0.01723 (BC: 0.0076, Clean: 0.0067, Asym: 0.0030) |  656.2 spec/s
+[PolyGaussNet2] Ep [16/16] | File [ 7/16] | Loss: 0.01625 (BC: 0.0072, Clean: 0.0063, Asym: 0.0028) |  650.7 spec/s
+[PolyGaussNet2] Ep [16/16] | File [ 8/16] | Loss: 0.01697 (BC: 0.0071, Clean: 0.0062, Asym: 0.0037) |  653.2 spec/s
+[PolyGaussNet2] Ep [16/16] | File [ 9/16] | Loss: 0.02480 (BC: 0.0111, Clean: 0.0100, Asym: 0.0037) |  663.5 spec/s
+[PolyGaussNet2] Ep [16/16] | File [10/16] | Loss: 0.01736 (BC: 0.0076, Clean: 0.0067, Asym: 0.0031) |  657.0 spec/s
+[PolyGaussNet2] Ep [16/16] | File [11/16] | Loss: 0.01628 (BC: 0.0071, Clean: 0.0062, Asym: 0.0029) |  656.4 spec/s
+[PolyGaussNet2] Ep [16/16] | File [12/16] | Loss: 0.01595 (BC: 0.0070, Clean: 0.0061, Asym: 0.0028) |  663.5 spec/s
+[PolyGaussNet2] Ep [16/16] | File [13/16] | Loss: 0.01674 (BC: 0.0071, Clean: 0.0062, Asym: 0.0034) |  654.1 spec/s
+[PolyGaussNet2] Ep [16/16] | File [14/16] | Loss: 0.02076 (BC: 0.0094, Clean: 0.0084, Asym: 0.0029) |  656.9 spec/s
+[PolyGaussNet2] Ep [16/16] | File [15/16] | Loss: 0.01621 (BC: 0.0070, Clean: 0.0061, Asym: 0.0031) |  664.6 spec/s
+[PolyGaussNet2] Ep [16/16] | File [16/16] | Loss: 0.01593 (BC: 0.0071, Clean: 0.0061, Asym: 0.0027) |  658.4 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet2] Epoch [16/16] Finished in 403.6s (649.5 spec/s)
+    Avg Loss: 0.017486 | BC: 0.007653 | Clean: 0.006723 | Asym: 0.003110
+    Learning Rate: 1.000000e-04
+--------------------------------------------------------------------------------
+
+[PolyGaussNet2] Training Complete in 112.67 min! Best Loss: 0.017112 (at Epoch 15).
+
+
+================================================================================
+ TRAINING: PolyGaussNet3 (Target: 16 Epochs) 
+================================================================================
+  - Model Architecture: PolyGaussNet3
+  - Total Parameters:   148,426
+  - Device:             mps
+  - Batch Size:         512
+  - Initial LR:         0.0001
+  - Min LR:             9e-08
+  - Polynomial Order:   Degree 7
+  - Filter Kernel Size: 31
+  - Weights Destination:/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet3.pth
+================================================================================
+
+[PolyGaussNet3] Ep [ 1/16] | File [ 1/16] | Loss: 0.25238 (BC: 0.1044, Clean: 0.0945, Asym: 0.0535) |  653.3 spec/s
+[PolyGaussNet3] Ep [ 1/16] | File [ 2/16] | Loss: 0.16266 (BC: 0.0874, Clean: 0.0679, Asym: 0.0074) |  650.5 spec/s
+[PolyGaussNet3] Ep [ 1/16] | File [ 3/16] | Loss: 0.13723 (BC: 0.0712, Clean: 0.0529, Asym: 0.0132) |  658.1 spec/s
+[PolyGaussNet3] Ep [ 1/16] | File [ 4/16] | Loss: 0.11942 (BC: 0.0617, Clean: 0.0451, Asym: 0.0126) |  660.9 spec/s
+[PolyGaussNet3] Ep [ 1/16] | File [ 5/16] | Loss: 0.10521 (BC: 0.0533, Clean: 0.0385, Asym: 0.0134) |  662.1 spec/s
+[PolyGaussNet3] Ep [ 1/16] | File [ 6/16] | Loss: 0.09375 (BC: 0.0481, Clean: 0.0344, Asym: 0.0113) |  661.4 spec/s
+[PolyGaussNet3] Ep [ 1/16] | File [ 7/16] | Loss: 0.08725 (BC: 0.0448, Clean: 0.0318, Asym: 0.0106) |  662.5 spec/s
+[PolyGaussNet3] Ep [ 1/16] | File [ 8/16] | Loss: 0.08291 (BC: 0.0422, Clean: 0.0298, Asym: 0.0109) |  659.2 spec/s
+[PolyGaussNet3] Ep [ 1/16] | File [ 9/16] | Loss: 0.07555 (BC: 0.0398, Clean: 0.0279, Asym: 0.0078) |  663.0 spec/s
+[PolyGaussNet3] Ep [ 1/16] | File [10/16] | Loss: 0.07391 (BC: 0.0386, Clean: 0.0271, Asym: 0.0082) |  662.2 spec/s
+[PolyGaussNet3] Ep [ 1/16] | File [11/16] | Loss: 0.06899 (BC: 0.0364, Clean: 0.0254, Asym: 0.0071) |  663.4 spec/s
+[PolyGaussNet3] Ep [ 1/16] | File [12/16] | Loss: 0.06679 (BC: 0.0353, Clean: 0.0246, Asym: 0.0070) |  662.3 spec/s
+[PolyGaussNet3] Ep [ 1/16] | File [13/16] | Loss: 0.06276 (BC: 0.0334, Clean: 0.0231, Asym: 0.0062) |  656.8 spec/s
+[PolyGaussNet3] Ep [ 1/16] | File [14/16] | Loss: 0.06632 (BC: 0.0351, Clean: 0.0243, Asym: 0.0069) |  662.0 spec/s
+[PolyGaussNet3] Ep [ 1/16] | File [15/16] | Loss: 0.06356 (BC: 0.0333, Clean: 0.0228, Asym: 0.0075) |  659.7 spec/s
+[PolyGaussNet3] Ep [ 1/16] | File [16/16] | Loss: 0.06573 (BC: 0.0351, Clean: 0.0241, Asym: 0.0065) |  662.2 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet3] Epoch [ 1/16] Finished in 401.4s (653.0 spec/s)
+    Avg Loss: 0.099026 | BC: 0.050000 | Clean: 0.037149 | Asym: 0.011877
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet3 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet3.pth' (Loss: 0.099026)
+--------------------------------------------------------------------------------
+[PolyGaussNet3] Ep [ 2/16] | File [ 1/16] | Loss: 0.05630 (BC: 0.0299, Clean: 0.0204, Asym: 0.0060) |  653.9 spec/s
+[PolyGaussNet3] Ep [ 2/16] | File [ 2/16] | Loss: 0.05390 (BC: 0.0285, Clean: 0.0193, Asym: 0.0062) |  661.8 spec/s
+[PolyGaussNet3] Ep [ 2/16] | File [ 3/16] | Loss: 0.05743 (BC: 0.0299, Clean: 0.0202, Asym: 0.0074) |  661.1 spec/s
+[PolyGaussNet3] Ep [ 2/16] | File [ 4/16] | Loss: 0.05353 (BC: 0.0287, Clean: 0.0192, Asym: 0.0056) |  661.0 spec/s
+[PolyGaussNet3] Ep [ 2/16] | File [ 5/16] | Loss: 0.04925 (BC: 0.0260, Clean: 0.0173, Asym: 0.0060) |  660.9 spec/s
+[PolyGaussNet3] Ep [ 2/16] | File [ 6/16] | Loss: 0.05110 (BC: 0.0274, Clean: 0.0183, Asym: 0.0054) |  662.2 spec/s
+[PolyGaussNet3] Ep [ 2/16] | File [ 7/16] | Loss: 0.04708 (BC: 0.0244, Clean: 0.0162, Asym: 0.0065) |  663.1 spec/s
+[PolyGaussNet3] Ep [ 2/16] | File [ 8/16] | Loss: 0.04721 (BC: 0.0245, Clean: 0.0163, Asym: 0.0064) |  662.9 spec/s
+[PolyGaussNet3] Ep [ 2/16] | File [ 9/16] | Loss: 0.04770 (BC: 0.0252, Clean: 0.0167, Asym: 0.0057) |  663.8 spec/s
+[PolyGaussNet3] Ep [ 2/16] | File [10/16] | Loss: 0.04443 (BC: 0.0235, Clean: 0.0155, Asym: 0.0054) |  662.8 spec/s
+[PolyGaussNet3] Ep [ 2/16] | File [11/16] | Loss: 0.04411 (BC: 0.0231, Clean: 0.0151, Asym: 0.0059) |  663.1 spec/s
+[PolyGaussNet3] Ep [ 2/16] | File [12/16] | Loss: 0.04618 (BC: 0.0239, Clean: 0.0157, Asym: 0.0066) |  661.8 spec/s
+[PolyGaussNet3] Ep [ 2/16] | File [13/16] | Loss: 0.04868 (BC: 0.0261, Clean: 0.0171, Asym: 0.0055) |  662.3 spec/s
+[PolyGaussNet3] Ep [ 2/16] | File [14/16] | Loss: 0.04394 (BC: 0.0226, Clean: 0.0148, Asym: 0.0066) |  662.4 spec/s
+[PolyGaussNet3] Ep [ 2/16] | File [15/16] | Loss: 0.04209 (BC: 0.0219, Clean: 0.0143, Asym: 0.0059) |  661.8 spec/s
+[PolyGaussNet3] Ep [ 2/16] | File [16/16] | Loss: 0.04125 (BC: 0.0217, Clean: 0.0141, Asym: 0.0055) |  662.4 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet3] Epoch [ 2/16] Finished in 400.6s (654.4 spec/s)
+    Avg Loss: 0.048387 | BC: 0.025448 | Clean: 0.016904 | Asym: 0.006036
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet3 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet3.pth' (Loss: 0.048387)
+--------------------------------------------------------------------------------
+[PolyGaussNet3] Ep [ 3/16] | File [ 1/16] | Loss: 0.04223 (BC: 0.0217, Clean: 0.0141, Asym: 0.0065) |  654.6 spec/s
+[PolyGaussNet3] Ep [ 3/16] | File [ 2/16] | Loss: 0.04310 (BC: 0.0230, Clean: 0.0150, Asym: 0.0051) |  661.3 spec/s
+[PolyGaussNet3] Ep [ 3/16] | File [ 3/16] | Loss: 0.03997 (BC: 0.0206, Clean: 0.0133, Asym: 0.0060) |  661.4 spec/s
+[PolyGaussNet3] Ep [ 3/16] | File [ 4/16] | Loss: 0.04346 (BC: 0.0227, Clean: 0.0147, Asym: 0.0061) |  662.5 spec/s
+[PolyGaussNet3] Ep [ 3/16] | File [ 5/16] | Loss: 0.04176 (BC: 0.0220, Clean: 0.0142, Asym: 0.0056) |  662.3 spec/s
+[PolyGaussNet3] Ep [ 3/16] | File [ 6/16] | Loss: 0.04143 (BC: 0.0215, Clean: 0.0140, Asym: 0.0059) |  662.8 spec/s
+[PolyGaussNet3] Ep [ 3/16] | File [ 7/16] | Loss: 0.04059 (BC: 0.0213, Clean: 0.0137, Asym: 0.0055) |  662.5 spec/s
+[PolyGaussNet3] Ep [ 3/16] | File [ 8/16] | Loss: 0.03794 (BC: 0.0195, Clean: 0.0126, Asym: 0.0059) |  663.3 spec/s
+[PolyGaussNet3] Ep [ 3/16] | File [ 9/16] | Loss: 0.03692 (BC: 0.0195, Clean: 0.0125, Asym: 0.0048) |  660.6 spec/s
+[PolyGaussNet3] Ep [ 3/16] | File [10/16] | Loss: 0.03938 (BC: 0.0205, Clean: 0.0132, Asym: 0.0056) |  661.6 spec/s
+[PolyGaussNet3] Ep [ 3/16] | File [11/16] | Loss: 0.03881 (BC: 0.0201, Clean: 0.0129, Asym: 0.0057) |  649.6 spec/s
+[PolyGaussNet3] Ep [ 3/16] | File [12/16] | Loss: 0.03919 (BC: 0.0204, Clean: 0.0131, Asym: 0.0056) |  658.2 spec/s
+[PolyGaussNet3] Ep [ 3/16] | File [13/16] | Loss: 0.03869 (BC: 0.0201, Clean: 0.0129, Asym: 0.0058) |  653.1 spec/s
+[PolyGaussNet3] Ep [ 3/16] | File [14/16] | Loss: 0.03769 (BC: 0.0198, Clean: 0.0127, Asym: 0.0052) |  641.8 spec/s
+[PolyGaussNet3] Ep [ 3/16] | File [15/16] | Loss: 0.03687 (BC: 0.0186, Clean: 0.0119, Asym: 0.0063) |  662.3 spec/s
+[PolyGaussNet3] Ep [ 3/16] | File [16/16] | Loss: 0.04144 (BC: 0.0223, Clean: 0.0143, Asym: 0.0048) |  647.3 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet3] Epoch [ 3/16] Finished in 403.0s (650.4 spec/s)
+    Avg Loss: 0.039967 | BC: 0.020858 | Clean: 0.013442 | Asym: 0.005666
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet3 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet3.pth' (Loss: 0.039967)
+--------------------------------------------------------------------------------
+[PolyGaussNet3] Ep [ 4/16] | File [ 1/16] | Loss: 0.03723 (BC: 0.0190, Clean: 0.0122, Asym: 0.0061) |  651.6 spec/s
+[PolyGaussNet3] Ep [ 4/16] | File [ 2/16] | Loss: 0.03721 (BC: 0.0195, Clean: 0.0125, Asym: 0.0052) |  661.8 spec/s
+[PolyGaussNet3] Ep [ 4/16] | File [ 3/16] | Loss: 0.03489 (BC: 0.0183, Clean: 0.0117, Asym: 0.0049) |  663.5 spec/s
+[PolyGaussNet3] Ep [ 4/16] | File [ 4/16] | Loss: 0.03430 (BC: 0.0177, Clean: 0.0113, Asym: 0.0053) |  664.3 spec/s
+[PolyGaussNet3] Ep [ 4/16] | File [ 5/16] | Loss: 0.03419 (BC: 0.0179, Clean: 0.0114, Asym: 0.0049) |  664.0 spec/s
+[PolyGaussNet3] Ep [ 4/16] | File [ 6/16] | Loss: 0.03338 (BC: 0.0173, Clean: 0.0110, Asym: 0.0050) |  663.2 spec/s
+[PolyGaussNet3] Ep [ 4/16] | File [ 7/16] | Loss: 0.03467 (BC: 0.0178, Clean: 0.0113, Asym: 0.0055) |  663.2 spec/s
+[PolyGaussNet3] Ep [ 4/16] | File [ 8/16] | Loss: 0.03333 (BC: 0.0176, Clean: 0.0111, Asym: 0.0046) |  663.0 spec/s
+[PolyGaussNet3] Ep [ 4/16] | File [ 9/16] | Loss: 0.03605 (BC: 0.0186, Clean: 0.0118, Asym: 0.0056) |  663.2 spec/s
+[PolyGaussNet3] Ep [ 4/16] | File [10/16] | Loss: 0.03790 (BC: 0.0199, Clean: 0.0127, Asym: 0.0052) |  664.2 spec/s
+[PolyGaussNet3] Ep [ 4/16] | File [11/16] | Loss: 0.03366 (BC: 0.0173, Clean: 0.0109, Asym: 0.0055) |  662.9 spec/s
+[PolyGaussNet3] Ep [ 4/16] | File [12/16] | Loss: 0.03235 (BC: 0.0170, Clean: 0.0108, Asym: 0.0045) |  663.3 spec/s
+[PolyGaussNet3] Ep [ 4/16] | File [13/16] | Loss: 0.03549 (BC: 0.0184, Clean: 0.0117, Asym: 0.0054) |  663.2 spec/s
+[PolyGaussNet3] Ep [ 4/16] | File [14/16] | Loss: 0.03248 (BC: 0.0166, Clean: 0.0105, Asym: 0.0053) |  664.1 spec/s
+[PolyGaussNet3] Ep [ 4/16] | File [15/16] | Loss: 0.03171 (BC: 0.0161, Clean: 0.0101, Asym: 0.0055) |  664.4 spec/s
+[PolyGaussNet3] Ep [ 4/16] | File [16/16] | Loss: 0.05728 (BC: 0.0285, Clean: 0.0183, Asym: 0.0105) |  665.9 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet3] Epoch [ 4/16] Finished in 399.2s (656.6 spec/s)
+    Avg Loss: 0.036009 | BC: 0.018607 | Clean: 0.011828 | Asym: 0.005573
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet3 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet3.pth' (Loss: 0.036009)
+--------------------------------------------------------------------------------
+[PolyGaussNet3] Ep [ 5/16] | File [ 1/16] | Loss: 0.05742 (BC: 0.0317, Clean: 0.0206, Asym: 0.0051) |  660.2 spec/s
+[PolyGaussNet3] Ep [ 5/16] | File [ 2/16] | Loss: 0.04097 (BC: 0.0210, Clean: 0.0135, Asym: 0.0064) |  661.5 spec/s
+[PolyGaussNet3] Ep [ 5/16] | File [ 3/16] | Loss: 0.03573 (BC: 0.0189, Clean: 0.0121, Asym: 0.0047) |  663.7 spec/s
+[PolyGaussNet3] Ep [ 5/16] | File [ 4/16] | Loss: 0.03440 (BC: 0.0181, Clean: 0.0115, Asym: 0.0048) |  663.0 spec/s
+[PolyGaussNet3] Ep [ 5/16] | File [ 5/16] | Loss: 0.03397 (BC: 0.0177, Clean: 0.0112, Asym: 0.0050) |  662.4 spec/s
+[PolyGaussNet3] Ep [ 5/16] | File [ 6/16] | Loss: 0.03309 (BC: 0.0175, Clean: 0.0110, Asym: 0.0046) |  660.9 spec/s
+[PolyGaussNet3] Ep [ 5/16] | File [ 7/16] | Loss: 0.03134 (BC: 0.0162, Clean: 0.0102, Asym: 0.0049) |  662.5 spec/s
+[PolyGaussNet3] Ep [ 5/16] | File [ 8/16] | Loss: 0.03039 (BC: 0.0160, Clean: 0.0100, Asym: 0.0043) |  663.1 spec/s
+[PolyGaussNet3] Ep [ 5/16] | File [ 9/16] | Loss: 0.03078 (BC: 0.0159, Clean: 0.0099, Asym: 0.0050) |  663.6 spec/s
+[PolyGaussNet3] Ep [ 5/16] | File [10/16] | Loss: 0.02976 (BC: 0.0155, Clean: 0.0097, Asym: 0.0046) |  661.0 spec/s
+[PolyGaussNet3] Ep [ 5/16] | File [11/16] | Loss: 0.02980 (BC: 0.0155, Clean: 0.0097, Asym: 0.0046) |  646.6 spec/s
+[PolyGaussNet3] Ep [ 5/16] | File [12/16] | Loss: 0.02867 (BC: 0.0149, Clean: 0.0093, Asym: 0.0044) |  658.3 spec/s
+[PolyGaussNet3] Ep [ 5/16] | File [13/16] | Loss: 0.03068 (BC: 0.0160, Clean: 0.0100, Asym: 0.0047) |  656.1 spec/s
+[PolyGaussNet3] Ep [ 5/16] | File [14/16] | Loss: 0.02842 (BC: 0.0149, Clean: 0.0093, Asym: 0.0042) |  660.4 spec/s
+[PolyGaussNet3] Ep [ 5/16] | File [15/16] | Loss: 0.02773 (BC: 0.0145, Clean: 0.0090, Asym: 0.0043) |  659.7 spec/s
+[PolyGaussNet3] Ep [ 5/16] | File [16/16] | Loss: 0.03013 (BC: 0.0156, Clean: 0.0097, Asym: 0.0047) |  663.6 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet3] Epoch [ 5/16] Finished in 401.3s (653.3 spec/s)
+    Avg Loss: 0.033330 | BC: 0.017497 | Clean: 0.011053 | Asym: 0.004780
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet3 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet3.pth' (Loss: 0.033330)
+--------------------------------------------------------------------------------
+[PolyGaussNet3] Ep [ 6/16] | File [ 1/16] | Loss: 0.02723 (BC: 0.0141, Clean: 0.0088, Asym: 0.0043) |  655.7 spec/s
+[PolyGaussNet3] Ep [ 6/16] | File [ 2/16] | Loss: 0.02698 (BC: 0.0139, Clean: 0.0087, Asym: 0.0044) |  662.0 spec/s
+[PolyGaussNet3] Ep [ 6/16] | File [ 3/16] | Loss: 0.02726 (BC: 0.0141, Clean: 0.0088, Asym: 0.0043) |  660.0 spec/s
+[PolyGaussNet3] Ep [ 6/16] | File [ 4/16] | Loss: 0.02908 (BC: 0.0153, Clean: 0.0095, Asym: 0.0043) |  663.2 spec/s
+[PolyGaussNet3] Ep [ 6/16] | File [ 5/16] | Loss: 0.02661 (BC: 0.0139, Clean: 0.0086, Asym: 0.0041) |  663.8 spec/s
+[PolyGaussNet3] Ep [ 6/16] | File [ 6/16] | Loss: 0.02735 (BC: 0.0139, Clean: 0.0087, Asym: 0.0047) |  664.1 spec/s
+[PolyGaussNet3] Ep [ 6/16] | File [ 7/16] | Loss: 0.02654 (BC: 0.0138, Clean: 0.0086, Asym: 0.0041) |  664.7 spec/s
+[PolyGaussNet3] Ep [ 6/16] | File [ 8/16] | Loss: 0.02524 (BC: 0.0132, Clean: 0.0082, Asym: 0.0039) |  664.7 spec/s
+[PolyGaussNet3] Ep [ 6/16] | File [ 9/16] | Loss: 0.03050 (BC: 0.0160, Clean: 0.0100, Asym: 0.0045) |  664.4 spec/s
+[PolyGaussNet3] Ep [ 6/16] | File [10/16] | Loss: 0.02623 (BC: 0.0134, Clean: 0.0084, Asym: 0.0044) |  662.1 spec/s
+[PolyGaussNet3] Ep [ 6/16] | File [11/16] | Loss: 0.02478 (BC: 0.0131, Clean: 0.0082, Asym: 0.0035) |  659.5 spec/s
+[PolyGaussNet3] Ep [ 6/16] | File [12/16] | Loss: 0.02507 (BC: 0.0129, Clean: 0.0081, Asym: 0.0041) |  660.7 spec/s
+[PolyGaussNet3] Ep [ 6/16] | File [13/16] | Loss: 0.02933 (BC: 0.0150, Clean: 0.0094, Asym: 0.0049) |  662.9 spec/s
+[PolyGaussNet3] Ep [ 6/16] | File [14/16] | Loss: 0.03255 (BC: 0.0173, Clean: 0.0110, Asym: 0.0043) |  661.0 spec/s
+[PolyGaussNet3] Ep [ 6/16] | File [15/16] | Loss: 0.02628 (BC: 0.0140, Clean: 0.0087, Asym: 0.0036) |  662.6 spec/s
+[PolyGaussNet3] Ep [ 6/16] | File [16/16] | Loss: 0.02523 (BC: 0.0130, Clean: 0.0081, Asym: 0.0041) |  664.8 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet3] Epoch [ 6/16] Finished in 399.9s (655.6 spec/s)
+    Avg Loss: 0.027267 | BC: 0.014187 | Clean: 0.008870 | Asym: 0.004210
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet3 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet3.pth' (Loss: 0.027267)
+--------------------------------------------------------------------------------
+[PolyGaussNet3] Ep [ 7/16] | File [ 1/16] | Loss: 0.03031 (BC: 0.0159, Clean: 0.0100, Asym: 0.0044) |  662.4 spec/s
+[PolyGaussNet3] Ep [ 7/16] | File [ 2/16] | Loss: 0.02507 (BC: 0.0129, Clean: 0.0081, Asym: 0.0041) |  663.1 spec/s
+[PolyGaussNet3] Ep [ 7/16] | File [ 3/16] | Loss: 0.02448 (BC: 0.0126, Clean: 0.0078, Asym: 0.0041) |  660.8 spec/s
+[PolyGaussNet3] Ep [ 7/16] | File [ 4/16] | Loss: 0.02389 (BC: 0.0125, Clean: 0.0078, Asym: 0.0036) |  662.2 spec/s
+[PolyGaussNet3] Ep [ 7/16] | File [ 5/16] | Loss: 0.02367 (BC: 0.0123, Clean: 0.0077, Asym: 0.0037) |  659.2 spec/s
+[PolyGaussNet3] Ep [ 7/16] | File [ 6/16] | Loss: 0.02276 (BC: 0.0120, Clean: 0.0075, Asym: 0.0033) |  663.5 spec/s
+[PolyGaussNet3] Ep [ 7/16] | File [ 7/16] | Loss: 0.02312 (BC: 0.0120, Clean: 0.0075, Asym: 0.0037) |  661.4 spec/s
+[PolyGaussNet3] Ep [ 7/16] | File [ 8/16] | Loss: 0.02336 (BC: 0.0120, Clean: 0.0075, Asym: 0.0038) |  655.8 spec/s
+[PolyGaussNet3] Ep [ 7/16] | File [ 9/16] | Loss: 0.02297 (BC: 0.0120, Clean: 0.0075, Asym: 0.0034) |  661.1 spec/s
+[PolyGaussNet3] Ep [ 7/16] | File [10/16] | Loss: 0.02411 (BC: 0.0126, Clean: 0.0078, Asym: 0.0037) |  663.5 spec/s
+[PolyGaussNet3] Ep [ 7/16] | File [11/16] | Loss: 0.02667 (BC: 0.0138, Clean: 0.0086, Asym: 0.0043) |  662.9 spec/s
+[PolyGaussNet3] Ep [ 7/16] | File [12/16] | Loss: 0.02336 (BC: 0.0121, Clean: 0.0076, Asym: 0.0037) |  658.5 spec/s
+[PolyGaussNet3] Ep [ 7/16] | File [13/16] | Loss: 0.02297 (BC: 0.0119, Clean: 0.0074, Asym: 0.0036) |  661.1 spec/s
+[PolyGaussNet3] Ep [ 7/16] | File [14/16] | Loss: 0.02330 (BC: 0.0123, Clean: 0.0077, Asym: 0.0033) |  663.3 spec/s
+[PolyGaussNet3] Ep [ 7/16] | File [15/16] | Loss: 0.02147 (BC: 0.0112, Clean: 0.0070, Asym: 0.0033) |  660.8 spec/s
+[PolyGaussNet3] Ep [ 7/16] | File [16/16] | Loss: 0.02198 (BC: 0.0115, Clean: 0.0072, Asym: 0.0033) |  664.8 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet3] Epoch [ 7/16] Finished in 400.5s (654.5 spec/s)
+    Avg Loss: 0.023969 | BC: 0.012472 | Clean: 0.007791 | Asym: 0.003706
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet3 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet3.pth' (Loss: 0.023969)
+--------------------------------------------------------------------------------
+[PolyGaussNet3] Ep [ 8/16] | File [ 1/16] | Loss: 0.02101 (BC: 0.0109, Clean: 0.0068, Asym: 0.0033) |  657.1 spec/s
+[PolyGaussNet3] Ep [ 8/16] | File [ 2/16] | Loss: 0.02168 (BC: 0.0113, Clean: 0.0070, Asym: 0.0033) |  662.3 spec/s
+[PolyGaussNet3] Ep [ 8/16] | File [ 3/16] | Loss: 0.02105 (BC: 0.0109, Clean: 0.0068, Asym: 0.0033) |  648.9 spec/s
+[PolyGaussNet3] Ep [ 8/16] | File [ 4/16] | Loss: 0.02138 (BC: 0.0109, Clean: 0.0068, Asym: 0.0036) |  641.6 spec/s
+[PolyGaussNet3] Ep [ 8/16] | File [ 5/16] | Loss: 0.02281 (BC: 0.0116, Clean: 0.0072, Asym: 0.0040) |  648.4 spec/s
+[PolyGaussNet3] Ep [ 8/16] | File [ 6/16] | Loss: 0.03288 (BC: 0.0176, Clean: 0.0110, Asym: 0.0043) |  661.0 spec/s
+[PolyGaussNet3] Ep [ 8/16] | File [ 7/16] | Loss: 0.02776 (BC: 0.0142, Clean: 0.0089, Asym: 0.0046) |  658.4 spec/s
+[PolyGaussNet3] Ep [ 8/16] | File [ 8/16] | Loss: 0.02440 (BC: 0.0129, Clean: 0.0081, Asym: 0.0034) |  660.7 spec/s
+[PolyGaussNet3] Ep [ 8/16] | File [ 9/16] | Loss: 0.02141 (BC: 0.0110, Clean: 0.0069, Asym: 0.0036) |  661.1 spec/s
+[PolyGaussNet3] Ep [ 8/16] | File [10/16] | Loss: 0.02107 (BC: 0.0110, Clean: 0.0068, Asym: 0.0032) |  651.3 spec/s
+[PolyGaussNet3] Ep [ 8/16] | File [11/16] | Loss: 0.02066 (BC: 0.0104, Clean: 0.0065, Asym: 0.0037) |  654.4 spec/s
+[PolyGaussNet3] Ep [ 8/16] | File [12/16] | Loss: 0.02072 (BC: 0.0111, Clean: 0.0069, Asym: 0.0028) |  659.9 spec/s
+[PolyGaussNet3] Ep [ 8/16] | File [13/16] | Loss: 0.02012 (BC: 0.0106, Clean: 0.0066, Asym: 0.0029) |  654.2 spec/s
+[PolyGaussNet3] Ep [ 8/16] | File [14/16] | Loss: 0.01963 (BC: 0.0103, Clean: 0.0064, Asym: 0.0030) |  659.7 spec/s
+[PolyGaussNet3] Ep [ 8/16] | File [15/16] | Loss: 0.02035 (BC: 0.0106, Clean: 0.0066, Asym: 0.0032) |  631.8 spec/s
+[PolyGaussNet3] Ep [ 8/16] | File [16/16] | Loss: 0.02013 (BC: 0.0106, Clean: 0.0066, Asym: 0.0030) |  647.6 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet3] Epoch [ 8/16] Finished in 405.6s (646.3 spec/s)
+    Avg Loss: 0.022316 | BC: 0.011625 | Clean: 0.007239 | Asym: 0.003452
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet3 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet3.pth' (Loss: 0.022316)
+--------------------------------------------------------------------------------
+[PolyGaussNet3] Ep [ 9/16] | File [ 1/16] | Loss: 0.01949 (BC: 0.0102, Clean: 0.0063, Asym: 0.0030) |  643.7 spec/s
+[PolyGaussNet3] Ep [ 9/16] | File [ 2/16] | Loss: 0.02075 (BC: 0.0108, Clean: 0.0067, Asym: 0.0033) |  640.8 spec/s
+[PolyGaussNet3] Ep [ 9/16] | File [ 3/16] | Loss: 0.02051 (BC: 0.0107, Clean: 0.0066, Asym: 0.0032) |  640.8 spec/s
+[PolyGaussNet3] Ep [ 9/16] | File [ 4/16] | Loss: 0.01878 (BC: 0.0098, Clean: 0.0061, Asym: 0.0029) |  644.0 spec/s
+[PolyGaussNet3] Ep [ 9/16] | File [ 5/16] | Loss: 0.01950 (BC: 0.0103, Clean: 0.0064, Asym: 0.0029) |  662.7 spec/s
+[PolyGaussNet3] Ep [ 9/16] | File [ 6/16] | Loss: 0.01993 (BC: 0.0101, Clean: 0.0063, Asym: 0.0035) |  663.1 spec/s
+[PolyGaussNet3] Ep [ 9/16] | File [ 7/16] | Loss: 0.01996 (BC: 0.0103, Clean: 0.0064, Asym: 0.0033) |  662.5 spec/s
+[PolyGaussNet3] Ep [ 9/16] | File [ 8/16] | Loss: 0.02064 (BC: 0.0107, Clean: 0.0066, Asym: 0.0033) |  658.3 spec/s
+[PolyGaussNet3] Ep [ 9/16] | File [ 9/16] | Loss: 0.02291 (BC: 0.0120, Clean: 0.0074, Asym: 0.0035) |  640.4 spec/s
+[PolyGaussNet3] Ep [ 9/16] | File [10/16] | Loss: 0.02711 (BC: 0.0142, Clean: 0.0089, Asym: 0.0041) |  644.7 spec/s
+[PolyGaussNet3] Ep [ 9/16] | File [11/16] | Loss: 0.01945 (BC: 0.0102, Clean: 0.0063, Asym: 0.0029) |  634.6 spec/s
+[PolyGaussNet3] Ep [ 9/16] | File [12/16] | Loss: 0.01937 (BC: 0.0097, Clean: 0.0060, Asym: 0.0037) |  661.2 spec/s
+[PolyGaussNet3] Ep [ 9/16] | File [13/16] | Loss: 0.02003 (BC: 0.0108, Clean: 0.0066, Asym: 0.0026) |  662.8 spec/s
+[PolyGaussNet3] Ep [ 9/16] | File [14/16] | Loss: 0.01816 (BC: 0.0094, Clean: 0.0058, Asym: 0.0029) |  658.9 spec/s
+[PolyGaussNet3] Ep [ 9/16] | File [15/16] | Loss: 0.01873 (BC: 0.0098, Clean: 0.0061, Asym: 0.0029) |  657.7 spec/s
+[PolyGaussNet3] Ep [ 9/16] | File [16/16] | Loss: 0.01886 (BC: 0.0095, Clean: 0.0059, Asym: 0.0034) |  661.7 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet3] Epoch [ 9/16] Finished in 406.2s (645.4 spec/s)
+    Avg Loss: 0.020260 | BC: 0.010526 | Clean: 0.006517 | Asym: 0.003218
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet3 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet3.pth' (Loss: 0.020260)
+--------------------------------------------------------------------------------
+[PolyGaussNet3] Ep [10/16] | File [ 1/16] | Loss: 0.01923 (BC: 0.0103, Clean: 0.0063, Asym: 0.0026) |  643.6 spec/s
+[PolyGaussNet3] Ep [10/16] | File [ 2/16] | Loss: 0.01908 (BC: 0.0097, Clean: 0.0060, Asym: 0.0034) |  632.3 spec/s
+[PolyGaussNet3] Ep [10/16] | File [ 3/16] | Loss: 0.02219 (BC: 0.0115, Clean: 0.0071, Asym: 0.0037) |  650.2 spec/s
+[PolyGaussNet3] Ep [10/16] | File [ 4/16] | Loss: 0.01959 (BC: 0.0100, Clean: 0.0062, Asym: 0.0035) |  628.1 spec/s
+[PolyGaussNet3] Ep [10/16] | File [ 5/16] | Loss: 0.01841 (BC: 0.0096, Clean: 0.0059, Asym: 0.0029) |  659.8 spec/s
+[PolyGaussNet3] Ep [10/16] | File [ 6/16] | Loss: 0.01832 (BC: 0.0095, Clean: 0.0058, Asym: 0.0030) |  663.7 spec/s
+[PolyGaussNet3] Ep [10/16] | File [ 7/16] | Loss: 0.01882 (BC: 0.0099, Clean: 0.0061, Asym: 0.0029) |  660.2 spec/s
+[PolyGaussNet3] Ep [10/16] | File [ 8/16] | Loss: 0.01967 (BC: 0.0101, Clean: 0.0062, Asym: 0.0033) |  664.0 spec/s
+[PolyGaussNet3] Ep [10/16] | File [ 9/16] | Loss: 0.02028 (BC: 0.0106, Clean: 0.0065, Asym: 0.0032) |  660.4 spec/s
+[PolyGaussNet3] Ep [10/16] | File [10/16] | Loss: 0.01862 (BC: 0.0096, Clean: 0.0059, Asym: 0.0032) |  642.3 spec/s
+[PolyGaussNet3] Ep [10/16] | File [11/16] | Loss: 0.01810 (BC: 0.0094, Clean: 0.0058, Asym: 0.0029) |  646.4 spec/s
+[PolyGaussNet3] Ep [10/16] | File [12/16] | Loss: 0.01755 (BC: 0.0091, Clean: 0.0056, Asym: 0.0028) |  633.7 spec/s
+[PolyGaussNet3] Ep [10/16] | File [13/16] | Loss: 0.01799 (BC: 0.0094, Clean: 0.0058, Asym: 0.0028) |  645.1 spec/s
+[PolyGaussNet3] Ep [10/16] | File [14/16] | Loss: 0.01728 (BC: 0.0090, Clean: 0.0056, Asym: 0.0027) |  660.4 spec/s
+[PolyGaussNet3] Ep [10/16] | File [15/16] | Loss: 0.01913 (BC: 0.0099, Clean: 0.0061, Asym: 0.0032) |  658.0 spec/s
+[PolyGaussNet3] Ep [10/16] | File [16/16] | Loss: 0.01881 (BC: 0.0097, Clean: 0.0060, Asym: 0.0031) |  661.5 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet3] Epoch [10/16] Finished in 407.5s (643.3 spec/s)
+    Avg Loss: 0.018942 | BC: 0.009823 | Clean: 0.006043 | Asym: 0.003076
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet3 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet3.pth' (Loss: 0.018942)
+--------------------------------------------------------------------------------
+[PolyGaussNet3] Ep [11/16] | File [ 1/16] | Loss: 0.01750 (BC: 0.0090, Clean: 0.0056, Asym: 0.0029) |  658.8 spec/s
+[PolyGaussNet3] Ep [11/16] | File [ 2/16] | Loss: 0.01942 (BC: 0.0101, Clean: 0.0062, Asym: 0.0031) |  657.9 spec/s
+[PolyGaussNet3] Ep [11/16] | File [ 3/16] | Loss: 0.01806 (BC: 0.0093, Clean: 0.0057, Asym: 0.0030) |  656.6 spec/s
+[PolyGaussNet3] Ep [11/16] | File [ 4/16] | Loss: 0.02602 (BC: 0.0139, Clean: 0.0085, Asym: 0.0036) |  648.8 spec/s
+[PolyGaussNet3] Ep [11/16] | File [ 5/16] | Loss: 0.02221 (BC: 0.0112, Clean: 0.0069, Asym: 0.0041) |  634.1 spec/s
+[PolyGaussNet3] Ep [11/16] | File [ 6/16] | Loss: 0.01787 (BC: 0.0094, Clean: 0.0058, Asym: 0.0027) |  647.9 spec/s
+[PolyGaussNet3] Ep [11/16] | File [ 7/16] | Loss: 0.01832 (BC: 0.0093, Clean: 0.0057, Asym: 0.0032) |  648.4 spec/s
+[PolyGaussNet3] Ep [11/16] | File [ 8/16] | Loss: 0.01841 (BC: 0.0097, Clean: 0.0059, Asym: 0.0028) |  643.5 spec/s
+[PolyGaussNet3] Ep [11/16] | File [ 9/16] | Loss: 0.01728 (BC: 0.0089, Clean: 0.0055, Asym: 0.0029) |  637.6 spec/s
+[PolyGaussNet3] Ep [11/16] | File [10/16] | Loss: 0.01694 (BC: 0.0087, Clean: 0.0053, Asym: 0.0029) |  641.6 spec/s
+[PolyGaussNet3] Ep [11/16] | File [11/16] | Loss: 0.01757 (BC: 0.0092, Clean: 0.0056, Asym: 0.0028) |  657.9 spec/s
+[PolyGaussNet3] Ep [11/16] | File [12/16] | Loss: 0.01744 (BC: 0.0091, Clean: 0.0055, Asym: 0.0029) |  661.0 spec/s
+[PolyGaussNet3] Ep [11/16] | File [13/16] | Loss: 0.01706 (BC: 0.0087, Clean: 0.0053, Asym: 0.0030) |  664.4 spec/s
+[PolyGaussNet3] Ep [11/16] | File [14/16] | Loss: 0.01737 (BC: 0.0089, Clean: 0.0054, Asym: 0.0030) |  665.2 spec/s
+[PolyGaussNet3] Ep [11/16] | File [15/16] | Loss: 0.01670 (BC: 0.0086, Clean: 0.0053, Asym: 0.0028) |  661.0 spec/s
+[PolyGaussNet3] Ep [11/16] | File [16/16] | Loss: 0.01657 (BC: 0.0088, Clean: 0.0053, Asym: 0.0024) |  614.6 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet3] Epoch [11/16] Finished in 408.0s (642.6 spec/s)
+    Avg Loss: 0.018423 | BC: 0.009555 | Clean: 0.005857 | Asym: 0.003010
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet3 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet3.pth' (Loss: 0.018423)
+--------------------------------------------------------------------------------
+[PolyGaussNet3] Ep [12/16] | File [ 1/16] | Loss: 0.01762 (BC: 0.0091, Clean: 0.0056, Asym: 0.0029) |  652.3 spec/s
+[PolyGaussNet3] Ep [12/16] | File [ 2/16] | Loss: 0.01804 (BC: 0.0090, Clean: 0.0055, Asym: 0.0035) |  659.9 spec/s
+[PolyGaussNet3] Ep [12/16] | File [ 3/16] | Loss: 0.01711 (BC: 0.0090, Clean: 0.0055, Asym: 0.0026) |  660.3 spec/s
+[PolyGaussNet3] Ep [12/16] | File [ 4/16] | Loss: 0.01634 (BC: 0.0083, Clean: 0.0051, Asym: 0.0029) |  660.5 spec/s
+[PolyGaussNet3] Ep [12/16] | File [ 5/16] | Loss: 0.01703 (BC: 0.0089, Clean: 0.0054, Asym: 0.0027) |  661.7 spec/s
+[PolyGaussNet3] Ep [12/16] | File [ 6/16] | Loss: 0.01887 (BC: 0.0098, Clean: 0.0060, Asym: 0.0031) |  662.3 spec/s
+[PolyGaussNet3] Ep [12/16] | File [ 7/16] | Loss: 0.01739 (BC: 0.0090, Clean: 0.0055, Asym: 0.0029) |  661.1 spec/s
+[PolyGaussNet3] Ep [12/16] | File [ 8/16] | Loss: 0.01714 (BC: 0.0089, Clean: 0.0054, Asym: 0.0028) |  659.9 spec/s
+[PolyGaussNet3] Ep [12/16] | File [ 9/16] | Loss: 0.01617 (BC: 0.0084, Clean: 0.0051, Asym: 0.0027) |  661.5 spec/s
+[PolyGaussNet3] Ep [12/16] | File [10/16] | Loss: 0.01624 (BC: 0.0085, Clean: 0.0052, Asym: 0.0026) |  660.2 spec/s
+[PolyGaussNet3] Ep [12/16] | File [11/16] | Loss: 0.01706 (BC: 0.0087, Clean: 0.0053, Asym: 0.0030) |  664.0 spec/s
+[PolyGaussNet3] Ep [12/16] | File [12/16] | Loss: 0.01650 (BC: 0.0085, Clean: 0.0052, Asym: 0.0028) |  661.5 spec/s
+[PolyGaussNet3] Ep [12/16] | File [13/16] | Loss: 0.01622 (BC: 0.0084, Clean: 0.0051, Asym: 0.0027) |  661.6 spec/s
+[PolyGaussNet3] Ep [12/16] | File [14/16] | Loss: 0.01615 (BC: 0.0084, Clean: 0.0051, Asym: 0.0027) |  662.8 spec/s
+[PolyGaussNet3] Ep [12/16] | File [15/16] | Loss: 0.02100 (BC: 0.0107, Clean: 0.0065, Asym: 0.0038) |  660.4 spec/s
+[PolyGaussNet3] Ep [12/16] | File [16/16] | Loss: 0.02018 (BC: 0.0105, Clean: 0.0064, Asym: 0.0033) |  663.3 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet3] Epoch [12/16] Finished in 401.0s (653.7 spec/s)
+    Avg Loss: 0.017441 | BC: 0.008998 | Clean: 0.005492 | Asym: 0.002951
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet3 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet3.pth' (Loss: 0.017441)
+--------------------------------------------------------------------------------
+[PolyGaussNet3] Ep [13/16] | File [ 1/16] | Loss: 0.02017 (BC: 0.0105, Clean: 0.0064, Asym: 0.0032) |  659.5 spec/s
+[PolyGaussNet3] Ep [13/16] | File [ 2/16] | Loss: 0.01883 (BC: 0.0098, Clean: 0.0060, Asym: 0.0031) |  662.9 spec/s
+[PolyGaussNet3] Ep [13/16] | File [ 3/16] | Loss: 0.01624 (BC: 0.0085, Clean: 0.0052, Asym: 0.0026) |  663.1 spec/s
+[PolyGaussNet3] Ep [13/16] | File [ 4/16] | Loss: 0.01578 (BC: 0.0081, Clean: 0.0050, Asym: 0.0027) |  663.5 spec/s
+[PolyGaussNet3] Ep [13/16] | File [ 5/16] | Loss: 0.01598 (BC: 0.0081, Clean: 0.0050, Asym: 0.0029) |  664.3 spec/s
+[PolyGaussNet3] Ep [13/16] | File [ 6/16] | Loss: 0.01864 (BC: 0.0098, Clean: 0.0059, Asym: 0.0029) |  664.3 spec/s
+[PolyGaussNet3] Ep [13/16] | File [ 7/16] | Loss: 0.01873 (BC: 0.0097, Clean: 0.0060, Asym: 0.0030) |  664.6 spec/s
+[PolyGaussNet3] Ep [13/16] | File [ 8/16] | Loss: 0.01602 (BC: 0.0082, Clean: 0.0050, Asym: 0.0028) |  662.6 spec/s
+[PolyGaussNet3] Ep [13/16] | File [ 9/16] | Loss: 0.01632 (BC: 0.0085, Clean: 0.0052, Asym: 0.0027) |  663.2 spec/s
+[PolyGaussNet3] Ep [13/16] | File [10/16] | Loss: 0.01601 (BC: 0.0081, Clean: 0.0049, Asym: 0.0030) |  663.8 spec/s
+[PolyGaussNet3] Ep [13/16] | File [11/16] | Loss: 0.01573 (BC: 0.0082, Clean: 0.0050, Asym: 0.0025) |  662.6 spec/s
+[PolyGaussNet3] Ep [13/16] | File [12/16] | Loss: 0.01734 (BC: 0.0088, Clean: 0.0053, Asym: 0.0032) |  654.4 spec/s
+[PolyGaussNet3] Ep [13/16] | File [13/16] | Loss: 0.01670 (BC: 0.0087, Clean: 0.0053, Asym: 0.0027) |  660.3 spec/s
+[PolyGaussNet3] Ep [13/16] | File [14/16] | Loss: 0.01599 (BC: 0.0083, Clean: 0.0050, Asym: 0.0027) |  661.4 spec/s
+[PolyGaussNet3] Ep [13/16] | File [15/16] | Loss: 0.01572 (BC: 0.0080, Clean: 0.0049, Asym: 0.0028) |  661.6 spec/s
+[PolyGaussNet3] Ep [13/16] | File [16/16] | Loss: 0.01518 (BC: 0.0080, Clean: 0.0048, Asym: 0.0024) |  664.8 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet3] Epoch [13/16] Finished in 399.8s (655.8 spec/s)
+    Avg Loss: 0.016836 | BC: 0.008710 | Clean: 0.005306 | Asym: 0.002819
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet3 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet3.pth' (Loss: 0.016836)
+--------------------------------------------------------------------------------
+[PolyGaussNet3] Ep [14/16] | File [ 1/16] | Loss: 0.01571 (BC: 0.0082, Clean: 0.0050, Asym: 0.0025) |  660.0 spec/s
+[PolyGaussNet3] Ep [14/16] | File [ 2/16] | Loss: 0.01721 (BC: 0.0085, Clean: 0.0052, Asym: 0.0036) |  661.3 spec/s
+[PolyGaussNet3] Ep [14/16] | File [ 3/16] | Loss: 0.01586 (BC: 0.0083, Clean: 0.0050, Asym: 0.0025) |  664.3 spec/s
+[PolyGaussNet3] Ep [14/16] | File [ 4/16] | Loss: 0.01515 (BC: 0.0079, Clean: 0.0048, Asym: 0.0024) |  664.4 spec/s
+[PolyGaussNet3] Ep [14/16] | File [ 5/16] | Loss: 0.01519 (BC: 0.0078, Clean: 0.0048, Asym: 0.0026) |  661.7 spec/s
+[PolyGaussNet3] Ep [14/16] | File [ 6/16] | Loss: 0.01645 (BC: 0.0086, Clean: 0.0052, Asym: 0.0027) |  660.3 spec/s
+[PolyGaussNet3] Ep [14/16] | File [ 7/16] | Loss: 0.01810 (BC: 0.0094, Clean: 0.0057, Asym: 0.0031) |  663.4 spec/s
+[PolyGaussNet3] Ep [14/16] | File [ 8/16] | Loss: 0.01602 (BC: 0.0081, Clean: 0.0049, Asym: 0.0030) |  662.1 spec/s
+[PolyGaussNet3] Ep [14/16] | File [ 9/16] | Loss: 0.01568 (BC: 0.0082, Clean: 0.0050, Asym: 0.0024) |  663.3 spec/s
+[PolyGaussNet3] Ep [14/16] | File [10/16] | Loss: 0.01809 (BC: 0.0091, Clean: 0.0055, Asym: 0.0036) |  662.8 spec/s
+[PolyGaussNet3] Ep [14/16] | File [11/16] | Loss: 0.01966 (BC: 0.0103, Clean: 0.0063, Asym: 0.0031) |  663.2 spec/s
+[PolyGaussNet3] Ep [14/16] | File [12/16] | Loss: 0.01578 (BC: 0.0082, Clean: 0.0050, Asym: 0.0025) |  664.3 spec/s
+[PolyGaussNet3] Ep [14/16] | File [13/16] | Loss: 0.01550 (BC: 0.0080, Clean: 0.0049, Asym: 0.0027) |  663.2 spec/s
+[PolyGaussNet3] Ep [14/16] | File [14/16] | Loss: 0.01657 (BC: 0.0084, Clean: 0.0051, Asym: 0.0031) |  663.3 spec/s
+[PolyGaussNet3] Ep [14/16] | File [15/16] | Loss: 0.01571 (BC: 0.0082, Clean: 0.0049, Asym: 0.0026) |  657.8 spec/s
+[PolyGaussNet3] Ep [14/16] | File [16/16] | Loss: 0.01778 (BC: 0.0092, Clean: 0.0055, Asym: 0.0031) |  665.9 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet3] Epoch [14/16] Finished in 399.5s (656.2 spec/s)
+    Avg Loss: 0.016529 | BC: 0.008518 | Clean: 0.005173 | Asym: 0.002839
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet3 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet3.pth' (Loss: 0.016529)
+--------------------------------------------------------------------------------
+[PolyGaussNet3] Ep [15/16] | File [ 1/16] | Loss: 0.01663 (BC: 0.0085, Clean: 0.0051, Asym: 0.0030) |  662.6 spec/s
+[PolyGaussNet3] Ep [15/16] | File [ 2/16] | Loss: 0.01533 (BC: 0.0079, Clean: 0.0048, Asym: 0.0027) |  657.1 spec/s
+[PolyGaussNet3] Ep [15/16] | File [ 3/16] | Loss: 0.01635 (BC: 0.0083, Clean: 0.0050, Asym: 0.0031) |  661.5 spec/s
+[PolyGaussNet3] Ep [15/16] | File [ 4/16] | Loss: 0.01630 (BC: 0.0085, Clean: 0.0051, Asym: 0.0027) |  661.6 spec/s
+[PolyGaussNet3] Ep [15/16] | File [ 5/16] | Loss: 0.01552 (BC: 0.0081, Clean: 0.0049, Asym: 0.0026) |  663.2 spec/s
+[PolyGaussNet3] Ep [15/16] | File [ 6/16] | Loss: 0.01561 (BC: 0.0080, Clean: 0.0049, Asym: 0.0027) |  662.3 spec/s
+[PolyGaussNet3] Ep [15/16] | File [ 7/16] | Loss: 0.01499 (BC: 0.0077, Clean: 0.0047, Asym: 0.0026) |  655.5 spec/s
+[PolyGaussNet3] Ep [15/16] | File [ 8/16] | Loss: 0.01573 (BC: 0.0079, Clean: 0.0048, Asym: 0.0030) |  662.0 spec/s
+[PolyGaussNet3] Ep [15/16] | File [ 9/16] | Loss: 0.01884 (BC: 0.0098, Clean: 0.0059, Asym: 0.0031) |  663.3 spec/s
+[PolyGaussNet3] Ep [15/16] | File [10/16] | Loss: 0.01677 (BC: 0.0090, Clean: 0.0055, Asym: 0.0023) |  662.9 spec/s
+[PolyGaussNet3] Ep [15/16] | File [11/16] | Loss: 0.01504 (BC: 0.0076, Clean: 0.0047, Asym: 0.0027) |  659.7 spec/s
+[PolyGaussNet3] Ep [15/16] | File [12/16] | Loss: 0.01602 (BC: 0.0083, Clean: 0.0051, Asym: 0.0026) |  663.0 spec/s
+[PolyGaussNet3] Ep [15/16] | File [13/16] | Loss: 0.01612 (BC: 0.0078, Clean: 0.0048, Asym: 0.0035) |  663.6 spec/s
+[PolyGaussNet3] Ep [15/16] | File [14/16] | Loss: 0.01851 (BC: 0.0096, Clean: 0.0058, Asym: 0.0031) |  660.1 spec/s
+[PolyGaussNet3] Ep [15/16] | File [15/16] | Loss: 0.01615 (BC: 0.0083, Clean: 0.0051, Asym: 0.0028) |  659.4 spec/s
+[PolyGaussNet3] Ep [15/16] | File [16/16] | Loss: 0.01568 (BC: 0.0082, Clean: 0.0050, Asym: 0.0025) |  664.0 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet3] Epoch [15/16] Finished in 400.6s (654.4 spec/s)
+    Avg Loss: 0.016224 | BC: 0.008349 | Clean: 0.005064 | Asym: 0.002810
+    Learning Rate: 1.000000e-04
+    ★ New best model for PolyGaussNet3 saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/head2head_polygaussnet3.pth' (Loss: 0.016224)
+--------------------------------------------------------------------------------
+[PolyGaussNet3] Ep [16/16] | File [ 1/16] | Loss: 0.01556 (BC: 0.0079, Clean: 0.0048, Asym: 0.0029) |  655.5 spec/s
+[PolyGaussNet3] Ep [16/16] | File [ 2/16] | Loss: 0.01588 (BC: 0.0081, Clean: 0.0049, Asym: 0.0029) |  654.9 spec/s
+[PolyGaussNet3] Ep [16/16] | File [ 3/16] | Loss: 0.01532 (BC: 0.0079, Clean: 0.0047, Asym: 0.0027) |  659.1 spec/s
+[PolyGaussNet3] Ep [16/16] | File [ 4/16] | Loss: 0.01604 (BC: 0.0083, Clean: 0.0050, Asym: 0.0027) |  657.2 spec/s
+[PolyGaussNet3] Ep [16/16] | File [ 5/16] | Loss: 0.01647 (BC: 0.0085, Clean: 0.0052, Asym: 0.0028) |  656.0 spec/s
+[PolyGaussNet3] Ep [16/16] | File [ 6/16] | Loss: 0.01480 (BC: 0.0075, Clean: 0.0046, Asym: 0.0027) |  662.2 spec/s
+[PolyGaussNet3] Ep [16/16] | File [ 7/16] | Loss: 0.02675 (BC: 0.0141, Clean: 0.0086, Asym: 0.0041) |  658.8 spec/s
+[PolyGaussNet3] Ep [16/16] | File [ 8/16] | Loss: 0.02313 (BC: 0.0120, Clean: 0.0074, Asym: 0.0037) |  663.0 spec/s
+[PolyGaussNet3] Ep [16/16] | File [ 9/16] | Loss: 0.01717 (BC: 0.0086, Clean: 0.0053, Asym: 0.0033) |  664.0 spec/s
+[PolyGaussNet3] Ep [16/16] | File [10/16] | Loss: 0.01542 (BC: 0.0079, Clean: 0.0048, Asym: 0.0027) |  662.8 spec/s
+[PolyGaussNet3] Ep [16/16] | File [11/16] | Loss: 0.01549 (BC: 0.0079, Clean: 0.0048, Asym: 0.0028) |  657.0 spec/s
+[PolyGaussNet3] Ep [16/16] | File [12/16] | Loss: 0.01577 (BC: 0.0082, Clean: 0.0050, Asym: 0.0025) |  660.9 spec/s
+[PolyGaussNet3] Ep [16/16] | File [13/16] | Loss: 0.01514 (BC: 0.0076, Clean: 0.0047, Asym: 0.0028) |  661.9 spec/s
+[PolyGaussNet3] Ep [16/16] | File [14/16] | Loss: 0.01490 (BC: 0.0078, Clean: 0.0047, Asym: 0.0024) |  655.5 spec/s
+[PolyGaussNet3] Ep [16/16] | File [15/16] | Loss: 0.01549 (BC: 0.0078, Clean: 0.0047, Asym: 0.0030) |  658.3 spec/s
+[PolyGaussNet3] Ep [16/16] | File [16/16] | Loss: 0.01522 (BC: 0.0080, Clean: 0.0048, Asym: 0.0025) |  662.3 spec/s
+--------------------------------------------------------------------------------
+==> [PolyGaussNet3] Epoch [16/16] Finished in 402.0s (652.1 spec/s)
+    Avg Loss: 0.016783 | BC: 0.008641 | Clean: 0.005242 | Asym: 0.002900
+    Learning Rate: 1.000000e-04
+--------------------------------------------------------------------------------
+
+[PolyGaussNet3] Training Complete in 107.28 min! Best Loss: 0.016224 (at Epoch 15).
+
+
+================================================================================
+ HEAD-TO-HEAD TRAINING SUMMARY (16 Epochs on Round 4 Dataset) 
+================================================================================
+Metric / Parameter               | PolyGaussNet2 (No Amp) | PolyGaussNet3 (Bounded Amp)
+--------------------------------------------------------------------------------
+Amplitude Modulation             | Fixed A=1.0          | Bounded [0.85, 1.15]    
+Best Total Loss (↓)              | 0.017112             | 0.016224                
+Best Epoch                       | 15                   | 15                      
+Final Total Loss (Epoch 16)      | 0.017486             | 0.016783                
+Training Time (min)              | 112.67               | 107.28                  
+Saved Weights                    | head2head_polygaussnet2.pth | head2head_polygaussnet3.pth
+================================================================================
+Total Sequential Training Elapsed Time: 219.97 minutes
+
+
+==========================================================================================
+ ROUND 5: HEAD-TO-HEAD BENCHMARK (PolyGaussNet2 vs. PolyGaussNet3) 
+==========================================================================================
+Hardware Acceleration Device: mps
+
+Loading 4 test dataset chunk(s) from '/Users/bogiekissiov/Desktop/raman preprocessing/training_round4/test_data4':
+  • dataset_part_1.npz
+  • dataset_part_2.npz
+  • dataset_part_3.npz
+  • dataset_part_4.npz
+
+Dataset Overview:
+  - Total Test Spectra:  32,768
+  - Spectral Resolution: 1016 bins
+  - Test Directory:      /Users/bogiekissiov/Desktop/raman preprocessing/training_round4/test_data4
+------------------------------------------------------------------------------------------
+
+1. Evaluating PolyGaussNet2 (Weights: head2head_polygaussnet2.pth)...
+   ✓ Inference complete: 12.430s (  2636.2 spec/s, latency: 0.3793 ms)
+   • Cosine Sim: 0.85824 | MSE: 0.011454 | Log-Cosh: 0.005668 | Peak MAE: 0.07647
+
+2. Evaluating PolyGaussNet3 (Weights: head2head_polygaussnet3.pth)...
+   ✓ Inference complete: 12.419s (  2638.5 spec/s, latency: 0.3790 ms)
+   • Cosine Sim: 0.87092 | MSE: 0.009283 | Log-Cosh: 0.004605 | Peak MAE: 0.07060
+
+==========================================================================================
+                    INDIVIDUAL EVALUATION REPORTS (N = 32,768 Spectra)                    
+==========================================================================================
+
+--- PolyGaussNet2 (Sigma Only, A=1.0) ---
+  • Cosine Similarity (↑):     0.858237 (±0.16203)
+  • Mean Squared Error (↓):    0.011454 (±0.01648)
+  • Log-Cosh Loss (↓):         0.005668 (±0.00807)
+  • Mean Absolute Error (↓):   0.077378 (±0.05144)
+  • Root Mean Sq Error (↓):    0.090416 (±0.05726)
+  • Peak Summit MAE (↓):       0.076467 (±0.06355)
+  • Baseline Overshoot Rate:  1.067% of bins
+  • Max Baseline Overshoot:   0.33135
+  • Throughput & Latency:       2636.2 spectra/s (0.3793 ms/spec)
+
+--- PolyGaussNet3 (Sigma + Bounded Amplitude) ---
+  • Cosine Similarity (↑):     0.870917 (±0.16053)
+  • Mean Squared Error (↓):    0.009283 (±0.01282)
+  • Log-Cosh Loss (↓):         0.004605 (±0.00630)
+  • Mean Absolute Error (↓):   0.071226 (±0.04504)
+  • Root Mean Sq Error (↓):    0.082354 (±0.05001)
+  • Peak Summit MAE (↓):       0.070596 (±0.05810)
+  • Baseline Overshoot Rate:  0.576% of bins
+  • Max Baseline Overshoot:   0.33975
+  • Throughput & Latency:       2638.5 spectra/s (0.3790 ms/spec)
+
+===============================================================================================
+                DIRECT HEAD-TO-HEAD COMPARISON: PolyGaussNet2 vs. PolyGaussNet3                
+                        (Evaluated on 32,768 Test Spectra from Round 4)                        
+===============================================================================================
+Metric / Feature             | PolyGaussNet2 (No Amp)  | PolyGaussNet3 (Bounded Amp) | Delta / Advantage 
+-----------------------------------------------------------------------------------------------
+Amplitude Modulation         | Fixed A = 1.0           | Bounded [0.85, 1.15]    | Dynamic Peak Gain 
+Parameters                   | 148,913                 | 148,946                 | +33 params        
+-----------------------------------------------------------------------------------------------
+Cosine Similarity (↑)        | 0.858237                | 0.870917                | +0.012681 (+1.48%) P3 (+)
+Mean Squared Error (MSE ↓)   | 0.011454                | 0.009283                | -0.002171 (-18.95%) P3 (Better)
+Log-Cosh Loss (↓)            | 0.005668                | 0.004605                | -0.001063 (-18.75%) P3 (Better)
+Mean Absolute Error (MAE ↓)  | 0.077378                | 0.071226                | -0.006152 (-7.95%) P3 (Better)
+Root Mean Sq Error (RMSE ↓)  | 0.090416                | 0.082354                | -0.008062 (-8.92%) P3 (Better)
+Peak Summit MAE (↓)          | 0.076467                | 0.070596                | -0.005872 (-7.68%) P3 (Better)
+-----------------------------------------------------------------------------------------------
+Throughput (spectra/s)       | 2636.2                  | 2638.5                  |     +2.3 spec/s
+Latency per Spectrum         | 0.3793                  ms | 0.3790                  ms |  -0.0003 ms
+Baseline Overshoot Rate      | 1.067                 % | 0.576                 % | Stable
+===============================================================================================

@@ -62,7 +62,7 @@ from gruvbox_theme import GRUVBOX
 # 1. CONFIGURATION & CLI ARGUMENT PARSER
 # =====================================================================
 DEFAULT_DATA_DIR = "test_spectra3"
-DEFAULT_MODEL_PATH = "polygaussnet3.pth"
+DEFAULT_MODEL_PATH = "polygaussnet.pth"
 DEFAULT_BATCH_SIZE = 512
 DEFAULT_N_JOBS = min(os.cpu_count() or 4, 8)
 

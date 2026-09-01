@@ -80,7 +80,7 @@ except ImportError:
 # 1. CONFIGURATION & CLI ARGUMENT PARSER
 # =====================================================================
 DEFAULT_DATA_DIR = "tes_data4"
-DEFAULT_MODEL_PATH = "polygaussnet4.pth"
+DEFAULT_MODEL_PATH = "polygaussnet2.pth"
 DEFAULT_BATCH_SIZE = 512
 DEFAULT_N_JOBS = min(os.cpu_count() or 4, 8)
 

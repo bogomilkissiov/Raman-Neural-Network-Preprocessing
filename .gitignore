@@ -21,9 +21,13 @@ env/
 *.bin
 *.ckpt
 training_checkpoint*.pth
-!polygaussnet3.pth
-!polygaussnet4.pth
-!training_round4/polygaussnet4.pth
+!training_round3/polygaussnet.pth
+!training_round4/polygaussnet2.pth
+!training_round5/head2head_polygaussnet2.pth
+!training_round5/head2head_polygaussnet3.pth
+
+# Large documents & presentations
+preprocessing.pdf
 
 
 # Output plots / generated images

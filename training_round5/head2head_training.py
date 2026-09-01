@@ -1,0 +1,459 @@
+"""
+HEAD-TO-HEAD TRAINING SCRIPT - ROUND 5 (PolyGaussNet2 vs. PolyGaussNet3)
+-------------------------------------------------------------------------
+Sequentially trains PolyGaussNet2 (sigma-only) and PolyGaussNet3 (sigma + bounded amplitude)
+using the exact same training regime and dataset from Round 4 for 16 epochs each.
+
+Key Highlights:
+  - Reaches directly into `training_round4/training_data4` without copying or moving files.
+  - Phase 1: Trains PolyGaussNet2 for 16 epochs -> saves best weights to `training_round5/head2head_polygaussnet2.pth`
+  - Phase 2: Trains PolyGaussNet3 for 16 epochs -> saves best weights to `training_round5/head2head_polygaussnet3.pth`
+  - Exact Round 4 loss formulation: LogCosh(BC) + LogCosh(Clean) + AsymmetricBaselinePenalty
+  - Prefetched asynchronous data streaming via ThreadPoolExecutor.
+  - Generates a side-by-side benchmark summary upon completion.
+"""
+
+import os
+import sys
+import time
+import glob
+import argparse
+import gc
+from concurrent.futures import ThreadPoolExecutor
+
+import numpy as np
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.optim as optim
+from torch.utils.data import TensorDataset, DataLoader
+
+# =====================================================================
+# PATH RESOLUTION
+# =====================================================================
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, '..'))
+
+for p in [PROJECT_ROOT, SCRIPT_DIR]:
+    if p not in sys.path:
+        sys.path.insert(0, p)
+
+from polygaussnet2 import PolyGaussNet as PolyGaussNet2
+from polygaussnet3 import PolyGaussNet as PolyGaussNet3
+
+# Default paths
+DEFAULT_DATA_DIR = os.path.join(PROJECT_ROOT, "training_round4", "training_data4")
+DEFAULT_SAVE_P2 = os.path.join(SCRIPT_DIR, "head2head_polygaussnet2.pth")
+DEFAULT_SAVE_P3 = os.path.join(SCRIPT_DIR, "head2head_polygaussnet3.pth")
+
+# =====================================================================
+# HYPERPARAMETERS (Identical to Round 4)
+# =====================================================================
+EPOCHS = 16                           # 16 epochs per model
+BATCH_SIZE = 512                      # Batch size
+LEARNING_RATE = 1e-4                  # Initial learning rate for AdamW
+MIN_LEARNING_RATE = 9e-8              # Minimum learning rate for scheduler
+WEIGHT_DECAY = 1e-4                   # Weight decay for AdamW
+
+# Model Architecture Hyperparameters
+POLY_ORDER = 7                        # Order of polynomial baseline (Degree 7)
+FILTER_KERNEL_SIZE = 31               # Gaussian filter window size
+MIN_AMPLITUDE = 0.85                  # PolyGaussNet3 bounded amplitude minimum
+MAX_AMPLITUDE = 1.15                  # PolyGaussNet3 bounded amplitude maximum
+
+# Loss Weights
+LAMBDA_BC = 1.0                       # Baseline-corrected latent loss weight
+LAMBDA_CLEAN = 1.0                    # Clean/pure output loss weight
+LAMBDA_ASYM = 15.0                    # Asymmetric baseline overprediction penalty weight
+
+# =====================================================================
+# CLI ARGUMENT PARSER
+# =====================================================================
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Head-to-Head 16-Epoch Training: PolyGaussNet2 vs. PolyGaussNet3",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
+    parser.add_argument("--epochs", type=int, default=EPOCHS,
+                        help="Number of epochs per model")
+    parser.add_argument("--batch-size", type=int, default=BATCH_SIZE,
+                        help="Batch size")
+    parser.add_argument("--lr", type=float, default=LEARNING_RATE,
+                        help="Initial learning rate")
+    parser.add_argument("--min-lr", type=float, default=MIN_LEARNING_RATE,
+                        help="Minimum learning rate")
+    parser.add_argument("--weight-decay", type=float, default=WEIGHT_DECAY,
+                        help="Weight decay for AdamW")
+    parser.add_argument("--data-dir", type=str, default=DEFAULT_DATA_DIR,
+                        help="Path to training_round4 data folder containing .npz chunks")
+    parser.add_argument("--save-p2", type=str, default=DEFAULT_SAVE_P2,
+                        help="Destination for best PolyGaussNet2 weights")
+    parser.add_argument("--save-p3", type=str, default=DEFAULT_SAVE_P3,
+                        help="Destination for best PolyGaussNet3 weights")
+    parser.add_argument("--poly-order", type=int, default=POLY_ORDER,
+                        help="Polynomial degree for baseline head")
+    parser.add_argument("--filter-kernel-size", type=int, default=FILTER_KERNEL_SIZE,
+                        help="Kernel size for adaptive Gaussian filter")
+    parser.add_argument("--lambda-bc", type=float, default=LAMBDA_BC,
+                        help="Weight for baseline-corrected loss")
+    parser.add_argument("--lambda-clean", type=float, default=LAMBDA_CLEAN,
+                        help="Weight for clean/pure loss")
+    parser.add_argument("--lambda-asym", type=float, default=LAMBDA_ASYM,
+                        help="Weight for asymmetric baseline penalty")
+    return parser.parse_args()
+
+# =====================================================================
+# LOSS FUNCTIONS
+# =====================================================================
+class LogCoshLoss(nn.Module):
+    """
+    Logarithm of the hyperbolic cosine loss:
+        L(y_pred, y_true) = log(cosh(y_pred - y_true))
+    Smooth, outlier-robust approximation to L1 (MAE).
+    """
+    def __init__(self):
+        super(LogCoshLoss, self).__init__()
+
+    def forward(self, y_pred: torch.Tensor, y_true: torch.Tensor) -> torch.Tensor:
+        x = y_pred - y_true
+        return torch.mean(
+            torch.abs(x) +
+            torch.log1p(torch.exp(-2.0 * torch.abs(x))) -
+            torch.log(torch.tensor(2.0, device=x.device, dtype=x.dtype))
+        )
+
+class AsymmetricBaselinePenalty(nn.Module):
+    """
+    Penalizes baseline predictions exceeding the raw input signal (B_pred > X_raw).
+    Proportional to lambda_asym * num_violating_bins * squared excess.
+    """
+    def __init__(self, lambda_asym: float = 15.0):
+        super(AsymmetricBaselinePenalty, self).__init__()
+        self.lambda_asym = lambda_asym
+
+    def forward(self, pred_baseline: torch.Tensor, raw_spectrum: torch.Tensor) -> torch.Tensor:
+        excess = F.relu(pred_baseline - raw_spectrum)
+        with torch.no_grad():
+            num_violating_bins = (pred_baseline > raw_spectrum).float().sum(dim=-1, keepdim=True)
+        loss = self.lambda_asym * torch.mean((excess ** 2) * num_violating_bins)
+        return loss
+
+# =====================================================================
+# DATA LOADING
+# =====================================================================
+def load_file_data(filepath: str):
+    """Loads an .npz dataset file from disk into PyTorch float tensors."""
+    data = np.load(filepath)
+    X = torch.tensor(data["full_matrix"], dtype=torch.float32).unsqueeze(1)
+    Y_bc = torch.tensor(data["pure_noise_cosmic_matrix"], dtype=torch.float32).unsqueeze(1)
+    Y_clean = torch.tensor(data["pure_matrix"], dtype=torch.float32).unsqueeze(1)
+    data.close()
+    return X, Y_bc, Y_clean
+
+# =====================================================================
+# SINGLE MODEL TRAINING FUNCTION
+# =====================================================================
+def train_model(
+    model_name: str,
+    model: nn.Module,
+    file_list: list,
+    save_path: str,
+    device: torch.device,
+    args
+):
+    print("\n" + "=" * 80)
+    print(f" TRAINING: {model_name} (Target: {args.epochs} Epochs) ")
+    print("=" * 80)
+    total_params = sum(p.numel() for p in model.parameters())
+    print(f"  - Model Architecture: {model_name}")
+    print(f"  - Total Parameters:   {total_params:,}")
+    print(f"  - Device:             {device}")
+    print(f"  - Batch Size:         {args.batch_size}")
+    print(f"  - Initial LR:         {args.lr}")
+    print(f"  - Min LR:             {args.min_lr}")
+    print(f"  - Polynomial Order:   Degree {args.poly_order}")
+    print(f"  - Filter Kernel Size: {args.filter_kernel_size}")
+    print(f"  - Weights Destination:{save_path}")
+    print("=" * 80 + "\n")
+
+    criterion = LogCoshLoss().to(device)
+    asym_penalty = AsymmetricBaselinePenalty(lambda_asym=args.lambda_asym).to(device)
+
+    optimizer = optim.AdamW(
+        model.parameters(),
+        lr=args.lr,
+        weight_decay=args.weight_decay
+    )
+
+    scheduler = optim.lr_scheduler.ReduceLROnPlateau(
+        optimizer,
+        mode='min',
+        factor=0.8,
+        patience=1,
+        min_lr=args.min_lr
+    )
+
+    best_loss = float('inf')
+    best_epoch = 0
+    training_start_time = time.time()
+    history = []
+
+    executor = ThreadPoolExecutor(max_workers=1)
+
+    for epoch in range(args.epochs):
+        epoch_start = time.time()
+        model.train()
+
+        running_total_loss = 0.0
+        running_bc_loss = 0.0
+        running_clean_loss = 0.0
+        running_asym_loss = 0.0
+        total_samples = 0
+
+        # Shuffle dataset file chunks for randomness across epochs
+        epoch_files = list(file_list)
+        np.random.shuffle(epoch_files)
+
+        # Asynchronously prefetch first file chunk
+        future = executor.submit(load_file_data, epoch_files[0])
+
+        for file_idx in range(len(epoch_files)):
+            X, Y_bc, Y_clean = future.result()
+
+            # Prefetch next file chunk
+            if file_idx + 1 < len(epoch_files):
+                future = executor.submit(load_file_data, epoch_files[file_idx + 1])
+
+            dataset = TensorDataset(X, Y_bc, Y_clean)
+            loader = DataLoader(
+                dataset,
+                batch_size=args.batch_size,
+                shuffle=True,
+                drop_last=False
+            )
+
+            file_start_time = time.time()
+            file_total_loss = 0.0
+            file_bc_loss = 0.0
+            file_clean_loss = 0.0
+            file_asym_loss = 0.0
+            file_samples = 0
+
+            for batch_idx, (batch_x, batch_y_bc, batch_y_clean) in enumerate(loader):
+                batch_x = batch_x.to(device)
+                batch_y_bc = batch_y_bc.to(device)
+                batch_y_clean = batch_y_clean.to(device)
+
+                # Forward pass
+                clean_pred, pred_baseline, bc_pred, latent_params = model(batch_x)
+
+                # Losses
+                loss_bc = criterion(bc_pred, batch_y_bc)
+                loss_clean = criterion(clean_pred, batch_y_clean)
+                loss_asym = asym_penalty(pred_baseline, batch_x)
+
+                total_loss = (args.lambda_bc * loss_bc) + (args.lambda_clean * loss_clean) + loss_asym
+
+                # Backward & Step
+                optimizer.zero_grad()
+                total_loss.backward()
+                optimizer.step()
+
+                bs = batch_x.size(0)
+                file_total_loss += total_loss.item() * bs
+                file_bc_loss += loss_bc.item() * bs
+                file_clean_loss += loss_clean.item() * bs
+                file_asym_loss += loss_asym.item() * bs
+                file_samples += bs
+
+                running_total_loss += total_loss.item() * bs
+                running_bc_loss += loss_bc.item() * bs
+                running_clean_loss += loss_clean.item() * bs
+                running_asym_loss += loss_asym.item() * bs
+                total_samples += bs
+
+            # Per-file progress printout
+            file_duration = time.time() - file_start_time
+            file_avg_loss = file_total_loss / file_samples if file_samples > 0 else 0
+            file_avg_bc = file_bc_loss / file_samples if file_samples > 0 else 0
+            file_avg_clean = file_clean_loss / file_samples if file_samples > 0 else 0
+            file_avg_asym = file_asym_loss / file_samples if file_samples > 0 else 0
+            file_throughput = file_samples / file_duration if file_duration > 0 else 0
+
+            print(
+                f"[{model_name}] Ep [{epoch + 1:2d}/{args.epochs:2d}] | "
+                f"File [{file_idx + 1:2d}/{len(epoch_files):2d}] | "
+                f"Loss: {file_avg_loss:.5f} (BC: {file_avg_bc:.4f}, Clean: {file_avg_clean:.4f}, Asym: {file_avg_asym:.4f}) | "
+                f"{file_throughput:6.1f} spec/s"
+            )
+
+            del X, Y_bc, Y_clean, dataset, loader
+            gc.collect()
+            if device.type == "mps":
+                torch.mps.empty_cache()
+            elif device.type == "cuda":
+                torch.cuda.empty_cache()
+
+        epoch_duration = time.time() - epoch_start
+        avg_loss = running_total_loss / total_samples if total_samples > 0 else 0
+        avg_bc_loss = running_bc_loss / total_samples if total_samples > 0 else 0
+        avg_clean_loss = running_clean_loss / total_samples if total_samples > 0 else 0
+        avg_asym_loss = running_asym_loss / total_samples if total_samples > 0 else 0
+        throughput = total_samples / epoch_duration if epoch_duration > 0 else 0
+
+        scheduler.step(avg_loss)
+        current_lr = optimizer.param_groups[0]['lr']
+
+        # Epoch Summary
+        print("-" * 80)
+        print(f"==> [{model_name}] Epoch [{epoch + 1:2d}/{args.epochs:2d}] Finished in {epoch_duration:.1f}s ({throughput:.1f} spec/s)")
+        print(f"    Avg Loss: {avg_loss:.6f} | BC: {avg_bc_loss:.6f} | Clean: {avg_clean_loss:.6f} | Asym: {avg_asym_loss:.6f}")
+        print(f"    Learning Rate: {current_lr:.6e}")
+
+        # Save Best Model Weights
+        if avg_loss < best_loss:
+            best_loss = avg_loss
+            best_epoch = epoch + 1
+            os.makedirs(os.path.dirname(os.path.abspath(save_path)), exist_ok=True)
+            torch.save(model.state_dict(), save_path)
+            print(f"    ★ New best model for {model_name} saved to '{save_path}' (Loss: {best_loss:.6f})")
+
+        print("-" * 80)
+
+        history.append({
+            'epoch': epoch + 1,
+            'total_loss': avg_loss,
+            'bc_loss': avg_bc_loss,
+            'clean_loss': avg_clean_loss,
+            'asym_loss': avg_asym_loss,
+            'lr': current_lr,
+            'duration': epoch_duration
+        })
+
+    total_training_time = time.time() - training_start_time
+    print(f"\n[{model_name}] Training Complete in {total_training_time / 60:.2f} min! Best Loss: {best_loss:.6f} (at Epoch {best_epoch}).\n")
+
+    return {
+        'model_name': model_name,
+        'best_loss': best_loss,
+        'best_epoch': best_epoch,
+        'final_loss': avg_loss,
+        'total_time': total_training_time,
+        'history': history,
+        'save_path': save_path
+    }
+
+# =====================================================================
+# MAIN SEQUENTIAL EXECUTION
+# =====================================================================
+def main():
+    args = parse_args()
+
+    # Hardware device setup
+    if torch.backends.mps.is_available():
+        device = torch.device("mps")
+    elif torch.cuda.is_available():
+        device = torch.device("cuda")
+    else:
+        device = torch.device("cpu")
+
+    # Resolve Data Directory & Files
+    data_dir = args.data_dir
+    if not os.path.exists(data_dir):
+        # Fallback check relative to script or root
+        alt_path = os.path.join(PROJECT_ROOT, "training_round4", "training_data4")
+        if os.path.exists(alt_path):
+            data_dir = alt_path
+
+    file_list = sorted(glob.glob(os.path.join(data_dir, "dataset_part_*.npz")))
+    if not file_list:
+        file_list = sorted(glob.glob(os.path.join(data_dir, "*.npz")))
+
+    if not file_list:
+        print(f"\n[ERROR] No dataset .npz files found in '{data_dir}'.")
+        print("Please check that training_round4/training_data4 contains dataset_part_*.npz files.")
+        return
+
+    print("=" * 80)
+    print(" ROUND 5: SEQUENTIAL HEAD-TO-HEAD TRAINING (16 Epochs Each) ")
+    print("=" * 80)
+    print(f"  - Dataset Location:    {data_dir}")
+    print(f"  - Dataset Files:       {len(file_list)} chunks found")
+    print(f"  - Device:              {device}")
+    print(f"  - Epochs per Model:    {args.epochs}")
+    print(f"  - Batch Size:          {args.batch_size}")
+    print("=" * 80 + "\n")
+
+    overall_start_time = time.time()
+
+    # -----------------------------------------------------------------
+    # PHASE 1: Train PolyGaussNet2 (Sigma only, Amplitude = 1.0)
+    # -----------------------------------------------------------------
+    model_p2 = PolyGaussNet2(
+        poly_order=args.poly_order,
+        filter_kernel_size=args.filter_kernel_size
+    ).to(device)
+
+    summary_p2 = train_model(
+        model_name="PolyGaussNet2",
+        model=model_p2,
+        file_list=file_list,
+        save_path=args.save_p2,
+        device=device,
+        args=args
+    )
+
+    del model_p2
+    gc.collect()
+    if device.type == "mps":
+        torch.mps.empty_cache()
+    elif device.type == "cuda":
+        torch.cuda.empty_cache()
+
+    # -----------------------------------------------------------------
+    # PHASE 2: Train PolyGaussNet3 (Sigma + Bounded Amplitude [0.85, 1.15])
+    # -----------------------------------------------------------------
+    model_p3 = PolyGaussNet3(
+        poly_order=args.poly_order,
+        filter_kernel_size=args.filter_kernel_size,
+        min_amplitude=MIN_AMPLITUDE,
+        max_amplitude=MAX_AMPLITUDE
+    ).to(device)
+
+    summary_p3 = train_model(
+        model_name="PolyGaussNet3",
+        model=model_p3,
+        file_list=file_list,
+        save_path=args.save_p3,
+        device=device,
+        args=args
+    )
+
+    del model_p3
+    gc.collect()
+    if device.type == "mps":
+        torch.mps.empty_cache()
+    elif device.type == "cuda":
+        torch.cuda.empty_cache()
+
+    total_all_time = time.time() - overall_start_time
+
+    # -----------------------------------------------------------------
+    # FINAL COMPARISON SUMMARY TABLE
+    # -----------------------------------------------------------------
+    print("\n" + "=" * 80)
+    print(" HEAD-TO-HEAD TRAINING SUMMARY (16 Epochs on Round 4 Dataset) ")
+    print("=" * 80)
+    print(f"{'Metric / Parameter':<32} | {'PolyGaussNet2 (No Amp)':<20} | {'PolyGaussNet3 (Bounded Amp)':<24}")
+    print("-" * 80)
+    print(f"{'Amplitude Modulation':<32} | {'Fixed A=1.0':<20} | {'Bounded [0.85, 1.15]':<24}")
+    print(f"{'Best Total Loss (↓)':<32} | {summary_p2['best_loss']:<20.6f} | {summary_p3['best_loss']:<24.6f}")
+    print(f"{'Best Epoch':<32} | {summary_p2['best_epoch']:<20d} | {summary_p3['best_epoch']:<24d}")
+    print(f"{'Final Total Loss (Epoch 16)':<32} | {summary_p2['final_loss']:<20.6f} | {summary_p3['final_loss']:<24.6f}")
+    print(f"{'Training Time (min)':<32} | {summary_p2['total_time'] / 60:<20.2f} | {summary_p3['total_time'] / 60:<24.2f}")
+    print(f"{'Saved Weights':<32} | {os.path.basename(summary_p2['save_path']):<20} | {os.path.basename(summary_p3['save_path']):<24}")
+    print("=" * 80)
+    print(f"Total Sequential Training Elapsed Time: {total_all_time / 60:.2f} minutes\n")
+
+if __name__ == "__main__":
+    main()
