@@ -1,0 +1,853 @@
+====================================================================================
+ ROUND 5: ASYMMETRIC LOSS SCALE SPLIT TEST (16 Epochs Each) 
+ Normal Scaling (λ=15.0) vs. High Scaling (λ=60.0) on PolyGaussNet3 
+====================================================================================
+  - Model Architecture: PolyGaussNet3 (Degree 7, Kernel 31, Amp [0.85, 1.15])
+  - Loss Formulation:    Dual Supervised [LogCosh(BC) + LogCosh(Clean) + λ_asym * Asym]
+  - Dataset Location:    /Users/bogiekissiov/Desktop/raman preprocessing/training_round4/training_data4
+  - Dataset Files:       16 chunks found
+  - Device:              mps
+  - Epochs per Model:    16
+  - Batch Size:          512
+====================================================================================
+
+
+==================================================================================
+ TRAINING: Normal Asym Penalty (λ=15.0) 
+ Formulation: Dual Supervised [LogCosh(BC) + LogCosh(Clean) + 15.0 * Asym] 
+==================================================================================
+  - Model Architecture: PolyGaussNet3 (Degree 7, Kernel 31)
+  - Total Parameters:   148,426
+  - Device:             mps
+  - Target Epochs:      16
+  - Batch Size:         512
+  - Initial LR:         0.0001
+  - Min LR:             9e-08
+  - Lambda Asymmetric:  15.0
+  - Weights Destination:/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_normal_lambda15.pth
+==================================================================================
+
+[Normal Asym Penalty (λ=15.0)] Ep [ 1/16] | File [ 1/16] | TrainLoss: 0.34330 (Clean: 0.1305, BC: 0.1425, Asym: 0.0703) |  654.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 1/16] | File [ 2/16] | TrainLoss: 0.21062 (Clean: 0.0904, BC: 0.1161, Asym: 0.0041) |  680.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 1/16] | File [ 3/16] | TrainLoss: 0.15791 (Clean: 0.0640, BC: 0.0869, Asym: 0.0070) |  679.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 1/16] | File [ 4/16] | TrainLoss: 0.12564 (Clean: 0.0482, BC: 0.0667, Asym: 0.0107) |  682.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 1/16] | File [ 5/16] | TrainLoss: 0.10814 (Clean: 0.0401, BC: 0.0561, Asym: 0.0118) |  681.1 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 1/16] | File [ 6/16] | TrainLoss: 0.09448 (Clean: 0.0344, BC: 0.0484, Asym: 0.0117) |  681.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 1/16] | File [ 7/16] | TrainLoss: 0.08478 (Clean: 0.0305, BC: 0.0434, Asym: 0.0108) |  681.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 1/16] | File [ 8/16] | TrainLoss: 0.07895 (Clean: 0.0286, BC: 0.0408, Asym: 0.0095) |  682.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 1/16] | File [ 9/16] | TrainLoss: 0.07351 (Clean: 0.0267, BC: 0.0382, Asym: 0.0085) |  682.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 1/16] | File [10/16] | TrainLoss: 0.07015 (Clean: 0.0256, BC: 0.0368, Asym: 0.0077) |  683.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 1/16] | File [11/16] | TrainLoss: 0.06553 (Clean: 0.0237, BC: 0.0341, Asym: 0.0078) |  681.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 1/16] | File [12/16] | TrainLoss: 0.06275 (Clean: 0.0228, BC: 0.0329, Asym: 0.0070) |  682.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 1/16] | File [13/16] | TrainLoss: 0.06066 (Clean: 0.0215, BC: 0.0312, Asym: 0.0080) |  682.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 1/16] | File [14/16] | TrainLoss: 0.05662 (Clean: 0.0207, BC: 0.0300, Asym: 0.0059) |  682.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 1/16] | File [15/16] | TrainLoss: 0.05325 (Clean: 0.0191, BC: 0.0277, Asym: 0.0065) |  682.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 1/16] | File [16/16] | TrainLoss: 0.05224 (Clean: 0.0187, BC: 0.0273, Asym: 0.0063) |  684.3 spec/s
+----------------------------------------------------------------------------------
+==> [Normal Asym Penalty (λ=15.0)] Epoch [ 1/16] Finished in 389.1s (673.7 spec/s)
+    Avg Train Loss: 0.106157 | Clean: 0.040358 | BC: 0.053704 | Asym: 0.012095
+    Learning Rate:  1.000000e-04
+    ★ New best model for Normal Asym Penalty (λ=15.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_normal_lambda15.pth' (Loss: 0.106157)
+----------------------------------------------------------------------------------
+[Normal Asym Penalty (λ=15.0)] Ep [ 2/16] | File [ 1/16] | TrainLoss: 0.05466 (Clean: 0.0192, BC: 0.0280, Asym: 0.0075) |  679.1 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 2/16] | File [ 2/16] | TrainLoss: 0.05316 (Clean: 0.0192, BC: 0.0279, Asym: 0.0061) |  681.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 2/16] | File [ 3/16] | TrainLoss: 0.04943 (Clean: 0.0174, BC: 0.0254, Asym: 0.0067) |  681.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 2/16] | File [ 4/16] | TrainLoss: 0.04650 (Clean: 0.0164, BC: 0.0241, Asym: 0.0060) |  682.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 2/16] | File [ 5/16] | TrainLoss: 0.04623 (Clean: 0.0163, BC: 0.0240, Asym: 0.0059) |  683.1 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 2/16] | File [ 6/16] | TrainLoss: 0.04487 (Clean: 0.0155, BC: 0.0229, Asym: 0.0065) |  682.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 2/16] | File [ 7/16] | TrainLoss: 0.04376 (Clean: 0.0154, BC: 0.0228, Asym: 0.0056) |  682.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 2/16] | File [ 8/16] | TrainLoss: 0.04661 (Clean: 0.0157, BC: 0.0233, Asym: 0.0076) |  682.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 2/16] | File [ 9/16] | TrainLoss: 0.04452 (Clean: 0.0156, BC: 0.0231, Asym: 0.0058) |  682.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 2/16] | File [10/16] | TrainLoss: 0.04171 (Clean: 0.0144, BC: 0.0216, Asym: 0.0057) |  682.1 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 2/16] | File [11/16] | TrainLoss: 0.04483 (Clean: 0.0149, BC: 0.0223, Asym: 0.0076) |  682.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 2/16] | File [12/16] | TrainLoss: 0.04641 (Clean: 0.0166, BC: 0.0249, Asym: 0.0049) |  682.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 2/16] | File [13/16] | TrainLoss: 0.04126 (Clean: 0.0141, BC: 0.0213, Asym: 0.0058) |  682.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 2/16] | File [14/16] | TrainLoss: 0.04073 (Clean: 0.0138, BC: 0.0210, Asym: 0.0059) |  683.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 2/16] | File [15/16] | TrainLoss: 0.03985 (Clean: 0.0134, BC: 0.0205, Asym: 0.0059) |  682.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 2/16] | File [16/16] | TrainLoss: 0.03959 (Clean: 0.0136, BC: 0.0207, Asym: 0.0053) |  684.6 spec/s
+----------------------------------------------------------------------------------
+==> [Normal Asym Penalty (λ=15.0)] Epoch [ 2/16] Finished in 387.5s (676.5 spec/s)
+    Avg Train Loss: 0.045258 | Clean: 0.015716 | BC: 0.023366 | Asym: 0.006176
+    Learning Rate:  1.000000e-04
+    ★ New best model for Normal Asym Penalty (λ=15.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_normal_lambda15.pth' (Loss: 0.045258)
+----------------------------------------------------------------------------------
+[Normal Asym Penalty (λ=15.0)] Ep [ 3/16] | File [ 1/16] | TrainLoss: 0.04238 (Clean: 0.0140, BC: 0.0215, Asym: 0.0069) |  676.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 3/16] | File [ 2/16] | TrainLoss: 0.04155 (Clean: 0.0142, BC: 0.0217, Asym: 0.0056) |  681.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 3/16] | File [ 3/16] | TrainLoss: 0.03950 (Clean: 0.0131, BC: 0.0203, Asym: 0.0061) |  681.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 3/16] | File [ 4/16] | TrainLoss: 0.03881 (Clean: 0.0132, BC: 0.0204, Asym: 0.0051) |  681.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 3/16] | File [ 5/16] | TrainLoss: 0.03695 (Clean: 0.0122, BC: 0.0190, Asym: 0.0058) |  682.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 3/16] | File [ 6/16] | TrainLoss: 0.03876 (Clean: 0.0132, BC: 0.0206, Asym: 0.0050) |  682.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 3/16] | File [ 7/16] | TrainLoss: 0.04006 (Clean: 0.0132, BC: 0.0205, Asym: 0.0063) |  682.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 3/16] | File [ 8/16] | TrainLoss: 0.03605 (Clean: 0.0120, BC: 0.0187, Asym: 0.0053) |  683.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 3/16] | File [ 9/16] | TrainLoss: 0.04072 (Clean: 0.0136, BC: 0.0210, Asym: 0.0061) |  682.1 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 3/16] | File [10/16] | TrainLoss: 0.03543 (Clean: 0.0117, BC: 0.0183, Asym: 0.0054) |  682.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 3/16] | File [11/16] | TrainLoss: 0.03419 (Clean: 0.0113, BC: 0.0177, Asym: 0.0052) |  683.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 3/16] | File [12/16] | TrainLoss: 0.03480 (Clean: 0.0116, BC: 0.0182, Asym: 0.0050) |  685.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 3/16] | File [13/16] | TrainLoss: 0.03545 (Clean: 0.0117, BC: 0.0184, Asym: 0.0053) |  681.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 3/16] | File [14/16] | TrainLoss: 0.03787 (Clean: 0.0124, BC: 0.0195, Asym: 0.0060) |  679.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 3/16] | File [15/16] | TrainLoss: 0.03488 (Clean: 0.0116, BC: 0.0182, Asym: 0.0051) |  681.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 3/16] | File [16/16] | TrainLoss: 0.03395 (Clean: 0.0111, BC: 0.0174, Asym: 0.0055) |  682.8 spec/s
+----------------------------------------------------------------------------------
+==> [Normal Asym Penalty (λ=15.0)] Epoch [ 3/16] Finished in 388.1s (675.5 spec/s)
+    Avg Train Loss: 0.037586 | Clean: 0.012523 | BC: 0.019458 | Asym: 0.005605
+    Learning Rate:  1.000000e-04
+    ★ New best model for Normal Asym Penalty (λ=15.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_normal_lambda15.pth' (Loss: 0.037586)
+----------------------------------------------------------------------------------
+[Normal Asym Penalty (λ=15.0)] Ep [ 4/16] | File [ 1/16] | TrainLoss: 0.03550 (Clean: 0.0117, BC: 0.0185, Asym: 0.0053) |  680.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 4/16] | File [ 2/16] | TrainLoss: 0.03233 (Clean: 0.0107, BC: 0.0170, Asym: 0.0046) |  683.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 4/16] | File [ 3/16] | TrainLoss: 0.03247 (Clean: 0.0106, BC: 0.0168, Asym: 0.0050) |  658.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 4/16] | File [ 4/16] | TrainLoss: 0.03222 (Clean: 0.0107, BC: 0.0169, Asym: 0.0046) |  663.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 4/16] | File [ 5/16] | TrainLoss: 0.03218 (Clean: 0.0103, BC: 0.0163, Asym: 0.0056) |  658.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 4/16] | File [ 6/16] | TrainLoss: 0.03047 (Clean: 0.0102, BC: 0.0162, Asym: 0.0041) |  662.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 4/16] | File [ 7/16] | TrainLoss: 0.03178 (Clean: 0.0104, BC: 0.0165, Asym: 0.0048) |  663.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 4/16] | File [ 8/16] | TrainLoss: 0.03183 (Clean: 0.0103, BC: 0.0164, Asym: 0.0051) |  663.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 4/16] | File [ 9/16] | TrainLoss: 0.03029 (Clean: 0.0100, BC: 0.0159, Asym: 0.0044) |  662.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 4/16] | File [10/16] | TrainLoss: 0.03206 (Clean: 0.0103, BC: 0.0164, Asym: 0.0054) |  663.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 4/16] | File [11/16] | TrainLoss: 0.03088 (Clean: 0.0102, BC: 0.0162, Asym: 0.0044) |  664.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 4/16] | File [12/16] | TrainLoss: 0.03007 (Clean: 0.0099, BC: 0.0157, Asym: 0.0045) |  661.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 4/16] | File [13/16] | TrainLoss: 0.02935 (Clean: 0.0095, BC: 0.0152, Asym: 0.0047) |  670.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 4/16] | File [14/16] | TrainLoss: 0.03829 (Clean: 0.0126, BC: 0.0199, Asym: 0.0058) |  680.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 4/16] | File [15/16] | TrainLoss: 0.03746 (Clean: 0.0125, BC: 0.0196, Asym: 0.0054) |  677.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 4/16] | File [16/16] | TrainLoss: 0.04453 (Clean: 0.0145, BC: 0.0227, Asym: 0.0073) |  682.2 spec/s
+----------------------------------------------------------------------------------
+==> [Normal Asym Penalty (λ=15.0)] Epoch [ 4/16] Finished in 396.1s (661.9 spec/s)
+    Avg Train Loss: 0.033232 | Clean: 0.010909 | BC: 0.017261 | Asym: 0.005061
+    Learning Rate:  1.000000e-04
+    ★ New best model for Normal Asym Penalty (λ=15.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_normal_lambda15.pth' (Loss: 0.033232)
+----------------------------------------------------------------------------------
+[Normal Asym Penalty (λ=15.0)] Ep [ 5/16] | File [ 1/16] | TrainLoss: 0.03183 (Clean: 0.0104, BC: 0.0164, Asym: 0.0050) |  675.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 5/16] | File [ 2/16] | TrainLoss: 0.02898 (Clean: 0.0096, BC: 0.0153, Asym: 0.0040) |  677.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 5/16] | File [ 3/16] | TrainLoss: 0.02879 (Clean: 0.0094, BC: 0.0149, Asym: 0.0045) |  677.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 5/16] | File [ 4/16] | TrainLoss: 0.02824 (Clean: 0.0092, BC: 0.0146, Asym: 0.0044) |  681.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 5/16] | File [ 5/16] | TrainLoss: 0.02736 (Clean: 0.0090, BC: 0.0144, Asym: 0.0040) |  682.1 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 5/16] | File [ 6/16] | TrainLoss: 0.02820 (Clean: 0.0092, BC: 0.0147, Asym: 0.0042) |  682.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 5/16] | File [ 7/16] | TrainLoss: 0.02944 (Clean: 0.0095, BC: 0.0152, Asym: 0.0047) |  682.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 5/16] | File [ 8/16] | TrainLoss: 0.02682 (Clean: 0.0087, BC: 0.0139, Asym: 0.0042) |  682.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 5/16] | File [ 9/16] | TrainLoss: 0.02679 (Clean: 0.0088, BC: 0.0140, Asym: 0.0040) |  678.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 5/16] | File [10/16] | TrainLoss: 0.02603 (Clean: 0.0085, BC: 0.0135, Asym: 0.0040) |  680.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 5/16] | File [11/16] | TrainLoss: 0.02610 (Clean: 0.0085, BC: 0.0137, Asym: 0.0039) |  678.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 5/16] | File [12/16] | TrainLoss: 0.02671 (Clean: 0.0087, BC: 0.0139, Asym: 0.0041) |  681.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 5/16] | File [13/16] | TrainLoss: 0.02571 (Clean: 0.0085, BC: 0.0135, Asym: 0.0038) |  681.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 5/16] | File [14/16] | TrainLoss: 0.02586 (Clean: 0.0083, BC: 0.0133, Asym: 0.0042) |  681.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 5/16] | File [15/16] | TrainLoss: 0.02537 (Clean: 0.0084, BC: 0.0134, Asym: 0.0035) |  681.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 5/16] | File [16/16] | TrainLoss: 0.02579 (Clean: 0.0084, BC: 0.0134, Asym: 0.0039) |  684.4 spec/s
+----------------------------------------------------------------------------------
+==> [Normal Asym Penalty (λ=15.0)] Epoch [ 5/16] Finished in 388.9s (674.0 spec/s)
+    Avg Train Loss: 0.027375 | Clean: 0.008952 | BC: 0.014263 | Asym: 0.004159
+    Learning Rate:  1.000000e-04
+    ★ New best model for Normal Asym Penalty (λ=15.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_normal_lambda15.pth' (Loss: 0.027375)
+----------------------------------------------------------------------------------
+[Normal Asym Penalty (λ=15.0)] Ep [ 6/16] | File [ 1/16] | TrainLoss: 0.02665 (Clean: 0.0088, BC: 0.0141, Asym: 0.0037) |  675.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 6/16] | File [ 2/16] | TrainLoss: 0.02657 (Clean: 0.0086, BC: 0.0137, Asym: 0.0042) |  680.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 6/16] | File [ 3/16] | TrainLoss: 0.02430 (Clean: 0.0080, BC: 0.0128, Asym: 0.0035) |  680.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 6/16] | File [ 4/16] | TrainLoss: 0.02489 (Clean: 0.0081, BC: 0.0128, Asym: 0.0040) |  674.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 6/16] | File [ 5/16] | TrainLoss: 0.02651 (Clean: 0.0087, BC: 0.0139, Asym: 0.0040) |  671.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 6/16] | File [ 6/16] | TrainLoss: 0.02536 (Clean: 0.0083, BC: 0.0132, Asym: 0.0039) |  660.1 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 6/16] | File [ 7/16] | TrainLoss: 0.02474 (Clean: 0.0080, BC: 0.0129, Asym: 0.0039) |  661.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 6/16] | File [ 8/16] | TrainLoss: 0.02899 (Clean: 0.0096, BC: 0.0153, Asym: 0.0041) |  659.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 6/16] | File [ 9/16] | TrainLoss: 0.02849 (Clean: 0.0092, BC: 0.0146, Asym: 0.0046) |  679.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 6/16] | File [10/16] | TrainLoss: 0.02540 (Clean: 0.0082, BC: 0.0132, Asym: 0.0040) |  647.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 6/16] | File [11/16] | TrainLoss: 0.02615 (Clean: 0.0087, BC: 0.0138, Asym: 0.0036) |  674.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 6/16] | File [12/16] | TrainLoss: 0.02432 (Clean: 0.0079, BC: 0.0126, Asym: 0.0039) |  679.1 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 6/16] | File [13/16] | TrainLoss: 0.02301 (Clean: 0.0076, BC: 0.0122, Asym: 0.0033) |  679.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 6/16] | File [14/16] | TrainLoss: 0.02241 (Clean: 0.0074, BC: 0.0118, Asym: 0.0033) |  680.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 6/16] | File [15/16] | TrainLoss: 0.02297 (Clean: 0.0073, BC: 0.0117, Asym: 0.0039) |  678.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 6/16] | File [16/16] | TrainLoss: 0.02388 (Clean: 0.0080, BC: 0.0127, Asym: 0.0032) |  681.3 spec/s
+----------------------------------------------------------------------------------
+==> [Normal Asym Penalty (λ=15.0)] Epoch [ 6/16] Finished in 394.1s (665.1 spec/s)
+    Avg Train Loss: 0.025291 | Clean: 0.008271 | BC: 0.013204 | Asym: 0.003816
+    Learning Rate:  1.000000e-04
+    ★ New best model for Normal Asym Penalty (λ=15.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_normal_lambda15.pth' (Loss: 0.025291)
+----------------------------------------------------------------------------------
+[Normal Asym Penalty (λ=15.0)] Ep [ 7/16] | File [ 1/16] | TrainLoss: 0.02233 (Clean: 0.0073, BC: 0.0117, Asym: 0.0034) |  681.1 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 7/16] | File [ 2/16] | TrainLoss: 0.02281 (Clean: 0.0073, BC: 0.0117, Asym: 0.0038) |  682.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 7/16] | File [ 3/16] | TrainLoss: 0.02365 (Clean: 0.0076, BC: 0.0121, Asym: 0.0039) |  677.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 7/16] | File [ 4/16] | TrainLoss: 0.03360 (Clean: 0.0113, BC: 0.0180, Asym: 0.0043) |  676.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 7/16] | File [ 5/16] | TrainLoss: 0.02422 (Clean: 0.0079, BC: 0.0127, Asym: 0.0036) |  682.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 7/16] | File [ 6/16] | TrainLoss: 0.02167 (Clean: 0.0070, BC: 0.0112, Asym: 0.0035) |  681.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 7/16] | File [ 7/16] | TrainLoss: 0.02265 (Clean: 0.0072, BC: 0.0116, Asym: 0.0038) |  665.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 7/16] | File [ 8/16] | TrainLoss: 0.02182 (Clean: 0.0071, BC: 0.0113, Asym: 0.0035) |  672.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 7/16] | File [ 9/16] | TrainLoss: 0.02112 (Clean: 0.0069, BC: 0.0111, Asym: 0.0031) |  660.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 7/16] | File [10/16] | TrainLoss: 0.02208 (Clean: 0.0072, BC: 0.0114, Asym: 0.0035) |  659.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 7/16] | File [11/16] | TrainLoss: 0.02291 (Clean: 0.0075, BC: 0.0121, Asym: 0.0033) |  681.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 7/16] | File [12/16] | TrainLoss: 0.02169 (Clean: 0.0071, BC: 0.0113, Asym: 0.0033) |  680.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 7/16] | File [13/16] | TrainLoss: 0.02144 (Clean: 0.0070, BC: 0.0111, Asym: 0.0033) |  680.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 7/16] | File [14/16] | TrainLoss: 0.02067 (Clean: 0.0067, BC: 0.0107, Asym: 0.0032) |  660.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 7/16] | File [15/16] | TrainLoss: 0.02179 (Clean: 0.0070, BC: 0.0113, Asym: 0.0034) |  661.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 7/16] | File [16/16] | TrainLoss: 0.02059 (Clean: 0.0068, BC: 0.0109, Asym: 0.0030) |  664.6 spec/s
+----------------------------------------------------------------------------------
+==> [Normal Asym Penalty (λ=15.0)] Epoch [ 7/16] Finished in 393.7s (665.8 spec/s)
+    Avg Train Loss: 0.022816 | Clean: 0.007433 | BC: 0.011891 | Asym: 0.003492
+    Learning Rate:  1.000000e-04
+    ★ New best model for Normal Asym Penalty (λ=15.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_normal_lambda15.pth' (Loss: 0.022816)
+----------------------------------------------------------------------------------
+[Normal Asym Penalty (λ=15.0)] Ep [ 8/16] | File [ 1/16] | TrainLoss: 0.02168 (Clean: 0.0069, BC: 0.0111, Asym: 0.0037) |  660.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 8/16] | File [ 2/16] | TrainLoss: 0.02349 (Clean: 0.0079, BC: 0.0125, Asym: 0.0031) |  660.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 8/16] | File [ 3/16] | TrainLoss: 0.01998 (Clean: 0.0065, BC: 0.0103, Asym: 0.0033) |  659.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 8/16] | File [ 4/16] | TrainLoss: 0.02059 (Clean: 0.0065, BC: 0.0105, Asym: 0.0036) |  660.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 8/16] | File [ 5/16] | TrainLoss: 0.01932 (Clean: 0.0064, BC: 0.0103, Asym: 0.0026) |  660.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 8/16] | File [ 6/16] | TrainLoss: 0.01991 (Clean: 0.0063, BC: 0.0101, Asym: 0.0035) |  656.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 8/16] | File [ 7/16] | TrainLoss: 0.02065 (Clean: 0.0065, BC: 0.0106, Asym: 0.0036) |  648.1 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 8/16] | File [ 8/16] | TrainLoss: 0.02323 (Clean: 0.0076, BC: 0.0122, Asym: 0.0034) |  651.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 8/16] | File [ 9/16] | TrainLoss: 0.01993 (Clean: 0.0064, BC: 0.0102, Asym: 0.0032) |  645.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 8/16] | File [10/16] | TrainLoss: 0.01920 (Clean: 0.0062, BC: 0.0100, Asym: 0.0029) |  628.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 8/16] | File [11/16] | TrainLoss: 0.02031 (Clean: 0.0066, BC: 0.0106, Asym: 0.0031) |  657.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 8/16] | File [12/16] | TrainLoss: 0.02013 (Clean: 0.0063, BC: 0.0102, Asym: 0.0035) |  658.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 8/16] | File [13/16] | TrainLoss: 0.02582 (Clean: 0.0082, BC: 0.0131, Asym: 0.0046) |  662.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 8/16] | File [14/16] | TrainLoss: 0.02211 (Clean: 0.0073, BC: 0.0117, Asym: 0.0030) |  655.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 8/16] | File [15/16] | TrainLoss: 0.02399 (Clean: 0.0077, BC: 0.0123, Asym: 0.0039) |  658.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 8/16] | File [16/16] | TrainLoss: 0.02177 (Clean: 0.0072, BC: 0.0116, Asym: 0.0030) |  646.2 spec/s
+----------------------------------------------------------------------------------
+==> [Normal Asym Penalty (λ=15.0)] Epoch [ 8/16] Finished in 404.9s (647.4 spec/s)
+    Avg Train Loss: 0.021382 | Clean: 0.006917 | BC: 0.011086 | Asym: 0.003378
+    Learning Rate:  1.000000e-04
+    ★ New best model for Normal Asym Penalty (λ=15.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_normal_lambda15.pth' (Loss: 0.021382)
+----------------------------------------------------------------------------------
+[Normal Asym Penalty (λ=15.0)] Ep [ 9/16] | File [ 1/16] | TrainLoss: 0.01971 (Clean: 0.0063, BC: 0.0101, Asym: 0.0033) |  502.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 9/16] | File [ 2/16] | TrainLoss: 0.02026 (Clean: 0.0066, BC: 0.0107, Asym: 0.0030) |  377.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 9/16] | File [ 3/16] | TrainLoss: 0.02085 (Clean: 0.0067, BC: 0.0108, Asym: 0.0034) |  387.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 9/16] | File [ 4/16] | TrainLoss: 0.01930 (Clean: 0.0062, BC: 0.0100, Asym: 0.0031) |  648.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 9/16] | File [ 5/16] | TrainLoss: 0.01909 (Clean: 0.0062, BC: 0.0100, Asym: 0.0029) |  661.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 9/16] | File [ 6/16] | TrainLoss: 0.01911 (Clean: 0.0061, BC: 0.0099, Asym: 0.0031) |  664.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 9/16] | File [ 7/16] | TrainLoss: 0.01917 (Clean: 0.0060, BC: 0.0096, Asym: 0.0035) |  663.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 9/16] | File [ 8/16] | TrainLoss: 0.01908 (Clean: 0.0061, BC: 0.0099, Asym: 0.0031) |  663.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 9/16] | File [ 9/16] | TrainLoss: 0.01925 (Clean: 0.0062, BC: 0.0100, Asym: 0.0031) |  660.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 9/16] | File [10/16] | TrainLoss: 0.01921 (Clean: 0.0061, BC: 0.0099, Asym: 0.0032) |  663.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 9/16] | File [11/16] | TrainLoss: 0.01975 (Clean: 0.0063, BC: 0.0102, Asym: 0.0033) |  663.1 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 9/16] | File [12/16] | TrainLoss: 0.01815 (Clean: 0.0058, BC: 0.0094, Asym: 0.0029) |  664.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 9/16] | File [13/16] | TrainLoss: 0.02000 (Clean: 0.0064, BC: 0.0104, Asym: 0.0032) |  665.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 9/16] | File [14/16] | TrainLoss: 0.01775 (Clean: 0.0057, BC: 0.0091, Asym: 0.0029) |  663.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 9/16] | File [15/16] | TrainLoss: 0.01781 (Clean: 0.0056, BC: 0.0090, Asym: 0.0032) |  662.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [ 9/16] | File [16/16] | TrainLoss: 0.01913 (Clean: 0.0062, BC: 0.0100, Asym: 0.0030) |  646.6 spec/s
+----------------------------------------------------------------------------------
+==> [Normal Asym Penalty (λ=15.0)] Epoch [ 9/16] Finished in 444.6s (589.6 spec/s)
+    Avg Train Loss: 0.019226 | Clean: 0.006162 | BC: 0.009923 | Asym: 0.003141
+    Learning Rate:  1.000000e-04
+    ★ New best model for Normal Asym Penalty (λ=15.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_normal_lambda15.pth' (Loss: 0.019226)
+----------------------------------------------------------------------------------
+[Normal Asym Penalty (λ=15.0)] Ep [10/16] | File [ 1/16] | TrainLoss: 0.01787 (Clean: 0.0057, BC: 0.0091, Asym: 0.0031) |  659.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [10/16] | File [ 2/16] | TrainLoss: 0.01831 (Clean: 0.0058, BC: 0.0095, Asym: 0.0030) |  635.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [10/16] | File [ 3/16] | TrainLoss: 0.02114 (Clean: 0.0069, BC: 0.0113, Asym: 0.0029) |  658.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [10/16] | File [ 4/16] | TrainLoss: 0.01907 (Clean: 0.0060, BC: 0.0097, Asym: 0.0033) |  663.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [10/16] | File [ 5/16] | TrainLoss: 0.01803 (Clean: 0.0057, BC: 0.0092, Asym: 0.0031) |  666.1 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [10/16] | File [ 6/16] | TrainLoss: 0.01824 (Clean: 0.0058, BC: 0.0094, Asym: 0.0030) |  521.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [10/16] | File [ 7/16] | TrainLoss: 0.01807 (Clean: 0.0058, BC: 0.0093, Asym: 0.0029) |  342.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [10/16] | File [ 8/16] | TrainLoss: 0.01807 (Clean: 0.0058, BC: 0.0094, Asym: 0.0029) |  343.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [10/16] | File [ 9/16] | TrainLoss: 0.01743 (Clean: 0.0055, BC: 0.0089, Asym: 0.0030) |  583.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [10/16] | File [10/16] | TrainLoss: 0.01731 (Clean: 0.0055, BC: 0.0090, Asym: 0.0028) |  574.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [10/16] | File [11/16] | TrainLoss: 0.01733 (Clean: 0.0055, BC: 0.0089, Asym: 0.0030) |  551.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [10/16] | File [12/16] | TrainLoss: 0.01694 (Clean: 0.0054, BC: 0.0087, Asym: 0.0029) |  517.1 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [10/16] | File [13/16] | TrainLoss: 0.01859 (Clean: 0.0060, BC: 0.0097, Asym: 0.0029) |  557.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [10/16] | File [14/16] | TrainLoss: 0.01724 (Clean: 0.0055, BC: 0.0088, Asym: 0.0029) |  578.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [10/16] | File [15/16] | TrainLoss: 0.01722 (Clean: 0.0054, BC: 0.0088, Asym: 0.0030) |  563.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [10/16] | File [16/16] | TrainLoss: 0.01817 (Clean: 0.0057, BC: 0.0092, Asym: 0.0033) |  565.2 spec/s
+----------------------------------------------------------------------------------
+==> [Normal Asym Penalty (λ=15.0)] Epoch [10/16] Finished in 489.9s (535.1 spec/s)
+    Avg Train Loss: 0.018064 | Clean: 0.005753 | BC: 0.009313 | Asym: 0.002998
+    Learning Rate:  1.000000e-04
+    ★ New best model for Normal Asym Penalty (λ=15.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_normal_lambda15.pth' (Loss: 0.018064)
+----------------------------------------------------------------------------------
+[Normal Asym Penalty (λ=15.0)] Ep [11/16] | File [ 1/16] | TrainLoss: 0.01766 (Clean: 0.0056, BC: 0.0092, Asym: 0.0028) |  538.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [11/16] | File [ 2/16] | TrainLoss: 0.01755 (Clean: 0.0056, BC: 0.0090, Asym: 0.0030) |  502.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [11/16] | File [ 3/16] | TrainLoss: 0.01816 (Clean: 0.0057, BC: 0.0093, Asym: 0.0032) |  662.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [11/16] | File [ 4/16] | TrainLoss: 0.01818 (Clean: 0.0057, BC: 0.0094, Asym: 0.0031) |  618.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [11/16] | File [ 5/16] | TrainLoss: 0.01974 (Clean: 0.0062, BC: 0.0100, Asym: 0.0035) |  629.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [11/16] | File [ 6/16] | TrainLoss: 0.01652 (Clean: 0.0053, BC: 0.0085, Asym: 0.0027) |  636.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [11/16] | File [ 7/16] | TrainLoss: 0.01648 (Clean: 0.0052, BC: 0.0084, Asym: 0.0028) |  658.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [11/16] | File [ 8/16] | TrainLoss: 0.01654 (Clean: 0.0053, BC: 0.0085, Asym: 0.0028) |  611.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [11/16] | File [ 9/16] | TrainLoss: 0.01699 (Clean: 0.0055, BC: 0.0089, Asym: 0.0026) |  659.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [11/16] | File [10/16] | TrainLoss: 0.01694 (Clean: 0.0053, BC: 0.0086, Asym: 0.0030) |  654.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [11/16] | File [11/16] | TrainLoss: 0.02139 (Clean: 0.0067, BC: 0.0111, Asym: 0.0036) |  593.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [11/16] | File [12/16] | TrainLoss: 0.01920 (Clean: 0.0061, BC: 0.0098, Asym: 0.0034) |  636.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [11/16] | File [13/16] | TrainLoss: 0.01856 (Clean: 0.0058, BC: 0.0094, Asym: 0.0033) |  458.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [11/16] | File [14/16] | TrainLoss: 0.01661 (Clean: 0.0052, BC: 0.0085, Asym: 0.0030) |  396.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [11/16] | File [15/16] | TrainLoss: 0.01619 (Clean: 0.0052, BC: 0.0085, Asym: 0.0025) |  385.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [11/16] | File [16/16] | TrainLoss: 0.01630 (Clean: 0.0051, BC: 0.0083, Asym: 0.0030) |  398.0 spec/s
+----------------------------------------------------------------------------------
+==> [Normal Asym Penalty (λ=15.0)] Epoch [11/16] Finished in 485.9s (539.5 spec/s)
+    Avg Train Loss: 0.017688 | Clean: 0.005583 | BC: 0.009086 | Asym: 0.003019
+    Learning Rate:  1.000000e-04
+    ★ New best model for Normal Asym Penalty (λ=15.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_normal_lambda15.pth' (Loss: 0.017688)
+----------------------------------------------------------------------------------
+[Normal Asym Penalty (λ=15.0)] Ep [12/16] | File [ 1/16] | TrainLoss: 0.01724 (Clean: 0.0054, BC: 0.0088, Asym: 0.0030) |  395.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [12/16] | File [ 2/16] | TrainLoss: 0.01649 (Clean: 0.0052, BC: 0.0085, Asym: 0.0028) |  397.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [12/16] | File [ 3/16] | TrainLoss: 0.01624 (Clean: 0.0052, BC: 0.0085, Asym: 0.0026) |  401.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [12/16] | File [ 4/16] | TrainLoss: 0.01662 (Clean: 0.0053, BC: 0.0085, Asym: 0.0028) |  416.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [12/16] | File [ 5/16] | TrainLoss: 0.01594 (Clean: 0.0050, BC: 0.0082, Asym: 0.0028) |  602.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [12/16] | File [ 6/16] | TrainLoss: 0.01560 (Clean: 0.0049, BC: 0.0080, Asym: 0.0027) |  634.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [12/16] | File [ 7/16] | TrainLoss: 0.01577 (Clean: 0.0050, BC: 0.0081, Asym: 0.0026) |  635.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [12/16] | File [ 8/16] | TrainLoss: 0.01646 (Clean: 0.0051, BC: 0.0083, Asym: 0.0030) |  636.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [12/16] | File [ 9/16] | TrainLoss: 0.01628 (Clean: 0.0051, BC: 0.0084, Asym: 0.0028) |  641.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [12/16] | File [10/16] | TrainLoss: 0.01734 (Clean: 0.0054, BC: 0.0088, Asym: 0.0031) |  621.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [12/16] | File [11/16] | TrainLoss: 0.01870 (Clean: 0.0058, BC: 0.0096, Asym: 0.0033) |  520.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [12/16] | File [12/16] | TrainLoss: 0.01804 (Clean: 0.0057, BC: 0.0092, Asym: 0.0032) |  665.1 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [12/16] | File [13/16] | TrainLoss: 0.01719 (Clean: 0.0054, BC: 0.0088, Asym: 0.0030) |  665.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [12/16] | File [14/16] | TrainLoss: 0.01659 (Clean: 0.0053, BC: 0.0086, Asym: 0.0027) |  665.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [12/16] | File [15/16] | TrainLoss: 0.01713 (Clean: 0.0053, BC: 0.0087, Asym: 0.0032) |  665.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [12/16] | File [16/16] | TrainLoss: 0.01633 (Clean: 0.0052, BC: 0.0085, Asym: 0.0027) |  666.2 spec/s
+----------------------------------------------------------------------------------
+==> [Normal Asym Penalty (λ=15.0)] Epoch [12/16] Finished in 477.7s (548.8 spec/s)
+    Avg Train Loss: 0.016747 | Clean: 0.005255 | BC: 0.008599 | Asym: 0.002893
+    Learning Rate:  1.000000e-04
+    ★ New best model for Normal Asym Penalty (λ=15.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_normal_lambda15.pth' (Loss: 0.016747)
+----------------------------------------------------------------------------------
+[Normal Asym Penalty (λ=15.0)] Ep [13/16] | File [ 1/16] | TrainLoss: 0.01976 (Clean: 0.0062, BC: 0.0102, Asym: 0.0034) |  665.1 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [13/16] | File [ 2/16] | TrainLoss: 0.01686 (Clean: 0.0053, BC: 0.0086, Asym: 0.0030) |  666.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [13/16] | File [ 3/16] | TrainLoss: 0.01617 (Clean: 0.0051, BC: 0.0083, Asym: 0.0027) |  667.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [13/16] | File [ 4/16] | TrainLoss: 0.01653 (Clean: 0.0052, BC: 0.0085, Asym: 0.0028) |  663.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [13/16] | File [ 5/16] | TrainLoss: 0.01648 (Clean: 0.0052, BC: 0.0085, Asym: 0.0028) |  659.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [13/16] | File [ 6/16] | TrainLoss: 0.01704 (Clean: 0.0054, BC: 0.0088, Asym: 0.0028) |  659.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [13/16] | File [ 7/16] | TrainLoss: 0.01619 (Clean: 0.0051, BC: 0.0084, Asym: 0.0026) |  662.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [13/16] | File [ 8/16] | TrainLoss: 0.01574 (Clean: 0.0050, BC: 0.0081, Asym: 0.0027) |  662.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [13/16] | File [ 9/16] | TrainLoss: 0.01627 (Clean: 0.0050, BC: 0.0082, Asym: 0.0030) |  647.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [13/16] | File [10/16] | TrainLoss: 0.01585 (Clean: 0.0049, BC: 0.0081, Asym: 0.0028) |  654.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [13/16] | File [11/16] | TrainLoss: 0.01608 (Clean: 0.0049, BC: 0.0081, Asym: 0.0030) |  632.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [13/16] | File [12/16] | TrainLoss: 0.01580 (Clean: 0.0050, BC: 0.0082, Asym: 0.0026) |  629.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [13/16] | File [13/16] | TrainLoss: 0.01638 (Clean: 0.0051, BC: 0.0083, Asym: 0.0029) |  657.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [13/16] | File [14/16] | TrainLoss: 0.01634 (Clean: 0.0052, BC: 0.0085, Asym: 0.0026) |  661.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [13/16] | File [15/16] | TrainLoss: 0.01481 (Clean: 0.0047, BC: 0.0077, Asym: 0.0024) |  662.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [13/16] | File [16/16] | TrainLoss: 0.01486 (Clean: 0.0047, BC: 0.0077, Asym: 0.0024) |  659.8 spec/s
+----------------------------------------------------------------------------------
+==> [Normal Asym Penalty (λ=15.0)] Epoch [13/16] Finished in 402.9s (650.7 spec/s)
+    Avg Train Loss: 0.016323 | Clean: 0.005125 | BC: 0.008398 | Asym: 0.002800
+    Learning Rate:  1.000000e-04
+    ★ New best model for Normal Asym Penalty (λ=15.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_normal_lambda15.pth' (Loss: 0.016323)
+----------------------------------------------------------------------------------
+[Normal Asym Penalty (λ=15.0)] Ep [14/16] | File [ 1/16] | TrainLoss: 0.01548 (Clean: 0.0048, BC: 0.0078, Asym: 0.0029) |  658.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [14/16] | File [ 2/16] | TrainLoss: 0.01572 (Clean: 0.0049, BC: 0.0080, Asym: 0.0028) |  659.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [14/16] | File [ 3/16] | TrainLoss: 0.01525 (Clean: 0.0048, BC: 0.0079, Asym: 0.0025) |  658.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [14/16] | File [ 4/16] | TrainLoss: 0.01515 (Clean: 0.0048, BC: 0.0078, Asym: 0.0025) |  659.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [14/16] | File [ 5/16] | TrainLoss: 0.01484 (Clean: 0.0047, BC: 0.0076, Asym: 0.0025) |  642.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [14/16] | File [ 6/16] | TrainLoss: 0.01609 (Clean: 0.0051, BC: 0.0083, Asym: 0.0027) |  633.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [14/16] | File [ 7/16] | TrainLoss: 0.01484 (Clean: 0.0046, BC: 0.0075, Asym: 0.0028) |  633.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [14/16] | File [ 8/16] | TrainLoss: 0.02392 (Clean: 0.0076, BC: 0.0124, Asym: 0.0040) |  628.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [14/16] | File [ 9/16] | TrainLoss: 0.01695 (Clean: 0.0054, BC: 0.0087, Asym: 0.0029) |  625.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [14/16] | File [10/16] | TrainLoss: 0.01698 (Clean: 0.0053, BC: 0.0087, Asym: 0.0030) |  623.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [14/16] | File [11/16] | TrainLoss: 0.01848 (Clean: 0.0057, BC: 0.0095, Asym: 0.0033) |  633.3 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [14/16] | File [12/16] | TrainLoss: 0.01626 (Clean: 0.0051, BC: 0.0084, Asym: 0.0028) |  633.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [14/16] | File [13/16] | TrainLoss: 0.01547 (Clean: 0.0048, BC: 0.0079, Asym: 0.0028) |  633.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [14/16] | File [14/16] | TrainLoss: 0.01574 (Clean: 0.0048, BC: 0.0080, Asym: 0.0029) |  630.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [14/16] | File [15/16] | TrainLoss: 0.01533 (Clean: 0.0049, BC: 0.0080, Asym: 0.0025) |  625.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [14/16] | File [16/16] | TrainLoss: 0.02148 (Clean: 0.0068, BC: 0.0113, Asym: 0.0033) |  617.8 spec/s
+----------------------------------------------------------------------------------
+==> [Normal Asym Penalty (λ=15.0)] Epoch [14/16] Finished in 415.5s (630.9 spec/s)
+    Avg Train Loss: 0.016749 | Clean: 0.005247 | BC: 0.008611 | Asym: 0.002891
+    Learning Rate:  1.000000e-04
+----------------------------------------------------------------------------------
+[Normal Asym Penalty (λ=15.0)] Ep [15/16] | File [ 1/16] | TrainLoss: 0.01608 (Clean: 0.0052, BC: 0.0083, Asym: 0.0026) |  633.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [15/16] | File [ 2/16] | TrainLoss: 0.01472 (Clean: 0.0047, BC: 0.0077, Asym: 0.0024) |  625.1 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [15/16] | File [ 3/16] | TrainLoss: 0.01472 (Clean: 0.0045, BC: 0.0074, Asym: 0.0028) |  626.4 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [15/16] | File [ 4/16] | TrainLoss: 0.01507 (Clean: 0.0047, BC: 0.0078, Asym: 0.0025) |  651.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [15/16] | File [ 5/16] | TrainLoss: 0.01636 (Clean: 0.0051, BC: 0.0084, Asym: 0.0028) |  660.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [15/16] | File [ 6/16] | TrainLoss: 0.01608 (Clean: 0.0049, BC: 0.0082, Asym: 0.0030) |  662.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [15/16] | File [ 7/16] | TrainLoss: 0.01530 (Clean: 0.0048, BC: 0.0079, Asym: 0.0025) |  665.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [15/16] | File [ 8/16] | TrainLoss: 0.01602 (Clean: 0.0050, BC: 0.0082, Asym: 0.0028) |  680.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [15/16] | File [ 9/16] | TrainLoss: 0.01585 (Clean: 0.0049, BC: 0.0081, Asym: 0.0029) |  680.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [15/16] | File [10/16] | TrainLoss: 0.01694 (Clean: 0.0053, BC: 0.0087, Asym: 0.0029) |  681.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [15/16] | File [11/16] | TrainLoss: 0.01540 (Clean: 0.0047, BC: 0.0078, Asym: 0.0029) |  682.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [15/16] | File [12/16] | TrainLoss: 0.01509 (Clean: 0.0048, BC: 0.0079, Asym: 0.0025) |  684.7 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [15/16] | File [13/16] | TrainLoss: 0.01517 (Clean: 0.0046, BC: 0.0076, Asym: 0.0029) |  684.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [15/16] | File [14/16] | TrainLoss: 0.01494 (Clean: 0.0047, BC: 0.0078, Asym: 0.0025) |  684.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [15/16] | File [15/16] | TrainLoss: 0.01425 (Clean: 0.0045, BC: 0.0074, Asym: 0.0024) |  679.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [15/16] | File [16/16] | TrainLoss: 0.01479 (Clean: 0.0045, BC: 0.0074, Asym: 0.0028) |  685.0 spec/s
+----------------------------------------------------------------------------------
+==> [Normal Asym Penalty (λ=15.0)] Epoch [15/16] Finished in 397.2s (659.9 spec/s)
+    Avg Train Loss: 0.015424 | Clean: 0.004814 | BC: 0.007913 | Asym: 0.002697
+    Learning Rate:  1.000000e-04
+    ★ New best model for Normal Asym Penalty (λ=15.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_normal_lambda15.pth' (Loss: 0.015424)
+----------------------------------------------------------------------------------
+[Normal Asym Penalty (λ=15.0)] Ep [16/16] | File [ 1/16] | TrainLoss: 0.01434 (Clean: 0.0045, BC: 0.0074, Asym: 0.0025) |  682.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [16/16] | File [ 2/16] | TrainLoss: 0.01435 (Clean: 0.0045, BC: 0.0074, Asym: 0.0024) |  683.0 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [16/16] | File [ 3/16] | TrainLoss: 0.01474 (Clean: 0.0045, BC: 0.0074, Asym: 0.0028) |  682.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [16/16] | File [ 4/16] | TrainLoss: 0.01404 (Clean: 0.0043, BC: 0.0072, Asym: 0.0025) |  584.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [16/16] | File [ 5/16] | TrainLoss: 0.01384 (Clean: 0.0044, BC: 0.0073, Asym: 0.0021) |  404.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [16/16] | File [ 6/16] | TrainLoss: 0.01485 (Clean: 0.0045, BC: 0.0074, Asym: 0.0030) |  401.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [16/16] | File [ 7/16] | TrainLoss: 0.01392 (Clean: 0.0044, BC: 0.0073, Asym: 0.0022) |  404.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [16/16] | File [ 8/16] | TrainLoss: 0.01422 (Clean: 0.0044, BC: 0.0073, Asym: 0.0025) |  418.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [16/16] | File [ 9/16] | TrainLoss: 0.01458 (Clean: 0.0046, BC: 0.0075, Asym: 0.0025) |  373.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [16/16] | File [10/16] | TrainLoss: 0.01431 (Clean: 0.0045, BC: 0.0074, Asym: 0.0025) |  352.2 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [16/16] | File [11/16] | TrainLoss: 0.01407 (Clean: 0.0044, BC: 0.0072, Asym: 0.0025) |  367.5 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [16/16] | File [12/16] | TrainLoss: 0.01396 (Clean: 0.0044, BC: 0.0073, Asym: 0.0023) |  362.8 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [16/16] | File [13/16] | TrainLoss: 0.01446 (Clean: 0.0044, BC: 0.0073, Asym: 0.0028) |  355.6 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [16/16] | File [14/16] | TrainLoss: 0.01477 (Clean: 0.0046, BC: 0.0076, Asym: 0.0025) |  353.1 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [16/16] | File [15/16] | TrainLoss: 0.01424 (Clean: 0.0045, BC: 0.0074, Asym: 0.0023) |  356.9 spec/s
+[Normal Asym Penalty (λ=15.0)] Ep [16/16] | File [16/16] | TrainLoss: 0.01508 (Clean: 0.0046, BC: 0.0076, Asym: 0.0028) |  356.2 spec/s
+----------------------------------------------------------------------------------
+==> [Normal Asym Penalty (λ=15.0)] Epoch [16/16] Finished in 629.9s (416.2 spec/s)
+    Avg Train Loss: 0.014360 | Clean: 0.004478 | BC: 0.007375 | Asym: 0.002507
+    Learning Rate:  1.000000e-04
+    ★ New best model for Normal Asym Penalty (λ=15.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_normal_lambda15.pth' (Loss: 0.014360)
+----------------------------------------------------------------------------------
+
+[Normal Asym Penalty (λ=15.0)] Training Complete in 114.78 min! Best Loss: 0.014360 (at Epoch 16).
+
+
+==================================================================================
+ TRAINING: High Asym Penalty (λ=60.0) 
+ Formulation: Dual Supervised [LogCosh(BC) + LogCosh(Clean) + 60.0 * Asym] 
+==================================================================================
+  - Model Architecture: PolyGaussNet3 (Degree 7, Kernel 31)
+  - Total Parameters:   148,426
+  - Device:             mps
+  - Target Epochs:      16
+  - Batch Size:         512
+  - Initial LR:         0.0001
+  - Min LR:             9e-08
+  - Lambda Asymmetric:  60.0
+  - Weights Destination:/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_high_lambda60.pth
+==================================================================================
+
+[High Asym Penalty (λ=60.0)] Ep [ 1/16] | File [ 1/16] | TrainLoss: 0.20133 (Clean: 0.0834, BC: 0.1077, Asym: 0.0103) |  352.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 1/16] | File [ 2/16] | TrainLoss: 0.14888 (Clean: 0.0589, BC: 0.0823, Asym: 0.0077) |  355.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 1/16] | File [ 3/16] | TrainLoss: 0.12354 (Clean: 0.0464, BC: 0.0661, Asym: 0.0110) |  357.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 1/16] | File [ 4/16] | TrainLoss: 0.10708 (Clean: 0.0396, BC: 0.0570, Asym: 0.0105) |  352.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 1/16] | File [ 5/16] | TrainLoss: 0.09670 (Clean: 0.0351, BC: 0.0511, Asym: 0.0105) |  362.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 1/16] | File [ 6/16] | TrainLoss: 0.08689 (Clean: 0.0320, BC: 0.0472, Asym: 0.0076) |  358.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 1/16] | File [ 7/16] | TrainLoss: 0.08151 (Clean: 0.0294, BC: 0.0436, Asym: 0.0085) |  586.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 1/16] | File [ 8/16] | TrainLoss: 0.08852 (Clean: 0.0328, BC: 0.0486, Asym: 0.0071) |  679.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 1/16] | File [ 9/16] | TrainLoss: 0.07726 (Clean: 0.0277, BC: 0.0414, Asym: 0.0082) |  661.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 1/16] | File [10/16] | TrainLoss: 0.07780 (Clean: 0.0287, BC: 0.0429, Asym: 0.0062) |  662.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 1/16] | File [11/16] | TrainLoss: 0.07234 (Clean: 0.0266, BC: 0.0400, Asym: 0.0058) |  663.4 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 1/16] | File [12/16] | TrainLoss: 0.06733 (Clean: 0.0244, BC: 0.0369, Asym: 0.0060) |  663.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 1/16] | File [13/16] | TrainLoss: 0.06573 (Clean: 0.0237, BC: 0.0359, Asym: 0.0061) |  663.4 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 1/16] | File [14/16] | TrainLoss: 0.06723 (Clean: 0.0239, BC: 0.0362, Asym: 0.0071) |  660.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 1/16] | File [15/16] | TrainLoss: 0.06937 (Clean: 0.0253, BC: 0.0384, Asym: 0.0057) |  663.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 1/16] | File [16/16] | TrainLoss: 0.06605 (Clean: 0.0232, BC: 0.0354, Asym: 0.0074) |  665.7 spec/s
+----------------------------------------------------------------------------------
+==> [High Asym Penalty (λ=60.0)] Epoch [ 1/16] Finished in 529.8s (494.8 spec/s)
+    Avg Train Loss: 0.093596 | Clean: 0.035065 | BC: 0.050673 | Asym: 0.007859
+    Learning Rate:  1.000000e-04
+    ★ New best model for High Asym Penalty (λ=60.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_high_lambda60.pth' (Loss: 0.093596)
+----------------------------------------------------------------------------------
+[High Asym Penalty (λ=60.0)] Ep [ 2/16] | File [ 1/16] | TrainLoss: 0.07240 (Clean: 0.0261, BC: 0.0397, Asym: 0.0066) |  665.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 2/16] | File [ 2/16] | TrainLoss: 0.05909 (Clean: 0.0208, BC: 0.0320, Asym: 0.0063) |  666.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 2/16] | File [ 3/16] | TrainLoss: 0.05619 (Clean: 0.0198, BC: 0.0306, Asym: 0.0058) |  666.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 2/16] | File [ 4/16] | TrainLoss: 0.05496 (Clean: 0.0192, BC: 0.0296, Asym: 0.0062) |  665.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 2/16] | File [ 5/16] | TrainLoss: 0.05383 (Clean: 0.0187, BC: 0.0290, Asym: 0.0061) |  664.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 2/16] | File [ 6/16] | TrainLoss: 0.05274 (Clean: 0.0184, BC: 0.0286, Asym: 0.0058) |  664.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 2/16] | File [ 7/16] | TrainLoss: 0.06386 (Clean: 0.0220, BC: 0.0340, Asym: 0.0080) |  665.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 2/16] | File [ 8/16] | TrainLoss: 0.05726 (Clean: 0.0199, BC: 0.0308, Asym: 0.0066) |  663.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 2/16] | File [ 9/16] | TrainLoss: 0.05089 (Clean: 0.0176, BC: 0.0275, Asym: 0.0058) |  663.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 2/16] | File [10/16] | TrainLoss: 0.05281 (Clean: 0.0178, BC: 0.0278, Asym: 0.0072) |  664.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 2/16] | File [11/16] | TrainLoss: 0.05239 (Clean: 0.0183, BC: 0.0287, Asym: 0.0054) |  663.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 2/16] | File [12/16] | TrainLoss: 0.04873 (Clean: 0.0163, BC: 0.0256, Asym: 0.0068) |  664.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 2/16] | File [13/16] | TrainLoss: 0.04902 (Clean: 0.0169, BC: 0.0266, Asym: 0.0055) |  664.4 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 2/16] | File [14/16] | TrainLoss: 0.05050 (Clean: 0.0170, BC: 0.0268, Asym: 0.0067) |  664.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 2/16] | File [15/16] | TrainLoss: 0.05030 (Clean: 0.0173, BC: 0.0270, Asym: 0.0060) |  664.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 2/16] | File [16/16] | TrainLoss: 0.05131 (Clean: 0.0172, BC: 0.0270, Asym: 0.0071) |  667.6 spec/s
+----------------------------------------------------------------------------------
+==> [High Asym Penalty (λ=60.0)] Epoch [ 2/16] Finished in 397.6s (659.4 spec/s)
+    Avg Train Loss: 0.054768 | Clean: 0.018954 | BC: 0.029458 | Asym: 0.006357
+    Learning Rate:  1.000000e-04
+    ★ New best model for High Asym Penalty (λ=60.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_high_lambda60.pth' (Loss: 0.054768)
+----------------------------------------------------------------------------------
+[High Asym Penalty (λ=60.0)] Ep [ 3/16] | File [ 1/16] | TrainLoss: 0.05098 (Clean: 0.0176, BC: 0.0277, Asym: 0.0057) |  663.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 3/16] | File [ 2/16] | TrainLoss: 0.04766 (Clean: 0.0161, BC: 0.0254, Asym: 0.0062) |  665.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 3/16] | File [ 3/16] | TrainLoss: 0.04825 (Clean: 0.0164, BC: 0.0260, Asym: 0.0059) |  666.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 3/16] | File [ 4/16] | TrainLoss: 0.05223 (Clean: 0.0181, BC: 0.0285, Asym: 0.0056) |  665.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 3/16] | File [ 5/16] | TrainLoss: 0.04858 (Clean: 0.0162, BC: 0.0256, Asym: 0.0068) |  665.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 3/16] | File [ 6/16] | TrainLoss: 0.04472 (Clean: 0.0154, BC: 0.0244, Asym: 0.0049) |  665.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 3/16] | File [ 7/16] | TrainLoss: 0.06485 (Clean: 0.0203, BC: 0.0317, Asym: 0.0129) |  665.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 3/16] | File [ 8/16] | TrainLoss: 0.07389 (Clean: 0.0273, BC: 0.0420, Asym: 0.0046) |  665.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 3/16] | File [ 9/16] | TrainLoss: 0.05597 (Clean: 0.0192, BC: 0.0300, Asym: 0.0067) |  664.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 3/16] | File [10/16] | TrainLoss: 0.04856 (Clean: 0.0165, BC: 0.0260, Asym: 0.0060) |  666.4 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 3/16] | File [11/16] | TrainLoss: 0.04624 (Clean: 0.0158, BC: 0.0249, Asym: 0.0056) |  665.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 3/16] | File [12/16] | TrainLoss: 0.06044 (Clean: 0.0208, BC: 0.0325, Asym: 0.0072) |  665.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 3/16] | File [13/16] | TrainLoss: 0.05441 (Clean: 0.0187, BC: 0.0294, Asym: 0.0063) |  664.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 3/16] | File [14/16] | TrainLoss: 0.04502 (Clean: 0.0152, BC: 0.0241, Asym: 0.0057) |  665.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 3/16] | File [15/16] | TrainLoss: 0.04433 (Clean: 0.0146, BC: 0.0232, Asym: 0.0066) |  665.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 3/16] | File [16/16] | TrainLoss: 0.04387 (Clean: 0.0150, BC: 0.0239, Asym: 0.0049) |  666.7 spec/s
+----------------------------------------------------------------------------------
+==> [High Asym Penalty (λ=60.0)] Epoch [ 3/16] Finished in 397.1s (660.1 spec/s)
+    Avg Train Loss: 0.051875 | Clean: 0.017708 | BC: 0.027820 | Asym: 0.006347
+    Learning Rate:  1.000000e-04
+    ★ New best model for High Asym Penalty (λ=60.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_high_lambda60.pth' (Loss: 0.051875)
+----------------------------------------------------------------------------------
+[High Asym Penalty (λ=60.0)] Ep [ 4/16] | File [ 1/16] | TrainLoss: 0.04263 (Clean: 0.0144, BC: 0.0230, Asym: 0.0052) |  661.4 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 4/16] | File [ 2/16] | TrainLoss: 0.04258 (Clean: 0.0141, BC: 0.0225, Asym: 0.0060) |  664.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 4/16] | File [ 3/16] | TrainLoss: 0.05755 (Clean: 0.0191, BC: 0.0301, Asym: 0.0083) |  666.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 4/16] | File [ 4/16] | TrainLoss: 0.05453 (Clean: 0.0192, BC: 0.0302, Asym: 0.0052) |  666.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 4/16] | File [ 5/16] | TrainLoss: 0.04286 (Clean: 0.0145, BC: 0.0231, Asym: 0.0053) |  666.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 4/16] | File [ 6/16] | TrainLoss: 0.04167 (Clean: 0.0141, BC: 0.0224, Asym: 0.0052) |  666.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 4/16] | File [ 7/16] | TrainLoss: 0.04145 (Clean: 0.0135, BC: 0.0216, Asym: 0.0064) |  664.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 4/16] | File [ 8/16] | TrainLoss: 0.04436 (Clean: 0.0152, BC: 0.0243, Asym: 0.0049) |  665.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 4/16] | File [ 9/16] | TrainLoss: 0.04183 (Clean: 0.0139, BC: 0.0223, Asym: 0.0057) |  665.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 4/16] | File [10/16] | TrainLoss: 0.04276 (Clean: 0.0145, BC: 0.0232, Asym: 0.0050) |  666.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 4/16] | File [11/16] | TrainLoss: 0.04143 (Clean: 0.0137, BC: 0.0219, Asym: 0.0058) |  665.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 4/16] | File [12/16] | TrainLoss: 0.03981 (Clean: 0.0132, BC: 0.0212, Asym: 0.0054) |  664.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 4/16] | File [13/16] | TrainLoss: 0.03853 (Clean: 0.0129, BC: 0.0208, Asym: 0.0048) |  664.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 4/16] | File [14/16] | TrainLoss: 0.03963 (Clean: 0.0132, BC: 0.0212, Asym: 0.0052) |  666.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 4/16] | File [15/16] | TrainLoss: 0.03890 (Clean: 0.0129, BC: 0.0207, Asym: 0.0053) |  665.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 4/16] | File [16/16] | TrainLoss: 0.03720 (Clean: 0.0125, BC: 0.0201, Asym: 0.0045) |  666.2 spec/s
+----------------------------------------------------------------------------------
+==> [High Asym Penalty (λ=60.0)] Epoch [ 4/16] Finished in 397.2s (660.0 spec/s)
+    Avg Train Loss: 0.042983 | Clean: 0.014436 | BC: 0.023031 | Asym: 0.005516
+    Learning Rate:  1.000000e-04
+    ★ New best model for High Asym Penalty (λ=60.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_high_lambda60.pth' (Loss: 0.042983)
+----------------------------------------------------------------------------------
+[High Asym Penalty (λ=60.0)] Ep [ 5/16] | File [ 1/16] | TrainLoss: 0.03823 (Clean: 0.0127, BC: 0.0204, Asym: 0.0051) |  663.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 5/16] | File [ 2/16] | TrainLoss: 0.03688 (Clean: 0.0121, BC: 0.0196, Asym: 0.0052) |  664.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 5/16] | File [ 3/16] | TrainLoss: 0.03766 (Clean: 0.0126, BC: 0.0202, Asym: 0.0049) |  664.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 5/16] | File [ 4/16] | TrainLoss: 0.03814 (Clean: 0.0124, BC: 0.0199, Asym: 0.0059) |  666.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 5/16] | File [ 5/16] | TrainLoss: 0.03576 (Clean: 0.0122, BC: 0.0197, Asym: 0.0039) |  663.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 5/16] | File [ 6/16] | TrainLoss: 0.03667 (Clean: 0.0122, BC: 0.0197, Asym: 0.0048) |  659.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 5/16] | File [ 7/16] | TrainLoss: 0.03573 (Clean: 0.0118, BC: 0.0190, Asym: 0.0049) |  649.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 5/16] | File [ 8/16] | TrainLoss: 0.03660 (Clean: 0.0121, BC: 0.0195, Asym: 0.0050) |  658.4 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 5/16] | File [ 9/16] | TrainLoss: 0.03686 (Clean: 0.0123, BC: 0.0199, Asym: 0.0046) |  650.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 5/16] | File [10/16] | TrainLoss: 0.03898 (Clean: 0.0130, BC: 0.0210, Asym: 0.0050) |  659.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 5/16] | File [11/16] | TrainLoss: 0.03871 (Clean: 0.0124, BC: 0.0200, Asym: 0.0063) |  662.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 5/16] | File [12/16] | TrainLoss: 0.03897 (Clean: 0.0130, BC: 0.0210, Asym: 0.0049) |  662.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 5/16] | File [13/16] | TrainLoss: 0.03548 (Clean: 0.0116, BC: 0.0188, Asym: 0.0051) |  670.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 5/16] | File [14/16] | TrainLoss: 0.03505 (Clean: 0.0116, BC: 0.0187, Asym: 0.0047) |  678.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 5/16] | File [15/16] | TrainLoss: 0.03389 (Clean: 0.0113, BC: 0.0182, Asym: 0.0044) |  679.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 5/16] | File [16/16] | TrainLoss: 0.03375 (Clean: 0.0110, BC: 0.0179, Asym: 0.0048) |  682.2 spec/s
+----------------------------------------------------------------------------------
+==> [High Asym Penalty (λ=60.0)] Epoch [ 5/16] Finished in 398.1s (658.4 spec/s)
+    Avg Train Loss: 0.036711 | Clean: 0.012146 | BC: 0.019601 | Asym: 0.004964
+    Learning Rate:  1.000000e-04
+    ★ New best model for High Asym Penalty (λ=60.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_high_lambda60.pth' (Loss: 0.036711)
+----------------------------------------------------------------------------------
+[High Asym Penalty (λ=60.0)] Ep [ 6/16] | File [ 1/16] | TrainLoss: 0.03821 (Clean: 0.0127, BC: 0.0205, Asym: 0.0050) |  681.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 6/16] | File [ 2/16] | TrainLoss: 0.03338 (Clean: 0.0108, BC: 0.0174, Asym: 0.0052) |  681.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 6/16] | File [ 3/16] | TrainLoss: 0.03241 (Clean: 0.0107, BC: 0.0173, Asym: 0.0043) |  682.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 6/16] | File [ 4/16] | TrainLoss: 0.03988 (Clean: 0.0135, BC: 0.0217, Asym: 0.0046) |  681.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 6/16] | File [ 5/16] | TrainLoss: 0.03357 (Clean: 0.0110, BC: 0.0177, Asym: 0.0048) |  682.4 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 6/16] | File [ 6/16] | TrainLoss: 0.03340 (Clean: 0.0108, BC: 0.0175, Asym: 0.0051) |  680.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 6/16] | File [ 7/16] | TrainLoss: 0.03131 (Clean: 0.0103, BC: 0.0168, Asym: 0.0043) |  681.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 6/16] | File [ 8/16] | TrainLoss: 0.03184 (Clean: 0.0104, BC: 0.0169, Asym: 0.0045) |  679.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 6/16] | File [ 9/16] | TrainLoss: 0.03154 (Clean: 0.0103, BC: 0.0168, Asym: 0.0045) |  679.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 6/16] | File [10/16] | TrainLoss: 0.03135 (Clean: 0.0101, BC: 0.0165, Asym: 0.0047) |  682.4 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 6/16] | File [11/16] | TrainLoss: 0.03609 (Clean: 0.0115, BC: 0.0186, Asym: 0.0061) |  683.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 6/16] | File [12/16] | TrainLoss: 0.04119 (Clean: 0.0144, BC: 0.0231, Asym: 0.0036) |  680.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 6/16] | File [13/16] | TrainLoss: 0.03350 (Clean: 0.0112, BC: 0.0180, Asym: 0.0044) |  681.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 6/16] | File [14/16] | TrainLoss: 0.03275 (Clean: 0.0107, BC: 0.0173, Asym: 0.0047) |  681.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 6/16] | File [15/16] | TrainLoss: 0.03242 (Clean: 0.0106, BC: 0.0172, Asym: 0.0046) |  681.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 6/16] | File [16/16] | TrainLoss: 0.03653 (Clean: 0.0123, BC: 0.0198, Asym: 0.0044) |  684.9 spec/s
+----------------------------------------------------------------------------------
+==> [High Asym Penalty (λ=60.0)] Epoch [ 6/16] Finished in 388.0s (675.7 spec/s)
+    Avg Train Loss: 0.034334 | Clean: 0.011336 | BC: 0.018326 | Asym: 0.004672
+    Learning Rate:  1.000000e-04
+    ★ New best model for High Asym Penalty (λ=60.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_high_lambda60.pth' (Loss: 0.034334)
+----------------------------------------------------------------------------------
+[High Asym Penalty (λ=60.0)] Ep [ 7/16] | File [ 1/16] | TrainLoss: 0.03707 (Clean: 0.0118, BC: 0.0189, Asym: 0.0063) |  682.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 7/16] | File [ 2/16] | TrainLoss: 0.03085 (Clean: 0.0106, BC: 0.0171, Asym: 0.0032) |  681.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 7/16] | File [ 3/16] | TrainLoss: 0.03425 (Clean: 0.0114, BC: 0.0184, Asym: 0.0045) |  682.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 7/16] | File [ 4/16] | TrainLoss: 0.03025 (Clean: 0.0097, BC: 0.0157, Asym: 0.0048) |  682.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 7/16] | File [ 5/16] | TrainLoss: 0.02883 (Clean: 0.0093, BC: 0.0152, Asym: 0.0043) |  682.4 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 7/16] | File [ 6/16] | TrainLoss: 0.03046 (Clean: 0.0100, BC: 0.0163, Asym: 0.0041) |  682.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 7/16] | File [ 7/16] | TrainLoss: 0.02836 (Clean: 0.0094, BC: 0.0152, Asym: 0.0038) |  682.4 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 7/16] | File [ 8/16] | TrainLoss: 0.02692 (Clean: 0.0087, BC: 0.0142, Asym: 0.0040) |  682.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 7/16] | File [ 9/16] | TrainLoss: 0.02698 (Clean: 0.0089, BC: 0.0146, Asym: 0.0035) |  682.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 7/16] | File [10/16] | TrainLoss: 0.02809 (Clean: 0.0092, BC: 0.0149, Asym: 0.0040) |  682.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 7/16] | File [11/16] | TrainLoss: 0.02753 (Clean: 0.0090, BC: 0.0147, Asym: 0.0039) |  683.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 7/16] | File [12/16] | TrainLoss: 0.02659 (Clean: 0.0087, BC: 0.0141, Asym: 0.0038) |  679.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 7/16] | File [13/16] | TrainLoss: 0.02621 (Clean: 0.0086, BC: 0.0140, Asym: 0.0036) |  683.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 7/16] | File [14/16] | TrainLoss: 0.02608 (Clean: 0.0086, BC: 0.0141, Asym: 0.0034) |  682.4 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 7/16] | File [15/16] | TrainLoss: 0.02616 (Clean: 0.0084, BC: 0.0137, Asym: 0.0040) |  683.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 7/16] | File [16/16] | TrainLoss: 0.03124 (Clean: 0.0094, BC: 0.0154, Asym: 0.0064) |  684.7 spec/s
+----------------------------------------------------------------------------------
+==> [High Asym Penalty (λ=60.0)] Epoch [ 7/16] Finished in 387.4s (676.7 spec/s)
+    Avg Train Loss: 0.029117 | Clean: 0.009486 | BC: 0.015407 | Asym: 0.004223
+    Learning Rate:  1.000000e-04
+    ★ New best model for High Asym Penalty (λ=60.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_high_lambda60.pth' (Loss: 0.029117)
+----------------------------------------------------------------------------------
+[High Asym Penalty (λ=60.0)] Ep [ 8/16] | File [ 1/16] | TrainLoss: 0.06239 (Clean: 0.0220, BC: 0.0345, Asym: 0.0059) |  679.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 8/16] | File [ 2/16] | TrainLoss: 0.05039 (Clean: 0.0176, BC: 0.0275, Asym: 0.0052) |  682.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 8/16] | File [ 3/16] | TrainLoss: 0.03457 (Clean: 0.0114, BC: 0.0183, Asym: 0.0048) |  682.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 8/16] | File [ 4/16] | TrainLoss: 0.03023 (Clean: 0.0100, BC: 0.0162, Asym: 0.0040) |  682.4 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 8/16] | File [ 5/16] | TrainLoss: 0.03091 (Clean: 0.0102, BC: 0.0165, Asym: 0.0042) |  682.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 8/16] | File [ 6/16] | TrainLoss: 0.02737 (Clean: 0.0089, BC: 0.0146, Asym: 0.0039) |  681.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 8/16] | File [ 7/16] | TrainLoss: 0.02678 (Clean: 0.0087, BC: 0.0142, Asym: 0.0038) |  682.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 8/16] | File [ 8/16] | TrainLoss: 0.02968 (Clean: 0.0100, BC: 0.0162, Asym: 0.0035) |  682.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 8/16] | File [ 9/16] | TrainLoss: 0.02780 (Clean: 0.0089, BC: 0.0146, Asym: 0.0043) |  682.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 8/16] | File [10/16] | TrainLoss: 0.02777 (Clean: 0.0090, BC: 0.0146, Asym: 0.0042) |  680.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 8/16] | File [11/16] | TrainLoss: 0.02520 (Clean: 0.0084, BC: 0.0137, Asym: 0.0031) |  680.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 8/16] | File [12/16] | TrainLoss: 0.02477 (Clean: 0.0081, BC: 0.0132, Asym: 0.0035) |  681.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 8/16] | File [13/16] | TrainLoss: 0.02555 (Clean: 0.0083, BC: 0.0135, Asym: 0.0038) |  682.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 8/16] | File [14/16] | TrainLoss: 0.02463 (Clean: 0.0080, BC: 0.0132, Asym: 0.0034) |  671.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 8/16] | File [15/16] | TrainLoss: 0.02522 (Clean: 0.0083, BC: 0.0136, Asym: 0.0032) |  662.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 8/16] | File [16/16] | TrainLoss: 0.02442 (Clean: 0.0079, BC: 0.0129, Asym: 0.0036) |  665.6 spec/s
+----------------------------------------------------------------------------------
+==> [High Asym Penalty (λ=60.0)] Epoch [ 8/16] Finished in 389.6s (672.8 spec/s)
+    Avg Train Loss: 0.031105 | Clean: 0.010365 | BC: 0.016703 | Asym: 0.004037
+    Learning Rate:  1.000000e-04
+----------------------------------------------------------------------------------
+[High Asym Penalty (λ=60.0)] Ep [ 9/16] | File [ 1/16] | TrainLoss: 0.02767 (Clean: 0.0083, BC: 0.0136, Asym: 0.0058) |  664.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 9/16] | File [ 2/16] | TrainLoss: 0.03951 (Clean: 0.0141, BC: 0.0226, Asym: 0.0028) |  663.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 9/16] | File [ 3/16] | TrainLoss: 0.02879 (Clean: 0.0094, BC: 0.0152, Asym: 0.0042) |  663.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 9/16] | File [ 4/16] | TrainLoss: 0.02491 (Clean: 0.0080, BC: 0.0131, Asym: 0.0038) |  663.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 9/16] | File [ 5/16] | TrainLoss: 0.02467 (Clean: 0.0078, BC: 0.0128, Asym: 0.0040) |  663.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 9/16] | File [ 6/16] | TrainLoss: 0.02428 (Clean: 0.0082, BC: 0.0134, Asym: 0.0028) |  664.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 9/16] | File [ 7/16] | TrainLoss: 0.02543 (Clean: 0.0081, BC: 0.0133, Asym: 0.0040) |  665.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 9/16] | File [ 8/16] | TrainLoss: 0.02383 (Clean: 0.0076, BC: 0.0125, Asym: 0.0038) |  666.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 9/16] | File [ 9/16] | TrainLoss: 0.02774 (Clean: 0.0091, BC: 0.0150, Asym: 0.0037) |  666.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 9/16] | File [10/16] | TrainLoss: 0.02561 (Clean: 0.0083, BC: 0.0135, Asym: 0.0038) |  665.4 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 9/16] | File [11/16] | TrainLoss: 0.02371 (Clean: 0.0077, BC: 0.0127, Asym: 0.0033) |  662.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 9/16] | File [12/16] | TrainLoss: 0.02361 (Clean: 0.0076, BC: 0.0125, Asym: 0.0034) |  662.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 9/16] | File [13/16] | TrainLoss: 0.02417 (Clean: 0.0078, BC: 0.0128, Asym: 0.0036) |  664.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 9/16] | File [14/16] | TrainLoss: 0.02371 (Clean: 0.0077, BC: 0.0127, Asym: 0.0033) |  664.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 9/16] | File [15/16] | TrainLoss: 0.02337 (Clean: 0.0076, BC: 0.0124, Asym: 0.0034) |  664.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [ 9/16] | File [16/16] | TrainLoss: 0.02318 (Clean: 0.0076, BC: 0.0125, Asym: 0.0031) |  666.0 spec/s
+----------------------------------------------------------------------------------
+==> [High Asym Penalty (λ=60.0)] Epoch [ 9/16] Finished in 397.8s (659.0 spec/s)
+    Avg Train Loss: 0.025885 | Clean: 0.008434 | BC: 0.013785 | Asym: 0.003666
+    Learning Rate:  1.000000e-04
+    ★ New best model for High Asym Penalty (λ=60.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_high_lambda60.pth' (Loss: 0.025885)
+----------------------------------------------------------------------------------
+[High Asym Penalty (λ=60.0)] Ep [10/16] | File [ 1/16] | TrainLoss: 0.02369 (Clean: 0.0076, BC: 0.0126, Asym: 0.0035) |  661.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [10/16] | File [ 2/16] | TrainLoss: 0.02357 (Clean: 0.0076, BC: 0.0126, Asym: 0.0034) |  649.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [10/16] | File [ 3/16] | TrainLoss: 0.02305 (Clean: 0.0075, BC: 0.0124, Asym: 0.0032) |  658.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [10/16] | File [ 4/16] | TrainLoss: 0.02362 (Clean: 0.0075, BC: 0.0123, Asym: 0.0038) |  662.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [10/16] | File [ 5/16] | TrainLoss: 0.02255 (Clean: 0.0075, BC: 0.0122, Asym: 0.0029) |  663.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [10/16] | File [ 6/16] | TrainLoss: 0.02183 (Clean: 0.0072, BC: 0.0118, Asym: 0.0028) |  660.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [10/16] | File [ 7/16] | TrainLoss: 0.02710 (Clean: 0.0084, BC: 0.0138, Asym: 0.0049) |  663.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [10/16] | File [ 8/16] | TrainLoss: 0.02427 (Clean: 0.0078, BC: 0.0129, Asym: 0.0036) |  661.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [10/16] | File [ 9/16] | TrainLoss: 0.02388 (Clean: 0.0078, BC: 0.0128, Asym: 0.0033) |  663.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [10/16] | File [10/16] | TrainLoss: 0.02781 (Clean: 0.0089, BC: 0.0147, Asym: 0.0042) |  664.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [10/16] | File [11/16] | TrainLoss: 0.03261 (Clean: 0.0106, BC: 0.0172, Asym: 0.0048) |  663.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [10/16] | File [12/16] | TrainLoss: 0.02684 (Clean: 0.0086, BC: 0.0141, Asym: 0.0042) |  664.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [10/16] | File [13/16] | TrainLoss: 0.02383 (Clean: 0.0075, BC: 0.0122, Asym: 0.0042) |  662.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [10/16] | File [14/16] | TrainLoss: 0.02453 (Clean: 0.0081, BC: 0.0133, Asym: 0.0032) |  662.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [10/16] | File [15/16] | TrainLoss: 0.02338 (Clean: 0.0074, BC: 0.0122, Asym: 0.0038) |  663.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [10/16] | File [16/16] | TrainLoss: 0.02314 (Clean: 0.0075, BC: 0.0126, Asym: 0.0030) |  667.0 spec/s
+----------------------------------------------------------------------------------
+==> [High Asym Penalty (λ=60.0)] Epoch [10/16] Finished in 399.5s (656.1 spec/s)
+    Avg Train Loss: 0.024732 | Clean: 0.007970 | BC: 0.013090 | Asym: 0.003672
+    Learning Rate:  1.000000e-04
+    ★ New best model for High Asym Penalty (λ=60.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_high_lambda60.pth' (Loss: 0.024732)
+----------------------------------------------------------------------------------
+[High Asym Penalty (λ=60.0)] Ep [11/16] | File [ 1/16] | TrainLoss: 0.02255 (Clean: 0.0069, BC: 0.0115, Asym: 0.0041) |  665.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [11/16] | File [ 2/16] | TrainLoss: 0.02221 (Clean: 0.0073, BC: 0.0121, Asym: 0.0027) |  662.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [11/16] | File [ 3/16] | TrainLoss: 0.02365 (Clean: 0.0074, BC: 0.0122, Asym: 0.0040) |  663.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [11/16] | File [ 4/16] | TrainLoss: 0.02176 (Clean: 0.0070, BC: 0.0116, Asym: 0.0031) |  661.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [11/16] | File [ 5/16] | TrainLoss: 0.02112 (Clean: 0.0069, BC: 0.0114, Asym: 0.0029) |  663.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [11/16] | File [ 6/16] | TrainLoss: 0.02258 (Clean: 0.0073, BC: 0.0120, Asym: 0.0034) |  663.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [11/16] | File [ 7/16] | TrainLoss: 0.02156 (Clean: 0.0069, BC: 0.0115, Asym: 0.0032) |  663.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [11/16] | File [ 8/16] | TrainLoss: 0.02335 (Clean: 0.0076, BC: 0.0125, Asym: 0.0032) |  663.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [11/16] | File [ 9/16] | TrainLoss: 0.02886 (Clean: 0.0093, BC: 0.0152, Asym: 0.0044) |  664.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [11/16] | File [10/16] | TrainLoss: 0.02180 (Clean: 0.0069, BC: 0.0114, Asym: 0.0035) |  663.4 spec/s
+[High Asym Penalty (λ=60.0)] Ep [11/16] | File [11/16] | TrainLoss: 0.02209 (Clean: 0.0070, BC: 0.0116, Asym: 0.0034) |  664.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [11/16] | File [12/16] | TrainLoss: 0.02093 (Clean: 0.0067, BC: 0.0112, Asym: 0.0031) |  664.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [11/16] | File [13/16] | TrainLoss: 0.02024 (Clean: 0.0066, BC: 0.0108, Asym: 0.0029) |  664.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [11/16] | File [14/16] | TrainLoss: 0.02488 (Clean: 0.0078, BC: 0.0129, Asym: 0.0042) |  666.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [11/16] | File [15/16] | TrainLoss: 0.02367 (Clean: 0.0076, BC: 0.0124, Asym: 0.0037) |  667.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [11/16] | File [16/16] | TrainLoss: 0.02246 (Clean: 0.0073, BC: 0.0121, Asym: 0.0031) |  667.6 spec/s
+----------------------------------------------------------------------------------
+==> [High Asym Penalty (λ=60.0)] Epoch [11/16] Finished in 397.9s (658.8 spec/s)
+    Avg Train Loss: 0.022731 | Clean: 0.007278 | BC: 0.012019 | Asym: 0.003434
+    Learning Rate:  1.000000e-04
+    ★ New best model for High Asym Penalty (λ=60.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_high_lambda60.pth' (Loss: 0.022731)
+----------------------------------------------------------------------------------
+[High Asym Penalty (λ=60.0)] Ep [12/16] | File [ 1/16] | TrainLoss: 0.02139 (Clean: 0.0067, BC: 0.0111, Asym: 0.0036) |  663.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [12/16] | File [ 2/16] | TrainLoss: 0.02227 (Clean: 0.0071, BC: 0.0118, Asym: 0.0033) |  664.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [12/16] | File [ 3/16] | TrainLoss: 0.02162 (Clean: 0.0069, BC: 0.0115, Asym: 0.0032) |  666.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [12/16] | File [ 4/16] | TrainLoss: 0.02093 (Clean: 0.0068, BC: 0.0112, Asym: 0.0030) |  666.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [12/16] | File [ 5/16] | TrainLoss: 0.02923 (Clean: 0.0095, BC: 0.0155, Asym: 0.0042) |  664.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [12/16] | File [ 6/16] | TrainLoss: 0.02184 (Clean: 0.0070, BC: 0.0115, Asym: 0.0034) |  664.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [12/16] | File [ 7/16] | TrainLoss: 0.02060 (Clean: 0.0066, BC: 0.0108, Asym: 0.0032) |  664.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [12/16] | File [ 8/16] | TrainLoss: 0.02264 (Clean: 0.0071, BC: 0.0118, Asym: 0.0038) |  664.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [12/16] | File [ 9/16] | TrainLoss: 0.02112 (Clean: 0.0067, BC: 0.0111, Asym: 0.0033) |  665.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [12/16] | File [10/16] | TrainLoss: 0.02238 (Clean: 0.0071, BC: 0.0118, Asym: 0.0034) |  665.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [12/16] | File [11/16] | TrainLoss: 0.02588 (Clean: 0.0082, BC: 0.0136, Asym: 0.0041) |  665.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [12/16] | File [12/16] | TrainLoss: 0.02532 (Clean: 0.0085, BC: 0.0140, Asym: 0.0028) |  663.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [12/16] | File [13/16] | TrainLoss: 0.02384 (Clean: 0.0072, BC: 0.0119, Asym: 0.0047) |  664.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [12/16] | File [14/16] | TrainLoss: 0.02306 (Clean: 0.0075, BC: 0.0125, Asym: 0.0030) |  663.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [12/16] | File [15/16] | TrainLoss: 0.02223 (Clean: 0.0071, BC: 0.0117, Asym: 0.0034) |  663.4 spec/s
+[High Asym Penalty (λ=60.0)] Ep [12/16] | File [16/16] | TrainLoss: 0.02028 (Clean: 0.0065, BC: 0.0107, Asym: 0.0030) |  665.6 spec/s
+----------------------------------------------------------------------------------
+==> [High Asym Penalty (λ=60.0)] Epoch [12/16] Finished in 397.7s (659.1 spec/s)
+    Avg Train Loss: 0.022787 | Clean: 0.007282 | BC: 0.012036 | Asym: 0.003469
+    Learning Rate:  1.000000e-04
+----------------------------------------------------------------------------------
+[High Asym Penalty (λ=60.0)] Ep [13/16] | File [ 1/16] | TrainLoss: 0.02490 (Clean: 0.0082, BC: 0.0136, Asym: 0.0031) |  664.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [13/16] | File [ 2/16] | TrainLoss: 0.02247 (Clean: 0.0069, BC: 0.0113, Asym: 0.0043) |  665.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [13/16] | File [ 3/16] | TrainLoss: 0.02250 (Clean: 0.0072, BC: 0.0119, Asym: 0.0034) |  666.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [13/16] | File [ 4/16] | TrainLoss: 0.02323 (Clean: 0.0074, BC: 0.0122, Asym: 0.0036) |  663.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [13/16] | File [ 5/16] | TrainLoss: 0.02080 (Clean: 0.0063, BC: 0.0105, Asym: 0.0040) |  664.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [13/16] | File [ 6/16] | TrainLoss: 0.02249 (Clean: 0.0075, BC: 0.0124, Asym: 0.0026) |  665.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [13/16] | File [ 7/16] | TrainLoss: 0.02062 (Clean: 0.0066, BC: 0.0109, Asym: 0.0031) |  665.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [13/16] | File [ 8/16] | TrainLoss: 0.02031 (Clean: 0.0066, BC: 0.0109, Asym: 0.0028) |  663.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [13/16] | File [ 9/16] | TrainLoss: 0.02088 (Clean: 0.0067, BC: 0.0111, Asym: 0.0032) |  664.4 spec/s
+[High Asym Penalty (λ=60.0)] Ep [13/16] | File [10/16] | TrainLoss: 0.02096 (Clean: 0.0065, BC: 0.0108, Asym: 0.0036) |  664.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [13/16] | File [11/16] | TrainLoss: 0.01921 (Clean: 0.0063, BC: 0.0104, Asym: 0.0026) |  664.4 spec/s
+[High Asym Penalty (λ=60.0)] Ep [13/16] | File [12/16] | TrainLoss: 0.02007 (Clean: 0.0064, BC: 0.0106, Asym: 0.0031) |  665.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [13/16] | File [13/16] | TrainLoss: 0.02030 (Clean: 0.0065, BC: 0.0108, Asym: 0.0031) |  663.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [13/16] | File [14/16] | TrainLoss: 0.02141 (Clean: 0.0068, BC: 0.0114, Asym: 0.0033) |  665.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [13/16] | File [15/16] | TrainLoss: 0.02071 (Clean: 0.0065, BC: 0.0107, Asym: 0.0035) |  663.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [13/16] | File [16/16] | TrainLoss: 0.01912 (Clean: 0.0062, BC: 0.0103, Asym: 0.0026) |  666.2 spec/s
+----------------------------------------------------------------------------------
+==> [High Asym Penalty (λ=60.0)] Epoch [13/16] Finished in 397.6s (659.3 spec/s)
+    Avg Train Loss: 0.021249 | Clean: 0.006774 | BC: 0.011238 | Asym: 0.003236
+    Learning Rate:  1.000000e-04
+    ★ New best model for High Asym Penalty (λ=60.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_high_lambda60.pth' (Loss: 0.021249)
+----------------------------------------------------------------------------------
+[High Asym Penalty (λ=60.0)] Ep [14/16] | File [ 1/16] | TrainLoss: 0.01948 (Clean: 0.0062, BC: 0.0103, Asym: 0.0029) |  663.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [14/16] | File [ 2/16] | TrainLoss: 0.02116 (Clean: 0.0067, BC: 0.0111, Asym: 0.0034) |  664.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [14/16] | File [ 3/16] | TrainLoss: 0.03558 (Clean: 0.0116, BC: 0.0190, Asym: 0.0050) |  664.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [14/16] | File [ 4/16] | TrainLoss: 0.02463 (Clean: 0.0079, BC: 0.0130, Asym: 0.0037) |  665.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [14/16] | File [ 5/16] | TrainLoss: 0.02167 (Clean: 0.0068, BC: 0.0112, Asym: 0.0036) |  664.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [14/16] | File [ 6/16] | TrainLoss: 0.02038 (Clean: 0.0066, BC: 0.0109, Asym: 0.0029) |  664.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [14/16] | File [ 7/16] | TrainLoss: 0.02022 (Clean: 0.0065, BC: 0.0107, Asym: 0.0031) |  663.7 spec/s
+[High Asym Penalty (λ=60.0)] Ep [14/16] | File [ 8/16] | TrainLoss: 0.02066 (Clean: 0.0064, BC: 0.0107, Asym: 0.0035) |  661.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [14/16] | File [ 9/16] | TrainLoss: 0.02018 (Clean: 0.0065, BC: 0.0108, Asym: 0.0029) |  661.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [14/16] | File [10/16] | TrainLoss: 0.02045 (Clean: 0.0060, BC: 0.0100, Asym: 0.0044) |  662.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [14/16] | File [11/16] | TrainLoss: 0.02073 (Clean: 0.0068, BC: 0.0114, Asym: 0.0025) |  654.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [14/16] | File [12/16] | TrainLoss: 0.01987 (Clean: 0.0063, BC: 0.0104, Asym: 0.0032) |  662.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [14/16] | File [13/16] | TrainLoss: 0.02043 (Clean: 0.0063, BC: 0.0106, Asym: 0.0035) |  661.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [14/16] | File [14/16] | TrainLoss: 0.01894 (Clean: 0.0060, BC: 0.0100, Asym: 0.0029) |  662.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [14/16] | File [15/16] | TrainLoss: 0.02071 (Clean: 0.0065, BC: 0.0109, Asym: 0.0033) |  663.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [14/16] | File [16/16] | TrainLoss: 0.02009 (Clean: 0.0065, BC: 0.0108, Asym: 0.0028) |  664.1 spec/s
+----------------------------------------------------------------------------------
+==> [High Asym Penalty (λ=60.0)] Epoch [14/16] Finished in 399.0s (656.9 spec/s)
+    Avg Train Loss: 0.021575 | Clean: 0.006850 | BC: 0.011367 | Asym: 0.003357
+    Learning Rate:  1.000000e-04
+----------------------------------------------------------------------------------
+[High Asym Penalty (λ=60.0)] Ep [15/16] | File [ 1/16] | TrainLoss: 0.01951 (Clean: 0.0060, BC: 0.0100, Asym: 0.0035) |  660.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [15/16] | File [ 2/16] | TrainLoss: 0.01930 (Clean: 0.0062, BC: 0.0103, Asym: 0.0028) |  663.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [15/16] | File [ 3/16] | TrainLoss: 0.01963 (Clean: 0.0062, BC: 0.0104, Asym: 0.0031) |  664.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [15/16] | File [ 4/16] | TrainLoss: 0.01978 (Clean: 0.0063, BC: 0.0104, Asym: 0.0031) |  662.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [15/16] | File [ 5/16] | TrainLoss: 0.01867 (Clean: 0.0060, BC: 0.0099, Asym: 0.0028) |  663.4 spec/s
+[High Asym Penalty (λ=60.0)] Ep [15/16] | File [ 6/16] | TrainLoss: 0.04548 (Clean: 0.0148, BC: 0.0236, Asym: 0.0070) |  663.4 spec/s
+[High Asym Penalty (λ=60.0)] Ep [15/16] | File [ 7/16] | TrainLoss: 0.05286 (Clean: 0.0185, BC: 0.0294, Asym: 0.0049) |  665.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [15/16] | File [ 8/16] | TrainLoss: 0.02925 (Clean: 0.0093, BC: 0.0153, Asym: 0.0046) |  665.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [15/16] | File [ 9/16] | TrainLoss: 0.02229 (Clean: 0.0071, BC: 0.0118, Asym: 0.0034) |  666.1 spec/s
+[High Asym Penalty (λ=60.0)] Ep [15/16] | File [10/16] | TrainLoss: 0.02032 (Clean: 0.0065, BC: 0.0107, Asym: 0.0031) |  662.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [15/16] | File [11/16] | TrainLoss: 0.02050 (Clean: 0.0063, BC: 0.0106, Asym: 0.0036) |  664.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [15/16] | File [12/16] | TrainLoss: 0.01976 (Clean: 0.0064, BC: 0.0107, Asym: 0.0027) |  665.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [15/16] | File [13/16] | TrainLoss: 0.02243 (Clean: 0.0068, BC: 0.0114, Asym: 0.0042) |  663.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [15/16] | File [14/16] | TrainLoss: 0.02027 (Clean: 0.0065, BC: 0.0109, Asym: 0.0028) |  664.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [15/16] | File [15/16] | TrainLoss: 0.01923 (Clean: 0.0060, BC: 0.0101, Asym: 0.0031) |  664.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [15/16] | File [16/16] | TrainLoss: 0.01953 (Clean: 0.0062, BC: 0.0103, Asym: 0.0031) |  666.2 spec/s
+----------------------------------------------------------------------------------
+==> [High Asym Penalty (λ=60.0)] Epoch [15/16] Finished in 398.1s (658.4 spec/s)
+    Avg Train Loss: 0.024302 | Clean: 0.007818 | BC: 0.012863 | Asym: 0.003621
+    Learning Rate:  8.000000e-05
+----------------------------------------------------------------------------------
+[High Asym Penalty (λ=60.0)] Ep [16/16] | File [ 1/16] | TrainLoss: 0.01884 (Clean: 0.0059, BC: 0.0098, Asym: 0.0032) |  664.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [16/16] | File [ 2/16] | TrainLoss: 0.01856 (Clean: 0.0059, BC: 0.0099, Asym: 0.0027) |  665.9 spec/s
+[High Asym Penalty (λ=60.0)] Ep [16/16] | File [ 3/16] | TrainLoss: 0.01950 (Clean: 0.0061, BC: 0.0101, Asym: 0.0033) |  666.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [16/16] | File [ 4/16] | TrainLoss: 0.01903 (Clean: 0.0061, BC: 0.0102, Asym: 0.0028) |  664.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [16/16] | File [ 5/16] | TrainLoss: 0.01820 (Clean: 0.0059, BC: 0.0098, Asym: 0.0026) |  664.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [16/16] | File [ 6/16] | TrainLoss: 0.01830 (Clean: 0.0057, BC: 0.0095, Asym: 0.0031) |  665.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [16/16] | File [ 7/16] | TrainLoss: 0.01893 (Clean: 0.0059, BC: 0.0098, Asym: 0.0033) |  663.2 spec/s
+[High Asym Penalty (λ=60.0)] Ep [16/16] | File [ 8/16] | TrainLoss: 0.01930 (Clean: 0.0061, BC: 0.0101, Asym: 0.0031) |  665.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [16/16] | File [ 9/16] | TrainLoss: 0.02628 (Clean: 0.0074, BC: 0.0123, Asym: 0.0066) |  664.5 spec/s
+[High Asym Penalty (λ=60.0)] Ep [16/16] | File [10/16] | TrainLoss: 0.03744 (Clean: 0.0123, BC: 0.0201, Asym: 0.0051) |  664.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [16/16] | File [11/16] | TrainLoss: 0.02432 (Clean: 0.0080, BC: 0.0132, Asym: 0.0031) |  666.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [16/16] | File [12/16] | TrainLoss: 0.02165 (Clean: 0.0069, BC: 0.0113, Asym: 0.0035) |  666.6 spec/s
+[High Asym Penalty (λ=60.0)] Ep [16/16] | File [13/16] | TrainLoss: 0.01988 (Clean: 0.0064, BC: 0.0105, Asym: 0.0030) |  666.0 spec/s
+[High Asym Penalty (λ=60.0)] Ep [16/16] | File [14/16] | TrainLoss: 0.02041 (Clean: 0.0064, BC: 0.0106, Asym: 0.0034) |  664.8 spec/s
+[High Asym Penalty (λ=60.0)] Ep [16/16] | File [15/16] | TrainLoss: 0.01899 (Clean: 0.0059, BC: 0.0098, Asym: 0.0034) |  665.3 spec/s
+[High Asym Penalty (λ=60.0)] Ep [16/16] | File [16/16] | TrainLoss: 0.01918 (Clean: 0.0061, BC: 0.0101, Asym: 0.0030) |  666.8 spec/s
+----------------------------------------------------------------------------------
+==> [High Asym Penalty (λ=60.0)] Epoch [16/16] Finished in 397.3s (659.9 spec/s)
+    Avg Train Loss: 0.021176 | Clean: 0.006671 | BC: 0.011064 | Asym: 0.003441
+    Learning Rate:  8.000000e-05
+    ★ New best model for High Asym Penalty (λ=60.0) saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/asymcomp_high_lambda60.pth' (Loss: 0.021176)
+----------------------------------------------------------------------------------
+
+[High Asym Penalty (λ=60.0)] Training Complete in 107.84 min! Best Loss: 0.021176 (at Epoch 16).
+
+
+====================================================================================
+ ASYMMETRIC SCALE TRAINING SUMMARY (16 Epochs on PolyGaussNet3) 
+====================================================================================
+Metric / Parameter             | Normal Penalty (λ=15.0)  | High Penalty (λ=60.0)   
+------------------------------------------------------------------------------------
+Asymmetric Scaling Weight      | 15.0                     | 60.0 (4x)               
+Loss Formulation               | Dual Supervised          | Dual Supervised         
+Best Training Loss (↓)         | 0.014360                 | 0.021176                
+Best Epoch                     | 16                       | 16                      
+Final Clean Loss (Epoch 16)    | 0.004478                 | 0.006671                
+Training Time (min)            | 114.78                   | 107.84                  
+Saved Weights                  | asymcomp_normal_lambda15.pth | asymcomp_high_lambda60.pth
+====================================================================================
+Total Sequential Training Elapsed Time: 222.63 minutes
+
+
+==============================================================================================
+ ROUND 5: ASYMMETRIC LOSS SCALE HEAD-TO-HEAD BENCHMARK (PolyGaussNet3) 
+ Normal Asymmetric Penalty (λ=15.0) vs. High Asymmetric Penalty (λ=60.0) 
+==============================================================================================
+Hardware Acceleration Device: mps
+
+Loading 4 test dataset chunk(s) from '/Users/bogiekissiov/Desktop/raman preprocessing/training_round4/test_data4':
+  • dataset_part_1.npz
+  • dataset_part_2.npz
+  • dataset_part_3.npz
+  • dataset_part_4.npz
+
+Dataset Overview:
+  - Total Test Spectra:  32,768
+  - Spectral Resolution: 1016 bins
+  - Test Directory:      /Users/bogiekissiov/Desktop/raman preprocessing/training_round4/test_data4
+----------------------------------------------------------------------------------------------
+
+1. Evaluating Normal Asymmetric Model (λ=15.0, Weights: asymcomp_normal_lambda15.pth)...
+   ✓ Inference complete: 12.452s (  2631.5 spec/s, latency: 0.3800 ms)
+   • Pearson ρ: 0.40520 | Zero-MSE: 0.012127 | Raw MSE: 0.009446 | Peak MAE: 0.06882
+
+2. Evaluating High Asymmetric Model (λ=60.0, Weights: asymcomp_high_lambda60.pth)...
+   ✓ Inference complete: 12.436s (  2635.0 spec/s, latency: 0.3795 ms)
+   • Pearson ρ: 0.40449 | Zero-MSE: 0.013251 | Raw MSE: 0.013602 | Peak MAE: 0.08437
+
+==============================================================================================
+                      INDIVIDUAL EVALUATION REPORTS (N = 32,768 Spectra)                      
+==============================================================================================
+
+--- Normal Asymmetric Scaling: Dual Supervised + 15.0 * Asym ---
+  • Pearson Correlation (ρ ↑):   0.405195 (±0.34995)
+  • Zero-Shifted MSE (↓):        0.012127 (±0.02406)
+  • Zero-Shifted MAE (↓):        0.074981 (±0.06536)
+  • Raw Cosine Similarity (↑):   0.866901 (±0.16024)
+  • Raw Mean Squared Error (↓):  0.009446 (±0.01271)
+  • Log-Cosh Loss (↓):           0.004686 (±0.00625)
+  • Raw Mean Absolute Error (↓): 0.072019 (±0.04488)
+  • Root Mean Sq Error (↓):      0.083669 (±0.04945)
+  • Peak Summit MAE (↓):         0.068823 (±0.05743)
+  • Pedestal Floor Offset:       0.025163 (±0.04580)
+  • Baseline Overshoot Rate:    0.345% of bins
+  • Max Baseline Overshoot:     0.34031
+  • Throughput & Latency:         2631.5 spectra/s (0.3800 ms/spec)
+
+--- High Asymmetric Scaling: Dual Supervised + 60.0 * Asym (4x) ---
+  • Pearson Correlation (ρ ↑):   0.404487 (±0.34696)
+  • Zero-Shifted MSE (↓):        0.013251 (±0.02453)
+  • Zero-Shifted MAE (↓):        0.080264 (±0.06559)
+  • Raw Cosine Similarity (↑):   0.869938 (±0.15876)
+  • Raw Mean Squared Error (↓):  0.013602 (±0.01635)
+  • Log-Cosh Loss (↓):           0.006739 (±0.00802)
+  • Raw Mean Absolute Error (↓): 0.090378 (±0.05201)
+  • Root Mean Sq Error (↓):      0.102247 (±0.05610)
+  • Peak Summit MAE (↓):         0.084372 (±0.06414)
+  • Pedestal Floor Offset:       0.034470 (±0.04005)
+  • Baseline Overshoot Rate:    0.125% of bins
+  • Max Baseline Overshoot:     0.27344
+  • Throughput & Latency:         2635.0 spectra/s (0.3795 ms/spec)
+
+==================================================================================================
+               DIRECT ASYMMETRIC PENALTY COMPARISON: Normal (λ=15) vs. High (λ=60)                
+                   (Both on PolyGaussNet3 evaluated across 32,768 Test Spectra)                   
+==================================================================================================
+Metric / Feature               | Normal (λ=15.0)       | High (λ=60.0)         | Delta / Advantage  
+--------------------------------------------------------------------------------------------------
+Asymmetric Scaling (λ)         | 15.0                  | 60.0 (4x)             | 4x Stronger        
+Loss Formulation               | Dual Supervised       | Dual Supervised       | Identical          
+Model Architecture             | PolyGaussNet3         | PolyGaussNet3         | Identical (148.9k) 
+--------------------------------------------------------------------------------------------------
+Pearson Correlation (ρ ↑)      | 0.405195              | 0.404487              | -0.000709 (-0.17%) Normal (+)
+Zero-Shifted MSE (↓)           | 0.012127              | 0.013251              | +0.001124 (+9.27%) Normal (Better)
+Zero-Shifted MAE (↓)           | 0.074981              | 0.080264              | +0.005284 (+7.05%) Normal (Better)
+Peak Summit MAE (↓)            | 0.068823              | 0.084372              | +0.015549 (+22.59%) Normal (Better)
+--------------------------------------------------------------------------------------------------
+Raw Cosine Similarity (↑)      | 0.866901              | 0.869938              | +0.003037 (+0.35%) High (+)
+Raw MSE (↓)                    | 0.009446              | 0.013602              | +0.004156 (+43.99%) Normal (Better)
+Log-Cosh Loss (↓)              | 0.004686              | 0.006739              | +0.002053 (+43.82%) Normal (Better)
+Raw MAE (↓)                    | 0.072019              | 0.090378              | +0.018359 (+25.49%) Normal (Better)
+Pedestal Floor Offset (min)    | 0.025163              | 0.034470              | +0.009308 (+36.99%) Normal (Better)
+--------------------------------------------------------------------------------------------------
+Baseline Overshoot Rate        | 0.345               % | 0.125               % | Direct Comp
+Max Baseline Overshoot         | 0.34031               | 0.27344               | -0.06687
+Throughput (spectra/s)         | 2631.5                | 2635.0                |     +3.5 spec/s
+Latency per Spectrum           | 0.3800                ms | 0.3795                ms |  -0.0005 ms
+==================================================================================================

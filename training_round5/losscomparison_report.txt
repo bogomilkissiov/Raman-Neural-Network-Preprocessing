@@ -1,0 +1,841 @@
+====================================================================================
+ ROUND 5: LOSS COMPARISON SEQUENTIAL TRAINING (16 Epochs Each) 
+====================================================================================
+  - Model Architecture: PolyGaussNet3 (Degree 7, Kernel 31, Amp [0.85, 1.15])
+  - Dataset Location:    /Users/bogiekissiov/Desktop/raman preprocessing/training_round4/training_data4
+  - Dataset Files:       16 chunks found
+  - Device:              mps
+  - Epochs per Loss:     16
+  - Batch Size:          512
+====================================================================================
+
+
+==================================================================================
+ TRAINING: Dual Supervised Loss 
+ Formulation: Dual Supervised [LogCosh(BC) + LogCosh(Clean) + Asym] 
+==================================================================================
+  - Model Architecture: PolyGaussNet3 (Degree 7, Kernel 31)
+  - Total Parameters:   148,426
+  - Device:             mps
+  - Target Epochs:      16
+  - Batch Size:         512
+  - Initial LR:         0.0001
+  - Min LR:             9e-08
+  - Lambda Asymmetric:  15.0
+  - Supervise BC stage: True
+  - Weights Destination:/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_dual_supervised.pth
+==================================================================================
+
+[Dual Supervised Loss] Ep [ 1/16] | File [ 1/16] | TrainLoss: 0.30829 (Clean: 0.0932, BC: 0.1155, Asym: 0.0996) |  671.4 spec/s
+[Dual Supervised Loss] Ep [ 1/16] | File [ 2/16] | TrainLoss: 0.19834 (Clean: 0.0819, BC: 0.1109, Asym: 0.0055) |  682.3 spec/s
+[Dual Supervised Loss] Ep [ 1/16] | File [ 3/16] | TrainLoss: 0.17065 (Clean: 0.0682, BC: 0.0950, Asym: 0.0074) |  680.3 spec/s
+[Dual Supervised Loss] Ep [ 1/16] | File [ 4/16] | TrainLoss: 0.14649 (Clean: 0.0571, BC: 0.0807, Asym: 0.0087) |  682.1 spec/s
+[Dual Supervised Loss] Ep [ 1/16] | File [ 5/16] | TrainLoss: 0.12491 (Clean: 0.0469, BC: 0.0670, Asym: 0.0110) |  682.3 spec/s
+[Dual Supervised Loss] Ep [ 1/16] | File [ 6/16] | TrainLoss: 0.10838 (Clean: 0.0395, BC: 0.0569, Asym: 0.0120) |  684.3 spec/s
+[Dual Supervised Loss] Ep [ 1/16] | File [ 7/16] | TrainLoss: 0.09488 (Clean: 0.0348, BC: 0.0505, Asym: 0.0096) |  683.5 spec/s
+[Dual Supervised Loss] Ep [ 1/16] | File [ 8/16] | TrainLoss: 0.08852 (Clean: 0.0312, BC: 0.0457, Asym: 0.0116) |  685.1 spec/s
+[Dual Supervised Loss] Ep [ 1/16] | File [ 9/16] | TrainLoss: 0.08368 (Clean: 0.0303, BC: 0.0445, Asym: 0.0089) |  683.0 spec/s
+[Dual Supervised Loss] Ep [ 1/16] | File [10/16] | TrainLoss: 0.07604 (Clean: 0.0275, BC: 0.0407, Asym: 0.0079) |  681.4 spec/s
+[Dual Supervised Loss] Ep [ 1/16] | File [11/16] | TrainLoss: 0.07319 (Clean: 0.0262, BC: 0.0390, Asym: 0.0080) |  682.0 spec/s
+[Dual Supervised Loss] Ep [ 1/16] | File [12/16] | TrainLoss: 0.07305 (Clean: 0.0264, BC: 0.0393, Asym: 0.0073) |  683.4 spec/s
+[Dual Supervised Loss] Ep [ 1/16] | File [13/16] | TrainLoss: 0.06856 (Clean: 0.0246, BC: 0.0369, Asym: 0.0070) |  685.0 spec/s
+[Dual Supervised Loss] Ep [ 1/16] | File [14/16] | TrainLoss: 0.06678 (Clean: 0.0238, BC: 0.0357, Asym: 0.0073) |  680.6 spec/s
+[Dual Supervised Loss] Ep [ 1/16] | File [15/16] | TrainLoss: 0.06334 (Clean: 0.0225, BC: 0.0340, Asym: 0.0069) |  680.9 spec/s
+[Dual Supervised Loss] Ep [ 1/16] | File [16/16] | TrainLoss: 0.06031 (Clean: 0.0216, BC: 0.0327, Asym: 0.0060) |  574.7 spec/s
+----------------------------------------------------------------------------------
+==> [Dual Supervised Loss] Epoch [ 1/16] Finished in 392.7s (667.6 spec/s)
+    Avg Train Loss: 0.112836 | Clean: 0.040988 | BC: 0.057810 | Asym: 0.014037
+    Learning Rate:  1.000000e-04
+    ★ New best model for Dual Supervised Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_dual_supervised.pth' (Loss: 0.112836)
+----------------------------------------------------------------------------------
+[Dual Supervised Loss] Ep [ 2/16] | File [ 1/16] | TrainLoss: 0.05967 (Clean: 0.0211, BC: 0.0319, Asym: 0.0067) |  538.8 spec/s
+[Dual Supervised Loss] Ep [ 2/16] | File [ 2/16] | TrainLoss: 0.05695 (Clean: 0.0199, BC: 0.0303, Asym: 0.0067) |  635.2 spec/s
+[Dual Supervised Loss] Ep [ 2/16] | File [ 3/16] | TrainLoss: 0.05969 (Clean: 0.0208, BC: 0.0317, Asym: 0.0072) |  658.4 spec/s
+[Dual Supervised Loss] Ep [ 2/16] | File [ 4/16] | TrainLoss: 0.05769 (Clean: 0.0203, BC: 0.0309, Asym: 0.0065) |  667.0 spec/s
+[Dual Supervised Loss] Ep [ 2/16] | File [ 5/16] | TrainLoss: 0.05329 (Clean: 0.0184, BC: 0.0281, Asym: 0.0069) |  663.2 spec/s
+[Dual Supervised Loss] Ep [ 2/16] | File [ 6/16] | TrainLoss: 0.05143 (Clean: 0.0178, BC: 0.0273, Asym: 0.0063) |  661.1 spec/s
+[Dual Supervised Loss] Ep [ 2/16] | File [ 7/16] | TrainLoss: 0.05602 (Clean: 0.0190, BC: 0.0292, Asym: 0.0078) |  655.5 spec/s
+[Dual Supervised Loss] Ep [ 2/16] | File [ 8/16] | TrainLoss: 0.05736 (Clean: 0.0203, BC: 0.0311, Asym: 0.0059) |  663.8 spec/s
+[Dual Supervised Loss] Ep [ 2/16] | File [ 9/16] | TrainLoss: 0.05318 (Clean: 0.0183, BC: 0.0280, Asym: 0.0069) |  666.5 spec/s
+[Dual Supervised Loss] Ep [ 2/16] | File [10/16] | TrainLoss: 0.04934 (Clean: 0.0169, BC: 0.0261, Asym: 0.0063) |  662.0 spec/s
+[Dual Supervised Loss] Ep [ 2/16] | File [11/16] | TrainLoss: 0.05139 (Clean: 0.0177, BC: 0.0273, Asym: 0.0064) |  670.5 spec/s
+[Dual Supervised Loss] Ep [ 2/16] | File [12/16] | TrainLoss: 0.04863 (Clean: 0.0165, BC: 0.0255, Asym: 0.0066) |  660.2 spec/s
+[Dual Supervised Loss] Ep [ 2/16] | File [13/16] | TrainLoss: 0.04715 (Clean: 0.0161, BC: 0.0250, Asym: 0.0061) |  666.0 spec/s
+[Dual Supervised Loss] Ep [ 2/16] | File [14/16] | TrainLoss: 0.04658 (Clean: 0.0158, BC: 0.0245, Asym: 0.0063) |  672.5 spec/s
+[Dual Supervised Loss] Ep [ 2/16] | File [15/16] | TrainLoss: 0.04529 (Clean: 0.0154, BC: 0.0239, Asym: 0.0060) |  675.2 spec/s
+[Dual Supervised Loss] Ep [ 2/16] | File [16/16] | TrainLoss: 0.04795 (Clean: 0.0164, BC: 0.0255, Asym: 0.0061) |  678.3 spec/s
+----------------------------------------------------------------------------------
+==> [Dual Supervised Loss] Epoch [ 2/16] Finished in 405.5s (646.5 spec/s)
+    Avg Train Loss: 0.052600 | Clean: 0.018160 | BC: 0.027896 | Asym: 0.006545
+    Learning Rate:  1.000000e-04
+    ★ New best model for Dual Supervised Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_dual_supervised.pth' (Loss: 0.052600)
+----------------------------------------------------------------------------------
+[Dual Supervised Loss] Ep [ 3/16] | File [ 1/16] | TrainLoss: 0.04580 (Clean: 0.0154, BC: 0.0241, Asym: 0.0063) |  670.7 spec/s
+[Dual Supervised Loss] Ep [ 3/16] | File [ 2/16] | TrainLoss: 0.04357 (Clean: 0.0145, BC: 0.0227, Asym: 0.0063) |  660.8 spec/s
+[Dual Supervised Loss] Ep [ 3/16] | File [ 3/16] | TrainLoss: 0.04565 (Clean: 0.0152, BC: 0.0238, Asym: 0.0067) |  662.7 spec/s
+[Dual Supervised Loss] Ep [ 3/16] | File [ 4/16] | TrainLoss: 0.04583 (Clean: 0.0155, BC: 0.0242, Asym: 0.0061) |  666.6 spec/s
+[Dual Supervised Loss] Ep [ 3/16] | File [ 5/16] | TrainLoss: 0.04452 (Clean: 0.0151, BC: 0.0235, Asym: 0.0059) |  669.8 spec/s
+[Dual Supervised Loss] Ep [ 3/16] | File [ 6/16] | TrainLoss: 0.04106 (Clean: 0.0139, BC: 0.0218, Asym: 0.0053) |  666.5 spec/s
+[Dual Supervised Loss] Ep [ 3/16] | File [ 7/16] | TrainLoss: 0.04248 (Clean: 0.0141, BC: 0.0222, Asym: 0.0061) |  667.5 spec/s
+[Dual Supervised Loss] Ep [ 3/16] | File [ 8/16] | TrainLoss: 0.04271 (Clean: 0.0143, BC: 0.0224, Asym: 0.0060) |  679.2 spec/s
+[Dual Supervised Loss] Ep [ 3/16] | File [ 9/16] | TrainLoss: 0.04126 (Clean: 0.0137, BC: 0.0216, Asym: 0.0059) |  678.6 spec/s
+[Dual Supervised Loss] Ep [ 3/16] | File [10/16] | TrainLoss: 0.04436 (Clean: 0.0146, BC: 0.0231, Asym: 0.0067) |  682.6 spec/s
+[Dual Supervised Loss] Ep [ 3/16] | File [11/16] | TrainLoss: 0.04700 (Clean: 0.0159, BC: 0.0249, Asym: 0.0062) |  681.5 spec/s
+[Dual Supervised Loss] Ep [ 3/16] | File [12/16] | TrainLoss: 0.04015 (Clean: 0.0133, BC: 0.0211, Asym: 0.0057) |  680.3 spec/s
+[Dual Supervised Loss] Ep [ 3/16] | File [13/16] | TrainLoss: 0.03859 (Clean: 0.0127, BC: 0.0202, Asym: 0.0057) |  682.2 spec/s
+[Dual Supervised Loss] Ep [ 3/16] | File [14/16] | TrainLoss: 0.03843 (Clean: 0.0129, BC: 0.0204, Asym: 0.0052) |  682.3 spec/s
+[Dual Supervised Loss] Ep [ 3/16] | File [15/16] | TrainLoss: 0.03847 (Clean: 0.0128, BC: 0.0203, Asym: 0.0054) |  681.5 spec/s
+[Dual Supervised Loss] Ep [ 3/16] | File [16/16] | TrainLoss: 0.03871 (Clean: 0.0129, BC: 0.0204, Asym: 0.0055) |  683.7 spec/s
+----------------------------------------------------------------------------------
+==> [Dual Supervised Loss] Epoch [ 3/16] Finished in 392.8s (667.4 spec/s)
+    Avg Train Loss: 0.042413 | Clean: 0.014182 | BC: 0.022285 | Asym: 0.005947
+    Learning Rate:  1.000000e-04
+    ★ New best model for Dual Supervised Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_dual_supervised.pth' (Loss: 0.042413)
+----------------------------------------------------------------------------------
+[Dual Supervised Loss] Ep [ 4/16] | File [ 1/16] | TrainLoss: 0.03916 (Clean: 0.0129, BC: 0.0204, Asym: 0.0059) |  678.7 spec/s
+[Dual Supervised Loss] Ep [ 4/16] | File [ 2/16] | TrainLoss: 0.03936 (Clean: 0.0130, BC: 0.0205, Asym: 0.0059) |  682.0 spec/s
+[Dual Supervised Loss] Ep [ 4/16] | File [ 3/16] | TrainLoss: 0.03759 (Clean: 0.0125, BC: 0.0199, Asym: 0.0051) |  682.5 spec/s
+[Dual Supervised Loss] Ep [ 4/16] | File [ 4/16] | TrainLoss: 0.05228 (Clean: 0.0174, BC: 0.0273, Asym: 0.0076) |  676.0 spec/s
+[Dual Supervised Loss] Ep [ 4/16] | File [ 5/16] | TrainLoss: 0.04641 (Clean: 0.0157, BC: 0.0246, Asym: 0.0061) |  679.8 spec/s
+[Dual Supervised Loss] Ep [ 4/16] | File [ 6/16] | TrainLoss: 0.03861 (Clean: 0.0128, BC: 0.0202, Asym: 0.0056) |  680.9 spec/s
+[Dual Supervised Loss] Ep [ 4/16] | File [ 7/16] | TrainLoss: 0.03687 (Clean: 0.0124, BC: 0.0195, Asym: 0.0050) |  683.0 spec/s
+[Dual Supervised Loss] Ep [ 4/16] | File [ 8/16] | TrainLoss: 0.03617 (Clean: 0.0119, BC: 0.0190, Asym: 0.0052) |  682.1 spec/s
+[Dual Supervised Loss] Ep [ 4/16] | File [ 9/16] | TrainLoss: 0.03631 (Clean: 0.0120, BC: 0.0190, Asym: 0.0053) |  682.6 spec/s
+[Dual Supervised Loss] Ep [ 4/16] | File [10/16] | TrainLoss: 0.03624 (Clean: 0.0121, BC: 0.0192, Asym: 0.0050) |  678.1 spec/s
+[Dual Supervised Loss] Ep [ 4/16] | File [11/16] | TrainLoss: 0.03670 (Clean: 0.0121, BC: 0.0193, Asym: 0.0053) |  678.2 spec/s
+[Dual Supervised Loss] Ep [ 4/16] | File [12/16] | TrainLoss: 0.03597 (Clean: 0.0118, BC: 0.0188, Asym: 0.0053) |  674.7 spec/s
+[Dual Supervised Loss] Ep [ 4/16] | File [13/16] | TrainLoss: 0.03490 (Clean: 0.0116, BC: 0.0185, Asym: 0.0048) |  679.8 spec/s
+[Dual Supervised Loss] Ep [ 4/16] | File [14/16] | TrainLoss: 0.03980 (Clean: 0.0127, BC: 0.0202, Asym: 0.0069) |  680.5 spec/s
+[Dual Supervised Loss] Ep [ 4/16] | File [15/16] | TrainLoss: 0.04147 (Clean: 0.0138, BC: 0.0220, Asym: 0.0057) |  679.6 spec/s
+[Dual Supervised Loss] Ep [ 4/16] | File [16/16] | TrainLoss: 0.03427 (Clean: 0.0113, BC: 0.0179, Asym: 0.0051) |  683.0 spec/s
+----------------------------------------------------------------------------------
+==> [Dual Supervised Loss] Epoch [ 4/16] Finished in 389.7s (672.6 spec/s)
+    Avg Train Loss: 0.038881 | Clean: 0.012870 | BC: 0.020388 | Asym: 0.005623
+    Learning Rate:  1.000000e-04
+    ★ New best model for Dual Supervised Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_dual_supervised.pth' (Loss: 0.038881)
+----------------------------------------------------------------------------------
+[Dual Supervised Loss] Ep [ 5/16] | File [ 1/16] | TrainLoss: 0.03299 (Clean: 0.0108, BC: 0.0173, Asym: 0.0048) |  671.6 spec/s
+[Dual Supervised Loss] Ep [ 5/16] | File [ 2/16] | TrainLoss: 0.03297 (Clean: 0.0109, BC: 0.0174, Asym: 0.0046) |  680.3 spec/s
+[Dual Supervised Loss] Ep [ 5/16] | File [ 3/16] | TrainLoss: 0.03352 (Clean: 0.0108, BC: 0.0174, Asym: 0.0053) |  682.1 spec/s
+[Dual Supervised Loss] Ep [ 5/16] | File [ 4/16] | TrainLoss: 0.03338 (Clean: 0.0110, BC: 0.0176, Asym: 0.0048) |  672.9 spec/s
+[Dual Supervised Loss] Ep [ 5/16] | File [ 5/16] | TrainLoss: 0.03280 (Clean: 0.0107, BC: 0.0172, Asym: 0.0049) |  678.9 spec/s
+[Dual Supervised Loss] Ep [ 5/16] | File [ 6/16] | TrainLoss: 0.03420 (Clean: 0.0112, BC: 0.0179, Asym: 0.0051) |  679.5 spec/s
+[Dual Supervised Loss] Ep [ 5/16] | File [ 7/16] | TrainLoss: 0.03323 (Clean: 0.0109, BC: 0.0175, Asym: 0.0049) |  676.7 spec/s
+[Dual Supervised Loss] Ep [ 5/16] | File [ 8/16] | TrainLoss: 0.03261 (Clean: 0.0109, BC: 0.0175, Asym: 0.0042) |  678.7 spec/s
+[Dual Supervised Loss] Ep [ 5/16] | File [ 9/16] | TrainLoss: 0.03239 (Clean: 0.0104, BC: 0.0167, Asym: 0.0053) |  671.2 spec/s
+[Dual Supervised Loss] Ep [ 5/16] | File [10/16] | TrainLoss: 0.03352 (Clean: 0.0110, BC: 0.0177, Asym: 0.0048) |  677.4 spec/s
+[Dual Supervised Loss] Ep [ 5/16] | File [11/16] | TrainLoss: 0.03195 (Clean: 0.0103, BC: 0.0165, Asym: 0.0052) |  678.7 spec/s
+[Dual Supervised Loss] Ep [ 5/16] | File [12/16] | TrainLoss: 0.03260 (Clean: 0.0107, BC: 0.0172, Asym: 0.0047) |  681.1 spec/s
+[Dual Supervised Loss] Ep [ 5/16] | File [13/16] | TrainLoss: 0.03122 (Clean: 0.0101, BC: 0.0163, Asym: 0.0048) |  682.7 spec/s
+[Dual Supervised Loss] Ep [ 5/16] | File [14/16] | TrainLoss: 0.03152 (Clean: 0.0103, BC: 0.0166, Asym: 0.0045) |  677.9 spec/s
+[Dual Supervised Loss] Ep [ 5/16] | File [15/16] | TrainLoss: 0.03150 (Clean: 0.0101, BC: 0.0162, Asym: 0.0052) |  681.2 spec/s
+[Dual Supervised Loss] Ep [ 5/16] | File [16/16] | TrainLoss: 0.03145 (Clean: 0.0104, BC: 0.0167, Asym: 0.0043) |  683.2 spec/s
+----------------------------------------------------------------------------------
+==> [Dual Supervised Loss] Epoch [ 5/16] Finished in 390.9s (670.6 spec/s)
+    Avg Train Loss: 0.032615 | Clean: 0.010667 | BC: 0.017105 | Asym: 0.004842
+    Learning Rate:  1.000000e-04
+    ★ New best model for Dual Supervised Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_dual_supervised.pth' (Loss: 0.032615)
+----------------------------------------------------------------------------------
+[Dual Supervised Loss] Ep [ 6/16] | File [ 1/16] | TrainLoss: 0.02955 (Clean: 0.0096, BC: 0.0155, Asym: 0.0044) |  676.6 spec/s
+[Dual Supervised Loss] Ep [ 6/16] | File [ 2/16] | TrainLoss: 0.03046 (Clean: 0.0097, BC: 0.0157, Asym: 0.0050) |  680.5 spec/s
+[Dual Supervised Loss] Ep [ 6/16] | File [ 3/16] | TrainLoss: 0.03026 (Clean: 0.0100, BC: 0.0160, Asym: 0.0043) |  674.3 spec/s
+[Dual Supervised Loss] Ep [ 6/16] | File [ 4/16] | TrainLoss: 0.02915 (Clean: 0.0095, BC: 0.0153, Asym: 0.0044) |  677.2 spec/s
+[Dual Supervised Loss] Ep [ 6/16] | File [ 5/16] | TrainLoss: 0.02925 (Clean: 0.0095, BC: 0.0153, Asym: 0.0044) |  674.9 spec/s
+[Dual Supervised Loss] Ep [ 6/16] | File [ 6/16] | TrainLoss: 0.02886 (Clean: 0.0094, BC: 0.0151, Asym: 0.0044) |  668.4 spec/s
+[Dual Supervised Loss] Ep [ 6/16] | File [ 7/16] | TrainLoss: 0.02945 (Clean: 0.0096, BC: 0.0155, Asym: 0.0044) |  676.2 spec/s
+[Dual Supervised Loss] Ep [ 6/16] | File [ 8/16] | TrainLoss: 0.02779 (Clean: 0.0090, BC: 0.0146, Asym: 0.0042) |  673.2 spec/s
+[Dual Supervised Loss] Ep [ 6/16] | File [ 9/16] | TrainLoss: 0.02928 (Clean: 0.0095, BC: 0.0153, Asym: 0.0044) |  631.1 spec/s
+[Dual Supervised Loss] Ep [ 6/16] | File [10/16] | TrainLoss: 0.02900 (Clean: 0.0093, BC: 0.0150, Asym: 0.0047) |  645.4 spec/s
+[Dual Supervised Loss] Ep [ 6/16] | File [11/16] | TrainLoss: 0.02767 (Clean: 0.0090, BC: 0.0145, Asym: 0.0042) |  666.1 spec/s
+[Dual Supervised Loss] Ep [ 6/16] | File [12/16] | TrainLoss: 0.02803 (Clean: 0.0091, BC: 0.0147, Asym: 0.0042) |  667.8 spec/s
+[Dual Supervised Loss] Ep [ 6/16] | File [13/16] | TrainLoss: 0.03555 (Clean: 0.0115, BC: 0.0184, Asym: 0.0056) |  678.6 spec/s
+[Dual Supervised Loss] Ep [ 6/16] | File [14/16] | TrainLoss: 0.02847 (Clean: 0.0093, BC: 0.0149, Asym: 0.0043) |  678.9 spec/s
+[Dual Supervised Loss] Ep [ 6/16] | File [15/16] | TrainLoss: 0.02695 (Clean: 0.0087, BC: 0.0141, Asym: 0.0041) |  667.5 spec/s
+[Dual Supervised Loss] Ep [ 6/16] | File [16/16] | TrainLoss: 0.02674 (Clean: 0.0088, BC: 0.0142, Asym: 0.0038) |  680.8 spec/s
+----------------------------------------------------------------------------------
+==> [Dual Supervised Loss] Epoch [ 6/16] Finished in 396.3s (661.6 spec/s)
+    Avg Train Loss: 0.029153 | Clean: 0.009466 | BC: 0.015264 | Asym: 0.004423
+    Learning Rate:  1.000000e-04
+    ★ New best model for Dual Supervised Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_dual_supervised.pth' (Loss: 0.029153)
+----------------------------------------------------------------------------------
+[Dual Supervised Loss] Ep [ 7/16] | File [ 1/16] | TrainLoss: 0.02696 (Clean: 0.0088, BC: 0.0142, Asym: 0.0040) |  670.1 spec/s
+[Dual Supervised Loss] Ep [ 7/16] | File [ 2/16] | TrainLoss: 0.02691 (Clean: 0.0087, BC: 0.0141, Asym: 0.0040) |  678.6 spec/s
+[Dual Supervised Loss] Ep [ 7/16] | File [ 3/16] | TrainLoss: 0.03081 (Clean: 0.0100, BC: 0.0161, Asym: 0.0047) |  675.9 spec/s
+[Dual Supervised Loss] Ep [ 7/16] | File [ 4/16] | TrainLoss: 0.02928 (Clean: 0.0095, BC: 0.0152, Asym: 0.0046) |  679.6 spec/s
+[Dual Supervised Loss] Ep [ 7/16] | File [ 5/16] | TrainLoss: 0.02704 (Clean: 0.0088, BC: 0.0141, Asym: 0.0041) |  680.2 spec/s
+[Dual Supervised Loss] Ep [ 7/16] | File [ 6/16] | TrainLoss: 0.02787 (Clean: 0.0090, BC: 0.0145, Asym: 0.0044) |  680.9 spec/s
+[Dual Supervised Loss] Ep [ 7/16] | File [ 7/16] | TrainLoss: 0.02656 (Clean: 0.0085, BC: 0.0138, Asym: 0.0042) |  680.3 spec/s
+[Dual Supervised Loss] Ep [ 7/16] | File [ 8/16] | TrainLoss: 0.02496 (Clean: 0.0082, BC: 0.0133, Asym: 0.0035) |  680.6 spec/s
+[Dual Supervised Loss] Ep [ 7/16] | File [ 9/16] | TrainLoss: 0.02510 (Clean: 0.0081, BC: 0.0130, Asym: 0.0040) |  681.3 spec/s
+[Dual Supervised Loss] Ep [ 7/16] | File [10/16] | TrainLoss: 0.02541 (Clean: 0.0082, BC: 0.0132, Asym: 0.0040) |  681.5 spec/s
+[Dual Supervised Loss] Ep [ 7/16] | File [11/16] | TrainLoss: 0.02583 (Clean: 0.0085, BC: 0.0138, Asym: 0.0036) |  677.6 spec/s
+[Dual Supervised Loss] Ep [ 7/16] | File [12/16] | TrainLoss: 0.02610 (Clean: 0.0083, BC: 0.0134, Asym: 0.0044) |  677.2 spec/s
+[Dual Supervised Loss] Ep [ 7/16] | File [13/16] | TrainLoss: 0.02408 (Clean: 0.0077, BC: 0.0126, Asym: 0.0038) |  674.6 spec/s
+[Dual Supervised Loss] Ep [ 7/16] | File [14/16] | TrainLoss: 0.02475 (Clean: 0.0079, BC: 0.0129, Asym: 0.0039) |  676.9 spec/s
+[Dual Supervised Loss] Ep [ 7/16] | File [15/16] | TrainLoss: 0.02460 (Clean: 0.0079, BC: 0.0128, Asym: 0.0038) |  673.5 spec/s
+[Dual Supervised Loss] Ep [ 7/16] | File [16/16] | TrainLoss: 0.02516 (Clean: 0.0082, BC: 0.0133, Asym: 0.0037) |  681.3 spec/s
+----------------------------------------------------------------------------------
+==> [Dual Supervised Loss] Epoch [ 7/16] Finished in 390.7s (671.0 spec/s)
+    Avg Train Loss: 0.026339 | Clean: 0.008515 | BC: 0.013770 | Asym: 0.004054
+    Learning Rate:  1.000000e-04
+    ★ New best model for Dual Supervised Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_dual_supervised.pth' (Loss: 0.026339)
+----------------------------------------------------------------------------------
+[Dual Supervised Loss] Ep [ 8/16] | File [ 1/16] | TrainLoss: 0.02530 (Clean: 0.0082, BC: 0.0132, Asym: 0.0040) |  679.0 spec/s
+[Dual Supervised Loss] Ep [ 8/16] | File [ 2/16] | TrainLoss: 0.02345 (Clean: 0.0076, BC: 0.0123, Asym: 0.0036) |  679.9 spec/s
+[Dual Supervised Loss] Ep [ 8/16] | File [ 3/16] | TrainLoss: 0.02379 (Clean: 0.0077, BC: 0.0124, Asym: 0.0037) |  680.6 spec/s
+[Dual Supervised Loss] Ep [ 8/16] | File [ 4/16] | TrainLoss: 0.02399 (Clean: 0.0078, BC: 0.0126, Asym: 0.0036) |  677.4 spec/s
+[Dual Supervised Loss] Ep [ 8/16] | File [ 5/16] | TrainLoss: 0.02386 (Clean: 0.0076, BC: 0.0123, Asym: 0.0040) |  680.5 spec/s
+[Dual Supervised Loss] Ep [ 8/16] | File [ 6/16] | TrainLoss: 0.02321 (Clean: 0.0076, BC: 0.0123, Asym: 0.0033) |  680.5 spec/s
+[Dual Supervised Loss] Ep [ 8/16] | File [ 7/16] | TrainLoss: 0.02359 (Clean: 0.0076, BC: 0.0123, Asym: 0.0037) |  679.5 spec/s
+[Dual Supervised Loss] Ep [ 8/16] | File [ 8/16] | TrainLoss: 0.02593 (Clean: 0.0084, BC: 0.0135, Asym: 0.0040) |  680.5 spec/s
+[Dual Supervised Loss] Ep [ 8/16] | File [ 9/16] | TrainLoss: 0.02567 (Clean: 0.0082, BC: 0.0133, Asym: 0.0042) |  679.0 spec/s
+[Dual Supervised Loss] Ep [ 8/16] | File [10/16] | TrainLoss: 0.02406 (Clean: 0.0079, BC: 0.0128, Asym: 0.0033) |  680.6 spec/s
+[Dual Supervised Loss] Ep [ 8/16] | File [11/16] | TrainLoss: 0.02286 (Clean: 0.0074, BC: 0.0119, Asym: 0.0036) |  680.2 spec/s
+[Dual Supervised Loss] Ep [ 8/16] | File [12/16] | TrainLoss: 0.02198 (Clean: 0.0071, BC: 0.0114, Asym: 0.0035) |  680.2 spec/s
+[Dual Supervised Loss] Ep [ 8/16] | File [13/16] | TrainLoss: 0.02186 (Clean: 0.0070, BC: 0.0114, Asym: 0.0034) |  680.1 spec/s
+[Dual Supervised Loss] Ep [ 8/16] | File [14/16] | TrainLoss: 0.02281 (Clean: 0.0073, BC: 0.0120, Asym: 0.0035) |  674.9 spec/s
+[Dual Supervised Loss] Ep [ 8/16] | File [15/16] | TrainLoss: 0.02429 (Clean: 0.0078, BC: 0.0126, Asym: 0.0039) |  674.3 spec/s
+[Dual Supervised Loss] Ep [ 8/16] | File [16/16] | TrainLoss: 0.02272 (Clean: 0.0073, BC: 0.0118, Asym: 0.0036) |  684.1 spec/s
+----------------------------------------------------------------------------------
+==> [Dual Supervised Loss] Epoch [ 8/16] Finished in 389.8s (672.4 spec/s)
+    Avg Train Loss: 0.023710 | Clean: 0.007645 | BC: 0.012389 | Asym: 0.003676
+    Learning Rate:  1.000000e-04
+    ★ New best model for Dual Supervised Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_dual_supervised.pth' (Loss: 0.023710)
+----------------------------------------------------------------------------------
+[Dual Supervised Loss] Ep [ 9/16] | File [ 1/16] | TrainLoss: 0.02088 (Clean: 0.0067, BC: 0.0109, Asym: 0.0032) |  669.3 spec/s
+[Dual Supervised Loss] Ep [ 9/16] | File [ 2/16] | TrainLoss: 0.02133 (Clean: 0.0069, BC: 0.0112, Asym: 0.0032) |  656.1 spec/s
+[Dual Supervised Loss] Ep [ 9/16] | File [ 3/16] | TrainLoss: 0.02277 (Clean: 0.0073, BC: 0.0118, Asym: 0.0036) |  666.1 spec/s
+[Dual Supervised Loss] Ep [ 9/16] | File [ 4/16] | TrainLoss: 0.02137 (Clean: 0.0068, BC: 0.0111, Asym: 0.0034) |  632.8 spec/s
+[Dual Supervised Loss] Ep [ 9/16] | File [ 5/16] | TrainLoss: 0.02101 (Clean: 0.0068, BC: 0.0111, Asym: 0.0032) |  668.0 spec/s
+[Dual Supervised Loss] Ep [ 9/16] | File [ 6/16] | TrainLoss: 0.02072 (Clean: 0.0066, BC: 0.0107, Asym: 0.0034) |  677.3 spec/s
+[Dual Supervised Loss] Ep [ 9/16] | File [ 7/16] | TrainLoss: 0.04705 (Clean: 0.0159, BC: 0.0250, Asym: 0.0061) |  679.8 spec/s
+[Dual Supervised Loss] Ep [ 9/16] | File [ 8/16] | TrainLoss: 0.02935 (Clean: 0.0095, BC: 0.0152, Asym: 0.0046) |  679.9 spec/s
+[Dual Supervised Loss] Ep [ 9/16] | File [ 9/16] | TrainLoss: 0.02451 (Clean: 0.0080, BC: 0.0130, Asym: 0.0035) |  678.0 spec/s
+[Dual Supervised Loss] Ep [ 9/16] | File [10/16] | TrainLoss: 0.02209 (Clean: 0.0071, BC: 0.0115, Asym: 0.0034) |  680.6 spec/s
+[Dual Supervised Loss] Ep [ 9/16] | File [11/16] | TrainLoss: 0.02089 (Clean: 0.0067, BC: 0.0109, Asym: 0.0033) |  680.1 spec/s
+[Dual Supervised Loss] Ep [ 9/16] | File [12/16] | TrainLoss: 0.02041 (Clean: 0.0066, BC: 0.0107, Asym: 0.0031) |  682.6 spec/s
+[Dual Supervised Loss] Ep [ 9/16] | File [13/16] | TrainLoss: 0.02129 (Clean: 0.0068, BC: 0.0111, Asym: 0.0034) |  677.0 spec/s
+[Dual Supervised Loss] Ep [ 9/16] | File [14/16] | TrainLoss: 0.03695 (Clean: 0.0121, BC: 0.0194, Asym: 0.0054) |  673.9 spec/s
+[Dual Supervised Loss] Ep [ 9/16] | File [15/16] | TrainLoss: 0.02552 (Clean: 0.0081, BC: 0.0131, Asym: 0.0042) |  667.9 spec/s
+[Dual Supervised Loss] Ep [ 9/16] | File [16/16] | TrainLoss: 0.02155 (Clean: 0.0070, BC: 0.0113, Asym: 0.0033) |  647.2 spec/s
+----------------------------------------------------------------------------------
+==> [Dual Supervised Loss] Epoch [ 9/16] Finished in 396.0s (662.1 spec/s)
+    Avg Train Loss: 0.024856 | Clean: 0.008058 | BC: 0.013018 | Asym: 0.003779
+    Learning Rate:  1.000000e-04
+----------------------------------------------------------------------------------
+[Dual Supervised Loss] Ep [10/16] | File [ 1/16] | TrainLoss: 0.02001 (Clean: 0.0063, BC: 0.0104, Asym: 0.0033) |  630.4 spec/s
+[Dual Supervised Loss] Ep [10/16] | File [ 2/16] | TrainLoss: 0.01992 (Clean: 0.0062, BC: 0.0101, Asym: 0.0036) |  630.6 spec/s
+[Dual Supervised Loss] Ep [10/16] | File [ 3/16] | TrainLoss: 0.02592 (Clean: 0.0084, BC: 0.0137, Asym: 0.0038) |  653.8 spec/s
+[Dual Supervised Loss] Ep [10/16] | File [ 4/16] | TrainLoss: 0.02881 (Clean: 0.0094, BC: 0.0152, Asym: 0.0042) |  651.5 spec/s
+[Dual Supervised Loss] Ep [10/16] | File [ 5/16] | TrainLoss: 0.02123 (Clean: 0.0068, BC: 0.0110, Asym: 0.0034) |  646.1 spec/s
+[Dual Supervised Loss] Ep [10/16] | File [ 6/16] | TrainLoss: 0.02352 (Clean: 0.0075, BC: 0.0122, Asym: 0.0038) |  648.7 spec/s
+[Dual Supervised Loss] Ep [10/16] | File [ 7/16] | TrainLoss: 0.02024 (Clean: 0.0065, BC: 0.0106, Asym: 0.0031) |  632.5 spec/s
+[Dual Supervised Loss] Ep [10/16] | File [ 8/16] | TrainLoss: 0.01944 (Clean: 0.0061, BC: 0.0100, Asym: 0.0033) |  650.0 spec/s
+[Dual Supervised Loss] Ep [10/16] | File [ 9/16] | TrainLoss: 0.01896 (Clean: 0.0061, BC: 0.0099, Asym: 0.0030) |  583.7 spec/s
+[Dual Supervised Loss] Ep [10/16] | File [10/16] | TrainLoss: 0.01940 (Clean: 0.0062, BC: 0.0101, Asym: 0.0031) |  597.9 spec/s
+[Dual Supervised Loss] Ep [10/16] | File [11/16] | TrainLoss: 0.02002 (Clean: 0.0063, BC: 0.0103, Asym: 0.0035) |  588.3 spec/s
+[Dual Supervised Loss] Ep [10/16] | File [12/16] | TrainLoss: 0.01854 (Clean: 0.0060, BC: 0.0098, Asym: 0.0027) |  616.2 spec/s
+[Dual Supervised Loss] Ep [10/16] | File [13/16] | TrainLoss: 0.01864 (Clean: 0.0058, BC: 0.0096, Asym: 0.0032) |  615.5 spec/s
+[Dual Supervised Loss] Ep [10/16] | File [14/16] | TrainLoss: 0.01918 (Clean: 0.0061, BC: 0.0101, Asym: 0.0030) |  618.3 spec/s
+[Dual Supervised Loss] Ep [10/16] | File [15/16] | TrainLoss: 0.02045 (Clean: 0.0064, BC: 0.0106, Asym: 0.0034) |  595.7 spec/s
+[Dual Supervised Loss] Ep [10/16] | File [16/16] | TrainLoss: 0.01919 (Clean: 0.0061, BC: 0.0101, Asym: 0.0030) |  628.2 spec/s
+----------------------------------------------------------------------------------
+==> [Dual Supervised Loss] Epoch [10/16] Finished in 425.5s (616.1 spec/s)
+    Avg Train Loss: 0.020842 | Clean: 0.006656 | BC: 0.010857 | Asym: 0.003328
+    Learning Rate:  1.000000e-04
+    ★ New best model for Dual Supervised Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_dual_supervised.pth' (Loss: 0.020842)
+----------------------------------------------------------------------------------
+[Dual Supervised Loss] Ep [11/16] | File [ 1/16] | TrainLoss: 0.01860 (Clean: 0.0059, BC: 0.0095, Asym: 0.0032) |  597.7 spec/s
+[Dual Supervised Loss] Ep [11/16] | File [ 2/16] | TrainLoss: 0.01893 (Clean: 0.0061, BC: 0.0101, Asym: 0.0027) |  577.0 spec/s
+[Dual Supervised Loss] Ep [11/16] | File [ 3/16] | TrainLoss: 0.01852 (Clean: 0.0058, BC: 0.0095, Asym: 0.0032) |  597.2 spec/s
+[Dual Supervised Loss] Ep [11/16] | File [ 4/16] | TrainLoss: 0.01884 (Clean: 0.0060, BC: 0.0098, Asym: 0.0031) |  594.3 spec/s
+[Dual Supervised Loss] Ep [11/16] | File [ 5/16] | TrainLoss: 0.01809 (Clean: 0.0057, BC: 0.0094, Asym: 0.0030) |  613.9 spec/s
+[Dual Supervised Loss] Ep [11/16] | File [ 6/16] | TrainLoss: 0.01752 (Clean: 0.0056, BC: 0.0092, Asym: 0.0026) |  615.6 spec/s
+[Dual Supervised Loss] Ep [11/16] | File [ 7/16] | TrainLoss: 0.02146 (Clean: 0.0067, BC: 0.0110, Asym: 0.0037) |  606.6 spec/s
+[Dual Supervised Loss] Ep [11/16] | File [ 8/16] | TrainLoss: 0.01935 (Clean: 0.0061, BC: 0.0100, Asym: 0.0033) |  599.0 spec/s
+[Dual Supervised Loss] Ep [11/16] | File [ 9/16] | TrainLoss: 0.01806 (Clean: 0.0057, BC: 0.0094, Asym: 0.0029) |  590.0 spec/s
+[Dual Supervised Loss] Ep [11/16] | File [10/16] | TrainLoss: 0.01807 (Clean: 0.0057, BC: 0.0093, Asym: 0.0031) |  608.0 spec/s
+[Dual Supervised Loss] Ep [11/16] | File [11/16] | TrainLoss: 0.02080 (Clean: 0.0065, BC: 0.0108, Asym: 0.0035) |  617.0 spec/s
+[Dual Supervised Loss] Ep [11/16] | File [12/16] | TrainLoss: 0.01867 (Clean: 0.0059, BC: 0.0097, Asym: 0.0031) |  637.2 spec/s
+[Dual Supervised Loss] Ep [11/16] | File [13/16] | TrainLoss: 0.01852 (Clean: 0.0059, BC: 0.0097, Asym: 0.0029) |  637.9 spec/s
+[Dual Supervised Loss] Ep [11/16] | File [14/16] | TrainLoss: 0.01824 (Clean: 0.0057, BC: 0.0094, Asym: 0.0032) |  637.9 spec/s
+[Dual Supervised Loss] Ep [11/16] | File [15/16] | TrainLoss: 0.01901 (Clean: 0.0061, BC: 0.0099, Asym: 0.0030) |  644.1 spec/s
+[Dual Supervised Loss] Ep [11/16] | File [16/16] | TrainLoss: 0.01776 (Clean: 0.0057, BC: 0.0093, Asym: 0.0028) |  651.7 spec/s
+----------------------------------------------------------------------------------
+==> [Dual Supervised Loss] Epoch [11/16] Finished in 432.3s (606.3 spec/s)
+    Avg Train Loss: 0.018777 | Clean: 0.005948 | BC: 0.009745 | Asym: 0.003084
+    Learning Rate:  1.000000e-04
+    ★ New best model for Dual Supervised Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_dual_supervised.pth' (Loss: 0.018777)
+----------------------------------------------------------------------------------
+[Dual Supervised Loss] Ep [12/16] | File [ 1/16] | TrainLoss: 0.01745 (Clean: 0.0054, BC: 0.0089, Asym: 0.0031) |  652.0 spec/s
+[Dual Supervised Loss] Ep [12/16] | File [ 2/16] | TrainLoss: 0.01821 (Clean: 0.0057, BC: 0.0094, Asym: 0.0032) |  646.5 spec/s
+[Dual Supervised Loss] Ep [12/16] | File [ 3/16] | TrainLoss: 0.01755 (Clean: 0.0056, BC: 0.0092, Asym: 0.0028) |  651.5 spec/s
+[Dual Supervised Loss] Ep [12/16] | File [ 4/16] | TrainLoss: 0.01732 (Clean: 0.0054, BC: 0.0089, Asym: 0.0030) |  649.9 spec/s
+[Dual Supervised Loss] Ep [12/16] | File [ 5/16] | TrainLoss: 0.01697 (Clean: 0.0054, BC: 0.0089, Asym: 0.0027) |  647.7 spec/s
+[Dual Supervised Loss] Ep [12/16] | File [ 6/16] | TrainLoss: 0.01754 (Clean: 0.0055, BC: 0.0090, Asym: 0.0030) |  635.1 spec/s
+[Dual Supervised Loss] Ep [12/16] | File [ 7/16] | TrainLoss: 0.01797 (Clean: 0.0057, BC: 0.0094, Asym: 0.0029) |  647.4 spec/s
+[Dual Supervised Loss] Ep [12/16] | File [ 8/16] | TrainLoss: 0.01729 (Clean: 0.0054, BC: 0.0089, Asym: 0.0030) |  643.6 spec/s
+[Dual Supervised Loss] Ep [12/16] | File [ 9/16] | TrainLoss: 0.01710 (Clean: 0.0055, BC: 0.0090, Asym: 0.0027) |  632.7 spec/s
+[Dual Supervised Loss] Ep [12/16] | File [10/16] | TrainLoss: 0.01689 (Clean: 0.0054, BC: 0.0088, Asym: 0.0028) |  637.5 spec/s
+[Dual Supervised Loss] Ep [12/16] | File [11/16] | TrainLoss: 0.01770 (Clean: 0.0055, BC: 0.0090, Asym: 0.0033) |  638.8 spec/s
+[Dual Supervised Loss] Ep [12/16] | File [12/16] | TrainLoss: 0.01980 (Clean: 0.0062, BC: 0.0102, Asym: 0.0034) |  651.6 spec/s
+[Dual Supervised Loss] Ep [12/16] | File [13/16] | TrainLoss: 0.01885 (Clean: 0.0059, BC: 0.0098, Asym: 0.0031) |  659.3 spec/s
+[Dual Supervised Loss] Ep [12/16] | File [14/16] | TrainLoss: 0.01707 (Clean: 0.0054, BC: 0.0090, Asym: 0.0027) |  653.4 spec/s
+[Dual Supervised Loss] Ep [12/16] | File [15/16] | TrainLoss: 0.01760 (Clean: 0.0056, BC: 0.0092, Asym: 0.0029) |  668.8 spec/s
+[Dual Supervised Loss] Ep [12/16] | File [16/16] | TrainLoss: 0.02918 (Clean: 0.0093, BC: 0.0153, Asym: 0.0046) |  679.8 spec/s
+----------------------------------------------------------------------------------
+==> [Dual Supervised Loss] Epoch [12/16] Finished in 408.4s (641.9 spec/s)
+    Avg Train Loss: 0.018406 | Clean: 0.005808 | BC: 0.009538 | Asym: 0.003059
+    Learning Rate:  1.000000e-04
+    ★ New best model for Dual Supervised Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_dual_supervised.pth' (Loss: 0.018406)
+----------------------------------------------------------------------------------
+[Dual Supervised Loss] Ep [13/16] | File [ 1/16] | TrainLoss: 0.03148 (Clean: 0.0101, BC: 0.0163, Asym: 0.0051) |  674.8 spec/s
+[Dual Supervised Loss] Ep [13/16] | File [ 2/16] | TrainLoss: 0.02112 (Clean: 0.0067, BC: 0.0109, Asym: 0.0035) |  676.9 spec/s
+[Dual Supervised Loss] Ep [13/16] | File [ 3/16] | TrainLoss: 0.01883 (Clean: 0.0058, BC: 0.0096, Asym: 0.0034) |  678.2 spec/s
+[Dual Supervised Loss] Ep [13/16] | File [ 4/16] | TrainLoss: 0.01944 (Clean: 0.0061, BC: 0.0101, Asym: 0.0032) |  678.5 spec/s
+[Dual Supervised Loss] Ep [13/16] | File [ 5/16] | TrainLoss: 0.02012 (Clean: 0.0064, BC: 0.0105, Asym: 0.0032) |  680.0 spec/s
+[Dual Supervised Loss] Ep [13/16] | File [ 6/16] | TrainLoss: 0.01780 (Clean: 0.0055, BC: 0.0091, Asym: 0.0032) |  678.2 spec/s
+[Dual Supervised Loss] Ep [13/16] | File [ 7/16] | TrainLoss: 0.01659 (Clean: 0.0052, BC: 0.0086, Asym: 0.0028) |  678.2 spec/s
+[Dual Supervised Loss] Ep [13/16] | File [ 8/16] | TrainLoss: 0.01646 (Clean: 0.0052, BC: 0.0085, Asym: 0.0028) |  679.6 spec/s
+[Dual Supervised Loss] Ep [13/16] | File [ 9/16] | TrainLoss: 0.01731 (Clean: 0.0055, BC: 0.0090, Asym: 0.0029) |  678.5 spec/s
+[Dual Supervised Loss] Ep [13/16] | File [10/16] | TrainLoss: 0.01610 (Clean: 0.0051, BC: 0.0084, Asym: 0.0026) |  675.5 spec/s
+[Dual Supervised Loss] Ep [13/16] | File [11/16] | TrainLoss: 0.01690 (Clean: 0.0053, BC: 0.0088, Asym: 0.0028) |  675.4 spec/s
+[Dual Supervised Loss] Ep [13/16] | File [12/16] | TrainLoss: 0.01715 (Clean: 0.0054, BC: 0.0088, Asym: 0.0029) |  677.3 spec/s
+[Dual Supervised Loss] Ep [13/16] | File [13/16] | TrainLoss: 0.01705 (Clean: 0.0053, BC: 0.0087, Asym: 0.0031) |  679.5 spec/s
+[Dual Supervised Loss] Ep [13/16] | File [14/16] | TrainLoss: 0.01645 (Clean: 0.0052, BC: 0.0086, Asym: 0.0026) |  678.8 spec/s
+[Dual Supervised Loss] Ep [13/16] | File [15/16] | TrainLoss: 0.01768 (Clean: 0.0056, BC: 0.0092, Asym: 0.0029) |  678.9 spec/s
+[Dual Supervised Loss] Ep [13/16] | File [16/16] | TrainLoss: 0.01588 (Clean: 0.0050, BC: 0.0081, Asym: 0.0028) |  680.8 spec/s
+----------------------------------------------------------------------------------
+==> [Dual Supervised Loss] Epoch [13/16] Finished in 390.4s (671.5 spec/s)
+    Avg Train Loss: 0.018522 | Clean: 0.005843 | BC: 0.009566 | Asym: 0.003114
+    Learning Rate:  1.000000e-04
+----------------------------------------------------------------------------------
+[Dual Supervised Loss] Ep [14/16] | File [ 1/16] | TrainLoss: 0.01613 (Clean: 0.0051, BC: 0.0084, Asym: 0.0026) |  679.2 spec/s
+[Dual Supervised Loss] Ep [14/16] | File [ 2/16] | TrainLoss: 0.01708 (Clean: 0.0053, BC: 0.0087, Asym: 0.0032) |  680.7 spec/s
+[Dual Supervised Loss] Ep [14/16] | File [ 3/16] | TrainLoss: 0.01709 (Clean: 0.0054, BC: 0.0089, Asym: 0.0028) |  682.6 spec/s
+[Dual Supervised Loss] Ep [14/16] | File [ 4/16] | TrainLoss: 0.01633 (Clean: 0.0051, BC: 0.0084, Asym: 0.0028) |  680.3 spec/s
+[Dual Supervised Loss] Ep [14/16] | File [ 5/16] | TrainLoss: 0.01592 (Clean: 0.0050, BC: 0.0083, Asym: 0.0027) |  681.3 spec/s
+[Dual Supervised Loss] Ep [14/16] | File [ 6/16] | TrainLoss: 0.01664 (Clean: 0.0052, BC: 0.0087, Asym: 0.0027) |  680.1 spec/s
+[Dual Supervised Loss] Ep [14/16] | File [ 7/16] | TrainLoss: 0.01701 (Clean: 0.0052, BC: 0.0085, Asym: 0.0033) |  681.1 spec/s
+[Dual Supervised Loss] Ep [14/16] | File [ 8/16] | TrainLoss: 0.01691 (Clean: 0.0052, BC: 0.0086, Asym: 0.0031) |  680.3 spec/s
+[Dual Supervised Loss] Ep [14/16] | File [ 9/16] | TrainLoss: 0.01648 (Clean: 0.0052, BC: 0.0086, Asym: 0.0028) |  680.3 spec/s
+[Dual Supervised Loss] Ep [14/16] | File [10/16] | TrainLoss: 0.01597 (Clean: 0.0051, BC: 0.0083, Asym: 0.0026) |  676.1 spec/s
+[Dual Supervised Loss] Ep [14/16] | File [11/16] | TrainLoss: 0.01534 (Clean: 0.0049, BC: 0.0080, Asym: 0.0024) |  675.0 spec/s
+[Dual Supervised Loss] Ep [14/16] | File [12/16] | TrainLoss: 0.01722 (Clean: 0.0053, BC: 0.0087, Asym: 0.0032) |  676.7 spec/s
+[Dual Supervised Loss] Ep [14/16] | File [13/16] | TrainLoss: 0.01740 (Clean: 0.0055, BC: 0.0091, Asym: 0.0028) |  662.9 spec/s
+[Dual Supervised Loss] Ep [14/16] | File [14/16] | TrainLoss: 0.01552 (Clean: 0.0049, BC: 0.0081, Asym: 0.0025) |  656.8 spec/s
+[Dual Supervised Loss] Ep [14/16] | File [15/16] | TrainLoss: 0.01612 (Clean: 0.0050, BC: 0.0082, Asym: 0.0029) |  661.5 spec/s
+[Dual Supervised Loss] Ep [14/16] | File [16/16] | TrainLoss: 0.01647 (Clean: 0.0051, BC: 0.0084, Asym: 0.0029) |  677.7 spec/s
+----------------------------------------------------------------------------------
+==> [Dual Supervised Loss] Epoch [14/16] Finished in 391.8s (669.1 spec/s)
+    Avg Train Loss: 0.016476 | Clean: 0.005152 | BC: 0.008489 | Asym: 0.002835
+    Learning Rate:  1.000000e-04
+    ★ New best model for Dual Supervised Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_dual_supervised.pth' (Loss: 0.016476)
+----------------------------------------------------------------------------------
+[Dual Supervised Loss] Ep [15/16] | File [ 1/16] | TrainLoss: 0.01559 (Clean: 0.0050, BC: 0.0082, Asym: 0.0024) |  675.5 spec/s
+[Dual Supervised Loss] Ep [15/16] | File [ 2/16] | TrainLoss: 0.01918 (Clean: 0.0061, BC: 0.0100, Asym: 0.0032) |  680.0 spec/s
+[Dual Supervised Loss] Ep [15/16] | File [ 3/16] | TrainLoss: 0.01720 (Clean: 0.0054, BC: 0.0089, Asym: 0.0029) |  680.4 spec/s
+[Dual Supervised Loss] Ep [15/16] | File [ 4/16] | TrainLoss: 0.01637 (Clean: 0.0050, BC: 0.0082, Asym: 0.0031) |  681.5 spec/s
+[Dual Supervised Loss] Ep [15/16] | File [ 5/16] | TrainLoss: 0.01620 (Clean: 0.0052, BC: 0.0086, Asym: 0.0025) |  679.5 spec/s
+[Dual Supervised Loss] Ep [15/16] | File [ 6/16] | TrainLoss: 0.01546 (Clean: 0.0049, BC: 0.0080, Asym: 0.0026) |  679.6 spec/s
+[Dual Supervised Loss] Ep [15/16] | File [ 7/16] | TrainLoss: 0.01540 (Clean: 0.0048, BC: 0.0079, Asym: 0.0027) |  668.5 spec/s
+[Dual Supervised Loss] Ep [15/16] | File [ 8/16] | TrainLoss: 0.01554 (Clean: 0.0049, BC: 0.0081, Asym: 0.0025) |  649.1 spec/s
+[Dual Supervised Loss] Ep [15/16] | File [ 9/16] | TrainLoss: 0.01637 (Clean: 0.0051, BC: 0.0083, Asym: 0.0030) |  653.3 spec/s
+[Dual Supervised Loss] Ep [15/16] | File [10/16] | TrainLoss: 0.01742 (Clean: 0.0055, BC: 0.0091, Asym: 0.0028) |  663.4 spec/s
+[Dual Supervised Loss] Ep [15/16] | File [11/16] | TrainLoss: 0.01596 (Clean: 0.0049, BC: 0.0082, Asym: 0.0029) |  665.4 spec/s
+[Dual Supervised Loss] Ep [15/16] | File [12/16] | TrainLoss: 0.01582 (Clean: 0.0049, BC: 0.0082, Asym: 0.0027) |  661.6 spec/s
+[Dual Supervised Loss] Ep [15/16] | File [13/16] | TrainLoss: 0.01512 (Clean: 0.0047, BC: 0.0078, Asym: 0.0026) |  663.0 spec/s
+[Dual Supervised Loss] Ep [15/16] | File [14/16] | TrainLoss: 0.01578 (Clean: 0.0049, BC: 0.0081, Asym: 0.0028) |  666.6 spec/s
+[Dual Supervised Loss] Ep [15/16] | File [15/16] | TrainLoss: 0.01475 (Clean: 0.0047, BC: 0.0077, Asym: 0.0023) |  670.0 spec/s
+[Dual Supervised Loss] Ep [15/16] | File [16/16] | TrainLoss: 0.01559 (Clean: 0.0047, BC: 0.0077, Asym: 0.0031) |  679.1 spec/s
+----------------------------------------------------------------------------------
+==> [Dual Supervised Loss] Epoch [15/16] Finished in 395.3s (663.1 spec/s)
+    Avg Train Loss: 0.016109 | Clean: 0.005043 | BC: 0.008316 | Asym: 0.002750
+    Learning Rate:  1.000000e-04
+    ★ New best model for Dual Supervised Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_dual_supervised.pth' (Loss: 0.016109)
+----------------------------------------------------------------------------------
+[Dual Supervised Loss] Ep [16/16] | File [ 1/16] | TrainLoss: 0.01584 (Clean: 0.0049, BC: 0.0080, Asym: 0.0030) |  677.7 spec/s
+[Dual Supervised Loss] Ep [16/16] | File [ 2/16] | TrainLoss: 0.01651 (Clean: 0.0052, BC: 0.0087, Asym: 0.0026) |  669.7 spec/s
+[Dual Supervised Loss] Ep [16/16] | File [ 3/16] | TrainLoss: 0.01591 (Clean: 0.0050, BC: 0.0082, Asym: 0.0028) |  632.0 spec/s
+[Dual Supervised Loss] Ep [16/16] | File [ 4/16] | TrainLoss: 0.01711 (Clean: 0.0054, BC: 0.0089, Asym: 0.0028) |  336.3 spec/s
+[Dual Supervised Loss] Ep [16/16] | File [ 5/16] | TrainLoss: 0.01510 (Clean: 0.0047, BC: 0.0077, Asym: 0.0027) |  349.3 spec/s
+[Dual Supervised Loss] Ep [16/16] | File [ 6/16] | TrainLoss: 0.01597 (Clean: 0.0050, BC: 0.0083, Asym: 0.0027) |  675.5 spec/s
+[Dual Supervised Loss] Ep [16/16] | File [ 7/16] | TrainLoss: 0.01506 (Clean: 0.0049, BC: 0.0080, Asym: 0.0022) |  677.8 spec/s
+[Dual Supervised Loss] Ep [16/16] | File [ 8/16] | TrainLoss: 0.01663 (Clean: 0.0052, BC: 0.0086, Asym: 0.0029) |  678.9 spec/s
+[Dual Supervised Loss] Ep [16/16] | File [ 9/16] | TrainLoss: 0.01532 (Clean: 0.0048, BC: 0.0078, Asym: 0.0027) |  676.3 spec/s
+[Dual Supervised Loss] Ep [16/16] | File [10/16] | TrainLoss: 0.01545 (Clean: 0.0048, BC: 0.0080, Asym: 0.0027) |  678.8 spec/s
+[Dual Supervised Loss] Ep [16/16] | File [11/16] | TrainLoss: 0.02044 (Clean: 0.0064, BC: 0.0106, Asym: 0.0034) |  681.9 spec/s
+[Dual Supervised Loss] Ep [16/16] | File [12/16] | TrainLoss: 0.01773 (Clean: 0.0055, BC: 0.0091, Asym: 0.0031) |  683.4 spec/s
+[Dual Supervised Loss] Ep [16/16] | File [13/16] | TrainLoss: 0.01585 (Clean: 0.0050, BC: 0.0082, Asym: 0.0027) |  683.4 spec/s
+[Dual Supervised Loss] Ep [16/16] | File [14/16] | TrainLoss: 0.01506 (Clean: 0.0046, BC: 0.0076, Asym: 0.0028) |  680.5 spec/s
+[Dual Supervised Loss] Ep [16/16] | File [15/16] | TrainLoss: 0.01648 (Clean: 0.0051, BC: 0.0084, Asym: 0.0030) |  681.7 spec/s
+[Dual Supervised Loss] Ep [16/16] | File [16/16] | TrainLoss: 0.01500 (Clean: 0.0048, BC: 0.0079, Asym: 0.0023) |  683.2 spec/s
+----------------------------------------------------------------------------------
+==> [Dual Supervised Loss] Epoch [16/16] Finished in 439.0s (597.2 spec/s)
+    Avg Train Loss: 0.016218 | Clean: 0.005074 | BC: 0.008374 | Asym: 0.002770
+    Learning Rate:  1.000000e-04
+----------------------------------------------------------------------------------
+
+[Dual Supervised Loss] Training Complete in 107.12 min! Best Loss: 0.016109 (at Epoch 15).
+
+
+==================================================================================
+ TRAINING: Single End-to-End Loss 
+ Formulation: Single End-to-End [LogCosh(Clean) + Asym] 
+==================================================================================
+  - Model Architecture: PolyGaussNet3 (Degree 7, Kernel 31)
+  - Total Parameters:   148,426
+  - Device:             mps
+  - Target Epochs:      16
+  - Batch Size:         512
+  - Initial LR:         0.0001
+  - Min LR:             9e-08
+  - Lambda Asymmetric:  15.0
+  - Supervise BC stage: False
+  - Weights Destination:/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_end_to_end.pth
+==================================================================================
+
+[Single End-to-End Loss] Ep [ 1/16] | File [ 1/16] | TrainLoss: 0.78332 (Clean: 0.0690, BC: 0.0841, Asym: 0.7143) |  680.2 spec/s
+[Single End-to-End Loss] Ep [ 1/16] | File [ 2/16] | TrainLoss: 0.08300 (Clean: 0.0728, BC: 0.0974, Asym: 0.0102) |  683.1 spec/s
+[Single End-to-End Loss] Ep [ 1/16] | File [ 3/16] | TrainLoss: 0.07627 (Clean: 0.0707, BC: 0.0972, Asym: 0.0056) |  681.9 spec/s
+[Single End-to-End Loss] Ep [ 1/16] | File [ 4/16] | TrainLoss: 0.07469 (Clean: 0.0699, BC: 0.0972, Asym: 0.0048) |  668.4 spec/s
+[Single End-to-End Loss] Ep [ 1/16] | File [ 5/16] | TrainLoss: 0.07174 (Clean: 0.0674, BC: 0.0946, Asym: 0.0043) |  577.2 spec/s
+[Single End-to-End Loss] Ep [ 1/16] | File [ 6/16] | TrainLoss: 0.07071 (Clean: 0.0666, BC: 0.0939, Asym: 0.0041) |  592.7 spec/s
+[Single End-to-End Loss] Ep [ 1/16] | File [ 7/16] | TrainLoss: 0.06858 (Clean: 0.0644, BC: 0.0912, Asym: 0.0041) |  590.9 spec/s
+[Single End-to-End Loss] Ep [ 1/16] | File [ 8/16] | TrainLoss: 0.06765 (Clean: 0.0638, BC: 0.0906, Asym: 0.0039) |  587.7 spec/s
+[Single End-to-End Loss] Ep [ 1/16] | File [ 9/16] | TrainLoss: 0.06584 (Clean: 0.0621, BC: 0.0884, Asym: 0.0037) |  605.4 spec/s
+[Single End-to-End Loss] Ep [ 1/16] | File [10/16] | TrainLoss: 0.06422 (Clean: 0.0601, BC: 0.0859, Asym: 0.0041) |  567.0 spec/s
+[Single End-to-End Loss] Ep [ 1/16] | File [11/16] | TrainLoss: 0.06219 (Clean: 0.0580, BC: 0.0832, Asym: 0.0042) |  567.8 spec/s
+[Single End-to-End Loss] Ep [ 1/16] | File [12/16] | TrainLoss: 0.06043 (Clean: 0.0568, BC: 0.0816, Asym: 0.0036) |  640.1 spec/s
+[Single End-to-End Loss] Ep [ 1/16] | File [13/16] | TrainLoss: 0.05882 (Clean: 0.0545, BC: 0.0785, Asym: 0.0044) |  665.5 spec/s
+[Single End-to-End Loss] Ep [ 1/16] | File [14/16] | TrainLoss: 0.05692 (Clean: 0.0528, BC: 0.0764, Asym: 0.0041) |  676.8 spec/s
+[Single End-to-End Loss] Ep [ 1/16] | File [15/16] | TrainLoss: 0.05464 (Clean: 0.0501, BC: 0.0728, Asym: 0.0046) |  680.5 spec/s
+[Single End-to-End Loss] Ep [ 1/16] | File [16/16] | TrainLoss: 0.05321 (Clean: 0.0486, BC: 0.0708, Asym: 0.0046) |  684.3 spec/s
+----------------------------------------------------------------------------------
+==> [Single End-to-End Loss] Epoch [ 1/16] Finished in 419.4s (625.0 spec/s)
+    Avg Train Loss: 0.110764 | Clean: 0.061733 | BC: 0.086492 | Asym: 0.049031
+    Learning Rate:  1.000000e-04
+    ★ New best model for Single End-to-End Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_end_to_end.pth' (Loss: 0.110764)
+----------------------------------------------------------------------------------
+[Single End-to-End Loss] Ep [ 2/16] | File [ 1/16] | TrainLoss: 0.05066 (Clean: 0.0467, BC: 0.0682, Asym: 0.0040) |  680.4 spec/s
+[Single End-to-End Loss] Ep [ 2/16] | File [ 2/16] | TrainLoss: 0.04868 (Clean: 0.0444, BC: 0.0653, Asym: 0.0043) |  681.0 spec/s
+[Single End-to-End Loss] Ep [ 2/16] | File [ 3/16] | TrainLoss: 0.04676 (Clean: 0.0430, BC: 0.0634, Asym: 0.0038) |  681.2 spec/s
+[Single End-to-End Loss] Ep [ 2/16] | File [ 4/16] | TrainLoss: 0.04531 (Clean: 0.0405, BC: 0.0600, Asym: 0.0048) |  680.7 spec/s
+[Single End-to-End Loss] Ep [ 2/16] | File [ 5/16] | TrainLoss: 0.04353 (Clean: 0.0396, BC: 0.0588, Asym: 0.0039) |  682.2 spec/s
+[Single End-to-End Loss] Ep [ 2/16] | File [ 6/16] | TrainLoss: 0.04385 (Clean: 0.0399, BC: 0.0592, Asym: 0.0040) |  682.0 spec/s
+[Single End-to-End Loss] Ep [ 2/16] | File [ 7/16] | TrainLoss: 0.04163 (Clean: 0.0381, BC: 0.0568, Asym: 0.0035) |  681.4 spec/s
+[Single End-to-End Loss] Ep [ 2/16] | File [ 8/16] | TrainLoss: 0.03978 (Clean: 0.0357, BC: 0.0535, Asym: 0.0040) |  682.8 spec/s
+[Single End-to-End Loss] Ep [ 2/16] | File [ 9/16] | TrainLoss: 0.03911 (Clean: 0.0351, BC: 0.0526, Asym: 0.0040) |  683.9 spec/s
+[Single End-to-End Loss] Ep [ 2/16] | File [10/16] | TrainLoss: 0.03736 (Clean: 0.0341, BC: 0.0513, Asym: 0.0033) |  681.8 spec/s
+[Single End-to-End Loss] Ep [ 2/16] | File [11/16] | TrainLoss: 0.03610 (Clean: 0.0327, BC: 0.0493, Asym: 0.0034) |  681.0 spec/s
+[Single End-to-End Loss] Ep [ 2/16] | File [12/16] | TrainLoss: 0.03563 (Clean: 0.0321, BC: 0.0485, Asym: 0.0035) |  680.9 spec/s
+[Single End-to-End Loss] Ep [ 2/16] | File [13/16] | TrainLoss: 0.03432 (Clean: 0.0311, BC: 0.0470, Asym: 0.0032) |  683.1 spec/s
+[Single End-to-End Loss] Ep [ 2/16] | File [14/16] | TrainLoss: 0.03379 (Clean: 0.0304, BC: 0.0460, Asym: 0.0034) |  684.5 spec/s
+[Single End-to-End Loss] Ep [ 2/16] | File [15/16] | TrainLoss: 0.03260 (Clean: 0.0295, BC: 0.0447, Asym: 0.0031) |  684.1 spec/s
+[Single End-to-End Loss] Ep [ 2/16] | File [16/16] | TrainLoss: 0.03233 (Clean: 0.0287, BC: 0.0436, Asym: 0.0036) |  684.4 spec/s
+----------------------------------------------------------------------------------
+==> [Single End-to-End Loss] Epoch [ 2/16] Finished in 387.5s (676.5 spec/s)
+    Avg Train Loss: 0.040091 | Clean: 0.036354 | BC: 0.054256 | Asym: 0.003737
+    Learning Rate:  1.000000e-04
+    ★ New best model for Single End-to-End Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_end_to_end.pth' (Loss: 0.040091)
+----------------------------------------------------------------------------------
+[Single End-to-End Loss] Ep [ 3/16] | File [ 1/16] | TrainLoss: 0.03128 (Clean: 0.0283, BC: 0.0430, Asym: 0.0030) |  676.1 spec/s
+[Single End-to-End Loss] Ep [ 3/16] | File [ 2/16] | TrainLoss: 0.02945 (Clean: 0.0269, BC: 0.0411, Asym: 0.0025) |  681.3 spec/s
+[Single End-to-End Loss] Ep [ 3/16] | File [ 3/16] | TrainLoss: 0.02889 (Clean: 0.0259, BC: 0.0395, Asym: 0.0030) |  682.2 spec/s
+[Single End-to-End Loss] Ep [ 3/16] | File [ 4/16] | TrainLoss: 0.02881 (Clean: 0.0263, BC: 0.0402, Asym: 0.0025) |  682.0 spec/s
+[Single End-to-End Loss] Ep [ 3/16] | File [ 5/16] | TrainLoss: 0.02721 (Clean: 0.0247, BC: 0.0379, Asym: 0.0025) |  681.7 spec/s
+[Single End-to-End Loss] Ep [ 3/16] | File [ 6/16] | TrainLoss: 0.02678 (Clean: 0.0242, BC: 0.0371, Asym: 0.0026) |  683.0 spec/s
+[Single End-to-End Loss] Ep [ 3/16] | File [ 7/16] | TrainLoss: 0.02616 (Clean: 0.0238, BC: 0.0366, Asym: 0.0024) |  684.4 spec/s
+[Single End-to-End Loss] Ep [ 3/16] | File [ 8/16] | TrainLoss: 0.02561 (Clean: 0.0232, BC: 0.0358, Asym: 0.0024) |  661.5 spec/s
+[Single End-to-End Loss] Ep [ 3/16] | File [ 9/16] | TrainLoss: 0.02617 (Clean: 0.0234, BC: 0.0360, Asym: 0.0028) |  679.9 spec/s
+[Single End-to-End Loss] Ep [ 3/16] | File [10/16] | TrainLoss: 0.02435 (Clean: 0.0222, BC: 0.0343, Asym: 0.0022) |  680.9 spec/s
+[Single End-to-End Loss] Ep [ 3/16] | File [11/16] | TrainLoss: 0.02401 (Clean: 0.0216, BC: 0.0335, Asym: 0.0024) |  682.7 spec/s
+[Single End-to-End Loss] Ep [ 3/16] | File [12/16] | TrainLoss: 0.02410 (Clean: 0.0217, BC: 0.0337, Asym: 0.0024) |  683.0 spec/s
+[Single End-to-End Loss] Ep [ 3/16] | File [13/16] | TrainLoss: 0.02347 (Clean: 0.0210, BC: 0.0326, Asym: 0.0025) |  682.9 spec/s
+[Single End-to-End Loss] Ep [ 3/16] | File [14/16] | TrainLoss: 0.02298 (Clean: 0.0211, BC: 0.0328, Asym: 0.0019) |  682.9 spec/s
+[Single End-to-End Loss] Ep [ 3/16] | File [15/16] | TrainLoss: 0.02294 (Clean: 0.0201, BC: 0.0312, Asym: 0.0029) |  680.3 spec/s
+[Single End-to-End Loss] Ep [ 3/16] | File [16/16] | TrainLoss: 0.02258 (Clean: 0.0204, BC: 0.0319, Asym: 0.0021) |  685.2 spec/s
+----------------------------------------------------------------------------------
+==> [Single End-to-End Loss] Epoch [ 3/16] Finished in 388.8s (674.2 spec/s)
+    Avg Train Loss: 0.025924 | Clean: 0.023420 | BC: 0.036073 | Asym: 0.002503
+    Learning Rate:  1.000000e-04
+    ★ New best model for Single End-to-End Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_end_to_end.pth' (Loss: 0.025924)
+----------------------------------------------------------------------------------
+[Single End-to-End Loss] Ep [ 4/16] | File [ 1/16] | TrainLoss: 0.02179 (Clean: 0.0195, BC: 0.0305, Asym: 0.0023) |  681.9 spec/s
+[Single End-to-End Loss] Ep [ 4/16] | File [ 2/16] | TrainLoss: 0.02163 (Clean: 0.0194, BC: 0.0304, Asym: 0.0022) |  672.4 spec/s
+[Single End-to-End Loss] Ep [ 4/16] | File [ 3/16] | TrainLoss: 0.02076 (Clean: 0.0185, BC: 0.0291, Asym: 0.0022) |  679.3 spec/s
+[Single End-to-End Loss] Ep [ 4/16] | File [ 4/16] | TrainLoss: 0.02066 (Clean: 0.0184, BC: 0.0291, Asym: 0.0022) |  683.0 spec/s
+[Single End-to-End Loss] Ep [ 4/16] | File [ 5/16] | TrainLoss: 0.02095 (Clean: 0.0183, BC: 0.0288, Asym: 0.0027) |  683.1 spec/s
+[Single End-to-End Loss] Ep [ 4/16] | File [ 6/16] | TrainLoss: 0.01995 (Clean: 0.0179, BC: 0.0283, Asym: 0.0020) |  682.6 spec/s
+[Single End-to-End Loss] Ep [ 4/16] | File [ 7/16] | TrainLoss: 0.01961 (Clean: 0.0174, BC: 0.0275, Asym: 0.0022) |  683.3 spec/s
+[Single End-to-End Loss] Ep [ 4/16] | File [ 8/16] | TrainLoss: 0.02028 (Clean: 0.0175, BC: 0.0277, Asym: 0.0028) |  683.7 spec/s
+[Single End-to-End Loss] Ep [ 4/16] | File [ 9/16] | TrainLoss: 0.01987 (Clean: 0.0179, BC: 0.0284, Asym: 0.0019) |  682.3 spec/s
+[Single End-to-End Loss] Ep [ 4/16] | File [10/16] | TrainLoss: 0.01900 (Clean: 0.0169, BC: 0.0268, Asym: 0.0021) |  682.7 spec/s
+[Single End-to-End Loss] Ep [ 4/16] | File [11/16] | TrainLoss: 0.02027 (Clean: 0.0173, BC: 0.0274, Asym: 0.0030) |  681.3 spec/s
+[Single End-to-End Loss] Ep [ 4/16] | File [12/16] | TrainLoss: 0.02037 (Clean: 0.0185, BC: 0.0293, Asym: 0.0019) |  654.3 spec/s
+[Single End-to-End Loss] Ep [ 4/16] | File [13/16] | TrainLoss: 0.01839 (Clean: 0.0163, BC: 0.0259, Asym: 0.0020) |  571.8 spec/s
+[Single End-to-End Loss] Ep [ 4/16] | File [14/16] | TrainLoss: 0.01900 (Clean: 0.0166, BC: 0.0263, Asym: 0.0024) |  595.7 spec/s
+[Single End-to-End Loss] Ep [ 4/16] | File [15/16] | TrainLoss: 0.01827 (Clean: 0.0162, BC: 0.0259, Asym: 0.0021) |  595.0 spec/s
+[Single End-to-End Loss] Ep [ 4/16] | File [16/16] | TrainLoss: 0.01794 (Clean: 0.0160, BC: 0.0255, Asym: 0.0020) |  599.4 spec/s
+----------------------------------------------------------------------------------
+==> [Single End-to-End Loss] Epoch [ 4/16] Finished in 404.4s (648.3 spec/s)
+    Avg Train Loss: 0.019921 | Clean: 0.017666 | BC: 0.027925 | Asym: 0.002254
+    Learning Rate:  1.000000e-04
+    ★ New best model for Single End-to-End Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_end_to_end.pth' (Loss: 0.019921)
+----------------------------------------------------------------------------------
+[Single End-to-End Loss] Ep [ 5/16] | File [ 1/16] | TrainLoss: 0.01834 (Clean: 0.0157, BC: 0.0250, Asym: 0.0027) |  608.6 spec/s
+[Single End-to-End Loss] Ep [ 5/16] | File [ 2/16] | TrainLoss: 0.01909 (Clean: 0.0169, BC: 0.0270, Asym: 0.0021) |  585.1 spec/s
+[Single End-to-End Loss] Ep [ 5/16] | File [ 3/16] | TrainLoss: 0.01792 (Clean: 0.0157, BC: 0.0251, Asym: 0.0022) |  533.6 spec/s
+[Single End-to-End Loss] Ep [ 5/16] | File [ 4/16] | TrainLoss: 0.01822 (Clean: 0.0164, BC: 0.0262, Asym: 0.0018) |  576.8 spec/s
+[Single End-to-End Loss] Ep [ 5/16] | File [ 5/16] | TrainLoss: 0.02053 (Clean: 0.0180, BC: 0.0285, Asym: 0.0026) |  590.4 spec/s
+[Single End-to-End Loss] Ep [ 5/16] | File [ 6/16] | TrainLoss: 0.01938 (Clean: 0.0166, BC: 0.0264, Asym: 0.0028) |  678.1 spec/s
+[Single End-to-End Loss] Ep [ 5/16] | File [ 7/16] | TrainLoss: 0.02013 (Clean: 0.0180, BC: 0.0287, Asym: 0.0021) |  645.1 spec/s
+[Single End-to-End Loss] Ep [ 5/16] | File [ 8/16] | TrainLoss: 0.01753 (Clean: 0.0156, BC: 0.0249, Asym: 0.0020) |  672.5 spec/s
+[Single End-to-End Loss] Ep [ 5/16] | File [ 9/16] | TrainLoss: 0.01730 (Clean: 0.0152, BC: 0.0243, Asym: 0.0021) |  667.5 spec/s
+[Single End-to-End Loss] Ep [ 5/16] | File [10/16] | TrainLoss: 0.01736 (Clean: 0.0151, BC: 0.0242, Asym: 0.0023) |  668.3 spec/s
+[Single End-to-End Loss] Ep [ 5/16] | File [11/16] | TrainLoss: 0.01725 (Clean: 0.0151, BC: 0.0243, Asym: 0.0021) |  613.9 spec/s
+[Single End-to-End Loss] Ep [ 5/16] | File [12/16] | TrainLoss: 0.01698 (Clean: 0.0148, BC: 0.0239, Asym: 0.0022) |  645.9 spec/s
+[Single End-to-End Loss] Ep [ 5/16] | File [13/16] | TrainLoss: 0.01690 (Clean: 0.0148, BC: 0.0239, Asym: 0.0021) |  668.5 spec/s
+[Single End-to-End Loss] Ep [ 5/16] | File [14/16] | TrainLoss: 0.01766 (Clean: 0.0153, BC: 0.0246, Asym: 0.0023) |  615.9 spec/s
+[Single End-to-End Loss] Ep [ 5/16] | File [15/16] | TrainLoss: 0.01708 (Clean: 0.0151, BC: 0.0242, Asym: 0.0020) |  672.3 spec/s
+[Single End-to-End Loss] Ep [ 5/16] | File [16/16] | TrainLoss: 0.01720 (Clean: 0.0149, BC: 0.0240, Asym: 0.0023) |  610.1 spec/s
+----------------------------------------------------------------------------------
+==> [Single End-to-End Loss] Epoch [ 5/16] Finished in 423.2s (619.4 spec/s)
+    Avg Train Loss: 0.018055 | Clean: 0.015834 | BC: 0.025332 | Asym: 0.002220
+    Learning Rate:  1.000000e-04
+    ★ New best model for Single End-to-End Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_end_to_end.pth' (Loss: 0.018055)
+----------------------------------------------------------------------------------
+[Single End-to-End Loss] Ep [ 6/16] | File [ 1/16] | TrainLoss: 0.01698 (Clean: 0.0148, BC: 0.0239, Asym: 0.0021) |  455.9 spec/s
+[Single End-to-End Loss] Ep [ 6/16] | File [ 2/16] | TrainLoss: 0.01701 (Clean: 0.0149, BC: 0.0240, Asym: 0.0021) |  461.0 spec/s
+[Single End-to-End Loss] Ep [ 6/16] | File [ 3/16] | TrainLoss: 0.01743 (Clean: 0.0150, BC: 0.0241, Asym: 0.0024) |  461.7 spec/s
+[Single End-to-End Loss] Ep [ 6/16] | File [ 4/16] | TrainLoss: 0.02027 (Clean: 0.0167, BC: 0.0268, Asym: 0.0036) |  454.3 spec/s
+[Single End-to-End Loss] Ep [ 6/16] | File [ 5/16] | TrainLoss: 0.01876 (Clean: 0.0173, BC: 0.0276, Asym: 0.0015) |  454.5 spec/s
+[Single End-to-End Loss] Ep [ 6/16] | File [ 6/16] | TrainLoss: 0.01700 (Clean: 0.0150, BC: 0.0240, Asym: 0.0020) |  466.0 spec/s
+[Single End-to-End Loss] Ep [ 6/16] | File [ 7/16] | TrainLoss: 0.01720 (Clean: 0.0149, BC: 0.0238, Asym: 0.0023) |  490.9 spec/s
+[Single End-to-End Loss] Ep [ 6/16] | File [ 8/16] | TrainLoss: 0.01622 (Clean: 0.0144, BC: 0.0232, Asym: 0.0018) |  590.6 spec/s
+[Single End-to-End Loss] Ep [ 6/16] | File [ 9/16] | TrainLoss: 0.01647 (Clean: 0.0143, BC: 0.0231, Asym: 0.0022) |  650.3 spec/s
+[Single End-to-End Loss] Ep [ 6/16] | File [10/16] | TrainLoss: 0.01785 (Clean: 0.0156, BC: 0.0251, Asym: 0.0023) |  658.6 spec/s
+[Single End-to-End Loss] Ep [ 6/16] | File [11/16] | TrainLoss: 0.01630 (Clean: 0.0140, BC: 0.0226, Asym: 0.0023) |  660.7 spec/s
+[Single End-to-End Loss] Ep [ 6/16] | File [12/16] | TrainLoss: 0.01599 (Clean: 0.0141, BC: 0.0227, Asym: 0.0019) |  628.6 spec/s
+[Single End-to-End Loss] Ep [ 6/16] | File [13/16] | TrainLoss: 0.01737 (Clean: 0.0152, BC: 0.0244, Asym: 0.0022) |  655.8 spec/s
+[Single End-to-End Loss] Ep [ 6/16] | File [14/16] | TrainLoss: 0.01603 (Clean: 0.0137, BC: 0.0222, Asym: 0.0023) |  659.1 spec/s
+[Single End-to-End Loss] Ep [ 6/16] | File [15/16] | TrainLoss: 0.01541 (Clean: 0.0135, BC: 0.0218, Asym: 0.0019) |  466.7 spec/s
+[Single End-to-End Loss] Ep [ 6/16] | File [16/16] | TrainLoss: 0.01571 (Clean: 0.0136, BC: 0.0221, Asym: 0.0021) |  481.7 spec/s
+----------------------------------------------------------------------------------
+==> [Single End-to-End Loss] Epoch [ 6/16] Finished in 499.6s (524.7 spec/s)
+    Avg Train Loss: 0.016999 | Clean: 0.014808 | BC: 0.023831 | Asym: 0.002191
+    Learning Rate:  1.000000e-04
+    ★ New best model for Single End-to-End Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_end_to_end.pth' (Loss: 0.016999)
+----------------------------------------------------------------------------------
+[Single End-to-End Loss] Ep [ 7/16] | File [ 1/16] | TrainLoss: 0.01523 (Clean: 0.0133, BC: 0.0216, Asym: 0.0019) |  505.5 spec/s
+[Single End-to-End Loss] Ep [ 7/16] | File [ 2/16] | TrainLoss: 0.01546 (Clean: 0.0132, BC: 0.0215, Asym: 0.0022) |  682.1 spec/s
+[Single End-to-End Loss] Ep [ 7/16] | File [ 3/16] | TrainLoss: 0.01593 (Clean: 0.0142, BC: 0.0229, Asym: 0.0018) |  679.5 spec/s
+[Single End-to-End Loss] Ep [ 7/16] | File [ 4/16] | TrainLoss: 0.01583 (Clean: 0.0138, BC: 0.0223, Asym: 0.0021) |  682.2 spec/s
+[Single End-to-End Loss] Ep [ 7/16] | File [ 5/16] | TrainLoss: 0.01553 (Clean: 0.0135, BC: 0.0219, Asym: 0.0021) |  683.9 spec/s
+[Single End-to-End Loss] Ep [ 7/16] | File [ 6/16] | TrainLoss: 0.01564 (Clean: 0.0136, BC: 0.0220, Asym: 0.0021) |  662.6 spec/s
+[Single End-to-End Loss] Ep [ 7/16] | File [ 7/16] | TrainLoss: 0.01522 (Clean: 0.0133, BC: 0.0216, Asym: 0.0019) |  662.3 spec/s
+[Single End-to-End Loss] Ep [ 7/16] | File [ 8/16] | TrainLoss: 0.01616 (Clean: 0.0141, BC: 0.0228, Asym: 0.0021) |  663.9 spec/s
+[Single End-to-End Loss] Ep [ 7/16] | File [ 9/16] | TrainLoss: 0.01542 (Clean: 0.0132, BC: 0.0213, Asym: 0.0023) |  664.5 spec/s
+[Single End-to-End Loss] Ep [ 7/16] | File [10/16] | TrainLoss: 0.01489 (Clean: 0.0131, BC: 0.0212, Asym: 0.0018) |  665.0 spec/s
+[Single End-to-End Loss] Ep [ 7/16] | File [11/16] | TrainLoss: 0.01491 (Clean: 0.0129, BC: 0.0209, Asym: 0.0020) |  664.7 spec/s
+[Single End-to-End Loss] Ep [ 7/16] | File [12/16] | TrainLoss: 0.01503 (Clean: 0.0131, BC: 0.0214, Asym: 0.0019) |  664.8 spec/s
+[Single End-to-End Loss] Ep [ 7/16] | File [13/16] | TrainLoss: 0.01536 (Clean: 0.0130, BC: 0.0210, Asym: 0.0024) |  665.6 spec/s
+[Single End-to-End Loss] Ep [ 7/16] | File [14/16] | TrainLoss: 0.01535 (Clean: 0.0137, BC: 0.0222, Asym: 0.0016) |  666.8 spec/s
+[Single End-to-End Loss] Ep [ 7/16] | File [15/16] | TrainLoss: 0.01446 (Clean: 0.0125, BC: 0.0203, Asym: 0.0020) |  666.5 spec/s
+[Single End-to-End Loss] Ep [ 7/16] | File [16/16] | TrainLoss: 0.01481 (Clean: 0.0126, BC: 0.0205, Asym: 0.0022) |  667.6 spec/s
+----------------------------------------------------------------------------------
+==> [Single End-to-End Loss] Epoch [ 7/16] Finished in 403.2s (650.1 spec/s)
+    Avg Train Loss: 0.015327 | Clean: 0.013307 | BC: 0.021588 | Asym: 0.002020
+    Learning Rate:  1.000000e-04
+    ★ New best model for Single End-to-End Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_end_to_end.pth' (Loss: 0.015327)
+----------------------------------------------------------------------------------
+[Single End-to-End Loss] Ep [ 8/16] | File [ 1/16] | TrainLoss: 0.01506 (Clean: 0.0132, BC: 0.0215, Asym: 0.0019) |  665.0 spec/s
+[Single End-to-End Loss] Ep [ 8/16] | File [ 2/16] | TrainLoss: 0.01436 (Clean: 0.0126, BC: 0.0205, Asym: 0.0018) |  661.6 spec/s
+[Single End-to-End Loss] Ep [ 8/16] | File [ 3/16] | TrainLoss: 0.01380 (Clean: 0.0122, BC: 0.0199, Asym: 0.0016) |  663.3 spec/s
+[Single End-to-End Loss] Ep [ 8/16] | File [ 4/16] | TrainLoss: 0.01450 (Clean: 0.0124, BC: 0.0202, Asym: 0.0021) |  664.1 spec/s
+[Single End-to-End Loss] Ep [ 8/16] | File [ 5/16] | TrainLoss: 0.01421 (Clean: 0.0124, BC: 0.0202, Asym: 0.0018) |  664.6 spec/s
+[Single End-to-End Loss] Ep [ 8/16] | File [ 6/16] | TrainLoss: 0.01446 (Clean: 0.0125, BC: 0.0204, Asym: 0.0020) |  663.1 spec/s
+[Single End-to-End Loss] Ep [ 8/16] | File [ 7/16] | TrainLoss: 0.01477 (Clean: 0.0126, BC: 0.0206, Asym: 0.0022) |  663.8 spec/s
+[Single End-to-End Loss] Ep [ 8/16] | File [ 8/16] | TrainLoss: 0.01561 (Clean: 0.0135, BC: 0.0220, Asym: 0.0021) |  664.3 spec/s
+[Single End-to-End Loss] Ep [ 8/16] | File [ 9/16] | TrainLoss: 0.01518 (Clean: 0.0131, BC: 0.0213, Asym: 0.0020) |  665.0 spec/s
+[Single End-to-End Loss] Ep [ 8/16] | File [10/16] | TrainLoss: 0.01500 (Clean: 0.0130, BC: 0.0212, Asym: 0.0020) |  665.1 spec/s
+[Single End-to-End Loss] Ep [ 8/16] | File [11/16] | TrainLoss: 0.01404 (Clean: 0.0121, BC: 0.0198, Asym: 0.0019) |  665.8 spec/s
+[Single End-to-End Loss] Ep [ 8/16] | File [12/16] | TrainLoss: 0.01376 (Clean: 0.0118, BC: 0.0193, Asym: 0.0019) |  665.1 spec/s
+[Single End-to-End Loss] Ep [ 8/16] | File [13/16] | TrainLoss: 0.01382 (Clean: 0.0120, BC: 0.0196, Asym: 0.0019) |  666.8 spec/s
+[Single End-to-End Loss] Ep [ 8/16] | File [14/16] | TrainLoss: 0.01649 (Clean: 0.0144, BC: 0.0234, Asym: 0.0021) |  665.0 spec/s
+[Single End-to-End Loss] Ep [ 8/16] | File [15/16] | TrainLoss: 0.01367 (Clean: 0.0118, BC: 0.0193, Asym: 0.0019) |  664.4 spec/s
+[Single End-to-End Loss] Ep [ 8/16] | File [16/16] | TrainLoss: 0.01346 (Clean: 0.0116, BC: 0.0189, Asym: 0.0019) |  665.3 spec/s
+----------------------------------------------------------------------------------
+==> [Single End-to-End Loss] Epoch [ 8/16] Finished in 398.2s (658.4 spec/s)
+    Avg Train Loss: 0.014511 | Clean: 0.012577 | BC: 0.020502 | Asym: 0.001935
+    Learning Rate:  1.000000e-04
+    ★ New best model for Single End-to-End Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_end_to_end.pth' (Loss: 0.014511)
+----------------------------------------------------------------------------------
+[Single End-to-End Loss] Ep [ 9/16] | File [ 1/16] | TrainLoss: 0.01349 (Clean: 0.0118, BC: 0.0193, Asym: 0.0017) |  662.0 spec/s
+[Single End-to-End Loss] Ep [ 9/16] | File [ 2/16] | TrainLoss: 0.01351 (Clean: 0.0117, BC: 0.0192, Asym: 0.0018) |  663.5 spec/s
+[Single End-to-End Loss] Ep [ 9/16] | File [ 3/16] | TrainLoss: 0.01440 (Clean: 0.0123, BC: 0.0201, Asym: 0.0021) |  665.5 spec/s
+[Single End-to-End Loss] Ep [ 9/16] | File [ 4/16] | TrainLoss: 0.01360 (Clean: 0.0117, BC: 0.0192, Asym: 0.0019) |  663.8 spec/s
+[Single End-to-End Loss] Ep [ 9/16] | File [ 5/16] | TrainLoss: 0.01319 (Clean: 0.0114, BC: 0.0186, Asym: 0.0018) |  663.3 spec/s
+[Single End-to-End Loss] Ep [ 9/16] | File [ 6/16] | TrainLoss: 0.01347 (Clean: 0.0116, BC: 0.0190, Asym: 0.0019) |  663.9 spec/s
+[Single End-to-End Loss] Ep [ 9/16] | File [ 7/16] | TrainLoss: 0.01418 (Clean: 0.0122, BC: 0.0200, Asym: 0.0020) |  665.3 spec/s
+[Single End-to-End Loss] Ep [ 9/16] | File [ 8/16] | TrainLoss: 0.01371 (Clean: 0.0118, BC: 0.0194, Asym: 0.0019) |  665.3 spec/s
+[Single End-to-End Loss] Ep [ 9/16] | File [ 9/16] | TrainLoss: 0.01336 (Clean: 0.0115, BC: 0.0189, Asym: 0.0018) |  664.9 spec/s
+[Single End-to-End Loss] Ep [ 9/16] | File [10/16] | TrainLoss: 0.01316 (Clean: 0.0113, BC: 0.0186, Asym: 0.0019) |  664.7 spec/s
+[Single End-to-End Loss] Ep [ 9/16] | File [11/16] | TrainLoss: 0.01393 (Clean: 0.0119, BC: 0.0195, Asym: 0.0020) |  666.0 spec/s
+[Single End-to-End Loss] Ep [ 9/16] | File [12/16] | TrainLoss: 0.01271 (Clean: 0.0110, BC: 0.0182, Asym: 0.0017) |  664.4 spec/s
+[Single End-to-End Loss] Ep [ 9/16] | File [13/16] | TrainLoss: 0.01380 (Clean: 0.0118, BC: 0.0194, Asym: 0.0020) |  664.3 spec/s
+[Single End-to-End Loss] Ep [ 9/16] | File [14/16] | TrainLoss: 0.01255 (Clean: 0.0110, BC: 0.0181, Asym: 0.0016) |  664.4 spec/s
+[Single End-to-End Loss] Ep [ 9/16] | File [15/16] | TrainLoss: 0.01264 (Clean: 0.0110, BC: 0.0181, Asym: 0.0016) |  664.0 spec/s
+[Single End-to-End Loss] Ep [ 9/16] | File [16/16] | TrainLoss: 0.01233 (Clean: 0.0105, BC: 0.0174, Asym: 0.0018) |  665.6 spec/s
+----------------------------------------------------------------------------------
+==> [Single End-to-End Loss] Epoch [ 9/16] Finished in 398.2s (658.3 spec/s)
+    Avg Train Loss: 0.013377 | Clean: 0.011535 | BC: 0.018933 | Asym: 0.001842
+    Learning Rate:  1.000000e-04
+    ★ New best model for Single End-to-End Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_end_to_end.pth' (Loss: 0.013377)
+----------------------------------------------------------------------------------
+[Single End-to-End Loss] Ep [10/16] | File [ 1/16] | TrainLoss: 0.01275 (Clean: 0.0109, BC: 0.0180, Asym: 0.0018) |  657.2 spec/s
+[Single End-to-End Loss] Ep [10/16] | File [ 2/16] | TrainLoss: 0.01302 (Clean: 0.0113, BC: 0.0186, Asym: 0.0017) |  664.4 spec/s
+[Single End-to-End Loss] Ep [10/16] | File [ 3/16] | TrainLoss: 0.01322 (Clean: 0.0115, BC: 0.0189, Asym: 0.0017) |  663.5 spec/s
+[Single End-to-End Loss] Ep [10/16] | File [ 4/16] | TrainLoss: 0.01475 (Clean: 0.0125, BC: 0.0205, Asym: 0.0022) |  660.4 spec/s
+[Single End-to-End Loss] Ep [10/16] | File [ 5/16] | TrainLoss: 0.01336 (Clean: 0.0117, BC: 0.0191, Asym: 0.0017) |  664.9 spec/s
+[Single End-to-End Loss] Ep [10/16] | File [ 6/16] | TrainLoss: 0.01251 (Clean: 0.0108, BC: 0.0178, Asym: 0.0017) |  665.6 spec/s
+[Single End-to-End Loss] Ep [10/16] | File [ 7/16] | TrainLoss: 0.01252 (Clean: 0.0107, BC: 0.0176, Asym: 0.0018) |  663.0 spec/s
+[Single End-to-End Loss] Ep [10/16] | File [ 8/16] | TrainLoss: 0.01291 (Clean: 0.0112, BC: 0.0184, Asym: 0.0017) |  664.0 spec/s
+[Single End-to-End Loss] Ep [10/16] | File [ 9/16] | TrainLoss: 0.01244 (Clean: 0.0109, BC: 0.0179, Asym: 0.0016) |  664.2 spec/s
+[Single End-to-End Loss] Ep [10/16] | File [10/16] | TrainLoss: 0.01237 (Clean: 0.0105, BC: 0.0173, Asym: 0.0019) |  664.5 spec/s
+[Single End-to-End Loss] Ep [10/16] | File [11/16] | TrainLoss: 0.01164 (Clean: 0.0100, BC: 0.0166, Asym: 0.0016) |  665.8 spec/s
+[Single End-to-End Loss] Ep [10/16] | File [12/16] | TrainLoss: 0.01200 (Clean: 0.0102, BC: 0.0169, Asym: 0.0018) |  664.6 spec/s
+[Single End-to-End Loss] Ep [10/16] | File [13/16] | TrainLoss: 0.01188 (Clean: 0.0104, BC: 0.0171, Asym: 0.0015) |  663.0 spec/s
+[Single End-to-End Loss] Ep [10/16] | File [14/16] | TrainLoss: 0.01183 (Clean: 0.0100, BC: 0.0164, Asym: 0.0019) |  662.6 spec/s
+[Single End-to-End Loss] Ep [10/16] | File [15/16] | TrainLoss: 0.01172 (Clean: 0.0097, BC: 0.0161, Asym: 0.0020) |  664.0 spec/s
+[Single End-to-End Loss] Ep [10/16] | File [16/16] | TrainLoss: 0.01326 (Clean: 0.0114, BC: 0.0188, Asym: 0.0019) |  666.2 spec/s
+----------------------------------------------------------------------------------
+==> [Single End-to-End Loss] Epoch [10/16] Finished in 398.8s (657.4 spec/s)
+    Avg Train Loss: 0.012638 | Clean: 0.010860 | BC: 0.017884 | Asym: 0.001778
+    Learning Rate:  1.000000e-04
+    ★ New best model for Single End-to-End Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_end_to_end.pth' (Loss: 0.012638)
+----------------------------------------------------------------------------------
+[Single End-to-End Loss] Ep [11/16] | File [ 1/16] | TrainLoss: 0.01246 (Clean: 0.0107, BC: 0.0177, Asym: 0.0018) |  663.6 spec/s
+[Single End-to-End Loss] Ep [11/16] | File [ 2/16] | TrainLoss: 0.01735 (Clean: 0.0153, BC: 0.0245, Asym: 0.0021) |  665.8 spec/s
+[Single End-to-End Loss] Ep [11/16] | File [ 3/16] | TrainLoss: 0.01375 (Clean: 0.0120, BC: 0.0197, Asym: 0.0017) |  665.7 spec/s
+[Single End-to-End Loss] Ep [11/16] | File [ 4/16] | TrainLoss: 0.01360 (Clean: 0.0113, BC: 0.0186, Asym: 0.0023) |  665.3 spec/s
+[Single End-to-End Loss] Ep [11/16] | File [ 5/16] | TrainLoss: 0.01198 (Clean: 0.0101, BC: 0.0168, Asym: 0.0018) |  665.8 spec/s
+[Single End-to-End Loss] Ep [11/16] | File [ 6/16] | TrainLoss: 0.01122 (Clean: 0.0097, BC: 0.0161, Asym: 0.0015) |  664.8 spec/s
+[Single End-to-End Loss] Ep [11/16] | File [ 7/16] | TrainLoss: 0.01109 (Clean: 0.0095, BC: 0.0157, Asym: 0.0016) |  664.8 spec/s
+[Single End-to-End Loss] Ep [11/16] | File [ 8/16] | TrainLoss: 0.01124 (Clean: 0.0096, BC: 0.0160, Asym: 0.0016) |  664.9 spec/s
+[Single End-to-End Loss] Ep [11/16] | File [ 9/16] | TrainLoss: 0.01162 (Clean: 0.0095, BC: 0.0158, Asym: 0.0021) |  666.2 spec/s
+[Single End-to-End Loss] Ep [11/16] | File [10/16] | TrainLoss: 0.01194 (Clean: 0.0103, BC: 0.0171, Asym: 0.0016) |  662.3 spec/s
+[Single End-to-End Loss] Ep [11/16] | File [11/16] | TrainLoss: 0.01145 (Clean: 0.0100, BC: 0.0166, Asym: 0.0014) |  665.0 spec/s
+[Single End-to-End Loss] Ep [11/16] | File [12/16] | TrainLoss: 0.01200 (Clean: 0.0101, BC: 0.0167, Asym: 0.0019) |  665.3 spec/s
+[Single End-to-End Loss] Ep [11/16] | File [13/16] | TrainLoss: 0.01093 (Clean: 0.0094, BC: 0.0155, Asym: 0.0016) |  666.0 spec/s
+[Single End-to-End Loss] Ep [11/16] | File [14/16] | TrainLoss: 0.01041 (Clean: 0.0091, BC: 0.0152, Asym: 0.0013) |  666.5 spec/s
+[Single End-to-End Loss] Ep [11/16] | File [15/16] | TrainLoss: 0.01073 (Clean: 0.0092, BC: 0.0153, Asym: 0.0016) |  666.6 spec/s
+[Single End-to-End Loss] Ep [11/16] | File [16/16] | TrainLoss: 0.01085 (Clean: 0.0091, BC: 0.0152, Asym: 0.0017) |  666.9 spec/s
+----------------------------------------------------------------------------------
+==> [Single End-to-End Loss] Epoch [11/16] Finished in 397.4s (659.6 spec/s)
+    Avg Train Loss: 0.012040 | Clean: 0.010317 | BC: 0.017026 | Asym: 0.001723
+    Learning Rate:  1.000000e-04
+    ★ New best model for Single End-to-End Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_end_to_end.pth' (Loss: 0.012040)
+----------------------------------------------------------------------------------
+[Single End-to-End Loss] Ep [12/16] | File [ 1/16] | TrainLoss: 0.01148 (Clean: 0.0098, BC: 0.0162, Asym: 0.0017) |  663.3 spec/s
+[Single End-to-End Loss] Ep [12/16] | File [ 2/16] | TrainLoss: 0.01325 (Clean: 0.0113, BC: 0.0185, Asym: 0.0020) |  664.5 spec/s
+[Single End-to-End Loss] Ep [12/16] | File [ 3/16] | TrainLoss: 0.01072 (Clean: 0.0091, BC: 0.0150, Asym: 0.0017) |  664.3 spec/s
+[Single End-to-End Loss] Ep [12/16] | File [ 4/16] | TrainLoss: 0.01047 (Clean: 0.0090, BC: 0.0149, Asym: 0.0015) |  664.6 spec/s
+[Single End-to-End Loss] Ep [12/16] | File [ 5/16] | TrainLoss: 0.01075 (Clean: 0.0092, BC: 0.0153, Asym: 0.0015) |  665.2 spec/s
+[Single End-to-End Loss] Ep [12/16] | File [ 6/16] | TrainLoss: 0.01029 (Clean: 0.0088, BC: 0.0146, Asym: 0.0015) |  664.7 spec/s
+[Single End-to-End Loss] Ep [12/16] | File [ 7/16] | TrainLoss: 0.01017 (Clean: 0.0088, BC: 0.0147, Asym: 0.0014) |  664.4 spec/s
+[Single End-to-End Loss] Ep [12/16] | File [ 8/16] | TrainLoss: 0.01039 (Clean: 0.0087, BC: 0.0145, Asym: 0.0017) |  663.9 spec/s
+[Single End-to-End Loss] Ep [12/16] | File [ 9/16] | TrainLoss: 0.01028 (Clean: 0.0088, BC: 0.0146, Asym: 0.0015) |  663.9 spec/s
+[Single End-to-End Loss] Ep [12/16] | File [10/16] | TrainLoss: 0.01018 (Clean: 0.0086, BC: 0.0144, Asym: 0.0016) |  666.0 spec/s
+[Single End-to-End Loss] Ep [12/16] | File [11/16] | TrainLoss: 0.01022 (Clean: 0.0087, BC: 0.0145, Asym: 0.0015) |  665.5 spec/s
+[Single End-to-End Loss] Ep [12/16] | File [12/16] | TrainLoss: 0.01084 (Clean: 0.0091, BC: 0.0151, Asym: 0.0018) |  646.4 spec/s
+[Single End-to-End Loss] Ep [12/16] | File [13/16] | TrainLoss: 0.01181 (Clean: 0.0103, BC: 0.0171, Asym: 0.0015) |  659.5 spec/s
+[Single End-to-End Loss] Ep [12/16] | File [14/16] | TrainLoss: 0.01109 (Clean: 0.0093, BC: 0.0154, Asym: 0.0018) |  662.2 spec/s
+[Single End-to-End Loss] Ep [12/16] | File [15/16] | TrainLoss: 0.01039 (Clean: 0.0089, BC: 0.0148, Asym: 0.0015) |  661.6 spec/s
+[Single End-to-End Loss] Ep [12/16] | File [16/16] | TrainLoss: 0.00988 (Clean: 0.0084, BC: 0.0139, Asym: 0.0015) |  664.2 spec/s
+----------------------------------------------------------------------------------
+==> [Single End-to-End Loss] Epoch [12/16] Finished in 399.1s (656.8 spec/s)
+    Avg Train Loss: 0.010763 | Clean: 0.009163 | BC: 0.015223 | Asym: 0.001600
+    Learning Rate:  1.000000e-04
+    ★ New best model for Single End-to-End Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_end_to_end.pth' (Loss: 0.010763)
+----------------------------------------------------------------------------------
+[Single End-to-End Loss] Ep [13/16] | File [ 1/16] | TrainLoss: 0.00993 (Clean: 0.0084, BC: 0.0141, Asym: 0.0015) |  659.3 spec/s
+[Single End-to-End Loss] Ep [13/16] | File [ 2/16] | TrainLoss: 0.00985 (Clean: 0.0083, BC: 0.0137, Asym: 0.0016) |  664.5 spec/s
+[Single End-to-End Loss] Ep [13/16] | File [ 3/16] | TrainLoss: 0.00981 (Clean: 0.0084, BC: 0.0141, Asym: 0.0014) |  662.1 spec/s
+[Single End-to-End Loss] Ep [13/16] | File [ 4/16] | TrainLoss: 0.01008 (Clean: 0.0085, BC: 0.0142, Asym: 0.0015) |  662.7 spec/s
+[Single End-to-End Loss] Ep [13/16] | File [ 5/16] | TrainLoss: 0.01137 (Clean: 0.0097, BC: 0.0160, Asym: 0.0017) |  658.8 spec/s
+[Single End-to-End Loss] Ep [13/16] | File [ 6/16] | TrainLoss: 0.00992 (Clean: 0.0085, BC: 0.0142, Asym: 0.0014) |  661.1 spec/s
+[Single End-to-End Loss] Ep [13/16] | File [ 7/16] | TrainLoss: 0.00970 (Clean: 0.0079, BC: 0.0131, Asym: 0.0018) |  664.5 spec/s
+[Single End-to-End Loss] Ep [13/16] | File [ 8/16] | TrainLoss: 0.00922 (Clean: 0.0080, BC: 0.0134, Asym: 0.0013) |  645.7 spec/s
+[Single End-to-End Loss] Ep [13/16] | File [ 9/16] | TrainLoss: 0.00912 (Clean: 0.0079, BC: 0.0131, Asym: 0.0013) |  653.7 spec/s
+[Single End-to-End Loss] Ep [13/16] | File [10/16] | TrainLoss: 0.00926 (Clean: 0.0079, BC: 0.0131, Asym: 0.0014) |  661.8 spec/s
+[Single End-to-End Loss] Ep [13/16] | File [11/16] | TrainLoss: 0.00968 (Clean: 0.0082, BC: 0.0137, Asym: 0.0015) |  656.1 spec/s
+[Single End-to-End Loss] Ep [13/16] | File [12/16] | TrainLoss: 0.00967 (Clean: 0.0082, BC: 0.0137, Asym: 0.0015) |  661.7 spec/s
+[Single End-to-End Loss] Ep [13/16] | File [13/16] | TrainLoss: 0.00925 (Clean: 0.0080, BC: 0.0134, Asym: 0.0012) |  649.3 spec/s
+[Single End-to-End Loss] Ep [13/16] | File [14/16] | TrainLoss: 0.00910 (Clean: 0.0075, BC: 0.0126, Asym: 0.0016) |  659.2 spec/s
+[Single End-to-End Loss] Ep [13/16] | File [15/16] | TrainLoss: 0.00942 (Clean: 0.0082, BC: 0.0137, Asym: 0.0012) |  659.1 spec/s
+[Single End-to-End Loss] Ep [13/16] | File [16/16] | TrainLoss: 0.00980 (Clean: 0.0081, BC: 0.0135, Asym: 0.0017) |  662.8 spec/s
+----------------------------------------------------------------------------------
+==> [Single End-to-End Loss] Epoch [13/16] Finished in 402.0s (652.1 spec/s)
+    Avg Train Loss: 0.009698 | Clean: 0.008231 | BC: 0.013738 | Asym: 0.001467
+    Learning Rate:  1.000000e-04
+    ★ New best model for Single End-to-End Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_end_to_end.pth' (Loss: 0.009698)
+----------------------------------------------------------------------------------
+[Single End-to-End Loss] Ep [14/16] | File [ 1/16] | TrainLoss: 0.00980 (Clean: 0.0084, BC: 0.0140, Asym: 0.0014) |  662.5 spec/s
+[Single End-to-End Loss] Ep [14/16] | File [ 2/16] | TrainLoss: 0.00964 (Clean: 0.0081, BC: 0.0136, Asym: 0.0015) |  662.8 spec/s
+[Single End-to-End Loss] Ep [14/16] | File [ 3/16] | TrainLoss: 0.00941 (Clean: 0.0081, BC: 0.0135, Asym: 0.0013) |  663.6 spec/s
+[Single End-to-End Loss] Ep [14/16] | File [ 4/16] | TrainLoss: 0.00955 (Clean: 0.0081, BC: 0.0135, Asym: 0.0014) |  665.5 spec/s
+[Single End-to-End Loss] Ep [14/16] | File [ 5/16] | TrainLoss: 0.00915 (Clean: 0.0074, BC: 0.0123, Asym: 0.0018) |  659.7 spec/s
+[Single End-to-End Loss] Ep [14/16] | File [ 6/16] | TrainLoss: 0.00973 (Clean: 0.0085, BC: 0.0142, Asym: 0.0013) |  661.4 spec/s
+[Single End-to-End Loss] Ep [14/16] | File [ 7/16] | TrainLoss: 0.00924 (Clean: 0.0080, BC: 0.0132, Asym: 0.0013) |  661.4 spec/s
+[Single End-to-End Loss] Ep [14/16] | File [ 8/16] | TrainLoss: 0.00921 (Clean: 0.0078, BC: 0.0130, Asym: 0.0015) |  650.9 spec/s
+[Single End-to-End Loss] Ep [14/16] | File [ 9/16] | TrainLoss: 0.00858 (Clean: 0.0071, BC: 0.0120, Asym: 0.0015) |  656.0 spec/s
+[Single End-to-End Loss] Ep [14/16] | File [10/16] | TrainLoss: 0.00888 (Clean: 0.0077, BC: 0.0129, Asym: 0.0012) |  657.0 spec/s
+[Single End-to-End Loss] Ep [14/16] | File [11/16] | TrainLoss: 0.00867 (Clean: 0.0074, BC: 0.0125, Asym: 0.0013) |  659.2 spec/s
+[Single End-to-End Loss] Ep [14/16] | File [12/16] | TrainLoss: 0.00834 (Clean: 0.0071, BC: 0.0120, Asym: 0.0012) |  662.6 spec/s
+[Single End-to-End Loss] Ep [14/16] | File [13/16] | TrainLoss: 0.00909 (Clean: 0.0074, BC: 0.0124, Asym: 0.0017) |  663.5 spec/s
+[Single End-to-End Loss] Ep [14/16] | File [14/16] | TrainLoss: 0.01916 (Clean: 0.0166, BC: 0.0269, Asym: 0.0025) |  661.2 spec/s
+[Single End-to-End Loss] Ep [14/16] | File [15/16] | TrainLoss: 0.01346 (Clean: 0.0114, BC: 0.0185, Asym: 0.0021) |  664.7 spec/s
+[Single End-to-End Loss] Ep [14/16] | File [16/16] | TrainLoss: 0.01047 (Clean: 0.0090, BC: 0.0149, Asym: 0.0015) |  666.6 spec/s
+----------------------------------------------------------------------------------
+==> [Single End-to-End Loss] Epoch [14/16] Finished in 400.5s (654.5 spec/s)
+    Avg Train Loss: 0.010150 | Clean: 0.008630 | BC: 0.014337 | Asym: 0.001520
+    Learning Rate:  1.000000e-04
+----------------------------------------------------------------------------------
+[Single End-to-End Loss] Ep [15/16] | File [ 1/16] | TrainLoss: 0.00941 (Clean: 0.0080, BC: 0.0133, Asym: 0.0014) |  658.2 spec/s
+[Single End-to-End Loss] Ep [15/16] | File [ 2/16] | TrainLoss: 0.00880 (Clean: 0.0076, BC: 0.0127, Asym: 0.0012) |  652.1 spec/s
+[Single End-to-End Loss] Ep [15/16] | File [ 3/16] | TrainLoss: 0.01006 (Clean: 0.0085, BC: 0.0141, Asym: 0.0016) |  662.2 spec/s
+[Single End-to-End Loss] Ep [15/16] | File [ 4/16] | TrainLoss: 0.00904 (Clean: 0.0076, BC: 0.0127, Asym: 0.0014) |  656.8 spec/s
+[Single End-to-End Loss] Ep [15/16] | File [ 5/16] | TrainLoss: 0.00889 (Clean: 0.0074, BC: 0.0124, Asym: 0.0015) |  659.9 spec/s
+[Single End-to-End Loss] Ep [15/16] | File [ 6/16] | TrainLoss: 0.00860 (Clean: 0.0073, BC: 0.0124, Asym: 0.0013) |  661.3 spec/s
+[Single End-to-End Loss] Ep [15/16] | File [ 7/16] | TrainLoss: 0.00835 (Clean: 0.0070, BC: 0.0118, Asym: 0.0013) |  662.5 spec/s
+[Single End-to-End Loss] Ep [15/16] | File [ 8/16] | TrainLoss: 0.00853 (Clean: 0.0071, BC: 0.0120, Asym: 0.0014) |  662.7 spec/s
+[Single End-to-End Loss] Ep [15/16] | File [ 9/16] | TrainLoss: 0.00827 (Clean: 0.0070, BC: 0.0117, Asym: 0.0013) |  662.4 spec/s
+[Single End-to-End Loss] Ep [15/16] | File [10/16] | TrainLoss: 0.00948 (Clean: 0.0082, BC: 0.0138, Asym: 0.0013) |  664.2 spec/s
+[Single End-to-End Loss] Ep [15/16] | File [11/16] | TrainLoss: 0.00856 (Clean: 0.0071, BC: 0.0119, Asym: 0.0014) |  662.8 spec/s
+[Single End-to-End Loss] Ep [15/16] | File [12/16] | TrainLoss: 0.00804 (Clean: 0.0069, BC: 0.0116, Asym: 0.0012) |  664.1 spec/s
+[Single End-to-End Loss] Ep [15/16] | File [13/16] | TrainLoss: 0.00814 (Clean: 0.0070, BC: 0.0117, Asym: 0.0012) |  666.1 spec/s
+[Single End-to-End Loss] Ep [15/16] | File [14/16] | TrainLoss: 0.00926 (Clean: 0.0078, BC: 0.0130, Asym: 0.0015) |  666.4 spec/s
+[Single End-to-End Loss] Ep [15/16] | File [15/16] | TrainLoss: 0.00832 (Clean: 0.0070, BC: 0.0117, Asym: 0.0013) |  654.0 spec/s
+[Single End-to-End Loss] Ep [15/16] | File [16/16] | TrainLoss: 0.00828 (Clean: 0.0071, BC: 0.0118, Asym: 0.0012) |  662.5 spec/s
+----------------------------------------------------------------------------------
+==> [Single End-to-End Loss] Epoch [15/16] Finished in 400.6s (654.4 spec/s)
+    Avg Train Loss: 0.008752 | Clean: 0.007408 | BC: 0.012422 | Asym: 0.001344
+    Learning Rate:  1.000000e-04
+    ★ New best model for Single End-to-End Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_end_to_end.pth' (Loss: 0.008752)
+----------------------------------------------------------------------------------
+[Single End-to-End Loss] Ep [16/16] | File [ 1/16] | TrainLoss: 0.00828 (Clean: 0.0070, BC: 0.0117, Asym: 0.0013) |  657.9 spec/s
+[Single End-to-End Loss] Ep [16/16] | File [ 2/16] | TrainLoss: 0.00835 (Clean: 0.0071, BC: 0.0119, Asym: 0.0012) |  664.0 spec/s
+[Single End-to-End Loss] Ep [16/16] | File [ 3/16] | TrainLoss: 0.00874 (Clean: 0.0073, BC: 0.0122, Asym: 0.0015) |  664.4 spec/s
+[Single End-to-End Loss] Ep [16/16] | File [ 4/16] | TrainLoss: 0.00886 (Clean: 0.0075, BC: 0.0125, Asym: 0.0014) |  663.3 spec/s
+[Single End-to-End Loss] Ep [16/16] | File [ 5/16] | TrainLoss: 0.00884 (Clean: 0.0075, BC: 0.0125, Asym: 0.0014) |  663.1 spec/s
+[Single End-to-End Loss] Ep [16/16] | File [ 6/16] | TrainLoss: 0.00806 (Clean: 0.0068, BC: 0.0114, Asym: 0.0013) |  661.6 spec/s
+[Single End-to-End Loss] Ep [16/16] | File [ 7/16] | TrainLoss: 0.00841 (Clean: 0.0072, BC: 0.0121, Asym: 0.0012) |  648.5 spec/s
+[Single End-to-End Loss] Ep [16/16] | File [ 8/16] | TrainLoss: 0.00870 (Clean: 0.0071, BC: 0.0120, Asym: 0.0016) |  661.9 spec/s
+[Single End-to-End Loss] Ep [16/16] | File [ 9/16] | TrainLoss: 0.01044 (Clean: 0.0090, BC: 0.0152, Asym: 0.0014) |  657.5 spec/s
+[Single End-to-End Loss] Ep [16/16] | File [10/16] | TrainLoss: 0.01075 (Clean: 0.0090, BC: 0.0149, Asym: 0.0018) |  663.2 spec/s
+[Single End-to-End Loss] Ep [16/16] | File [11/16] | TrainLoss: 0.00811 (Clean: 0.0070, BC: 0.0118, Asym: 0.0011) |  666.4 spec/s
+[Single End-to-End Loss] Ep [16/16] | File [12/16] | TrainLoss: 0.00809 (Clean: 0.0068, BC: 0.0114, Asym: 0.0013) |  663.8 spec/s
+[Single End-to-End Loss] Ep [16/16] | File [13/16] | TrainLoss: 0.00758 (Clean: 0.0064, BC: 0.0107, Asym: 0.0012) |  664.2 spec/s
+[Single End-to-End Loss] Ep [16/16] | File [14/16] | TrainLoss: 0.00952 (Clean: 0.0077, BC: 0.0131, Asym: 0.0018) |  665.0 spec/s
+[Single End-to-End Loss] Ep [16/16] | File [15/16] | TrainLoss: 0.00831 (Clean: 0.0070, BC: 0.0119, Asym: 0.0013) |  663.7 spec/s
+[Single End-to-End Loss] Ep [16/16] | File [16/16] | TrainLoss: 0.00811 (Clean: 0.0068, BC: 0.0115, Asym: 0.0013) |  666.4 spec/s
+----------------------------------------------------------------------------------
+==> [Single End-to-End Loss] Epoch [16/16] Finished in 399.7s (655.8 spec/s)
+    Avg Train Loss: 0.008697 | Clean: 0.007328 | BC: 0.012292 | Asym: 0.001369
+    Learning Rate:  1.000000e-04
+    ★ New best model for Single End-to-End Loss saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/losscomp_end_to_end.pth' (Loss: 0.008697)
+----------------------------------------------------------------------------------
+
+[Single End-to-End Loss] Training Complete in 108.69 min! Best Loss: 0.008697 (at Epoch 16).
+
+
+====================================================================================
+ LOSS COMPARISON TRAINING SUMMARY (16 Epochs on PolyGaussNet3) 
+====================================================================================
+Metric / Parameter             | Dual Supervised Loss     | Single End-to-End Loss  
+------------------------------------------------------------------------------------
+Loss Formulation               | LogCosh(BC+Clean)+Asym   | LogCosh(Clean)+Asym     
+Intermediate BC Supervised     | Yes (Direct Gradient)    | No (Free Latent Space)  
+Best Training Loss (↓)         | 0.016109                 | 0.008697                
+Best Epoch                     | 15                       | 16                      
+Final Clean Loss (Epoch 16)    | 0.005074                 | 0.007328                
+Training Time (min)            | 107.12                   | 108.69                  
+Saved Weights                  | losscomp_dual_supervised.pth | losscomp_end_to_end.pth 
+====================================================================================
+Total Sequential Training Elapsed Time: 215.82 minutes
+
+
+============================================================================================
+ ROUND 5: LOSS FUNCTION HEAD-TO-HEAD BENCHMARK (PolyGaussNet3) 
+ Dual Supervised (LogCosh BC + LogCosh Clean) vs. Single End-to-End (LogCosh Clean) 
+============================================================================================
+Hardware Acceleration Device: mps
+
+Loading 4 test dataset chunk(s) from '/Users/bogiekissiov/Desktop/raman preprocessing/training_round4/test_data4':
+  • dataset_part_1.npz
+  • dataset_part_2.npz
+  • dataset_part_3.npz
+  • dataset_part_4.npz
+
+Dataset Overview:
+  - Total Test Spectra:  32,768
+  - Spectral Resolution: 1016 bins
+  - Test Directory:      /Users/bogiekissiov/Desktop/raman preprocessing/training_round4/test_data4
+--------------------------------------------------------------------------------------------
+
+1. Evaluating Dual Supervised Model (Weights: losscomp_dual_supervised.pth)...
+   ✓ Inference complete: 12.493s (  2622.9 spec/s, latency: 0.3813 ms)
+   • Cosine Sim: 0.85556 | MSE: 0.012827 | Log-Cosh: 0.006358 | Peak MAE: 0.08045
+
+2. Evaluating Single End-to-End Model (Weights: losscomp_end_to_end.pth)...
+   ✓ Inference complete: 12.414s (  2639.5 spec/s, latency: 0.3789 ms)
+   • Cosine Sim: 0.86661 | MSE: 0.015538 | Log-Cosh: 0.007694 | Peak MAE: 0.09084
+
+============================================================================================
+                     INDIVIDUAL EVALUATION REPORTS (N = 32,768 Spectra)                     
+============================================================================================
+
+--- Dual Supervised Loss: LogCosh(BC) + LogCosh(Clean) + Asym ---
+  • Cosine Similarity (↑):     0.855564 (±0.16144)
+  • Mean Squared Error (↓):    0.012827 (±0.01433)
+  • Log-Cosh Loss (↓):         0.006358 (±0.00703)
+  • Mean Absolute Error (↓):   0.087328 (±0.04643)
+  • Root Mean Sq Error (↓):    0.101230 (±0.05078)
+  • Peak Summit MAE (↓):       0.080452 (±0.05967)
+  • Baseline Overshoot Rate:  1.224% of bins
+  • Max Baseline Overshoot:   0.36550
+  • Throughput & Latency:       2622.9 spectra/s (0.3813 ms/spec)
+
+--- Single End-to-End Loss: LogCosh(Clean) + Asym ---
+  • Cosine Similarity (↑):     0.866608 (±0.15973)
+  • Mean Squared Error (↓):    0.015538 (±0.01759)
+  • Log-Cosh Loss (↓):         0.007694 (±0.00862)
+  • Mean Absolute Error (↓):   0.097238 (±0.05441)
+  • Root Mean Sq Error (↓):    0.110001 (±0.05863)
+  • Peak Summit MAE (↓):       0.090842 (±0.06581)
+  • Baseline Overshoot Rate:  0.144% of bins
+  • Max Baseline Overshoot:   0.30853
+  • Throughput & Latency:       2639.5 spectra/s (0.3789 ms/spec)
+
+================================================================================================
+             DIRECT LOSS FUNCTION COMPARISON: Dual Supervised vs. Single End-to-End             
+                  (Both on PolyGaussNet3 evaluated across 32,768 Test Spectra)                  
+================================================================================================
+Metric / Feature             | Dual Supervised        | Single End-to-End      | Delta / Advantage  
+------------------------------------------------------------------------------------------------
+Loss Formulation             | LogCosh(BC+Clean)+Asym | LogCosh(Clean)+Asym    | End-to-End         
+Model Architecture           | PolyGaussNet3          | PolyGaussNet3          | Identical (148.9k) 
+Asymmetric Penalty (λ)       | 15.0                   | 15.0                   | Identical          
+------------------------------------------------------------------------------------------------
+Cosine Similarity (↑)        | 0.855564               | 0.866608               | +0.011043 (+1.29%) E2E (+)
+Mean Squared Error (MSE ↓)   | 0.012827               | 0.015538               | +0.002712 (+21.14%) Dual (Better)
+Log-Cosh Loss (↓)            | 0.006358               | 0.007694               | +0.001337 (+21.02%) Dual (Better)
+Mean Absolute Error (MAE ↓)  | 0.087328               | 0.097238               | +0.009910 (+11.35%) Dual (Better)
+Root Mean Sq Error (RMSE ↓)  | 0.101230               | 0.110001               | +0.008772 (+8.66%) Dual (Better)
+Peak Summit MAE (↓)          | 0.080452               | 0.090842               | +0.010390 (+12.91%) Dual (Better)
+------------------------------------------------------------------------------------------------
+Throughput (spectra/s)       | 2622.9                 | 2639.5                 |    +16.6 spec/s
+Latency per Spectrum         | 0.3813                 ms | 0.3789                 ms |  -0.0024 ms
+Baseline Overshoot Rate      | 1.224                % | 0.144                % | Direct Comp
+================================================================================================
