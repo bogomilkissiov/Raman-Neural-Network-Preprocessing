@@ -8,18 +8,19 @@ from spectra_generator import generate_spectra
 
 GENERATION_PARAMS = {
     "wavenum_range": [0, 1015],
-    "num_peaks_range": [0, 100],
-    "amplitude_range": [0.001, 0.1],
-    "width_range": [1, 100],
+    "num_peaks_range": [0, 200],
+    "amplitude_range": [0.001, 0.2],
+    "width_range": [1, 200],
     "degree_range": [1, 16],
     "offset_range": [0.0, 1.0],
     "max_coeff": 1.0,
-    "min_peak_ratio": 2.5,
-    "std_range": [1, 5],
+    "min_peak_ratio": 2.0,
+    "std_range": [1, 10],
     "probability_cosmic": 0,
-    "intensity_range_cosmic": [3.0, 10.0],
+    "intensity_range_cosmic": [5.0, 20.0],
     "domain_mapping": [-1.0, 1.0],
-    "min_value": 0}
+    "min_value": 0,
+    "normalize" : True}
 
 if __name__ == "__main__":
     # Generate 9 random spectra

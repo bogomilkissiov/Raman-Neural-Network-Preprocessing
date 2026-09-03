@@ -40,6 +40,8 @@ generated_spectra*/
 generated spectra*/
 training_spectra*/
 test_spectra*/
+training_data*/
+test_data*/
 *.npz
 *.wdf
 *.spc
