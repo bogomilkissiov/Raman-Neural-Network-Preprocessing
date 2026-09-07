@@ -25,6 +25,7 @@ training_checkpoint*.pth
 !training_round4/polygaussnet2.pth
 !training_round5/head2head_polygaussnet2.pth
 !training_round5/head2head_polygaussnet3.pth
+!training_round5/polygaussnet5.pth
 
 # Large documents & presentations
 preprocessing.pdf
