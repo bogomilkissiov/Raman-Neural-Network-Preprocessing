@@ -16,38 +16,34 @@ class PolynomialBaselineEstimator(nn.Module):
         self.poly_order = poly_order
 
         # Feature extractor uses AdaptiveAvgPool1d(1) to collapse arbitrary length L -> 1
-        # 5-Stage Convolutional Encoder (32x downsampling, RF = 187 bins)
+        # 4-Stage Convolutional Encoder (16x downsampling, RF = 91 bins, Replicate Padding)
         self.encoder = nn.Sequential(
             # Stage 1: RF = 15
-            nn.Conv1d(1, 32, kernel_size=15, stride=2, padding=7),
+            nn.Conv1d(1, 32, kernel_size=15, stride=2, padding=7, padding_mode='replicate'),
             nn.BatchNorm1d(32),
             nn.GELU(),
             # Stage 2: RF = 35
-            nn.Conv1d(32, 64, kernel_size=11, stride=2, padding=5),
+            nn.Conv1d(32, 64, kernel_size=11, stride=2, padding=5, padding_mode='replicate'),
             nn.BatchNorm1d(64),
             nn.GELU(),
             # Stage 3: RF = 59
-            nn.Conv1d(64, 128, kernel_size=7, stride=2, padding=3),
+            nn.Conv1d(64, 128, kernel_size=7, stride=2, padding=3, padding_mode='replicate'),
             nn.BatchNorm1d(128),
             nn.GELU(),
-            # Stage 4 (NEW): RF = 91
-            nn.Conv1d(128, 96, kernel_size=5, stride=2, padding=2),
-            nn.BatchNorm1d(96),
+            # Stage 4: RF = 91 (128 in -> 128 out)
+            nn.Conv1d(128, 128, kernel_size=5, stride=2, padding=2, padding_mode='replicate'),
+            nn.BatchNorm1d(128),
             nn.GELU(),
-            # Stage 5 (NEW): RF = 187 (spans max peak width 200)
-            nn.Conv1d(96, 64, kernel_size=7, stride=2, padding=3),
-            nn.BatchNorm1d(64),
-            nn.GELU(),
-            nn.AdaptiveAvgPool1d(1)  # Output: (Batch, 64, 1) for ANY input length L
+            nn.AdaptiveAvgPool1d(1)  # Output: (Batch, 128, 1) for ANY input length L
         )
 
         # FC head predicts polynomial coefficients (c0, c1, ..., c_poly_order)
         self.fc = nn.Sequential(
-            nn.Linear(64, 64),
+            nn.Linear(128, 128),
+            nn.GELU(),
+            nn.Linear(128, 64),
             nn.GELU(),
             nn.Linear(64, 64),
-            nn.GELU(),
-            nn.Linear(64, 64),       # Second-to-last FC layer (64 in -> 64 out)
             nn.GELU(),
             nn.Linear(64, poly_order + 1)
         )
@@ -57,7 +53,7 @@ class PolynomialBaselineEstimator(nn.Module):
         L = x.shape[-1]
         
         # 1. Extract features & predict coefficients
-        feat = self.encoder(x).squeeze(-1)  # (Batch, 64)
+        feat = self.encoder(x).squeeze(-1)  # (Batch, 128)
         coeffs = self.fc(feat)              # (Batch, poly_order + 1)
 
         # 2. Dynamically create coordinate grid over [-1.0, 1.0] for length L
@@ -78,14 +74,14 @@ class PolynomialBaselineEstimator(nn.Module):
 # 2. FILTER PARAMETER PREDICTOR (Fully Convolutional, Input-Size Agnostic)
 # ============================================================================
 class DilatedResidualBlock1D(nn.Module):
-    """Preserves full sequence length L for any L."""
+    """Preserves full sequence length L for any L with replicate padding."""
     def __init__(self, channels: int, dilation: int):
         super().__init__()
         self.conv = nn.Sequential(
-            nn.Conv1d(channels, channels, kernel_size=5, padding=2 * dilation, dilation=dilation),
+            nn.Conv1d(channels, channels, kernel_size=5, padding=2 * dilation, dilation=dilation, padding_mode='replicate'),
             nn.BatchNorm1d(channels),
             nn.GELU(),
-            nn.Conv1d(channels, channels, kernel_size=5, padding=2 * dilation, dilation=dilation),
+            nn.Conv1d(channels, channels, kernel_size=5, padding=2 * dilation, dilation=dilation, padding_mode='replicate'),
             nn.BatchNorm1d(channels)
         )
         self.act = nn.GELU()
@@ -114,7 +110,7 @@ class FilterParameterPredictor(nn.Module):
         self.max_amplitude = max_amplitude
 
         self.in_conv = nn.Sequential(
-            nn.Conv1d(1, channels, kernel_size=7, padding=3),
+            nn.Conv1d(1, channels, kernel_size=7, padding=3, padding_mode='replicate'),
             nn.BatchNorm1d(channels),
             nn.GELU()
         )
@@ -153,6 +149,7 @@ class AdaptiveGaussianFilter1D(nn.Module):
     """
     Gaussian filter with fixed exponent=2 and per-bin adaptive width (sigma)
     along with bounded per-bin amplitude modulation.
+    Uses replicate padding on boundaries to prevent artificial edge-zero pull.
     """
     def __init__(self, kernel_size: int = 63):
         super().__init__()
@@ -171,8 +168,11 @@ class AdaptiveGaussianFilter1D(nn.Module):
         weights = torch.exp(-0.5 * ((diff / (sigma + 1e-8)) ** 2))
         weights = weights / (weights.sum(dim=1, keepdim=True) + 1e-8)
 
+        # Replicate padding on boundaries to avoid zero-dropoff cliff artifacts
+        x_padded = F.pad(x, (self.padding, self.padding), mode='replicate')
+
         # Extract sliding windows for any length L: (Batch, K, L)
-        patches = F.unfold(x.unsqueeze(-1), (self.kernel_size, 1), padding=(self.padding, 0)).squeeze(-1)
+        patches = F.unfold(x_padded.unsqueeze(-1), (self.kernel_size, 1), padding=0).squeeze(-1)
 
         # Convolve: (Batch, 1, L)
         smoothed = (patches * weights).sum(dim=1, keepdim=True)

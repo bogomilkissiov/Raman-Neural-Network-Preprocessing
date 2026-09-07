@@ -10,7 +10,7 @@ GENERATION_PARAMS = {
     "wavenum_range": [0, 1015],
     "num_peaks_range": [0, 200],
     "amplitude_range": [0.001, 0.2],
-    "width_range": [1, 200],
+    "width_range": [1, 100],
     "degree_range": [1, 16],
     "offset_range": [0.0, 1.0],
     "max_coeff": 1.0,
