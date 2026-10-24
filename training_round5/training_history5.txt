@@ -1,0 +1,1143 @@
+Last login: Sun Sep  6 16:14:30 on ttys004
+bogiekissiov@Bogies-MacBook-Air-447 ~ % cd /Users/bogiekissiov/Desktop/raman\ preprocessing
+bogiekissiov@Bogies-MacBook-Air-447 raman preprocessing % source venv/bin/activate
+(venv) bogiekissiov@Bogies-MacBook-Air-447 raman preprocessing % python training_round5/training5.py
+
+==============================================================================
+ PolyGaussNet3+ Training (Round 5 Multi-Resolution Raman Preprocessing) 
+==============================================================================
+  - Device:             mps
+  - Batch Size:         128
+  - Initial LR:         0.0001
+  - Min LR:             9e-08
+  - Weight Decay:       0.0001
+  - Total Epochs:       16
+  - Polynomial Order:   7 (Degree 7)
+  - Filter Kernel Size: 63
+  - Sigma Range:        [0.2, 10.0]
+  - Amplitude Range:    [0.85, 1.15]
+  - Lambda BC:          1.0
+  - Lambda Clean:       1.0
+  - Lambda Asymmetric:  15.0
+  - Dataset Location:   /Users/bogiekissiov/Desktop/raman preprocessing/training_round5/training_data5
+  - Discovered Modes:   ['1x', '1.5x', '2x']
+      * Mode '1x': 40 files
+      * Mode '1.5x': 40 files
+      * Mode '2x': 40 files
+  - Total Dataset Size: 120 chunk files
+==============================================================================
+
+PolyGaussNet3+ Parameters: 245,322 total (245,322 trainable)
+No checkpoint found. Starting training from scratch.
+
+==============================================================================
+Starting Training: Epochs 1 to 16
+==============================================================================
+
+>>> Epoch [  1/16] Mode Selection: [Fully Interleaved (120 chunks across 1x, 1.5x, 2x)] (120 files to train)
+Epoch [  1/16] | File [  1/120] (1.5x/1200/spectra_chunk_07.npz, L=1200) | Loss: 0.13525 (BC: 0.0692, Clean: 0.0563, Asym: 0.0097) |  380.0 spec/s
+Epoch [  1/16] | File [  2/120] (1.5x/2100/spectra_chunk_04.npz, L=2100) | Loss: 0.06815 (BC: 0.0357, Clean: 0.0284, Asym: 0.0040) |  229.9 spec/s
+Epoch [  1/16] | File [  3/120] (1.5x/2100/spectra_chunk_03.npz, L=2100) | Loss: 0.06868 (BC: 0.0365, Clean: 0.0280, Asym: 0.0042) |  232.7 spec/s
+Epoch [  1/16] | File [  4/120] (1x/1400/spectra_chunk_06.npz, L=1400) | Loss: 0.05222 (BC: 0.0278, Clean: 0.0207, Asym: 0.0037) |  333.9 spec/s
+Epoch [  1/16] | File [  5/120] (1x/1600/spectra_chunk_07.npz, L=1600) | Loss: 0.04616 (BC: 0.0248, Clean: 0.0179, Asym: 0.0034) |  301.1 spec/s
+Epoch [  1/16] | File [  6/120] (2x/1600/spectra_chunk_07.npz, L=1600) | Loss: 0.05067 (BC: 0.0265, Clean: 0.0204, Asym: 0.0038) |  299.5 spec/s
+Epoch [  1/16] | File [  7/120] (1x/1200/spectra_chunk_05.npz, L=1200) | Loss: 0.03958 (BC: 0.0209, Clean: 0.0151, Asym: 0.0035) |  395.8 spec/s
+Epoch [  1/16] | File [  8/120] (1x/1400/spectra_chunk_04.npz, L=1400) | Loss: 0.03707 (BC: 0.0195, Clean: 0.0138, Asym: 0.0037) |  343.9 spec/s
+Epoch [  1/16] | File [  9/120] (1x/800/spectra_chunk_04.npz, L=800) | Loss: 0.03817 (BC: 0.0205, Clean: 0.0154, Asym: 0.0023) |  569.9 spec/s
+Epoch [  1/16] | File [ 10/120] (1.5x/2400/spectra_chunk_02.npz, L=2400) | Loss: 0.05960 (BC: 0.0312, Clean: 0.0216, Asym: 0.0068) |  205.6 spec/s
+Epoch [  1/16] | File [ 11/120] (1.5x/1800/spectra_chunk_08.npz, L=1800) | Loss: 0.03720 (BC: 0.0199, Clean: 0.0142, Asym: 0.0031) |  266.7 spec/s
+Epoch [  1/16] | File [ 12/120] (1.5x/2100/spectra_chunk_01.npz, L=2100) | Loss: 0.03521 (BC: 0.0187, Clean: 0.0131, Asym: 0.0035) |  233.9 spec/s
+Epoch [  1/16] | File [ 13/120] (1x/800/spectra_chunk_08.npz, L=800) | Loss: 0.03592 (BC: 0.0193, Clean: 0.0142, Asym: 0.0024) |  572.7 spec/s
+Epoch [  1/16] | File [ 14/120] (1.5x/2400/spectra_chunk_08.npz, L=2400) | Loss: 0.06836 (BC: 0.0351, Clean: 0.0236, Asym: 0.0097) |  206.7 spec/s
+Epoch [  1/16] | File [ 15/120] (1x/1016/spectra_chunk_07.npz, L=1016) | Loss: 0.04366 (BC: 0.0247, Clean: 0.0171, Asym: 0.0019) |  287.8 spec/s
+Epoch [  1/16] | File [ 16/120] (1x/1016/spectra_chunk_01.npz, L=1016) | Loss: 0.03745 (BC: 0.0201, Clean: 0.0140, Asym: 0.0033) |  255.5 spec/s
+Epoch [  1/16] | File [ 17/120] (2x/2032/spectra_chunk_02.npz, L=2032) | Loss: 0.03843 (BC: 0.0201, Clean: 0.0144, Asym: 0.0039) |  126.8 spec/s
+Epoch [  1/16] | File [ 18/120] (1x/1400/spectra_chunk_08.npz, L=1400) | Loss: 0.03283 (BC: 0.0173, Clean: 0.0118, Asym: 0.0037) |  181.0 spec/s
+Epoch [  1/16] | File [ 19/120] (1.5x/1200/spectra_chunk_08.npz, L=1200) | Loss: 0.03470 (BC: 0.0186, Clean: 0.0137, Asym: 0.0024) |  213.2 spec/s
+Epoch [  1/16] | File [ 20/120] (1.5x/1200/spectra_chunk_02.npz, L=1200) | Loss: 0.03468 (BC: 0.0182, Clean: 0.0133, Asym: 0.0032) |  215.7 spec/s
+Epoch [  1/16] | File [ 21/120] (2x/2032/spectra_chunk_08.npz, L=2032) | Loss: 0.03718 (BC: 0.0195, Clean: 0.0138, Asym: 0.0038) |  129.9 spec/s
+Epoch [  1/16] | File [ 22/120] (1x/800/spectra_chunk_02.npz, L=800) | Loss: 0.03411 (BC: 0.0184, Clean: 0.0132, Asym: 0.0026) |  305.7 spec/s
+Epoch [  1/16] | File [ 23/120] (1x/1016/spectra_chunk_06.npz, L=1016) | Loss: 0.03083 (BC: 0.0162, Clean: 0.0114, Asym: 0.0032) |  246.1 spec/s
+Epoch [  1/16] | File [ 24/120] (1x/1600/spectra_chunk_03.npz, L=1600) | Loss: 0.03064 (BC: 0.0161, Clean: 0.0108, Asym: 0.0038) |  157.1 spec/s
+Epoch [  1/16] | File [ 25/120] (1x/1200/spectra_chunk_08.npz, L=1200) | Loss: 0.02852 (BC: 0.0153, Clean: 0.0106, Asym: 0.0026) |  207.1 spec/s
+Epoch [  1/16] | File [ 26/120] (1.5x/1800/spectra_chunk_07.npz, L=1800) | Loss: 0.03208 (BC: 0.0169, Clean: 0.0117, Asym: 0.0035) |  195.1 spec/s
+Epoch [  1/16] | File [ 27/120] (1.5x/2400/spectra_chunk_04.npz, L=2400) | Loss: 0.03022 (BC: 0.0160, Clean: 0.0108, Asym: 0.0034) |  199.1 spec/s
+Epoch [  1/16] | File [ 28/120] (2x/2400/spectra_chunk_06.npz, L=2400) | Loss: 0.03167 (BC: 0.0167, Clean: 0.0117, Asym: 0.0032) |  199.5 spec/s
+Epoch [  1/16] | File [ 29/120] (1.5x/1200/spectra_chunk_05.npz, L=1200) | Loss: 0.03322 (BC: 0.0176, Clean: 0.0128, Asym: 0.0029) |  384.0 spec/s
+Epoch [  1/16] | File [ 30/120] (1.5x/2400/spectra_chunk_01.npz, L=2400) | Loss: 0.03563 (BC: 0.0187, Clean: 0.0126, Asym: 0.0044) |  200.1 spec/s
+Epoch [  1/16] | File [ 31/120] (2x/1600/spectra_chunk_02.npz, L=1600) | Loss: 0.03287 (BC: 0.0174, Clean: 0.0128, Asym: 0.0027) |  294.5 spec/s
+Epoch [  1/16] | File [ 32/120] (1x/800/spectra_chunk_05.npz, L=800) | Loss: 0.03078 (BC: 0.0163, Clean: 0.0118, Asym: 0.0027) |  558.3 spec/s
+Epoch [  1/16] | File [ 33/120] (2x/2400/spectra_chunk_03.npz, L=2400) | Loss: 0.03274 (BC: 0.0169, Clean: 0.0118, Asym: 0.0040) |  200.0 spec/s
+Epoch [  1/16] | File [ 34/120] (1x/1600/spectra_chunk_01.npz, L=1600) | Loss: 0.02747 (BC: 0.0147, Clean: 0.0099, Asym: 0.0029) |  295.5 spec/s
+Epoch [  1/16] | File [ 35/120] (2x/2400/spectra_chunk_08.npz, L=2400) | Loss: 0.03115 (BC: 0.0163, Clean: 0.0114, Asym: 0.0035) |  200.3 spec/s
+Epoch [  1/16] | File [ 36/120] (2x/1600/spectra_chunk_04.npz, L=1600) | Loss: 0.03193 (BC: 0.0169, Clean: 0.0124, Asym: 0.0026) |  296.1 spec/s
+Epoch [  1/16] | File [ 37/120] (1x/1400/spectra_chunk_02.npz, L=1400) | Loss: 0.04188 (BC: 0.0225, Clean: 0.0149, Asym: 0.0044) |  334.0 spec/s
+Epoch [  1/16] | File [ 38/120] (2x/3200/spectra_chunk_08.npz, L=3200) | Loss: 0.03244 (BC: 0.0170, Clean: 0.0115, Asym: 0.0039) |  148.8 spec/s
+Epoch [  1/16] | File [ 39/120] (1x/1200/spectra_chunk_03.npz, L=1200) | Loss: 0.02938 (BC: 0.0161, Clean: 0.0110, Asym: 0.0024) |  383.0 spec/s
+Epoch [  1/16] | File [ 40/120] (1x/1016/spectra_chunk_03.npz, L=1016) | Loss: 0.02822 (BC: 0.0152, Clean: 0.0106, Asym: 0.0024) |  449.9 spec/s
+Epoch [  1/16] | File [ 41/120] (1x/1200/spectra_chunk_04.npz, L=1200) | Loss: 0.02725 (BC: 0.0143, Clean: 0.0098, Asym: 0.0031) |  385.3 spec/s
+Epoch [  1/16] | File [ 42/120] (2x/3200/spectra_chunk_06.npz, L=3200) | Loss: 0.03484 (BC: 0.0181, Clean: 0.0123, Asym: 0.0045) |  149.6 spec/s
+Epoch [  1/16] | File [ 43/120] (1x/800/spectra_chunk_07.npz, L=800) | Loss: 0.03109 (BC: 0.0167, Clean: 0.0119, Asym: 0.0025) |  553.5 spec/s
+Epoch [  1/16] | File [ 44/120] (2x/2032/spectra_chunk_07.npz, L=2032) | Loss: 0.03162 (BC: 0.0161, Clean: 0.0115, Asym: 0.0040) |  233.4 spec/s
+Epoch [  1/16] | File [ 45/120] (2x/3200/spectra_chunk_04.npz, L=3200) | Loss: 0.03400 (BC: 0.0178, Clean: 0.0119, Asym: 0.0043) |  142.5 spec/s
+Epoch [  1/16] | File [ 46/120] (1.5x/2100/spectra_chunk_02.npz, L=2100) | Loss: 0.03233 (BC: 0.0176, Clean: 0.0118, Asym: 0.0029) |  219.4 spec/s
+Epoch [  1/16] | File [ 47/120] (2x/2032/spectra_chunk_06.npz, L=2032) | Loss: 0.03020 (BC: 0.0156, Clean: 0.0111, Asym: 0.0035) |  232.0 spec/s
+Epoch [  1/16] | File [ 48/120] (2x/3200/spectra_chunk_07.npz, L=3200) | Loss: 0.03451 (BC: 0.0187, Clean: 0.0124, Asym: 0.0034) |  141.4 spec/s
+Epoch [  1/16] | File [ 49/120] (1x/1200/spectra_chunk_01.npz, L=1200) | Loss: 0.02725 (BC: 0.0148, Clean: 0.0101, Asym: 0.0023) |  256.3 spec/s
+Epoch [  1/16] | File [ 50/120] (1x/1600/spectra_chunk_08.npz, L=1600) | Loss: 0.02596 (BC: 0.0140, Clean: 0.0092, Asym: 0.0027) |  296.8 spec/s
+Epoch [  1/16] | File [ 51/120] (1.5x/1524/spectra_chunk_01.npz, L=1524) | Loss: 0.02875 (BC: 0.0151, Clean: 0.0107, Asym: 0.0029) |  309.8 spec/s
+Epoch [  1/16] | File [ 52/120] (1.5x/1524/spectra_chunk_07.npz, L=1524) | Loss: 0.02758 (BC: 0.0146, Clean: 0.0102, Asym: 0.0027) |  316.5 spec/s
+Epoch [  1/16] | File [ 53/120] (1.5x/1800/spectra_chunk_03.npz, L=1800) | Loss: 0.02697 (BC: 0.0143, Clean: 0.0098, Asym: 0.0028) |  270.6 spec/s
+Epoch [  1/16] | File [ 54/120] (1x/1600/spectra_chunk_06.npz, L=1600) | Loss: 0.02495 (BC: 0.0132, Clean: 0.0088, Asym: 0.0030) |  303.5 spec/s
+Epoch [  1/16] | File [ 55/120] (2x/2032/spectra_chunk_05.npz, L=2032) | Loss: 0.02926 (BC: 0.0154, Clean: 0.0109, Asym: 0.0030) |  240.9 spec/s
+Epoch [  1/16] | File [ 56/120] (2x/1600/spectra_chunk_01.npz, L=1600) | Loss: 0.02887 (BC: 0.0152, Clean: 0.0112, Asym: 0.0025) |  305.7 spec/s
+Epoch [  1/16] | File [ 57/120] (2x/2800/spectra_chunk_01.npz, L=2800) | Loss: 0.03259 (BC: 0.0173, Clean: 0.0117, Asym: 0.0036) |  173.5 spec/s
+Epoch [  1/16] | File [ 58/120] (2x/2400/spectra_chunk_02.npz, L=2400) | Loss: 0.02747 (BC: 0.0146, Clean: 0.0102, Asym: 0.0026) |  202.1 spec/s
+Epoch [  1/16] | File [ 59/120] (1x/1400/spectra_chunk_07.npz, L=1400) | Loss: 0.02423 (BC: 0.0130, Clean: 0.0088, Asym: 0.0025) |  341.9 spec/s
+Epoch [  1/16] | File [ 60/120] (1x/1400/spectra_chunk_05.npz, L=1400) | Loss: 0.02578 (BC: 0.0137, Clean: 0.0092, Asym: 0.0029) |  345.8 spec/s
+Epoch [  1/16] | File [ 61/120] (2x/1600/spectra_chunk_06.npz, L=1600) | Loss: 0.02939 (BC: 0.0156, Clean: 0.0115, Asym: 0.0023) |  300.7 spec/s
+Epoch [  1/16] | File [ 62/120] (2x/2800/spectra_chunk_06.npz, L=2800) | Loss: 0.03394 (BC: 0.0172, Clean: 0.0116, Asym: 0.0051) |  170.9 spec/s
+Epoch [  1/16] | File [ 63/120] (1.5x/2100/spectra_chunk_06.npz, L=2100) | Loss: 0.02787 (BC: 0.0150, Clean: 0.0101, Asym: 0.0028) |  233.0 spec/s
+Epoch [  1/16] | File [ 64/120] (1x/1400/spectra_chunk_01.npz, L=1400) | Loss: 0.02388 (BC: 0.0128, Clean: 0.0086, Asym: 0.0024) |  340.6 spec/s
+Epoch [  1/16] | File [ 65/120] (2x/2800/spectra_chunk_04.npz, L=2800) | Loss: 0.02915 (BC: 0.0151, Clean: 0.0104, Asym: 0.0037) |  174.0 spec/s
+Epoch [  1/16] | File [ 66/120] (1.5x/1200/spectra_chunk_03.npz, L=1200) | Loss: 0.02895 (BC: 0.0155, Clean: 0.0112, Asym: 0.0022) |  395.3 spec/s
+Epoch [  1/16] | File [ 67/120] (2x/2400/spectra_chunk_01.npz, L=2400) | Loss: 0.02696 (BC: 0.0142, Clean: 0.0098, Asym: 0.0029) |  200.8 spec/s
+Epoch [  1/16] | File [ 68/120] (1.5x/1524/spectra_chunk_08.npz, L=1524) | Loss: 0.02608 (BC: 0.0138, Clean: 0.0097, Asym: 0.0026) |  314.8 spec/s
+Epoch [  1/16] | File [ 69/120] (1x/1200/spectra_chunk_02.npz, L=1200) | Loss: 0.02695 (BC: 0.0143, Clean: 0.0097, Asym: 0.0029) |  386.6 spec/s
+Epoch [  1/16] | File [ 70/120] (1x/1016/spectra_chunk_05.npz, L=1016) | Loss: 0.02600 (BC: 0.0140, Clean: 0.0097, Asym: 0.0022) |  449.5 spec/s
+Epoch [  1/16] | File [ 71/120] (1x/1016/spectra_chunk_04.npz, L=1016) | Loss: 0.02516 (BC: 0.0135, Clean: 0.0093, Asym: 0.0023) |  452.2 spec/s
+Epoch [  1/16] | File [ 72/120] (1x/1600/spectra_chunk_05.npz, L=1600) | Loss: 0.02399 (BC: 0.0127, Clean: 0.0084, Asym: 0.0029) |  290.9 spec/s
+Epoch [  1/16] | File [ 73/120] (2x/3200/spectra_chunk_02.npz, L=3200) | Loss: 0.03067 (BC: 0.0161, Clean: 0.0109, Asym: 0.0037) |  142.6 spec/s
+Epoch [  1/16] | File [ 74/120] (2x/3200/spectra_chunk_05.npz, L=3200) | Loss: 0.03006 (BC: 0.0159, Clean: 0.0106, Asym: 0.0036) |  144.0 spec/s
+Epoch [  1/16] | File [ 75/120] (2x/2800/spectra_chunk_03.npz, L=2800) | Loss: 0.02663 (BC: 0.0142, Clean: 0.0097, Asym: 0.0028) |  168.5 spec/s
+Epoch [  1/16] | File [ 76/120] (1.5x/1200/spectra_chunk_01.npz, L=1200) | Loss: 0.02905 (BC: 0.0154, Clean: 0.0110, Asym: 0.0026) |  385.4 spec/s
+Epoch [  1/16] | File [ 77/120] (2x/1600/spectra_chunk_08.npz, L=1600) | Loss: 0.02684 (BC: 0.0141, Clean: 0.0104, Asym: 0.0023) |  294.9 spec/s
+Epoch [  1/16] | File [ 78/120] (1x/1016/spectra_chunk_08.npz, L=1016) | Loss: 0.02534 (BC: 0.0135, Clean: 0.0093, Asym: 0.0025) |  450.7 spec/s
+Epoch [  1/16] | File [ 79/120] (2x/1600/spectra_chunk_05.npz, L=1600) | Loss: 0.02829 (BC: 0.0148, Clean: 0.0108, Asym: 0.0027) |  294.8 spec/s
+Epoch [  1/16] | File [ 80/120] (1.5x/1524/spectra_chunk_04.npz, L=1524) | Loss: 0.02526 (BC: 0.0134, Clean: 0.0094, Asym: 0.0025) |  304.0 spec/s
+Epoch [  1/16] | File [ 81/120] (1.5x/1524/spectra_chunk_06.npz, L=1524) | Loss: 0.02533 (BC: 0.0133, Clean: 0.0094, Asym: 0.0026) |  303.1 spec/s
+Epoch [  1/16] | File [ 82/120] (1.5x/2100/spectra_chunk_08.npz, L=2100) | Loss: 0.03546 (BC: 0.0185, Clean: 0.0123, Asym: 0.0047) |  221.6 spec/s
+Epoch [  1/16] | File [ 83/120] (1x/800/spectra_chunk_03.npz, L=800) | Loss: 0.03233 (BC: 0.0177, Clean: 0.0124, Asym: 0.0022) |  556.6 spec/s
+Epoch [  1/16] | File [ 84/120] (2x/2032/spectra_chunk_01.npz, L=2032) | Loss: 0.02841 (BC: 0.0151, Clean: 0.0106, Asym: 0.0027) |  232.2 spec/s
+Epoch [  1/16] | File [ 85/120] (1x/1016/spectra_chunk_02.npz, L=1016) | Loss: 0.02523 (BC: 0.0135, Clean: 0.0094, Asym: 0.0023) |  450.3 spec/s
+Epoch [  1/16] | File [ 86/120] (1.5x/1800/spectra_chunk_04.npz, L=1800) | Loss: 0.02677 (BC: 0.0140, Clean: 0.0096, Asym: 0.0032) |  262.8 spec/s
+Epoch [  1/16] | File [ 87/120] (1x/800/spectra_chunk_01.npz, L=800) | Loss: 0.02730 (BC: 0.0145, Clean: 0.0103, Asym: 0.0024) |  558.1 spec/s
+Epoch [  1/16] | File [ 88/120] (1.5x/1524/spectra_chunk_02.npz, L=1524) | Loss: 0.02657 (BC: 0.0140, Clean: 0.0097, Asym: 0.0029) |  307.7 spec/s
+Epoch [  1/16] | File [ 89/120] (2x/2032/spectra_chunk_04.npz, L=2032) | Loss: 0.02572 (BC: 0.0136, Clean: 0.0096, Asym: 0.0026) |  231.2 spec/s
+Epoch [  1/16] | File [ 90/120] (2x/2800/spectra_chunk_05.npz, L=2800) | Loss: 0.02839 (BC: 0.0150, Clean: 0.0101, Asym: 0.0033) |  172.4 spec/s
+Epoch [  1/16] | File [ 91/120] (1x/1600/spectra_chunk_02.npz, L=1600) | Loss: 0.02339 (BC: 0.0126, Clean: 0.0083, Asym: 0.0025) |  301.9 spec/s
+Epoch [  1/16] | File [ 92/120] (2x/2400/spectra_chunk_05.npz, L=2400) | Loss: 0.02576 (BC: 0.0134, Clean: 0.0094, Asym: 0.0030) |  205.2 spec/s
+Epoch [  1/16] | File [ 93/120] (1x/800/spectra_chunk_06.npz, L=800) | Loss: 0.02909 (BC: 0.0154, Clean: 0.0109, Asym: 0.0027) |  569.7 spec/s
+Epoch [  1/16] | File [ 94/120] (2x/2032/spectra_chunk_03.npz, L=2032) | Loss: 0.02565 (BC: 0.0136, Clean: 0.0097, Asym: 0.0024) |  238.7 spec/s
+Epoch [  1/16] | File [ 95/120] (2x/3200/spectra_chunk_01.npz, L=3200) | Loss: 0.02729 (BC: 0.0144, Clean: 0.0096, Asym: 0.0033) |  151.4 spec/s
+Epoch [  1/16] | File [ 96/120] (2x/2800/spectra_chunk_08.npz, L=2800) | Loss: 0.02921 (BC: 0.0151, Clean: 0.0102, Asym: 0.0040) |  175.7 spec/s
+Epoch [  1/16] | File [ 97/120] (1.5x/1524/spectra_chunk_05.npz, L=1524) | Loss: 0.02600 (BC: 0.0142, Clean: 0.0097, Asym: 0.0021) |  316.5 spec/s
+Epoch [  1/16] | File [ 98/120] (1.5x/1200/spectra_chunk_04.npz, L=1200) | Loss: 0.02683 (BC: 0.0142, Clean: 0.0103, Asym: 0.0022) |  396.2 spec/s
+Epoch [  1/16] | File [ 99/120] (1.5x/1800/spectra_chunk_05.npz, L=1800) | Loss: 0.02419 (BC: 0.0126, Clean: 0.0086, Asym: 0.0030) |  270.1 spec/s
+Epoch [  1/16] | File [100/120] (1.5x/1800/spectra_chunk_06.npz, L=1800) | Loss: 0.02366 (BC: 0.0126, Clean: 0.0087, Asym: 0.0024) |  270.0 spec/s
+Epoch [  1/16] | File [101/120] (1.5x/2400/spectra_chunk_06.npz, L=2400) | Loss: 0.02873 (BC: 0.0152, Clean: 0.0101, Asym: 0.0034) |  204.7 spec/s
+Epoch [  1/16] | File [102/120] (2x/2400/spectra_chunk_04.npz, L=2400) | Loss: 0.02501 (BC: 0.0133, Clean: 0.0093, Asym: 0.0024) |  205.4 spec/s
+Epoch [  1/16] | File [103/120] (2x/2800/spectra_chunk_07.npz, L=2800) | Loss: 0.03228 (BC: 0.0167, Clean: 0.0112, Asym: 0.0044) |  176.5 spec/s
+Epoch [  1/16] | File [104/120] (1.5x/2100/spectra_chunk_05.npz, L=2100) | Loss: 0.02797 (BC: 0.0149, Clean: 0.0100, Asym: 0.0031) |  233.5 spec/s
+Epoch [  1/16] | File [105/120] (1x/1600/spectra_chunk_04.npz, L=1600) | Loss: 0.02359 (BC: 0.0129, Clean: 0.0085, Asym: 0.0021) |  303.4 spec/s
+Epoch [  1/16] | File [106/120] (1.5x/1800/spectra_chunk_02.npz, L=1800) | Loss: 0.02482 (BC: 0.0132, Clean: 0.0091, Asym: 0.0025) |  270.4 spec/s
+Epoch [  1/16] | File [107/120] (1x/1200/spectra_chunk_06.npz, L=1200) | Loss: 0.02276 (BC: 0.0122, Clean: 0.0084, Asym: 0.0022) |  395.9 spec/s
+Epoch [  1/16] | File [108/120] (2x/2800/spectra_chunk_02.npz, L=2800) | Loss: 0.02498 (BC: 0.0132, Clean: 0.0091, Asym: 0.0027) |  172.7 spec/s
+Epoch [  1/16] | File [109/120] (1.5x/1800/spectra_chunk_01.npz, L=1800) | Loss: 0.02386 (BC: 0.0126, Clean: 0.0087, Asym: 0.0026) |  261.7 spec/s
+Epoch [  1/16] | File [110/120] (2x/3200/spectra_chunk_03.npz, L=3200) | Loss: 0.02420 (BC: 0.0128, Clean: 0.0086, Asym: 0.0028) |  150.0 spec/s
+Epoch [  1/16] | File [111/120] (1x/1200/spectra_chunk_07.npz, L=1200) | Loss: 0.02570 (BC: 0.0138, Clean: 0.0093, Asym: 0.0026) |  384.4 spec/s
+Epoch [  1/16] | File [112/120] (2x/2400/spectra_chunk_07.npz, L=2400) | Loss: 0.02489 (BC: 0.0130, Clean: 0.0091, Asym: 0.0028) |  200.2 spec/s
+Epoch [  1/16] | File [113/120] (1.5x/1200/spectra_chunk_06.npz, L=1200) | Loss: 0.02807 (BC: 0.0150, Clean: 0.0107, Asym: 0.0023) |  384.7 spec/s
+Epoch [  1/16] | File [114/120] (1x/1400/spectra_chunk_03.npz, L=1400) | Loss: 0.02183 (BC: 0.0118, Clean: 0.0080, Asym: 0.0021) |  334.2 spec/s
+Epoch [  1/16] | File [115/120] (1.5x/1524/spectra_chunk_03.npz, L=1524) | Loss: 0.02395 (BC: 0.0127, Clean: 0.0090, Asym: 0.0022) |  307.2 spec/s
+Epoch [  1/16] | File [116/120] (1.5x/2400/spectra_chunk_03.npz, L=2400) | Loss: 0.02411 (BC: 0.0124, Clean: 0.0082, Asym: 0.0035) |  199.5 spec/s
+Epoch [  1/16] | File [117/120] (2x/1600/spectra_chunk_03.npz, L=1600) | Loss: 0.02761 (BC: 0.0147, Clean: 0.0108, Asym: 0.0021) |  294.8 spec/s
+Epoch [  1/16] | File [118/120] (1.5x/2400/spectra_chunk_07.npz, L=2400) | Loss: 0.02785 (BC: 0.0144, Clean: 0.0096, Asym: 0.0038) |  199.3 spec/s
+Epoch [  1/16] | File [119/120] (1.5x/2400/spectra_chunk_05.npz, L=2400) | Loss: 0.02346 (BC: 0.0123, Clean: 0.0082, Asym: 0.0030) |  199.7 spec/s
+Epoch [  1/16] | File [120/120] (1.5x/2100/spectra_chunk_07.npz, L=2100) | Loss: 0.02260 (BC: 0.0122, Clean: 0.0083, Asym: 0.0021) |  227.3 spec/s
+------------------------------------------------------------------------------
+==> Epoch [  1/16] Completed in 7947.7s (247.4 spectra/s) [Mode: Fully Interleaved (120 chunks across 1x, 1.5x, 2x)]
+    Avg Total Loss: 0.031864 | Avg BC: 0.016861 | Avg Clean: 0.011864 | Avg Asym: 0.003139
+    Learning Rate:  1.000000e-04
+    ★ New best model saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/polygaussnet5.pth' (Loss: 0.031864)
+    Saved checkpoint to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/training_checkpoint5.pth'
+------------------------------------------------------------------------------
+
+>>> Epoch [  2/16] Mode Selection: [Fully Interleaved (120 chunks across 1x, 1.5x, 2x)] (120 files to train)
+Epoch [  2/16] | File [  1/120] (1x/1016/spectra_chunk_06.npz, L=1016) | Loss: 0.02354 (BC: 0.0127, Clean: 0.0089, Asym: 0.0020) |  450.7 spec/s
+Epoch [  2/16] | File [  2/120] (1.5x/1800/spectra_chunk_03.npz, L=1800) | Loss: 0.02244 (BC: 0.0119, Clean: 0.0083, Asym: 0.0022) |  262.8 spec/s
+Epoch [  2/16] | File [  3/120] (1x/800/spectra_chunk_05.npz, L=800) | Loss: 0.02565 (BC: 0.0137, Clean: 0.0098, Asym: 0.0022) |  558.1 spec/s
+Epoch [  2/16] | File [  4/120] (2x/3200/spectra_chunk_04.npz, L=3200) | Loss: 0.03617 (BC: 0.0187, Clean: 0.0124, Asym: 0.0051) |  148.7 spec/s
+Epoch [  2/16] | File [  5/120] (1.5x/2400/spectra_chunk_07.npz, L=2400) | Loss: 0.02500 (BC: 0.0133, Clean: 0.0088, Asym: 0.0028) |  195.1 spec/s
+Epoch [  2/16] | File [  6/120] (2x/2800/spectra_chunk_03.npz, L=2800) | Loss: 0.02493 (BC: 0.0133, Clean: 0.0090, Asym: 0.0026) |  171.3 spec/s
+Epoch [  2/16] | File [  7/120] (1.5x/2400/spectra_chunk_05.npz, L=2400) | Loss: 0.02247 (BC: 0.0120, Clean: 0.0080, Asym: 0.0025) |  199.4 spec/s
+Epoch [  2/16] | File [  8/120] (2x/1600/spectra_chunk_06.npz, L=1600) | Loss: 0.02630 (BC: 0.0139, Clean: 0.0103, Asym: 0.0021) |  294.2 spec/s
+Epoch [  2/16] | File [  9/120] (1x/1600/spectra_chunk_07.npz, L=1600) | Loss: 0.02226 (BC: 0.0116, Clean: 0.0078, Asym: 0.0028) |  294.9 spec/s
+Epoch [  2/16] | File [ 10/120] (2x/2032/spectra_chunk_06.npz, L=2032) | Loss: 0.02452 (BC: 0.0129, Clean: 0.0092, Asym: 0.0024) |  234.3 spec/s
+Epoch [  2/16] | File [ 11/120] (2x/1600/spectra_chunk_08.npz, L=1600) | Loss: 0.02501 (BC: 0.0132, Clean: 0.0097, Asym: 0.0020) |  293.2 spec/s
+Epoch [  2/16] | File [ 12/120] (2x/2800/spectra_chunk_06.npz, L=2800) | Loss: 0.02462 (BC: 0.0128, Clean: 0.0087, Asym: 0.0031) |  171.1 spec/s
+Epoch [  2/16] | File [ 13/120] (1.5x/2400/spectra_chunk_03.npz, L=2400) | Loss: 0.02341 (BC: 0.0123, Clean: 0.0081, Asym: 0.0029) |  200.2 spec/s
+Epoch [  2/16] | File [ 14/120] (1.5x/1200/spectra_chunk_08.npz, L=1200) | Loss: 0.02543 (BC: 0.0136, Clean: 0.0100, Asym: 0.0018) |  384.1 spec/s
+Epoch [  2/16] | File [ 15/120] (2x/3200/spectra_chunk_01.npz, L=3200) | Loss: 0.02784 (BC: 0.0145, Clean: 0.0097, Asym: 0.0037) |  149.7 spec/s
+Epoch [  2/16] | File [ 16/120] (1x/1200/spectra_chunk_01.npz, L=1200) | Loss: 0.02134 (BC: 0.0115, Clean: 0.0079, Asym: 0.0019) |  382.7 spec/s
+Epoch [  2/16] | File [ 17/120] (1.5x/1524/spectra_chunk_05.npz, L=1524) | Loss: 0.02288 (BC: 0.0121, Clean: 0.0085, Asym: 0.0022) |  308.2 spec/s
+Epoch [  2/16] | File [ 18/120] (1.5x/2400/spectra_chunk_06.npz, L=2400) | Loss: 0.02077 (BC: 0.0111, Clean: 0.0075, Asym: 0.0022) |  200.1 spec/s
+Epoch [  2/16] | File [ 19/120] (1x/1600/spectra_chunk_03.npz, L=1600) | Loss: 0.02221 (BC: 0.0117, Clean: 0.0077, Asym: 0.0028) |  296.0 spec/s
+Epoch [  2/16] | File [ 20/120] (1.5x/1524/spectra_chunk_04.npz, L=1524) | Loss: 0.02340 (BC: 0.0125, Clean: 0.0088, Asym: 0.0020) |  307.9 spec/s
+Epoch [  2/16] | File [ 21/120] (1x/1200/spectra_chunk_08.npz, L=1200) | Loss: 0.02064 (BC: 0.0110, Clean: 0.0076, Asym: 0.0020) |  385.6 spec/s
+Epoch [  2/16] | File [ 22/120] (1x/1200/spectra_chunk_06.npz, L=1200) | Loss: 0.02086 (BC: 0.0113, Clean: 0.0078, Asym: 0.0018) |  385.6 spec/s
+Epoch [  2/16] | File [ 23/120] (1.5x/1800/spectra_chunk_06.npz, L=1800) | Loss: 0.02236 (BC: 0.0118, Clean: 0.0082, Asym: 0.0024) |  262.7 spec/s
+Epoch [  2/16] | File [ 24/120] (1.5x/1200/spectra_chunk_05.npz, L=1200) | Loss: 0.02434 (BC: 0.0129, Clean: 0.0095, Asym: 0.0019) |  386.0 spec/s
+Epoch [  2/16] | File [ 25/120] (1x/1016/spectra_chunk_03.npz, L=1016) | Loss: 0.02165 (BC: 0.0115, Clean: 0.0081, Asym: 0.0020) |  451.0 spec/s
+Epoch [  2/16] | File [ 26/120] (1x/1600/spectra_chunk_02.npz, L=1600) | Loss: 0.02056 (BC: 0.0108, Clean: 0.0072, Asym: 0.0025) |  295.4 spec/s
+Epoch [  2/16] | File [ 27/120] (1.5x/1800/spectra_chunk_08.npz, L=1800) | Loss: 0.02380 (BC: 0.0123, Clean: 0.0086, Asym: 0.0029) |  262.4 spec/s
+Epoch [  2/16] | File [ 28/120] (1.5x/2400/spectra_chunk_01.npz, L=2400) | Loss: 0.02429 (BC: 0.0133, Clean: 0.0089, Asym: 0.0021) |  199.0 spec/s
+Epoch [  2/16] | File [ 29/120] (1.5x/1800/spectra_chunk_05.npz, L=1800) | Loss: 0.02238 (BC: 0.0119, Clean: 0.0082, Asym: 0.0022) |  262.6 spec/s
+Epoch [  2/16] | File [ 30/120] (2x/2032/spectra_chunk_08.npz, L=2032) | Loss: 0.02247 (BC: 0.0119, Clean: 0.0086, Asym: 0.0019) |  234.9 spec/s
+Epoch [  2/16] | File [ 31/120] (2x/3200/spectra_chunk_08.npz, L=3200) | Loss: 0.02487 (BC: 0.0131, Clean: 0.0088, Asym: 0.0030) |  149.6 spec/s
+Epoch [  2/16] | File [ 32/120] (1x/1200/spectra_chunk_07.npz, L=1200) | Loss: 0.02045 (BC: 0.0111, Clean: 0.0077, Asym: 0.0017) |  383.4 spec/s
+Epoch [  2/16] | File [ 33/120] (1x/1200/spectra_chunk_05.npz, L=1200) | Loss: 0.01987 (BC: 0.0106, Clean: 0.0074, Asym: 0.0018) |  385.2 spec/s
+Epoch [  2/16] | File [ 34/120] (1x/1600/spectra_chunk_08.npz, L=1600) | Loss: 0.02001 (BC: 0.0105, Clean: 0.0070, Asym: 0.0026) |  294.7 spec/s
+Epoch [  2/16] | File [ 35/120] (2x/1600/spectra_chunk_02.npz, L=1600) | Loss: 0.02521 (BC: 0.0132, Clean: 0.0099, Asym: 0.0021) |  295.7 spec/s
+Epoch [  2/16] | File [ 36/120] (1.5x/2100/spectra_chunk_06.npz, L=2100) | Loss: 0.02114 (BC: 0.0112, Clean: 0.0076, Asym: 0.0024) |  225.7 spec/s
+Epoch [  2/16] | File [ 37/120] (2x/2032/spectra_chunk_04.npz, L=2032) | Loss: 0.02250 (BC: 0.0118, Clean: 0.0085, Asym: 0.0021) |  233.5 spec/s
+Epoch [  2/16] | File [ 38/120] (2x/2800/spectra_chunk_08.npz, L=2800) | Loss: 0.02251 (BC: 0.0118, Clean: 0.0080, Asym: 0.0027) |  171.7 spec/s
+Epoch [  2/16] | File [ 39/120] (1x/1200/spectra_chunk_02.npz, L=1200) | Loss: 0.02069 (BC: 0.0110, Clean: 0.0076, Asym: 0.0021) |  384.8 spec/s
+Epoch [  2/16] | File [ 40/120] (2x/2032/spectra_chunk_01.npz, L=2032) | Loss: 0.02402 (BC: 0.0123, Clean: 0.0088, Asym: 0.0028) |  234.6 spec/s
+Epoch [  2/16] | File [ 41/120] (2x/2800/spectra_chunk_01.npz, L=2800) | Loss: 0.02260 (BC: 0.0121, Clean: 0.0083, Asym: 0.0022) |  171.3 spec/s
+Epoch [  2/16] | File [ 42/120] (2x/2400/spectra_chunk_03.npz, L=2400) | Loss: 0.02489 (BC: 0.0128, Clean: 0.0089, Asym: 0.0033) |  200.0 spec/s
+Epoch [  2/16] | File [ 43/120] (1x/800/spectra_chunk_03.npz, L=800) | Loss: 0.02452 (BC: 0.0132, Clean: 0.0095, Asym: 0.0018) |  557.2 spec/s
+Epoch [  2/16] | File [ 44/120] (2x/3200/spectra_chunk_02.npz, L=3200) | Loss: 0.02625 (BC: 0.0133, Clean: 0.0090, Asym: 0.0040) |  148.6 spec/s
+Epoch [  2/16] | File [ 45/120] (1x/1400/spectra_chunk_02.npz, L=1400) | Loss: 0.02252 (BC: 0.0115, Clean: 0.0078, Asym: 0.0032) |  336.9 spec/s
+Epoch [  2/16] | File [ 46/120] (1.5x/1800/spectra_chunk_01.npz, L=1800) | Loss: 0.02667 (BC: 0.0148, Clean: 0.0100, Asym: 0.0018) |  270.5 spec/s
+Epoch [  2/16] | File [ 47/120] (1.5x/2100/spectra_chunk_08.npz, L=2100) | Loss: 0.02170 (BC: 0.0116, Clean: 0.0079, Asym: 0.0022) |  232.5 spec/s
+Epoch [  2/16] | File [ 48/120] (1x/1016/spectra_chunk_05.npz, L=1016) | Loss: 0.02254 (BC: 0.0121, Clean: 0.0085, Asym: 0.0020) |  461.2 spec/s
+Epoch [  2/16] | File [ 49/120] (1.5x/1524/spectra_chunk_07.npz, L=1524) | Loss: 0.02088 (BC: 0.0112, Clean: 0.0079, Asym: 0.0017) |  317.1 spec/s
+Epoch [  2/16] | File [ 50/120] (1.5x/2100/spectra_chunk_05.npz, L=2100) | Loss: 0.02172 (BC: 0.0113, Clean: 0.0077, Asym: 0.0027) |  232.5 spec/s
+Epoch [  2/16] | File [ 51/120] (2x/2400/spectra_chunk_02.npz, L=2400) | Loss: 0.02128 (BC: 0.0112, Clean: 0.0079, Asym: 0.0021) |  205.7 spec/s
+Epoch [  2/16] | File [ 52/120] (1.5x/2400/spectra_chunk_04.npz, L=2400) | Loss: 0.02003 (BC: 0.0107, Clean: 0.0071, Asym: 0.0022) |  206.5 spec/s
+Epoch [  2/16] | File [ 53/120] (1.5x/1200/spectra_chunk_02.npz, L=1200) | Loss: 0.02521 (BC: 0.0133, Clean: 0.0097, Asym: 0.0022) |  396.7 spec/s
+Epoch [  2/16] | File [ 54/120] (2x/3200/spectra_chunk_07.npz, L=3200) | Loss: 0.03401 (BC: 0.0170, Clean: 0.0113, Asym: 0.0057) |  153.8 spec/s
+Epoch [  2/16] | File [ 55/120] (2x/2400/spectra_chunk_05.npz, L=2400) | Loss: 0.02544 (BC: 0.0137, Clean: 0.0094, Asym: 0.0023) |  204.8 spec/s
+Epoch [  2/16] | File [ 56/120] (1.5x/1800/spectra_chunk_04.npz, L=1800) | Loss: 0.02108 (BC: 0.0113, Clean: 0.0079, Asym: 0.0018) |  269.7 spec/s
+Epoch [  2/16] | File [ 57/120] (1.5x/1200/spectra_chunk_03.npz, L=1200) | Loss: 0.02316 (BC: 0.0123, Clean: 0.0090, Asym: 0.0018) |  396.7 spec/s
+Epoch [  2/16] | File [ 58/120] (1x/1400/spectra_chunk_08.npz, L=1400) | Loss: 0.01906 (BC: 0.0102, Clean: 0.0070, Asym: 0.0019) |  343.6 spec/s
+Epoch [  2/16] | File [ 59/120] (1x/800/spectra_chunk_07.npz, L=800) | Loss: 0.02333 (BC: 0.0124, Clean: 0.0091, Asym: 0.0018) |  573.3 spec/s
+Epoch [  2/16] | File [ 60/120] (2x/2800/spectra_chunk_02.npz, L=2800) | Loss: 0.02523 (BC: 0.0129, Clean: 0.0089, Asym: 0.0035) |  175.9 spec/s
+Epoch [  2/16] | File [ 61/120] (1.5x/1524/spectra_chunk_03.npz, L=1524) | Loss: 0.02190 (BC: 0.0118, Clean: 0.0084, Asym: 0.0016) |  316.5 spec/s
+Epoch [  2/16] | File [ 62/120] (1x/800/spectra_chunk_02.npz, L=800) | Loss: 0.02189 (BC: 0.0117, Clean: 0.0085, Asym: 0.0017) |  573.4 spec/s
+Epoch [  2/16] | File [ 63/120] (2x/1600/spectra_chunk_01.npz, L=1600) | Loss: 0.02407 (BC: 0.0125, Clean: 0.0093, Asym: 0.0023) |  304.2 spec/s
+Epoch [  2/16] | File [ 64/120] (2x/1600/spectra_chunk_07.npz, L=1600) | Loss: 0.02216 (BC: 0.0116, Clean: 0.0087, Asym: 0.0019) |  304.0 spec/s
+Epoch [  2/16] | File [ 65/120] (1x/1600/spectra_chunk_06.npz, L=1600) | Loss: 0.01985 (BC: 0.0103, Clean: 0.0069, Asym: 0.0026) |  301.4 spec/s
+Epoch [  2/16] | File [ 66/120] (1x/1016/spectra_chunk_02.npz, L=1016) | Loss: 0.02026 (BC: 0.0108, Clean: 0.0077, Asym: 0.0018) |  450.4 spec/s
+Epoch [  2/16] | File [ 67/120] (1.5x/1524/spectra_chunk_01.npz, L=1524) | Loss: 0.02127 (BC: 0.0111, Clean: 0.0079, Asym: 0.0022) |  307.3 spec/s
+Epoch [  2/16] | File [ 68/120] (2x/2400/spectra_chunk_06.npz, L=2400) | Loss: 0.02080 (BC: 0.0109, Clean: 0.0077, Asym: 0.0022) |  199.1 spec/s
+Epoch [  2/16] | File [ 69/120] (2x/2400/spectra_chunk_07.npz, L=2400) | Loss: 0.02180 (BC: 0.0114, Clean: 0.0080, Asym: 0.0024) |  200.2 spec/s
+Epoch [  2/16] | File [ 70/120] (1.5x/2400/spectra_chunk_02.npz, L=2400) | Loss: 0.02173 (BC: 0.0111, Clean: 0.0074, Asym: 0.0033) |  200.5 spec/s
+Epoch [  2/16] | File [ 71/120] (2x/2032/spectra_chunk_02.npz, L=2032) | Loss: 0.02228 (BC: 0.0119, Clean: 0.0086, Asym: 0.0018) |  233.1 spec/s
+Epoch [  2/16] | File [ 72/120] (1.5x/1524/spectra_chunk_06.npz, L=1524) | Loss: 0.02136 (BC: 0.0111, Clean: 0.0079, Asym: 0.0024) |  306.9 spec/s
+Epoch [  2/16] | File [ 73/120] (1x/1400/spectra_chunk_03.npz, L=1400) | Loss: 0.01805 (BC: 0.0097, Clean: 0.0067, Asym: 0.0017) |  334.8 spec/s
+Epoch [  2/16] | File [ 74/120] (1x/1200/spectra_chunk_04.npz, L=1200) | Loss: 0.01863 (BC: 0.0100, Clean: 0.0070, Asym: 0.0016) |  386.5 spec/s
+Epoch [  2/16] | File [ 75/120] (1x/1600/spectra_chunk_04.npz, L=1600) | Loss: 0.01851 (BC: 0.0098, Clean: 0.0066, Asym: 0.0022) |  296.1 spec/s
+Epoch [  2/16] | File [ 76/120] (1x/1400/spectra_chunk_04.npz, L=1400) | Loss: 0.01820 (BC: 0.0097, Clean: 0.0066, Asym: 0.0019) |  334.2 spec/s
+Epoch [  2/16] | File [ 77/120] (2x/1600/spectra_chunk_04.npz, L=1600) | Loss: 0.02487 (BC: 0.0126, Clean: 0.0094, Asym: 0.0028) |  294.9 spec/s
+Epoch [  2/16] | File [ 78/120] (1.5x/2100/spectra_chunk_01.npz, L=2100) | Loss: 0.02461 (BC: 0.0127, Clean: 0.0085, Asym: 0.0034) |  226.6 spec/s
+Epoch [  2/16] | File [ 79/120] (2x/3200/spectra_chunk_05.npz, L=3200) | Loss: 0.02272 (BC: 0.0120, Clean: 0.0080, Asym: 0.0027) |  154.4 spec/s
+Epoch [  2/16] | File [ 80/120] (1x/800/spectra_chunk_01.npz, L=800) | Loss: 0.02427 (BC: 0.0130, Clean: 0.0093, Asym: 0.0020) |  569.1 spec/s
+Epoch [  2/16] | File [ 81/120] (1.5x/1800/spectra_chunk_02.npz, L=1800) | Loss: 0.02156 (BC: 0.0109, Clean: 0.0077, Asym: 0.0030) |  270.7 spec/s
+Epoch [  2/16] | File [ 82/120] (1.5x/1200/spectra_chunk_04.npz, L=1200) | Loss: 0.02334 (BC: 0.0126, Clean: 0.0092, Asym: 0.0016) |  396.6 spec/s
+Epoch [  2/16] | File [ 83/120] (1.5x/1200/spectra_chunk_06.npz, L=1200) | Loss: 0.02297 (BC: 0.0121, Clean: 0.0088, Asym: 0.0021) |  396.7 spec/s
+Epoch [  2/16] | File [ 84/120] (1x/1016/spectra_chunk_01.npz, L=1016) | Loss: 0.01922 (BC: 0.0102, Clean: 0.0073, Asym: 0.0017) |  462.2 spec/s
+Epoch [  2/16] | File [ 85/120] (1.5x/1200/spectra_chunk_01.npz, L=1200) | Loss: 0.02145 (BC: 0.0113, Clean: 0.0084, Asym: 0.0018) |  396.3 spec/s
+Epoch [  2/16] | File [ 86/120] (1x/800/spectra_chunk_08.npz, L=800) | Loss: 0.02133 (BC: 0.0113, Clean: 0.0084, Asym: 0.0017) |  573.1 spec/s
+Epoch [  2/16] | File [ 87/120] (2x/2400/spectra_chunk_08.npz, L=2400) | Loss: 0.02404 (BC: 0.0125, Clean: 0.0087, Asym: 0.0028) |  204.9 spec/s
+Epoch [  2/16] | File [ 88/120] (1x/1400/spectra_chunk_06.npz, L=1400) | Loss: 0.01845 (BC: 0.0097, Clean: 0.0067, Asym: 0.0020) |  343.4 spec/s
+Epoch [  2/16] | File [ 89/120] (2x/2032/spectra_chunk_07.npz, L=2032) | Loss: 0.02197 (BC: 0.0114, Clean: 0.0083, Asym: 0.0023) |  241.0 spec/s
+Epoch [  2/16] | File [ 90/120] (2x/3200/spectra_chunk_06.npz, L=3200) | Loss: 0.02236 (BC: 0.0116, Clean: 0.0078, Asym: 0.0029) |  154.4 spec/s
+Epoch [  2/16] | File [ 91/120] (1x/1400/spectra_chunk_05.npz, L=1400) | Loss: 0.01886 (BC: 0.0102, Clean: 0.0070, Asym: 0.0017) |  342.2 spec/s
+Epoch [  2/16] | File [ 92/120] (1.5x/2400/spectra_chunk_08.npz, L=2400) | Loss: 0.02338 (BC: 0.0122, Clean: 0.0081, Asym: 0.0031) |  206.1 spec/s
+Epoch [  2/16] | File [ 93/120] (1.5x/1200/spectra_chunk_07.npz, L=1200) | Loss: 0.02262 (BC: 0.0121, Clean: 0.0090, Asym: 0.0014) |  395.3 spec/s
+Epoch [  2/16] | File [ 94/120] (2x/2800/spectra_chunk_04.npz, L=2800) | Loss: 0.02342 (BC: 0.0121, Clean: 0.0083, Asym: 0.0030) |  176.7 spec/s
+Epoch [  2/16] | File [ 95/120] (1x/1600/spectra_chunk_05.npz, L=1600) | Loss: 0.01751 (BC: 0.0094, Clean: 0.0064, Asym: 0.0017) |  303.9 spec/s
+Epoch [  2/16] | File [ 96/120] (1.5x/1800/spectra_chunk_07.npz, L=1800) | Loss: 0.01958 (BC: 0.0103, Clean: 0.0073, Asym: 0.0019) |  270.8 spec/s
+Epoch [  2/16] | File [ 97/120] (2x/1600/spectra_chunk_05.npz, L=1600) | Loss: 0.02263 (BC: 0.0119, Clean: 0.0089, Asym: 0.0019) |  303.4 spec/s
+Epoch [  2/16] | File [ 98/120] (1.5x/2100/spectra_chunk_04.npz, L=2100) | Loss: 0.01847 (BC: 0.0098, Clean: 0.0067, Asym: 0.0020) |  230.8 spec/s
+Epoch [  2/16] | File [ 99/120] (1x/800/spectra_chunk_04.npz, L=800) | Loss: 0.02257 (BC: 0.0118, Clean: 0.0086, Asym: 0.0021) |  554.1 spec/s
+Epoch [  2/16] | File [100/120] (1.5x/1524/spectra_chunk_08.npz, L=1524) | Loss: 0.01969 (BC: 0.0104, Clean: 0.0075, Asym: 0.0018) |  307.8 spec/s
+Epoch [  2/16] | File [101/120] (1x/1200/spectra_chunk_03.npz, L=1200) | Loss: 0.01807 (BC: 0.0096, Clean: 0.0067, Asym: 0.0018) |  385.7 spec/s
+Epoch [  2/16] | File [102/120] (1x/1600/spectra_chunk_01.npz, L=1600) | Loss: 0.01730 (BC: 0.0092, Clean: 0.0062, Asym: 0.0019) |  294.1 spec/s
+Epoch [  2/16] | File [103/120] (2x/2800/spectra_chunk_05.npz, L=2800) | Loss: 0.02105 (BC: 0.0108, Clean: 0.0075, Asym: 0.0027) |  171.4 spec/s
+Epoch [  2/16] | File [104/120] (1.5x/2100/spectra_chunk_03.npz, L=2100) | Loss: 0.02056 (BC: 0.0107, Clean: 0.0073, Asym: 0.0025) |  225.7 spec/s
+Epoch [  2/16] | File [105/120] (1x/1016/spectra_chunk_04.npz, L=1016) | Loss: 0.01985 (BC: 0.0106, Clean: 0.0076, Asym: 0.0017) |  448.6 spec/s
+Epoch [  2/16] | File [106/120] (2x/3200/spectra_chunk_03.npz, L=3200) | Loss: 0.02043 (BC: 0.0108, Clean: 0.0073, Asym: 0.0023) |  148.9 spec/s
+Epoch [  2/16] | File [107/120] (2x/2032/spectra_chunk_05.npz, L=2032) | Loss: 0.02026 (BC: 0.0106, Clean: 0.0077, Asym: 0.0019) |  233.2 spec/s
+Epoch [  2/16] | File [108/120] (2x/2032/spectra_chunk_03.npz, L=2032) | Loss: 0.02180 (BC: 0.0114, Clean: 0.0083, Asym: 0.0021) |  234.5 spec/s
+Epoch [  2/16] | File [109/120] (1x/1016/spectra_chunk_07.npz, L=1016) | Loss: 0.01933 (BC: 0.0103, Clean: 0.0075, Asym: 0.0016) |  450.2 spec/s
+Epoch [  2/16] | File [110/120] (1x/800/spectra_chunk_06.npz, L=800) | Loss: 0.02071 (BC: 0.0110, Clean: 0.0083, Asym: 0.0014) |  557.7 spec/s
+Epoch [  2/16] | File [111/120] (2x/2800/spectra_chunk_07.npz, L=2800) | Loss: 0.02020 (BC: 0.0106, Clean: 0.0073, Asym: 0.0023) |  171.4 spec/s
+Epoch [  2/16] | File [112/120] (1x/1400/spectra_chunk_01.npz, L=1400) | Loss: 0.01731 (BC: 0.0093, Clean: 0.0064, Asym: 0.0016) |  335.1 spec/s
+Epoch [  2/16] | File [113/120] (2x/1600/spectra_chunk_03.npz, L=1600) | Loss: 0.02166 (BC: 0.0113, Clean: 0.0087, Asym: 0.0017) |  296.0 spec/s
+Epoch [  2/16] | File [114/120] (2x/2400/spectra_chunk_01.npz, L=2400) | Loss: 0.02055 (BC: 0.0107, Clean: 0.0075, Asym: 0.0024) |  199.5 spec/s
+Epoch [  2/16] | File [115/120] (1.5x/2100/spectra_chunk_02.npz, L=2100) | Loss: 0.02062 (BC: 0.0106, Clean: 0.0072, Asym: 0.0027) |  226.1 spec/s
+Epoch [  2/16] | File [116/120] (2x/2400/spectra_chunk_04.npz, L=2400) | Loss: 0.02156 (BC: 0.0113, Clean: 0.0079, Asym: 0.0024) |  200.3 spec/s
+Epoch [  2/16] | File [117/120] (1.5x/2100/spectra_chunk_07.npz, L=2100) | Loss: 0.01885 (BC: 0.0099, Clean: 0.0068, Asym: 0.0021) |  227.3 spec/s
+Epoch [  2/16] | File [118/120] (1x/1400/spectra_chunk_07.npz, L=1400) | Loss: 0.01829 (BC: 0.0098, Clean: 0.0067, Asym: 0.0019) |  331.6 spec/s
+Epoch [  2/16] | File [119/120] (1.5x/1524/spectra_chunk_02.npz, L=1524) | Loss: 0.01989 (BC: 0.0105, Clean: 0.0076, Asym: 0.0018) |  313.7 spec/s
+Epoch [  2/16] | File [120/120] (1x/1016/spectra_chunk_08.npz, L=1016) | Loss: 0.01907 (BC: 0.0101, Clean: 0.0073, Asym: 0.0017) |  461.8 spec/s
+------------------------------------------------------------------------------
+==> Epoch [  2/16] Completed in 7462.7s (263.5 spectra/s) [Mode: Fully Interleaved (120 chunks across 1x, 1.5x, 2x)]
+    Avg Total Loss: 0.022158 | Avg BC: 0.011685 | Avg Clean: 0.008184 | Avg Asym: 0.002289
+    Learning Rate:  1.000000e-04
+    ★ New best model saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/polygaussnet5.pth' (Loss: 0.022158)
+    Saved checkpoint to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/training_checkpoint5.pth'
+------------------------------------------------------------------------------
+
+>>> Epoch [  3/16] Mode Selection: [Fully Interleaved (120 chunks across 1x, 1.5x, 2x)] (120 files to train)
+Epoch [  3/16] | File [  1/120] (2x/2400/spectra_chunk_07.npz, L=2400) | Loss: 0.02018 (BC: 0.0105, Clean: 0.0075, Asym: 0.0023) |  205.5 spec/s
+^C
+==============================================================================
+ Training safely paused by user (Ctrl+C).
+ Checkpoint preserved at: '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/training_checkpoint5.pth'
+ Resume anytime by running: python training5.py
+==============================================================================
+
+(venv) bogiekissiov@Bogies-MacBook-Air-447 raman preprocessing % python training5.py
+/opt/homebrew/Cellar/python@3.14/3.14.2_1/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python: can't open file '/Users/bogiekissiov/Desktop/raman preprocessing/training5.py': [Errno 2] No such file or directory
+(venv) bogiekissiov@Bogies-MacBook-Air-447 raman preprocessing % python training_round5/training5.py
+==============================================================================
+ PolyGaussNet3+ Training (Round 5 Multi-Resolution Raman Preprocessing) 
+==============================================================================
+  - Device:             mps
+  - Batch Size:         128
+  - Initial LR:         0.0001
+  - Min LR:             9e-08
+  - Weight Decay:       0.0001
+  - Total Epochs:       16
+  - Polynomial Order:   7 (Degree 7)
+  - Filter Kernel Size: 63
+  - Sigma Range:        [0.2, 10.0]
+  - Amplitude Range:    [0.85, 1.15]
+  - Lambda BC:          1.0
+  - Lambda Clean:       1.0
+  - Lambda Asymmetric:  15.0
+  - Dataset Location:   /Users/bogiekissiov/Desktop/raman preprocessing/training_round5/training_data5
+  - Discovered Modes:   ['1x', '1.5x', '2x']
+      * Mode '1x': 40 files
+      * Mode '1.5x': 40 files
+      * Mode '2x': 40 files
+  - Total Dataset Size: 120 chunk files
+==============================================================================
+
+PolyGaussNet3+ Parameters: 245,322 total (245,322 trainable)
+Found checkpoint at '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/training_checkpoint5.pth'. Resuming training...
+Successfully resumed from Epoch 3 of 16 (Previous best loss: 0.022158).
+
+==============================================================================
+Starting Training: Epochs 3 to 16
+==============================================================================
+
+>>> Epoch [  3/16] Mode Selection: [Fully Interleaved (120 chunks across 1x, 1.5x, 2x)] (120 files to train)
+Epoch [  3/16] | File [  1/120] (1.5x/2400/spectra_chunk_07.npz, L=2400) | Loss: 0.01909 (BC: 0.0099, Clean: 0.0067, Asym: 0.0024) |  193.3 spec/s
+Epoch [  3/16] | File [  2/120] (1x/1200/spectra_chunk_02.npz, L=1200) | Loss: 0.01793 (BC: 0.0097, Clean: 0.0068, Asym: 0.0015) |  355.9 spec/s
+Epoch [  3/16] | File [  3/120] (2x/1600/spectra_chunk_07.npz, L=1600) | Loss: 0.02148 (BC: 0.0112, Clean: 0.0086, Asym: 0.0018) |  279.9 spec/s
+Epoch [  3/16] | File [  4/120] (1.5x/2400/spectra_chunk_06.npz, L=2400) | Loss: 0.01950 (BC: 0.0101, Clean: 0.0068, Asym: 0.0026) |  193.9 spec/s
+Epoch [  3/16] | File [  5/120] (1.5x/1800/spectra_chunk_05.npz, L=1800) | Loss: 0.01869 (BC: 0.0099, Clean: 0.0070, Asym: 0.0018) |  250.8 spec/s
+Epoch [  3/16] | File [  6/120] (1x/800/spectra_chunk_05.npz, L=800) | Loss: 0.02197 (BC: 0.0115, Clean: 0.0084, Asym: 0.0021) |  496.2 spec/s
+Epoch [  3/16] | File [  7/120] (1.5x/1200/spectra_chunk_03.npz, L=1200) | Loss: 0.02169 (BC: 0.0113, Clean: 0.0084, Asym: 0.0020) |  358.9 spec/s
+Epoch [  3/16] | File [  8/120] (1.5x/1800/spectra_chunk_08.npz, L=1800) | Loss: 0.01840 (BC: 0.0097, Clean: 0.0069, Asym: 0.0018) |  251.6 spec/s
+Epoch [  3/16] | File [  9/120] (1x/1400/spectra_chunk_01.npz, L=1400) | Loss: 0.01777 (BC: 0.0094, Clean: 0.0065, Asym: 0.0019) |  314.3 spec/s
+Epoch [  3/16] | File [ 10/120] (1x/1600/spectra_chunk_08.npz, L=1600) | Loss: 0.01682 (BC: 0.0089, Clean: 0.0060, Asym: 0.0018) |  257.2 spec/s
+Epoch [  3/16] | File [ 11/120] (2x/2032/spectra_chunk_02.npz, L=2032) | Loss: 0.02043 (BC: 0.0106, Clean: 0.0078, Asym: 0.0020) |  225.2 spec/s
+Epoch [  3/16] | File [ 12/120] (2x/2032/spectra_chunk_07.npz, L=2032) | Loss: 0.02067 (BC: 0.0108, Clean: 0.0078, Asym: 0.0021) |  225.9 spec/s
+Epoch [  3/16] | File [ 13/120] (1.5x/1524/spectra_chunk_06.npz, L=1524) | Loss: 0.01940 (BC: 0.0100, Clean: 0.0073, Asym: 0.0020) |  289.9 spec/s
+Epoch [  3/16] | File [ 14/120] (1.5x/1800/spectra_chunk_03.npz, L=1800) | Loss: 0.01836 (BC: 0.0097, Clean: 0.0069, Asym: 0.0017) |  251.1 spec/s
+Epoch [  3/16] | File [ 15/120] (1.5x/1200/spectra_chunk_07.npz, L=1200) | Loss: 0.02051 (BC: 0.0108, Clean: 0.0082, Asym: 0.0015) |  355.7 spec/s
+Epoch [  3/16] | File [ 16/120] (1.5x/2100/spectra_chunk_05.npz, L=2100) | Loss: 0.02211 (BC: 0.0113, Clean: 0.0077, Asym: 0.0030) |  214.1 spec/s
+Epoch [  3/16] | File [ 17/120] (2x/2032/spectra_chunk_01.npz, L=2032) | Loss: 0.02316 (BC: 0.0119, Clean: 0.0086, Asym: 0.0026) |  220.2 spec/s
+Epoch [  3/16] | File [ 18/120] (1x/1400/spectra_chunk_04.npz, L=1400) | Loss: 0.01746 (BC: 0.0092, Clean: 0.0064, Asym: 0.0019) |  311.8 spec/s
+Epoch [  3/16] | File [ 19/120] (1x/1200/spectra_chunk_05.npz, L=1200) | Loss: 0.01760 (BC: 0.0095, Clean: 0.0067, Asym: 0.0014) |  357.0 spec/s
+Epoch [  3/16] | File [ 20/120] (1.5x/1524/spectra_chunk_03.npz, L=1524) | Loss: 0.01956 (BC: 0.0102, Clean: 0.0075, Asym: 0.0018) |  289.2 spec/s
+Epoch [  3/16] | File [ 21/120] (1.5x/1800/spectra_chunk_07.npz, L=1800) | Loss: 0.01913 (BC: 0.0099, Clean: 0.0070, Asym: 0.0022) |  250.5 spec/s
+Epoch [  3/16] | File [ 22/120] (1.5x/2400/spectra_chunk_08.npz, L=2400) | Loss: 0.01737 (BC: 0.0092, Clean: 0.0062, Asym: 0.0019) |  193.9 spec/s
+Epoch [  3/16] | File [ 23/120] (1x/1016/spectra_chunk_04.npz, L=1016) | Loss: 0.02076 (BC: 0.0109, Clean: 0.0077, Asym: 0.0021) |  406.9 spec/s
+Epoch [  3/16] | File [ 24/120] (1x/1600/spectra_chunk_07.npz, L=1600) | Loss: 0.01810 (BC: 0.0095, Clean: 0.0064, Asym: 0.0022) |  273.3 spec/s
+Epoch [  3/16] | File [ 25/120] (1.5x/1524/spectra_chunk_01.npz, L=1524) | Loss: 0.01990 (BC: 0.0103, Clean: 0.0075, Asym: 0.0020) |  283.7 spec/s
+Epoch [  3/16] | File [ 26/120] (2x/1600/spectra_chunk_02.npz, L=1600) | Loss: 0.02106 (BC: 0.0111, Clean: 0.0084, Asym: 0.0016) |  273.3 spec/s
+Epoch [  3/16] | File [ 27/120] (2x/2400/spectra_chunk_03.npz, L=2400) | Loss: 0.02063 (BC: 0.0107, Clean: 0.0075, Asym: 0.0025) |  189.6 spec/s
+Epoch [  3/16] | File [ 28/120] (1x/1400/spectra_chunk_03.npz, L=1400) | Loss: 0.01676 (BC: 0.0089, Clean: 0.0062, Asym: 0.0016) |  306.1 spec/s
+Epoch [  3/16] | File [ 29/120] (2x/2032/spectra_chunk_06.npz, L=2032) | Loss: 0.02180 (BC: 0.0112, Clean: 0.0082, Asym: 0.0025) |  220.0 spec/s
+Epoch [  3/16] | File [ 30/120] (2x/2032/spectra_chunk_04.npz, L=2032) | Loss: 0.02008 (BC: 0.0104, Clean: 0.0075, Asym: 0.0021) |  220.0 spec/s
+Epoch [  3/16] | File [ 31/120] (1.5x/2400/spectra_chunk_01.npz, L=2400) | Loss: 0.02163 (BC: 0.0113, Clean: 0.0075, Asym: 0.0028) |  189.3 spec/s
+Epoch [  3/16] | File [ 32/120] (1.5x/1800/spectra_chunk_06.npz, L=1800) | Loss: 0.01835 (BC: 0.0096, Clean: 0.0069, Asym: 0.0019) |  245.3 spec/s
+Epoch [  3/16] | File [ 33/120] (1.5x/1200/spectra_chunk_02.npz, L=1200) | Loss: 0.02113 (BC: 0.0112, Clean: 0.0084, Asym: 0.0016) |  348.1 spec/s
+Epoch [  3/16] | File [ 34/120] (1x/1400/spectra_chunk_02.npz, L=1400) | Loss: 0.01755 (BC: 0.0092, Clean: 0.0064, Asym: 0.0019) |  308.6 spec/s
+Epoch [  3/16] | File [ 35/120] (2x/3200/spectra_chunk_03.npz, L=3200) | Loss: 0.01964 (BC: 0.0104, Clean: 0.0071, Asym: 0.0022) |  147.0 spec/s
+Epoch [  3/16] | File [ 36/120] (1.5x/1524/spectra_chunk_07.npz, L=1524) | Loss: 0.01853 (BC: 0.0098, Clean: 0.0071, Asym: 0.0016) |  290.7 spec/s
+Epoch [  3/16] | File [ 37/120] (1x/800/spectra_chunk_07.npz, L=800) | Loss: 0.02069 (BC: 0.0109, Clean: 0.0082, Asym: 0.0016) |  493.7 spec/s
+Epoch [  3/16] | File [ 38/120] (1x/1016/spectra_chunk_05.npz, L=1016) | Loss: 0.01830 (BC: 0.0097, Clean: 0.0070, Asym: 0.0016) |  410.0 spec/s
+Epoch [  3/16] | File [ 39/120] (2x/2400/spectra_chunk_05.npz, L=2400) | Loss: 0.02134 (BC: 0.0110, Clean: 0.0078, Asym: 0.0025) |  195.1 spec/s
+Epoch [  3/16] | File [ 40/120] (1.5x/2100/spectra_chunk_03.npz, L=2100) | Loss: 0.01768 (BC: 0.0094, Clean: 0.0065, Asym: 0.0018) |  219.3 spec/s
+Epoch [  3/16] | File [ 41/120] (1.5x/1800/spectra_chunk_04.npz, L=1800) | Loss: 0.01818 (BC: 0.0095, Clean: 0.0068, Asym: 0.0018) |  251.0 spec/s
+Epoch [  3/16] | File [ 42/120] (1x/800/spectra_chunk_03.npz, L=800) | Loss: 0.02127 (BC: 0.0112, Clean: 0.0083, Asym: 0.0017) |  494.8 spec/s
+Epoch [  3/16] | File [ 43/120] (2x/2800/spectra_chunk_04.npz, L=2800) | Loss: 0.02452 (BC: 0.0127, Clean: 0.0087, Asym: 0.0032) |  168.3 spec/s
+Epoch [  3/16] | File [ 44/120] (1.5x/2100/spectra_chunk_06.npz, L=2100) | Loss: 0.01817 (BC: 0.0097, Clean: 0.0067, Asym: 0.0018) |  218.9 spec/s
+Epoch [  3/16] | File [ 45/120] (2x/2032/spectra_chunk_05.npz, L=2032) | Loss: 0.01938 (BC: 0.0102, Clean: 0.0075, Asym: 0.0017) |  225.3 spec/s
+Epoch [  3/16] | File [ 46/120] (2x/3200/spectra_chunk_02.npz, L=3200) | Loss: 0.02116 (BC: 0.0109, Clean: 0.0073, Asym: 0.0029) |  147.7 spec/s
+Epoch [  3/16] | File [ 47/120] (1x/1016/spectra_chunk_06.npz, L=1016) | Loss: 0.01974 (BC: 0.0105, Clean: 0.0075, Asym: 0.0017) |  408.7 spec/s
+Epoch [  3/16] | File [ 48/120] (1x/1200/spectra_chunk_06.npz, L=1200) | Loss: 0.01708 (BC: 0.0091, Clean: 0.0064, Asym: 0.0015) |  357.2 spec/s
+Epoch [  3/16] | File [ 49/120] (2x/3200/spectra_chunk_04.npz, L=3200) | Loss: 0.02048 (BC: 0.0107, Clean: 0.0072, Asym: 0.0025) |  147.5 spec/s
+Epoch [  3/16] | File [ 50/120] (1.5x/1200/spectra_chunk_01.npz, L=1200) | Loss: 0.02108 (BC: 0.0111, Clean: 0.0083, Asym: 0.0017) |  355.8 spec/s
+Epoch [  3/16] | File [ 51/120] (2x/2400/spectra_chunk_07.npz, L=2400) | Loss: 0.01878 (BC: 0.0098, Clean: 0.0070, Asym: 0.0021) |  193.8 spec/s
+Epoch [  3/16] | File [ 52/120] (2x/2400/spectra_chunk_01.npz, L=2400) | Loss: 0.01945 (BC: 0.0102, Clean: 0.0072, Asym: 0.0020) |  194.3 spec/s
+Epoch [  3/16] | File [ 53/120] (1x/800/spectra_chunk_04.npz, L=800) | Loss: 0.02124 (BC: 0.0111, Clean: 0.0082, Asym: 0.0020) |  494.7 spec/s
+Epoch [  3/16] | File [ 54/120] (1x/800/spectra_chunk_06.npz, L=800) | Loss: 0.01970 (BC: 0.0105, Clean: 0.0079, Asym: 0.0014) |  495.1 spec/s
+Epoch [  3/16] | File [ 55/120] (1.5x/2400/spectra_chunk_04.npz, L=2400) | Loss: 0.02013 (BC: 0.0103, Clean: 0.0069, Asym: 0.0029) |  194.5 spec/s
+Epoch [  3/16] | File [ 56/120] (1x/1200/spectra_chunk_03.npz, L=1200) | Loss: 0.01673 (BC: 0.0090, Clean: 0.0064, Asym: 0.0013) |  355.4 spec/s
+Epoch [  3/16] | File [ 57/120] (2x/2800/spectra_chunk_05.npz, L=2800) | Loss: 0.02100 (BC: 0.0108, Clean: 0.0075, Asym: 0.0028) |  168.1 spec/s
+Epoch [  3/16] | File [ 58/120] (1x/1600/spectra_chunk_03.npz, L=1600) | Loss: 0.02090 (BC: 0.0102, Clean: 0.0068, Asym: 0.0039) |  279.0 spec/s
+Epoch [  3/16] | File [ 59/120] (1.5x/1200/spectra_chunk_04.npz, L=1200) | Loss: 0.02212 (BC: 0.0119, Clean: 0.0089, Asym: 0.0014) |  356.3 spec/s
+Epoch [  3/16] | File [ 60/120] (1.5x/1800/spectra_chunk_01.npz, L=1800) | Loss: 0.01846 (BC: 0.0098, Clean: 0.0069, Asym: 0.0018) |  251.3 spec/s
+Epoch [  3/16] | File [ 61/120] (2x/1600/spectra_chunk_08.npz, L=1600) | Loss: 0.02013 (BC: 0.0106, Clean: 0.0081, Asym: 0.0015) |  279.4 spec/s
+Epoch [  3/16] | File [ 62/120] (1x/1016/spectra_chunk_08.npz, L=1016) | Loss: 0.01885 (BC: 0.0098, Clean: 0.0071, Asym: 0.0019) |  409.4 spec/s
+Epoch [  3/16] | File [ 63/120] (1x/1200/spectra_chunk_07.npz, L=1200) | Loss: 0.01680 (BC: 0.0089, Clean: 0.0064, Asym: 0.0015) |  357.9 spec/s
+Epoch [  3/16] | File [ 64/120] (2x/2800/spectra_chunk_03.npz, L=2800) | Loss: 0.02034 (BC: 0.0104, Clean: 0.0072, Asym: 0.0027) |  167.8 spec/s
+Epoch [  3/16] | File [ 65/120] (1x/1016/spectra_chunk_03.npz, L=1016) | Loss: 0.01824 (BC: 0.0097, Clean: 0.0071, Asym: 0.0014) |  408.4 spec/s
+Epoch [  3/16] | File [ 66/120] (1.5x/1524/spectra_chunk_02.npz, L=1524) | Loss: 0.01980 (BC: 0.0102, Clean: 0.0074, Asym: 0.0022) |  278.7 spec/s
+Epoch [  3/16] | File [ 67/120] (1x/800/spectra_chunk_08.npz, L=800) | Loss: 0.02024 (BC: 0.0107, Clean: 0.0080, Asym: 0.0016) |  447.6 spec/s
+Epoch [  3/16] | File [ 68/120] (1.5x/2100/spectra_chunk_08.npz, L=2100) | Loss: 0.01913 (BC: 0.0100, Clean: 0.0069, Asym: 0.0022) |  191.5 spec/s
+Epoch [  3/16] | File [ 69/120] (2x/2032/spectra_chunk_08.npz, L=2032) | Loss: 0.01918 (BC: 0.0101, Clean: 0.0075, Asym: 0.0016) |  199.0 spec/s
+Epoch [  3/16] | File [ 70/120] (1x/1200/spectra_chunk_04.npz, L=1200) | Loss: 0.01681 (BC: 0.0088, Clean: 0.0064, Asym: 0.0016) |  306.8 spec/s
+Epoch [  3/16] | File [ 71/120] (1.5x/2400/spectra_chunk_03.npz, L=2400) | Loss: 0.01782 (BC: 0.0093, Clean: 0.0063, Asym: 0.0022) |  163.8 spec/s
+Epoch [  3/16] | File [ 72/120] (2x/2400/spectra_chunk_02.npz, L=2400) | Loss: 0.01882 (BC: 0.0099, Clean: 0.0071, Asym: 0.0018) |   25.8 spec/s
+Epoch [  3/16] | File [ 73/120] (1x/1600/spectra_chunk_02.npz, L=1600) | Loss: 0.01609 (BC: 0.0085, Clean: 0.0058, Asym: 0.0017) |  249.0 spec/s
+Epoch [  3/16] | File [ 74/120] (1.5x/2400/spectra_chunk_02.npz, L=2400) | Loss: 0.01847 (BC: 0.0096, Clean: 0.0065, Asym: 0.0024) |  171.7 spec/s
+Epoch [  3/16] | File [ 75/120] (1.5x/2100/spectra_chunk_07.npz, L=2100) | Loss: 0.01686 (BC: 0.0090, Clean: 0.0063, Asym: 0.0015) |  196.3 spec/s
+Epoch [  3/16] | File [ 76/120] (2x/2800/spectra_chunk_07.npz, L=2800) | Loss: 0.01850 (BC: 0.0097, Clean: 0.0068, Asym: 0.0020) |  168.7 spec/s
+Epoch [  3/16] | File [ 77/120] (1.5x/1200/spectra_chunk_08.npz, L=1200) | Loss: 0.02136 (BC: 0.0112, Clean: 0.0084, Asym: 0.0018) |  356.5 spec/s
+Epoch [  3/16] | File [ 78/120] (1.5x/1524/spectra_chunk_08.npz, L=1524) | Loss: 0.01843 (BC: 0.0096, Clean: 0.0070, Asym: 0.0018) |  290.7 spec/s
+Epoch [  3/16] | File [ 79/120] (1x/800/spectra_chunk_01.npz, L=800) | Loss: 0.02006 (BC: 0.0106, Clean: 0.0079, Asym: 0.0015) |  494.0 spec/s
+Epoch [  3/16] | File [ 80/120] (1x/800/spectra_chunk_02.npz, L=800) | Loss: 0.01918 (BC: 0.0101, Clean: 0.0076, Asym: 0.0015) |  493.9 spec/s
+Epoch [  3/16] | File [ 81/120] (2x/2800/spectra_chunk_01.npz, L=2800) | Loss: 0.02112 (BC: 0.0110, Clean: 0.0076, Asym: 0.0026) |  168.5 spec/s
+Epoch [  3/16] | File [ 82/120] (1x/1400/spectra_chunk_06.npz, L=1400) | Loss: 0.01689 (BC: 0.0089, Clean: 0.0062, Asym: 0.0017) |  314.4 spec/s
+Epoch [  3/16] | File [ 83/120] (2x/3200/spectra_chunk_08.npz, L=3200) | Loss: 0.02856 (BC: 0.0141, Clean: 0.0094, Asym: 0.0050) |  136.2 spec/s
+Epoch [  3/16] | File [ 84/120] (2x/1600/spectra_chunk_06.npz, L=1600) | Loss: 0.02264 (BC: 0.0122, Clean: 0.0092, Asym: 0.0013) |  277.8 spec/s
+Epoch [  3/16] | File [ 85/120] (1x/1016/spectra_chunk_01.npz, L=1016) | Loss: 0.01848 (BC: 0.0098, Clean: 0.0071, Asym: 0.0016) |  422.2 spec/s
+Epoch [  3/16] | File [ 86/120] (1.5x/2400/spectra_chunk_05.npz, L=2400) | Loss: 0.01923 (BC: 0.0100, Clean: 0.0067, Asym: 0.0025) |  196.8 spec/s
+Epoch [  3/16] | File [ 87/120] (1x/1600/spectra_chunk_05.npz, L=1600) | Loss: 0.01577 (BC: 0.0085, Clean: 0.0058, Asym: 0.0014) |  285.2 spec/s
+Epoch [  3/16] | File [ 88/120] (2x/2800/spectra_chunk_06.npz, L=2800) | Loss: 0.01946 (BC: 0.0101, Clean: 0.0070, Asym: 0.0023) |  146.5 spec/s
+Epoch [  3/16] | File [ 89/120] (1x/1400/spectra_chunk_05.npz, L=1400) | Loss: 0.01662 (BC: 0.0089, Clean: 0.0062, Asym: 0.0016) |  174.5 spec/s
+Epoch [  3/16] | File [ 90/120] (2x/3200/spectra_chunk_01.npz, L=3200) | Loss: 0.02059 (BC: 0.0107, Clean: 0.0072, Asym: 0.0026) |   79.7 spec/s
+Epoch [  3/16] | File [ 91/120] (1.5x/2100/spectra_chunk_02.npz, L=2100) | Loss: 0.01858 (BC: 0.0099, Clean: 0.0069, Asym: 0.0018) |  182.6 spec/s
+Epoch [  3/16] | File [ 92/120] (2x/3200/spectra_chunk_07.npz, L=3200) | Loss: 0.02394 (BC: 0.0121, Clean: 0.0081, Asym: 0.0037) |  143.4 spec/s
+Epoch [  3/16] | File [ 93/120] (2x/1600/spectra_chunk_04.npz, L=1600) | Loss: 0.02221 (BC: 0.0119, Clean: 0.0089, Asym: 0.0014) |  278.6 spec/s
+Epoch [  3/16] | File [ 94/120] (2x/3200/spectra_chunk_06.npz, L=3200) | Loss: 0.01928 (BC: 0.0102, Clean: 0.0069, Asym: 0.0022) |  146.7 spec/s
+Epoch [  3/16] | File [ 95/120] (2x/2800/spectra_chunk_02.npz, L=2800) | Loss: 0.01716 (BC: 0.0092, Clean: 0.0066, Asym: 0.0014) |  167.2 spec/s
+Epoch [  3/16] | File [ 96/120] (2x/3200/spectra_chunk_05.npz, L=3200) | Loss: 0.01792 (BC: 0.0095, Clean: 0.0064, Asym: 0.0020) |  146.5 spec/s
+Epoch [  3/16] | File [ 97/120] (1x/1200/spectra_chunk_01.npz, L=1200) | Loss: 0.01810 (BC: 0.0096, Clean: 0.0067, Asym: 0.0018) |  356.4 spec/s
+Epoch [  3/16] | File [ 98/120] (1.5x/1800/spectra_chunk_02.npz, L=1800) | Loss: 0.01839 (BC: 0.0096, Clean: 0.0069, Asym: 0.0019) |  251.4 spec/s
+Epoch [  3/16] | File [ 99/120] (1x/1400/spectra_chunk_07.npz, L=1400) | Loss: 0.01592 (BC: 0.0086, Clean: 0.0060, Asym: 0.0014) |  313.7 spec/s
+Epoch [  3/16] | File [100/120] (2x/1600/spectra_chunk_05.npz, L=1600) | Loss: 0.02349 (BC: 0.0120, Clean: 0.0091, Asym: 0.0024) |  280.5 spec/s
+Epoch [  3/16] | File [101/120] (2x/2400/spectra_chunk_08.npz, L=2400) | Loss: 0.01925 (BC: 0.0096, Clean: 0.0069, Asym: 0.0027) |  194.2 spec/s
+Epoch [  3/16] | File [102/120] (1x/1600/spectra_chunk_04.npz, L=1600) | Loss: 0.01828 (BC: 0.0100, Clean: 0.0068, Asym: 0.0015) |  279.6 spec/s
+Epoch [  3/16] | File [103/120] (1x/1600/spectra_chunk_06.npz, L=1600) | Loss: 0.01648 (BC: 0.0087, Clean: 0.0059, Asym: 0.0018) |  280.3 spec/s
+Epoch [  3/16] | File [104/120] (1.5x/1524/spectra_chunk_05.npz, L=1524) | Loss: 0.01878 (BC: 0.0098, Clean: 0.0072, Asym: 0.0018) |  290.8 spec/s
+Epoch [  3/16] | File [105/120] (2x/2400/spectra_chunk_04.npz, L=2400) | Loss: 0.01904 (BC: 0.0100, Clean: 0.0071, Asym: 0.0019) |  194.5 spec/s
+Epoch [  3/16] | File [106/120] (1.5x/2100/spectra_chunk_01.npz, L=2100) | Loss: 0.01787 (BC: 0.0093, Clean: 0.0064, Asym: 0.0022) |  218.7 spec/s
+Epoch [  3/16] | File [107/120] (2x/1600/spectra_chunk_01.npz, L=1600) | Loss: 0.02119 (BC: 0.0111, Clean: 0.0084, Asym: 0.0017) |  276.1 spec/s
+Epoch [  3/16] | File [108/120] (1.5x/1200/spectra_chunk_06.npz, L=1200) | Loss: 0.02027 (BC: 0.0106, Clean: 0.0080, Asym: 0.0016) |  357.1 spec/s
+Epoch [  3/16] | File [109/120] (1.5x/1200/spectra_chunk_05.npz, L=1200) | Loss: 0.01975 (BC: 0.0104, Clean: 0.0079, Asym: 0.0015) |  356.5 spec/s
+Epoch [  3/16] | File [110/120] (1.5x/1524/spectra_chunk_04.npz, L=1524) | Loss: 0.01788 (BC: 0.0094, Clean: 0.0069, Asym: 0.0016) |  290.7 spec/s
+Epoch [  3/16] | File [111/120] (1x/1016/spectra_chunk_02.npz, L=1016) | Loss: 0.01795 (BC: 0.0094, Clean: 0.0069, Asym: 0.0016) |  409.6 spec/s
+Epoch [  3/16] | File [112/120] (1x/1400/spectra_chunk_08.npz, L=1400) | Loss: 0.01647 (BC: 0.0087, Clean: 0.0061, Asym: 0.0017) |  312.9 spec/s
+Epoch [  3/16] | File [113/120] (2x/2800/spectra_chunk_08.npz, L=2800) | Loss: 0.01865 (BC: 0.0098, Clean: 0.0069, Asym: 0.0019) |  124.8 spec/s
+Epoch [  3/16] | File [114/120] (1x/1600/spectra_chunk_01.npz, L=1600) | Loss: 0.01611 (BC: 0.0083, Clean: 0.0057, Asym: 0.0021) |  157.6 spec/s
+Epoch [  3/16] | File [115/120] (2x/2400/spectra_chunk_06.npz, L=2400) | Loss: 0.01814 (BC: 0.0097, Clean: 0.0071, Asym: 0.0014) |  113.1 spec/s
+Epoch [  3/16] | File [116/120] (1x/1016/spectra_chunk_07.npz, L=1016) | Loss: 0.01864 (BC: 0.0097, Clean: 0.0071, Asym: 0.0018) |  236.1 spec/s
+Epoch [  3/16] | File [117/120] (2x/1600/spectra_chunk_03.npz, L=1600) | Loss: 0.02051 (BC: 0.0107, Clean: 0.0083, Asym: 0.0016) |  193.7 spec/s
+Epoch [  3/16] | File [118/120] (1x/1200/spectra_chunk_08.npz, L=1200) | Loss: 0.01645 (BC: 0.0086, Clean: 0.0063, Asym: 0.0016) |  356.9 spec/s
+Epoch [  3/16] | File [119/120] (1.5x/2100/spectra_chunk_04.npz, L=2100) | Loss: 0.01762 (BC: 0.0093, Clean: 0.0065, Asym: 0.0018) |  218.8 spec/s
+Epoch [  3/16] | File [120/120] (2x/2032/spectra_chunk_03.npz, L=2032) | Loss: 0.01838 (BC: 0.0096, Clean: 0.0072, Asym: 0.0016) |  225.5 spec/s
+------------------------------------------------------------------------------
+==> Epoch [  3/16] Completed in 8896.6s (221.0 spectra/s) [Mode: Fully Interleaved (120 chunks across 1x, 1.5x, 2x)]
+    Avg Total Loss: 0.019332 | Avg BC: 0.010132 | Avg Clean: 0.007231 | Avg Asym: 0.001968
+    Learning Rate:  1.000000e-04
+    ★ New best model saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/polygaussnet5.pth' (Loss: 0.019332)
+    Saved checkpoint to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/training_checkpoint5.pth'
+------------------------------------------------------------------------------
+
+>>> Epoch [  4/16] Mode Selection: [Fully Interleaved (120 chunks across 1x, 1.5x, 2x)] (120 files to train)
+Epoch [  4/16] | File [  1/120] (1.5x/2400/spectra_chunk_06.npz, L=2400) | Loss: 0.01705 (BC: 0.0089, Clean: 0.0061, Asym: 0.0020) |  194.5 spec/s
+Epoch [  4/16] | File [  2/120] (1.5x/1200/spectra_chunk_07.npz, L=1200) | Loss: 0.01996 (BC: 0.0105, Clean: 0.0080, Asym: 0.0015) |  356.7 spec/s
+Epoch [  4/16] | File [  3/120] (2x/1600/spectra_chunk_05.npz, L=1600) | Loss: 0.02186 (BC: 0.0113, Clean: 0.0085, Asym: 0.0021) |  280.5 spec/s
+Epoch [  4/16] | File [  4/120] (1x/1400/spectra_chunk_07.npz, L=1400) | Loss: 0.01648 (BC: 0.0087, Clean: 0.0061, Asym: 0.0017) |  307.0 spec/s
+Epoch [  4/16] | File [  5/120] (1x/800/spectra_chunk_02.npz, L=800) | Loss: 0.01951 (BC: 0.0103, Clean: 0.0077, Asym: 0.0015) |  486.2 spec/s
+Epoch [  4/16] | File [  6/120] (1.5x/1524/spectra_chunk_08.npz, L=1524) | Loss: 0.01789 (BC: 0.0093, Clean: 0.0068, Asym: 0.0017) |  283.9 spec/s
+Epoch [  4/16] | File [  7/120] (1x/1600/spectra_chunk_07.npz, L=1600) | Loss: 0.01691 (BC: 0.0087, Clean: 0.0060, Asym: 0.0022) |  272.1 spec/s
+Epoch [  4/16] | File [  8/120] (1x/1400/spectra_chunk_08.npz, L=1400) | Loss: 0.01620 (BC: 0.0085, Clean: 0.0059, Asym: 0.0018) |  305.1 spec/s
+Epoch [  4/16] | File [  9/120] (2x/2800/spectra_chunk_01.npz, L=2800) | Loss: 0.02205 (BC: 0.0117, Clean: 0.0080, Asym: 0.0023) |  163.3 spec/s
+Epoch [  4/16] | File [ 10/120] (1x/1016/spectra_chunk_04.npz, L=1016) | Loss: 0.01809 (BC: 0.0097, Clean: 0.0070, Asym: 0.0014) |  397.7 spec/s
+Epoch [  4/16] | File [ 11/120] (1x/1016/spectra_chunk_05.npz, L=1016) | Loss: 0.01773 (BC: 0.0094, Clean: 0.0068, Asym: 0.0015) |  400.3 spec/s
+Epoch [  4/16] | File [ 12/120] (1x/1016/spectra_chunk_02.npz, L=1016) | Loss: 0.01709 (BC: 0.0091, Clean: 0.0067, Asym: 0.0014) |  400.7 spec/s
+Epoch [  4/16] | File [ 13/120] (2x/2400/spectra_chunk_06.npz, L=2400) | Loss: 0.01796 (BC: 0.0094, Clean: 0.0068, Asym: 0.0018) |  189.6 spec/s
+Epoch [  4/16] | File [ 14/120] (2x/3200/spectra_chunk_04.npz, L=3200) | Loss: 0.02730 (BC: 0.0137, Clean: 0.0091, Asym: 0.0045) |  142.7 spec/s
+Epoch [  4/16] | File [ 15/120] (2x/2032/spectra_chunk_03.npz, L=2032) | Loss: 0.02101 (BC: 0.0109, Clean: 0.0080, Asym: 0.0020) |  218.0 spec/s
+Epoch [  4/16] | File [ 16/120] (1x/800/spectra_chunk_07.npz, L=800) | Loss: 0.02086 (BC: 0.0110, Clean: 0.0082, Asym: 0.0016) |  482.6 spec/s
+Epoch [  4/16] | File [ 17/120] (2x/3200/spectra_chunk_05.npz, L=3200) | Loss: 0.01921 (BC: 0.0101, Clean: 0.0069, Asym: 0.0022) |  143.9 spec/s
+Epoch [  4/16] | File [ 18/120] (1.5x/1800/spectra_chunk_06.npz, L=1800) | Loss: 0.01700 (BC: 0.0089, Clean: 0.0064, Asym: 0.0016) |  244.3 spec/s
+Epoch [  4/16] | File [ 19/120] (1.5x/1200/spectra_chunk_01.npz, L=1200) | Loss: 0.01973 (BC: 0.0103, Clean: 0.0077, Asym: 0.0017) |  348.1 spec/s
+Epoch [  4/16] | File [ 20/120] (2x/1600/spectra_chunk_03.npz, L=1600) | Loss: 0.01978 (BC: 0.0104, Clean: 0.0080, Asym: 0.0014) |  272.7 spec/s
+Epoch [  4/16] | File [ 21/120] (1x/1016/spectra_chunk_03.npz, L=1016) | Loss: 0.01737 (BC: 0.0091, Clean: 0.0068, Asym: 0.0015) |  400.8 spec/s
+Epoch [  4/16] | File [ 22/120] (2x/2032/spectra_chunk_05.npz, L=2032) | Loss: 0.01861 (BC: 0.0097, Clean: 0.0071, Asym: 0.0018) |  219.7 spec/s
+Epoch [  4/16] | File [ 23/120] (1x/800/spectra_chunk_05.npz, L=800) | Loss: 0.01992 (BC: 0.0103, Clean: 0.0078, Asym: 0.0018) |  483.7 spec/s
+Epoch [  4/16] | File [ 24/120] (2x/1600/spectra_chunk_08.npz, L=1600) | Loss: 0.01981 (BC: 0.0104, Clean: 0.0080, Asym: 0.0015) |  273.3 spec/s
+Epoch [  4/16] | File [ 25/120] (1x/1400/spectra_chunk_01.npz, L=1400) | Loss: 0.01654 (BC: 0.0086, Clean: 0.0061, Asym: 0.0018) |  305.8 spec/s
+Epoch [  4/16] | File [ 26/120] (1.5x/1524/spectra_chunk_01.npz, L=1524) | Loss: 0.01805 (BC: 0.0095, Clean: 0.0070, Asym: 0.0016) |  287.0 spec/s
+Epoch [  4/16] | File [ 27/120] (1x/1016/spectra_chunk_01.npz, L=1016) | Loss: 0.01705 (BC: 0.0090, Clean: 0.0067, Asym: 0.0013) |  410.5 spec/s
+Epoch [  4/16] | File [ 28/120] (2x/2032/spectra_chunk_06.npz, L=2032) | Loss: 0.02339 (BC: 0.0118, Clean: 0.0085, Asym: 0.0031) |  223.3 spec/s
+Epoch [  4/16] | File [ 29/120] (1x/1600/spectra_chunk_01.npz, L=1600) | Loss: 0.01751 (BC: 0.0092, Clean: 0.0062, Asym: 0.0021) |  277.1 spec/s
+Epoch [  4/16] | File [ 30/120] (2x/2800/spectra_chunk_07.npz, L=2800) | Loss: 0.01845 (BC: 0.0097, Clean: 0.0069, Asym: 0.0018) |  168.4 spec/s
+Epoch [  4/16] | File [ 31/120] (1.5x/2100/spectra_chunk_05.npz, L=2100) | Loss: 0.01725 (BC: 0.0091, Clean: 0.0063, Asym: 0.0018) |  219.0 spec/s
+Epoch [  4/16] | File [ 32/120] (1.5x/1524/spectra_chunk_04.npz, L=1524) | Loss: 0.01837 (BC: 0.0096, Clean: 0.0071, Asym: 0.0017) |  291.2 spec/s
+Epoch [  4/16] | File [ 33/120] (2x/3200/spectra_chunk_06.npz, L=3200) | Loss: 0.02003 (BC: 0.0102, Clean: 0.0070, Asym: 0.0028) |  133.0 spec/s
+Epoch [  4/16] | File [ 34/120] (1x/800/spectra_chunk_03.npz, L=800) | Loss: 0.02165 (BC: 0.0115, Clean: 0.0085, Asym: 0.0016) |  488.6 spec/s
+Epoch [  4/16] | File [ 35/120] (1.5x/1200/spectra_chunk_05.npz, L=1200) | Loss: 0.01945 (BC: 0.0102, Clean: 0.0078, Asym: 0.0014) |  357.8 spec/s
+Epoch [  4/16] | File [ 36/120] (2x/2800/spectra_chunk_06.npz, L=2800) | Loss: 0.01847 (BC: 0.0096, Clean: 0.0066, Asym: 0.0023) |  168.3 spec/s
+Epoch [  4/16] | File [ 37/120] (2x/2032/spectra_chunk_02.npz, L=2032) | Loss: 0.01859 (BC: 0.0098, Clean: 0.0072, Asym: 0.0016) |  225.7 spec/s
+Epoch [  4/16] | File [ 38/120] (1.5x/1200/spectra_chunk_03.npz, L=1200) | Loss: 0.01931 (BC: 0.0100, Clean: 0.0076, Asym: 0.0017) |  356.6 spec/s
+Epoch [  4/16] | File [ 39/120] (1.5x/2100/spectra_chunk_04.npz, L=2100) | Loss: 0.01689 (BC: 0.0088, Clean: 0.0062, Asym: 0.0019) |  219.1 spec/s
+Epoch [  4/16] | File [ 40/120] (2x/1600/spectra_chunk_01.npz, L=1600) | Loss: 0.01991 (BC: 0.0103, Clean: 0.0079, Asym: 0.0016) |  280.2 spec/s
+Epoch [  4/16] | File [ 41/120] (1.5x/2100/spectra_chunk_03.npz, L=2100) | Loss: 0.01705 (BC: 0.0089, Clean: 0.0062, Asym: 0.0019) |  218.6 spec/s
+Epoch [  4/16] | File [ 42/120] (1x/800/spectra_chunk_06.npz, L=800) | Loss: 0.01938 (BC: 0.0102, Clean: 0.0077, Asym: 0.0014) |  494.0 spec/s
+Epoch [  4/16] | File [ 43/120] (2x/2032/spectra_chunk_07.npz, L=2032) | Loss: 0.01959 (BC: 0.0100, Clean: 0.0074, Asym: 0.0023) |  225.7 spec/s
+Epoch [  4/16] | File [ 44/120] (1x/800/spectra_chunk_08.npz, L=800) | Loss: 0.01959 (BC: 0.0103, Clean: 0.0078, Asym: 0.0016) |  495.4 spec/s
+Epoch [  4/16] | File [ 45/120] (1x/1200/spectra_chunk_03.npz, L=1200) | Loss: 0.01616 (BC: 0.0085, Clean: 0.0061, Asym: 0.0015) |  357.9 spec/s
+Epoch [  4/16] | File [ 46/120] (2x/2400/spectra_chunk_03.npz, L=2400) | Loss: 0.01925 (BC: 0.0099, Clean: 0.0071, Asym: 0.0022) |  194.3 spec/s
+Epoch [  4/16] | File [ 47/120] (1.5x/1800/spectra_chunk_05.npz, L=1800) | Loss: 0.01937 (BC: 0.0102, Clean: 0.0071, Asym: 0.0020) |  251.4 spec/s
+Epoch [  4/16] | File [ 48/120] (2x/2800/spectra_chunk_02.npz, L=2800) | Loss: 0.01940 (BC: 0.0101, Clean: 0.0071, Asym: 0.0022) |  163.3 spec/s
+Epoch [  4/16] | File [ 49/120] (1.5x/1200/spectra_chunk_08.npz, L=1200) | Loss: 0.01959 (BC: 0.0103, Clean: 0.0078, Asym: 0.0015) |  347.4 spec/s
+Epoch [  4/16] | File [ 50/120] (2x/2800/spectra_chunk_05.npz, L=2800) | Loss: 0.01965 (BC: 0.0097, Clean: 0.0068, Asym: 0.0032) |  164.0 spec/s
+Epoch [  4/16] | File [ 51/120] (2x/2800/spectra_chunk_03.npz, L=2800) | Loss: 0.01907 (BC: 0.0103, Clean: 0.0070, Asym: 0.0018) |  164.0 spec/s
+Epoch [  4/16] | File [ 52/120] (2x/2800/spectra_chunk_08.npz, L=2800) | Loss: 0.01755 (BC: 0.0092, Clean: 0.0065, Asym: 0.0019) |  163.7 spec/s
+Epoch [  4/16] | File [ 53/120] (2x/2400/spectra_chunk_07.npz, L=2400) | Loss: 0.01861 (BC: 0.0097, Clean: 0.0069, Asym: 0.0020) |  189.6 spec/s
+Epoch [  4/16] | File [ 54/120] (1x/1400/spectra_chunk_05.npz, L=1400) | Loss: 0.01608 (BC: 0.0086, Clean: 0.0060, Asym: 0.0015) |  307.0 spec/s
+Epoch [  4/16] | File [ 55/120] (1.5x/2100/spectra_chunk_08.npz, L=2100) | Loss: 0.01657 (BC: 0.0087, Clean: 0.0062, Asym: 0.0017) |  213.1 spec/s
+Epoch [  4/16] | File [ 56/120] (2x/2400/spectra_chunk_08.npz, L=2400) | Loss: 0.01848 (BC: 0.0096, Clean: 0.0069, Asym: 0.0020) |  189.4 spec/s
+Epoch [  4/16] | File [ 57/120] (2x/1600/spectra_chunk_02.npz, L=1600) | Loss: 0.01990 (BC: 0.0105, Clean: 0.0080, Asym: 0.0014) |  273.4 spec/s
+Epoch [  4/16] | File [ 58/120] (2x/3200/spectra_chunk_08.npz, L=3200) | Loss: 0.01730 (BC: 0.0091, Clean: 0.0063, Asym: 0.0019) |  144.0 spec/s
+Epoch [  4/16] | File [ 59/120] (1x/1600/spectra_chunk_02.npz, L=1600) | Loss: 0.01501 (BC: 0.0081, Clean: 0.0056, Asym: 0.0014) |  272.6 spec/s
+Epoch [  4/16] | File [ 60/120] (1x/1200/spectra_chunk_01.npz, L=1200) | Loss: 0.01636 (BC: 0.0086, Clean: 0.0061, Asym: 0.0016) |  348.3 spec/s
+Epoch [  4/16] | File [ 61/120] (2x/2400/spectra_chunk_04.npz, L=2400) | Loss: 0.01765 (BC: 0.0092, Clean: 0.0067, Asym: 0.0017) |  189.7 spec/s
+Epoch [  4/16] | File [ 62/120] (2x/1600/spectra_chunk_06.npz, L=1600) | Loss: 0.02058 (BC: 0.0107, Clean: 0.0081, Asym: 0.0018) |  273.7 spec/s
+Epoch [  4/16] | File [ 63/120] (1x/1600/spectra_chunk_06.npz, L=1600) | Loss: 0.01588 (BC: 0.0083, Clean: 0.0059, Asym: 0.0016) |  273.7 spec/s
+Epoch [  4/16] | File [ 64/120] (2x/2400/spectra_chunk_05.npz, L=2400) | Loss: 0.01783 (BC: 0.0092, Clean: 0.0067, Asym: 0.0019) |  189.6 spec/s
+Epoch [  4/16] | File [ 65/120] (1.5x/1524/spectra_chunk_02.npz, L=1524) | Loss: 0.01825 (BC: 0.0095, Clean: 0.0069, Asym: 0.0019) |  283.1 spec/s
+Epoch [  4/16] | File [ 66/120] (1.5x/1524/spectra_chunk_07.npz, L=1524) | Loss: 0.01691 (BC: 0.0090, Clean: 0.0065, Asym: 0.0014) |  283.9 spec/s
+Epoch [  4/16] | File [ 67/120] (1.5x/2400/spectra_chunk_03.npz, L=2400) | Loss: 0.02035 (BC: 0.0101, Clean: 0.0068, Asym: 0.0034) |  189.4 spec/s
+Epoch [  4/16] | File [ 68/120] (1x/1600/spectra_chunk_04.npz, L=1600) | Loss: 0.01682 (BC: 0.0090, Clean: 0.0061, Asym: 0.0017) |  273.2 spec/s
+Epoch [  4/16] | File [ 69/120] (1.5x/1800/spectra_chunk_01.npz, L=1800) | Loss: 0.01812 (BC: 0.0095, Clean: 0.0068, Asym: 0.0018) |  245.0 spec/s
+Epoch [  4/16] | File [ 70/120] (2x/2032/spectra_chunk_04.npz, L=2032) | Loss: 0.01916 (BC: 0.0100, Clean: 0.0074, Asym: 0.0018) |  219.9 spec/s
+Epoch [  4/16] | File [ 71/120] (1.5x/2100/spectra_chunk_07.npz, L=2100) | Loss: 0.01651 (BC: 0.0087, Clean: 0.0061, Asym: 0.0017) |  212.7 spec/s
+Epoch [  4/16] | File [ 72/120] (1x/800/spectra_chunk_04.npz, L=800) | Loss: 0.01997 (BC: 0.0104, Clean: 0.0078, Asym: 0.0018) |  483.2 spec/s
+Epoch [  4/16] | File [ 73/120] (1.5x/2100/spectra_chunk_06.npz, L=2100) | Loss: 0.01627 (BC: 0.0085, Clean: 0.0059, Asym: 0.0018) |  213.4 spec/s
+Epoch [  4/16] | File [ 74/120] (1x/800/spectra_chunk_01.npz, L=800) | Loss: 0.01993 (BC: 0.0105, Clean: 0.0079, Asym: 0.0016) |  482.1 spec/s
+Epoch [  4/16] | File [ 75/120] (1.5x/1800/spectra_chunk_04.npz, L=1800) | Loss: 0.01651 (BC: 0.0088, Clean: 0.0063, Asym: 0.0014) |  245.3 spec/s
+Epoch [  4/16] | File [ 76/120] (1x/1400/spectra_chunk_06.npz, L=1400) | Loss: 0.01513 (BC: 0.0080, Clean: 0.0057, Asym: 0.0015) |  306.4 spec/s
+Epoch [  4/16] | File [ 77/120] (1.5x/1524/spectra_chunk_05.npz, L=1524) | Loss: 0.01777 (BC: 0.0089, Clean: 0.0066, Asym: 0.0023) |  284.3 spec/s
+Epoch [  4/16] | File [ 78/120] (2x/3200/spectra_chunk_03.npz, L=3200) | Loss: 0.02072 (BC: 0.0110, Clean: 0.0074, Asym: 0.0023) |  144.3 spec/s
+Epoch [  4/16] | File [ 79/120] (1x/1200/spectra_chunk_06.npz, L=1200) | Loss: 0.01661 (BC: 0.0089, Clean: 0.0064, Asym: 0.0014) |  345.9 spec/s
+Epoch [  4/16] | File [ 80/120] (1x/1200/spectra_chunk_08.npz, L=1200) | Loss: 0.01588 (BC: 0.0084, Clean: 0.0060, Asym: 0.0015) |  348.2 spec/s
+Epoch [  4/16] | File [ 81/120] (1.5x/2400/spectra_chunk_08.npz, L=2400) | Loss: 0.01754 (BC: 0.0091, Clean: 0.0062, Asym: 0.0022) |  189.2 spec/s
+Epoch [  4/16] | File [ 82/120] (1.5x/1200/spectra_chunk_06.npz, L=1200) | Loss: 0.01986 (BC: 0.0104, Clean: 0.0079, Asym: 0.0016) |  348.6 spec/s
+Epoch [  4/16] | File [ 83/120] (2x/3200/spectra_chunk_07.npz, L=3200) | Loss: 0.02006 (BC: 0.0106, Clean: 0.0072, Asym: 0.0023) |  142.7 spec/s
+Epoch [  4/16] | File [ 84/120] (2x/2400/spectra_chunk_02.npz, L=2400) | Loss: 0.01799 (BC: 0.0095, Clean: 0.0068, Asym: 0.0018) |  186.8 spec/s
+Epoch [  4/16] | File [ 85/120] (2x/2800/spectra_chunk_04.npz, L=2800) | Loss: 0.01829 (BC: 0.0096, Clean: 0.0067, Asym: 0.0020) |  159.1 spec/s
+Epoch [  4/16] | File [ 86/120] (1.5x/1200/spectra_chunk_02.npz, L=1200) | Loss: 0.02039 (BC: 0.0107, Clean: 0.0081, Asym: 0.0015) |  348.4 spec/s
+Epoch [  4/16] | File [ 87/120] (1x/1200/spectra_chunk_04.npz, L=1200) | Loss: 0.01570 (BC: 0.0083, Clean: 0.0061, Asym: 0.0013) |  349.9 spec/s
+Epoch [  4/16] | File [ 88/120] (1x/1400/spectra_chunk_04.npz, L=1400) | Loss: 0.01513 (BC: 0.0080, Clean: 0.0057, Asym: 0.0015) |  306.6 spec/s
+Epoch [  4/16] | File [ 89/120] (2x/2032/spectra_chunk_08.npz, L=2032) | Loss: 0.01795 (BC: 0.0094, Clean: 0.0071, Asym: 0.0014) |  217.2 spec/s
+Epoch [  4/16] | File [ 90/120] (1.5x/1800/spectra_chunk_02.npz, L=1800) | Loss: 0.01763 (BC: 0.0090, Clean: 0.0065, Asym: 0.0021) |  239.6 spec/s
+Epoch [  4/16] | File [ 91/120] (2x/3200/spectra_chunk_02.npz, L=3200) | Loss: 0.01939 (BC: 0.0101, Clean: 0.0069, Asym: 0.0023) |  142.5 spec/s
+Epoch [  4/16] | File [ 92/120] (1.5x/2100/spectra_chunk_02.npz, L=2100) | Loss: 0.01629 (BC: 0.0086, Clean: 0.0061, Asym: 0.0016) |  212.4 spec/s
+Epoch [  4/16] | File [ 93/120] (1.5x/1524/spectra_chunk_03.npz, L=1524) | Loss: 0.01758 (BC: 0.0093, Clean: 0.0069, Asym: 0.0014) |  283.3 spec/s
+Epoch [  4/16] | File [ 94/120] (1x/1600/spectra_chunk_08.npz, L=1600) | Loss: 0.01471 (BC: 0.0079, Clean: 0.0055, Asym: 0.0014) |  272.6 spec/s
+Epoch [  4/16] | File [ 95/120] (1.5x/2100/spectra_chunk_01.npz, L=2100) | Loss: 0.01960 (BC: 0.0095, Clean: 0.0065, Asym: 0.0036) |  213.7 spec/s
+Epoch [  4/16] | File [ 96/120] (1.5x/1524/spectra_chunk_06.npz, L=1524) | Loss: 0.01898 (BC: 0.0101, Clean: 0.0074, Asym: 0.0015) |  279.5 spec/s
+Epoch [  4/16] | File [ 97/120] (1x/1200/spectra_chunk_05.npz, L=1200) | Loss: 0.01588 (BC: 0.0085, Clean: 0.0062, Asym: 0.0012) |  347.1 spec/s
+Epoch [  4/16] | File [ 98/120] (1.5x/2400/spectra_chunk_07.npz, L=2400) | Loss: 0.01670 (BC: 0.0088, Clean: 0.0060, Asym: 0.0019) |  186.3 spec/s
+Epoch [  4/16] | File [ 99/120] (1x/1600/spectra_chunk_05.npz, L=1600) | Loss: 0.01466 (BC: 0.0078, Clean: 0.0055, Asym: 0.0014) |  273.4 spec/s
+Epoch [  4/16] | File [100/120] (1x/1400/spectra_chunk_03.npz, L=1400) | Loss: 0.01471 (BC: 0.0078, Clean: 0.0056, Asym: 0.0013) |  307.1 spec/s
+Epoch [  4/16] | File [101/120] (1x/1016/spectra_chunk_06.npz, L=1016) | Loss: 0.01679 (BC: 0.0089, Clean: 0.0066, Asym: 0.0013) |  402.4 spec/s
+Epoch [  4/16] | File [102/120] (2x/1600/spectra_chunk_04.npz, L=1600) | Loss: 0.01919 (BC: 0.0100, Clean: 0.0078, Asym: 0.0014) |  273.3 spec/s
+Epoch [  4/16] | File [103/120] (1x/1400/spectra_chunk_02.npz, L=1400) | Loss: 0.01644 (BC: 0.0085, Clean: 0.0061, Asym: 0.0018) |  307.4 spec/s
+Epoch [  4/16] | File [104/120] (2x/1600/spectra_chunk_07.npz, L=1600) | Loss: 0.01983 (BC: 0.0103, Clean: 0.0081, Asym: 0.0015) |  274.1 spec/s
+Epoch [  4/16] | File [105/120] (2x/3200/spectra_chunk_01.npz, L=3200) | Loss: 0.01861 (BC: 0.0098, Clean: 0.0067, Asym: 0.0021) |  142.8 spec/s
+Epoch [  4/16] | File [106/120] (1x/1016/spectra_chunk_07.npz, L=1016) | Loss: 0.01726 (BC: 0.0090, Clean: 0.0066, Asym: 0.0016) |  394.9 spec/s
+Epoch [  4/16] | File [107/120] (1.5x/1800/spectra_chunk_03.npz, L=1800) | Loss: 0.01631 (BC: 0.0086, Clean: 0.0063, Asym: 0.0014) |  245.2 spec/s
+Epoch [  4/16] | File [108/120] (1.5x/2400/spectra_chunk_01.npz, L=2400) | Loss: 0.01726 (BC: 0.0088, Clean: 0.0061, Asym: 0.0024) |  188.9 spec/s
+Epoch [  4/16] | File [109/120] (1.5x/2400/spectra_chunk_04.npz, L=2400) | Loss: 0.01701 (BC: 0.0089, Clean: 0.0061, Asym: 0.0020) |  189.2 spec/s
+Epoch [  4/16] | File [110/120] (1.5x/2400/spectra_chunk_05.npz, L=2400) | Loss: 0.01679 (BC: 0.0089, Clean: 0.0061, Asym: 0.0018) |  189.5 spec/s
+Epoch [  4/16] | File [111/120] (1x/1600/spectra_chunk_03.npz, L=1600) | Loss: 0.01602 (BC: 0.0082, Clean: 0.0056, Asym: 0.0023) |  272.5 spec/s
+Epoch [  4/16] | File [112/120] (1x/1016/spectra_chunk_08.npz, L=1016) | Loss: 0.01780 (BC: 0.0095, Clean: 0.0070, Asym: 0.0014) |  398.4 spec/s
+Epoch [  4/16] | File [113/120] (1x/1200/spectra_chunk_02.npz, L=1200) | Loss: 0.01591 (BC: 0.0084, Clean: 0.0060, Asym: 0.0015) |  348.1 spec/s
+Epoch [  4/16] | File [114/120] (2x/2032/spectra_chunk_01.npz, L=2032) | Loss: 0.01968 (BC: 0.0101, Clean: 0.0075, Asym: 0.0021) |  220.3 spec/s
+Epoch [  4/16] | File [115/120] (1.5x/1800/spectra_chunk_07.npz, L=1800) | Loss: 0.01668 (BC: 0.0088, Clean: 0.0063, Asym: 0.0015) |  244.6 spec/s
+Epoch [  4/16] | File [116/120] (1.5x/1200/spectra_chunk_04.npz, L=1200) | Loss: 0.01893 (BC: 0.0099, Clean: 0.0076, Asym: 0.0014) |  348.7 spec/s
+Epoch [  4/16] | File [117/120] (1.5x/2400/spectra_chunk_02.npz, L=2400) | Loss: 0.01967 (BC: 0.0099, Clean: 0.0068, Asym: 0.0030) |  188.6 spec/s
+Epoch [  4/16] | File [118/120] (1x/1200/spectra_chunk_07.npz, L=1200) | Loss: 0.01670 (BC: 0.0086, Clean: 0.0062, Asym: 0.0018) |  348.4 spec/s
+Epoch [  4/16] | File [119/120] (2x/2400/spectra_chunk_01.npz, L=2400) | Loss: 0.01772 (BC: 0.0094, Clean: 0.0068, Asym: 0.0015) |  189.5 spec/s
+Epoch [  4/16] | File [120/120] (1.5x/1800/spectra_chunk_08.npz, L=1800) | Loss: 0.01590 (BC: 0.0084, Clean: 0.0062, Asym: 0.0014) |  244.5 spec/s
+------------------------------------------------------------------------------
+==> Epoch [  4/16] Completed in 8053.0s (244.1 spectra/s) [Mode: Fully Interleaved (120 chunks across 1x, 1.5x, 2x)]
+    Avg Total Loss: 0.018172 | Avg BC: 0.009500 | Avg Clean: 0.006850 | Avg Asym: 0.001821
+    Learning Rate:  1.000000e-04
+    ★ New best model saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/polygaussnet5.pth' (Loss: 0.018172)
+    Saved checkpoint to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/training_checkpoint5.pth'
+------------------------------------------------------------------------------
+
+>>> Epoch [  5/16] Mode Selection: [Fully Interleaved (120 chunks across 1x, 1.5x, 2x)] (120 files to train)
+Epoch [  5/16] | File [  1/120] (2x/2800/spectra_chunk_07.npz, L=2800) | Loss: 0.01800 (BC: 0.0093, Clean: 0.0065, Asym: 0.0022) |  163.7 spec/s
+Epoch [  5/16] | File [  2/120] (2x/2032/spectra_chunk_05.npz, L=2032) | Loss: 0.01848 (BC: 0.0097, Clean: 0.0072, Asym: 0.0016) |  219.4 spec/s
+Epoch [  5/16] | File [  3/120] (2x/2800/spectra_chunk_02.npz, L=2800) | Loss: 0.01654 (BC: 0.0087, Clean: 0.0062, Asym: 0.0016) |  164.0 spec/s
+Epoch [  5/16] | File [  4/120] (2x/2400/spectra_chunk_05.npz, L=2400) | Loss: 0.01684 (BC: 0.0088, Clean: 0.0064, Asym: 0.0017) |  189.3 spec/s
+Epoch [  5/16] | File [  5/120] (2x/3200/spectra_chunk_02.npz, L=3200) | Loss: 0.01713 (BC: 0.0089, Clean: 0.0061, Asym: 0.0021) |  144.4 spec/s
+Epoch [  5/16] | File [  6/120] (1x/800/spectra_chunk_04.npz, L=800) | Loss: 0.01996 (BC: 0.0104, Clean: 0.0078, Asym: 0.0017) |  482.8 spec/s
+Epoch [  5/16] | File [  7/120] (2x/2032/spectra_chunk_08.npz, L=2032) | Loss: 0.01774 (BC: 0.0093, Clean: 0.0070, Asym: 0.0014) |  220.2 spec/s
+Epoch [  5/16] | File [  8/120] (1.5x/1200/spectra_chunk_02.npz, L=1200) | Loss: 0.01922 (BC: 0.0099, Clean: 0.0076, Asym: 0.0017) |  347.9 spec/s
+Epoch [  5/16] | File [  9/120] (1.5x/1800/spectra_chunk_02.npz, L=1800) | Loss: 0.01686 (BC: 0.0088, Clean: 0.0064, Asym: 0.0017) |  244.7 spec/s
+Epoch [  5/16] | File [ 10/120] (1.5x/2400/spectra_chunk_07.npz, L=2400) | Loss: 0.01796 (BC: 0.0093, Clean: 0.0063, Asym: 0.0023) |  189.4 spec/s
+Epoch [  5/16] | File [ 11/120] (2x/3200/spectra_chunk_03.npz, L=3200) | Loss: 0.01727 (BC: 0.0091, Clean: 0.0063, Asym: 0.0019) |  144.2 spec/s
+Epoch [  5/16] | File [ 12/120] (1.5x/1200/spectra_chunk_04.npz, L=1200) | Loss: 0.01976 (BC: 0.0103, Clean: 0.0078, Asym: 0.0017) |  345.9 spec/s
+Epoch [  5/16] | File [ 13/120] (2x/2032/spectra_chunk_01.npz, L=2032) | Loss: 0.01767 (BC: 0.0093, Clean: 0.0069, Asym: 0.0015) |  219.7 spec/s
+Epoch [  5/16] | File [ 14/120] (2x/1600/spectra_chunk_08.npz, L=1600) | Loss: 0.01879 (BC: 0.0098, Clean: 0.0076, Asym: 0.0015) |  274.0 spec/s
+Epoch [  5/16] | File [ 15/120] (1x/1200/spectra_chunk_04.npz, L=1200) | Loss: 0.01582 (BC: 0.0083, Clean: 0.0062, Asym: 0.0014) |  349.0 spec/s
+Epoch [  5/16] | File [ 16/120] (1.5x/1800/spectra_chunk_05.npz, L=1800) | Loss: 0.01615 (BC: 0.0084, Clean: 0.0061, Asym: 0.0017) |  245.6 spec/s
+Epoch [  5/16] | File [ 17/120] (2x/2400/spectra_chunk_08.npz, L=2400) | Loss: 0.01681 (BC: 0.0088, Clean: 0.0064, Asym: 0.0016) |  188.7 spec/s
+Epoch [  5/16] | File [ 18/120] (1.5x/2100/spectra_chunk_02.npz, L=2100) | Loss: 0.01648 (BC: 0.0087, Clean: 0.0061, Asym: 0.0017) |  212.2 spec/s
+Epoch [  5/16] | File [ 19/120] (2x/2800/spectra_chunk_04.npz, L=2800) | Loss: 0.01665 (BC: 0.0088, Clean: 0.0062, Asym: 0.0016) |  164.1 spec/s
+Epoch [  5/16] | File [ 20/120] (1x/1016/spectra_chunk_05.npz, L=1016) | Loss: 0.01773 (BC: 0.0092, Clean: 0.0068, Asym: 0.0018) |  400.3 spec/s
+Epoch [  5/16] | File [ 21/120] (2x/1600/spectra_chunk_07.npz, L=1600) | Loss: 0.01932 (BC: 0.0100, Clean: 0.0078, Asym: 0.0015) |  273.1 spec/s
+Epoch [  5/16] | File [ 22/120] (2x/2800/spectra_chunk_05.npz, L=2800) | Loss: 0.01891 (BC: 0.0097, Clean: 0.0068, Asym: 0.0024) |  163.5 spec/s
+Epoch [  5/16] | File [ 23/120] (1x/1400/spectra_chunk_01.npz, L=1400) | Loss: 0.01486 (BC: 0.0079, Clean: 0.0057, Asym: 0.0013) |  306.0 spec/s
+Epoch [  5/16] | File [ 24/120] (2x/3200/spectra_chunk_05.npz, L=3200) | Loss: 0.01776 (BC: 0.0092, Clean: 0.0063, Asym: 0.0022) |  144.3 spec/s
+Epoch [  5/16] | File [ 25/120] (1x/800/spectra_chunk_08.npz, L=800) | Loss: 0.01964 (BC: 0.0103, Clean: 0.0078, Asym: 0.0015) |  479.2 spec/s
+Epoch [  5/16] | File [ 26/120] (1x/800/spectra_chunk_05.npz, L=800) | Loss: 0.01870 (BC: 0.0098, Clean: 0.0074, Asym: 0.0015) |  484.8 spec/s
+Epoch [  5/16] | File [ 27/120] (1x/1200/spectra_chunk_03.npz, L=1200) | Loss: 0.01549 (BC: 0.0082, Clean: 0.0059, Asym: 0.0014) |  348.1 spec/s
+Epoch [  5/16] | File [ 28/120] (1.5x/2400/spectra_chunk_06.npz, L=2400) | Loss: 0.01461 (BC: 0.0078, Clean: 0.0054, Asym: 0.0014) |  189.3 spec/s
+Epoch [  5/16] | File [ 29/120] (1x/1600/spectra_chunk_07.npz, L=1600) | Loss: 0.01549 (BC: 0.0080, Clean: 0.0055, Asym: 0.0020) |  272.9 spec/s
+Epoch [  5/16] | File [ 30/120] (2x/2400/spectra_chunk_03.npz, L=2400) | Loss: 0.01766 (BC: 0.0093, Clean: 0.0068, Asym: 0.0015) |  189.1 spec/s
+Epoch [  5/16] | File [ 31/120] (2x/2032/spectra_chunk_06.npz, L=2032) | Loss: 0.01922 (BC: 0.0098, Clean: 0.0072, Asym: 0.0022) |  218.9 spec/s
+Epoch [  5/16] | File [ 32/120] (2x/1600/spectra_chunk_01.npz, L=1600) | Loss: 0.01929 (BC: 0.0100, Clean: 0.0077, Asym: 0.0016) |  272.8 spec/s
+Epoch [  5/16] | File [ 33/120] (1x/1400/spectra_chunk_08.npz, L=1400) | Loss: 0.01638 (BC: 0.0086, Clean: 0.0062, Asym: 0.0016) |  306.2 spec/s
+Epoch [  5/16] | File [ 34/120] (1x/1016/spectra_chunk_08.npz, L=1016) | Loss: 0.01702 (BC: 0.0090, Clean: 0.0066, Asym: 0.0014) |  400.2 spec/s
+Epoch [  5/16] | File [ 35/120] (2x/1600/spectra_chunk_04.npz, L=1600) | Loss: 0.01920 (BC: 0.0099, Clean: 0.0078, Asym: 0.0015) |  273.7 spec/s
+Epoch [  5/16] | File [ 36/120] (1.5x/2400/spectra_chunk_08.npz, L=2400) | Loss: 0.01649 (BC: 0.0087, Clean: 0.0060, Asym: 0.0018) |  188.8 spec/s
+Epoch [  5/16] | File [ 37/120] (2x/2400/spectra_chunk_01.npz, L=2400) | Loss: 0.02847 (BC: 0.0135, Clean: 0.0094, Asym: 0.0055) |  189.3 spec/s
+Epoch [  5/16] | File [ 38/120] (1.5x/1524/spectra_chunk_02.npz, L=1524) | Loss: 0.02026 (BC: 0.0110, Clean: 0.0079, Asym: 0.0014) |  284.4 spec/s
+Epoch [  5/16] | File [ 39/120] (2x/1600/spectra_chunk_03.npz, L=1600) | Loss: 0.02051 (BC: 0.0109, Clean: 0.0083, Asym: 0.0014) |  273.0 spec/s
+Epoch [  5/16] | File [ 40/120] (1x/800/spectra_chunk_03.npz, L=800) | Loss: 0.01992 (BC: 0.0104, Clean: 0.0079, Asym: 0.0016) |  484.8 spec/s
+Epoch [  5/16] | File [ 41/120] (1.5x/2100/spectra_chunk_01.npz, L=2100) | Loss: 0.01754 (BC: 0.0091, Clean: 0.0064, Asym: 0.0020) |  213.2 spec/s
+Epoch [  5/16] | File [ 42/120] (1x/1600/spectra_chunk_04.npz, L=1600) | Loss: 0.01472 (BC: 0.0079, Clean: 0.0055, Asym: 0.0013) |  273.3 spec/s
+Epoch [  5/16] | File [ 43/120] (1.5x/1200/spectra_chunk_08.npz, L=1200) | Loss: 0.01921 (BC: 0.0100, Clean: 0.0077, Asym: 0.0015) |  348.8 spec/s
+Epoch [  5/16] | File [ 44/120] (1x/800/spectra_chunk_01.npz, L=800) | Loss: 0.01901 (BC: 0.0099, Clean: 0.0075, Asym: 0.0015) |  500.6 spec/s
+Epoch [  5/16] | File [ 45/120] (1.5x/2400/spectra_chunk_01.npz, L=2400) | Loss: 0.01668 (BC: 0.0087, Clean: 0.0060, Asym: 0.0020) |  180.0 spec/s
+Epoch [  5/16] | File [ 46/120] (1.5x/1524/spectra_chunk_05.npz, L=1524) | Loss: 0.01707 (BC: 0.0088, Clean: 0.0065, Asym: 0.0017) |  280.9 spec/s
+Epoch [  5/16] | File [ 47/120] (1x/1400/spectra_chunk_02.npz, L=1400) | Loss: 0.01595 (BC: 0.0084, Clean: 0.0059, Asym: 0.0016) |  306.1 spec/s
+Epoch [  5/16] | File [ 48/120] (1x/1400/spectra_chunk_05.npz, L=1400) | Loss: 0.01481 (BC: 0.0079, Clean: 0.0056, Asym: 0.0013) |  307.2 spec/s
+Epoch [  5/16] | File [ 49/120] (2x/1600/spectra_chunk_02.npz, L=1600) | Loss: 0.01979 (BC: 0.0102, Clean: 0.0080, Asym: 0.0016) |  273.4 spec/s
+Epoch [  5/16] | File [ 50/120] (1.5x/2100/spectra_chunk_04.npz, L=2100) | Loss: 0.01583 (BC: 0.0084, Clean: 0.0059, Asym: 0.0015) |  212.7 spec/s
+Epoch [  5/16] | File [ 51/120] (2x/2400/spectra_chunk_06.npz, L=2400) | Loss: 0.01655 (BC: 0.0086, Clean: 0.0064, Asym: 0.0015) |  189.4 spec/s
+Epoch [  5/16] | File [ 52/120] (1.5x/2100/spectra_chunk_08.npz, L=2100) | Loss: 0.01586 (BC: 0.0083, Clean: 0.0059, Asym: 0.0016) |  213.3 spec/s
+Epoch [  5/16] | File [ 53/120] (1.5x/1200/spectra_chunk_03.npz, L=1200) | Loss: 0.01898 (BC: 0.0099, Clean: 0.0076, Asym: 0.0015) |  347.7 spec/s
+Epoch [  5/16] | File [ 54/120] (1x/800/spectra_chunk_07.npz, L=800) | Loss: 0.01872 (BC: 0.0098, Clean: 0.0075, Asym: 0.0014) |  484.9 spec/s
+Epoch [  5/16] | File [ 55/120] (1x/1600/spectra_chunk_08.npz, L=1600) | Loss: 0.01428 (BC: 0.0076, Clean: 0.0053, Asym: 0.0014) |  273.5 spec/s
+Epoch [  5/16] | File [ 56/120] (1.5x/1200/spectra_chunk_01.npz, L=1200) | Loss: 0.01862 (BC: 0.0097, Clean: 0.0075, Asym: 0.0015) |  348.2 spec/s
+Epoch [  5/16] | File [ 57/120] (1.5x/1200/spectra_chunk_07.npz, L=1200) | Loss: 0.01806 (BC: 0.0094, Clean: 0.0073, Asym: 0.0014) |  348.1 spec/s
+Epoch [  5/16] | File [ 58/120] (1.5x/1800/spectra_chunk_04.npz, L=1800) | Loss: 0.01598 (BC: 0.0083, Clean: 0.0061, Asym: 0.0016) |  244.1 spec/s
+Epoch [  5/16] | File [ 59/120] (1.5x/2400/spectra_chunk_03.npz, L=2400) | Loss: 0.01638 (BC: 0.0083, Clean: 0.0057, Asym: 0.0023) |  189.5 spec/s
+Epoch [  5/16] | File [ 60/120] (1.5x/1524/spectra_chunk_04.npz, L=1524) | Loss: 0.01830 (BC: 0.0096, Clean: 0.0071, Asym: 0.0016) |  283.6 spec/s
+Epoch [  5/16] | File [ 61/120] (1x/1200/spectra_chunk_06.npz, L=1200) | Loss: 0.01601 (BC: 0.0084, Clean: 0.0061, Asym: 0.0015) |  348.6 spec/s
+Epoch [  5/16] | File [ 62/120] (1x/1200/spectra_chunk_02.npz, L=1200) | Loss: 0.01505 (BC: 0.0080, Clean: 0.0058, Asym: 0.0013) |  347.4 spec/s
+Epoch [  5/16] | File [ 63/120] (1x/1016/spectra_chunk_01.npz, L=1016) | Loss: 0.01592 (BC: 0.0084, Clean: 0.0062, Asym: 0.0013) |  400.2 spec/s
+Epoch [  5/16] | File [ 64/120] (1.5x/2400/spectra_chunk_02.npz, L=2400) | Loss: 0.01813 (BC: 0.0094, Clean: 0.0063, Asym: 0.0024) |  189.3 spec/s
+Epoch [  5/16] | File [ 65/120] (2x/1600/spectra_chunk_05.npz, L=1600) | Loss: 0.01999 (BC: 0.0104, Clean: 0.0081, Asym: 0.0015) |  272.8 spec/s
+Epoch [  5/16] | File [ 66/120] (1x/800/spectra_chunk_02.npz, L=800) | Loss: 0.01832 (BC: 0.0096, Clean: 0.0073, Asym: 0.0014) |  483.3 spec/s
+Epoch [  5/16] | File [ 67/120] (1x/1016/spectra_chunk_04.npz, L=1016) | Loss: 0.01613 (BC: 0.0084, Clean: 0.0063, Asym: 0.0015) |  400.5 spec/s
+Epoch [  5/16] | File [ 68/120] (2x/2032/spectra_chunk_02.npz, L=2032) | Loss: 0.01860 (BC: 0.0097, Clean: 0.0072, Asym: 0.0017) |  219.9 spec/s
+Epoch [  5/16] | File [ 69/120] (1x/1016/spectra_chunk_06.npz, L=1016) | Loss: 0.01649 (BC: 0.0086, Clean: 0.0064, Asym: 0.0015) |  399.5 spec/s
+Epoch [  5/16] | File [ 70/120] (1.5x/1800/spectra_chunk_08.npz, L=1800) | Loss: 0.01609 (BC: 0.0084, Clean: 0.0061, Asym: 0.0016) |  245.1 spec/s
+Epoch [  5/16] | File [ 71/120] (1x/1600/spectra_chunk_01.npz, L=1600) | Loss: 0.01548 (BC: 0.0080, Clean: 0.0055, Asym: 0.0020) |  273.5 spec/s
+Epoch [  5/16] | File [ 72/120] (1.5x/1800/spectra_chunk_03.npz, L=1800) | Loss: 0.01598 (BC: 0.0085, Clean: 0.0062, Asym: 0.0014) |  245.2 spec/s
+Epoch [  5/16] | File [ 73/120] (1.5x/1524/spectra_chunk_07.npz, L=1524) | Loss: 0.01632 (BC: 0.0086, Clean: 0.0063, Asym: 0.0014) |  283.1 spec/s
+Epoch [  5/16] | File [ 74/120] (1.5x/1524/spectra_chunk_08.npz, L=1524) | Loss: 0.01648 (BC: 0.0085, Clean: 0.0064, Asym: 0.0016) |  283.5 spec/s
+Epoch [  5/16] | File [ 75/120] (2x/2032/spectra_chunk_03.npz, L=2032) | Loss: 0.01733 (BC: 0.0090, Clean: 0.0068, Asym: 0.0016) |  219.5 spec/s
+Epoch [  5/16] | File [ 76/120] (2x/2800/spectra_chunk_03.npz, L=2800) | Loss: 0.01836 (BC: 0.0095, Clean: 0.0066, Asym: 0.0022) |  163.8 spec/s
+Epoch [  5/16] | File [ 77/120] (1.5x/1524/spectra_chunk_03.npz, L=1524) | Loss: 0.01724 (BC: 0.0091, Clean: 0.0068, Asym: 0.0014) |  282.7 spec/s
+Epoch [  5/16] | File [ 78/120] (1x/1400/spectra_chunk_03.npz, L=1400) | Loss: 0.01508 (BC: 0.0079, Clean: 0.0057, Asym: 0.0015) |  305.8 spec/s
+Epoch [  5/16] | File [ 79/120] (1.5x/2100/spectra_chunk_06.npz, L=2100) | Loss: 0.01694 (BC: 0.0088, Clean: 0.0061, Asym: 0.0021) |  212.4 spec/s
+Epoch [  5/16] | File [ 80/120] (2x/2800/spectra_chunk_06.npz, L=2800) | Loss: 0.01766 (BC: 0.0093, Clean: 0.0065, Asym: 0.0018) |  164.0 spec/s
+Epoch [  5/16] | File [ 81/120] (2x/1600/spectra_chunk_06.npz, L=1600) | Loss: 0.01868 (BC: 0.0097, Clean: 0.0075, Asym: 0.0014) |  273.2 spec/s
+Epoch [  5/16] | File [ 82/120] (2x/3200/spectra_chunk_01.npz, L=3200) | Loss: 0.01679 (BC: 0.0086, Clean: 0.0060, Asym: 0.0022) |  143.3 spec/s
+Epoch [  5/16] | File [ 83/120] (1.5x/2400/spectra_chunk_04.npz, L=2400) | Loss: 0.01703 (BC: 0.0090, Clean: 0.0061, Asym: 0.0019) |  189.0 spec/s
+Epoch [  5/16] | File [ 84/120] (2x/2400/spectra_chunk_07.npz, L=2400) | Loss: 0.01769 (BC: 0.0093, Clean: 0.0067, Asym: 0.0017) |  190.4 spec/s
+Epoch [  5/16] | File [ 85/120] (1x/1200/spectra_chunk_08.npz, L=1200) | Loss: 0.01542 (BC: 0.0081, Clean: 0.0059, Asym: 0.0014) |  347.6 spec/s
+Epoch [  5/16] | File [ 86/120] (1.5x/1524/spectra_chunk_06.npz, L=1524) | Loss: 0.01841 (BC: 0.0093, Clean: 0.0069, Asym: 0.0023) |  283.3 spec/s
+Epoch [  5/16] | File [ 87/120] (1x/1600/spectra_chunk_03.npz, L=1600) | Loss: 0.01474 (BC: 0.0079, Clean: 0.0055, Asym: 0.0014) |  272.5 spec/s
+Epoch [  5/16] | File [ 88/120] (1x/1200/spectra_chunk_05.npz, L=1200) | Loss: 0.01495 (BC: 0.0080, Clean: 0.0058, Asym: 0.0012) |  348.4 spec/s
+Epoch [  5/16] | File [ 89/120] (1x/800/spectra_chunk_06.npz, L=800) | Loss: 0.01837 (BC: 0.0096, Clean: 0.0074, Asym: 0.0014) |  484.9 spec/s
+Epoch [  5/16] | File [ 90/120] (2x/2800/spectra_chunk_08.npz, L=2800) | Loss: 0.01858 (BC: 0.0097, Clean: 0.0068, Asym: 0.0021) |  163.8 spec/s
+Epoch [  5/16] | File [ 91/120] (1.5x/2100/spectra_chunk_07.npz, L=2100) | Loss: 0.01513 (BC: 0.0080, Clean: 0.0056, Asym: 0.0015) |  213.2 spec/s
+Epoch [  5/16] | File [ 92/120] (2x/3200/spectra_chunk_04.npz, L=3200) | Loss: 0.02497 (BC: 0.0125, Clean: 0.0083, Asym: 0.0041) |  144.1 spec/s
+Epoch [  5/16] | File [ 93/120] (1x/1600/spectra_chunk_06.npz, L=1600) | Loss: 0.01523 (BC: 0.0083, Clean: 0.0056, Asym: 0.0013) |  272.2 spec/s
+Epoch [  5/16] | File [ 94/120] (1.5x/2100/spectra_chunk_05.npz, L=2100) | Loss: 0.01588 (BC: 0.0084, Clean: 0.0060, Asym: 0.0015) |  213.2 spec/s
+Epoch [  5/16] | File [ 95/120] (1x/1400/spectra_chunk_07.npz, L=1400) | Loss: 0.01492 (BC: 0.0078, Clean: 0.0055, Asym: 0.0016) |  307.0 spec/s
+Epoch [  5/16] | File [ 96/120] (2x/3200/spectra_chunk_08.npz, L=3200) | Loss: 0.01756 (BC: 0.0093, Clean: 0.0065, Asym: 0.0017) |  143.2 spec/s
+Epoch [  5/16] | File [ 97/120] (1.5x/1800/spectra_chunk_07.npz, L=1800) | Loss: 0.01619 (BC: 0.0085, Clean: 0.0061, Asym: 0.0016) |  243.7 spec/s
+Epoch [  5/16] | File [ 98/120] (1.5x/1200/spectra_chunk_06.npz, L=1200) | Loss: 0.01897 (BC: 0.0099, Clean: 0.0076, Asym: 0.0015) |  348.8 spec/s
+Epoch [  5/16] | File [ 99/120] (2x/3200/spectra_chunk_07.npz, L=3200) | Loss: 0.01914 (BC: 0.0100, Clean: 0.0068, Asym: 0.0023) |  142.3 spec/s
+Epoch [  5/16] | File [100/120] (2x/2032/spectra_chunk_04.npz, L=2032) | Loss: 0.01773 (BC: 0.0094, Clean: 0.0070, Asym: 0.0014) |  218.6 spec/s
+Epoch [  5/16] | File [101/120] (1x/1600/spectra_chunk_05.npz, L=1600) | Loss: 0.01535 (BC: 0.0079, Clean: 0.0056, Asym: 0.0019) |  273.4 spec/s
+Epoch [  5/16] | File [102/120] (1.5x/1524/spectra_chunk_01.npz, L=1524) | Loss: 0.01720 (BC: 0.0089, Clean: 0.0067, Asym: 0.0016) |  284.0 spec/s
+Epoch [  5/16] | File [103/120] (2x/2400/spectra_chunk_04.npz, L=2400) | Loss: 0.01603 (BC: 0.0084, Clean: 0.0062, Asym: 0.0014) |  188.6 spec/s
+Epoch [  5/16] | File [104/120] (1.5x/2400/spectra_chunk_05.npz, L=2400) | Loss: 0.01525 (BC: 0.0079, Clean: 0.0055, Asym: 0.0018) |  189.6 spec/s
+Epoch [  5/16] | File [105/120] (1.5x/1800/spectra_chunk_01.npz, L=1800) | Loss: 0.01573 (BC: 0.0083, Clean: 0.0060, Asym: 0.0014) |  245.3 spec/s
+Epoch [  5/16] | File [106/120] (2x/2400/spectra_chunk_02.npz, L=2400) | Loss: 0.01665 (BC: 0.0087, Clean: 0.0063, Asym: 0.0017) |  190.0 spec/s
+Epoch [  5/16] | File [107/120] (1x/1600/spectra_chunk_02.npz, L=1600) | Loss: 0.01406 (BC: 0.0075, Clean: 0.0053, Asym: 0.0013) |  272.6 spec/s
+Epoch [  5/16] | File [108/120] (1x/1016/spectra_chunk_07.npz, L=1016) | Loss: 0.01617 (BC: 0.0085, Clean: 0.0063, Asym: 0.0014) |  399.8 spec/s
+Epoch [  5/16] | File [109/120] (1x/1200/spectra_chunk_01.npz, L=1200) | Loss: 0.01538 (BC: 0.0079, Clean: 0.0057, Asym: 0.0017) |  348.4 spec/s
+Epoch [  5/16] | File [110/120] (1x/1400/spectra_chunk_04.npz, L=1400) | Loss: 0.01431 (BC: 0.0076, Clean: 0.0054, Asym: 0.0013) |  306.4 spec/s
+Epoch [  5/16] | File [111/120] (2x/3200/spectra_chunk_06.npz, L=3200) | Loss: 0.01728 (BC: 0.0089, Clean: 0.0062, Asym: 0.0022) |  143.9 spec/s
+Epoch [  5/16] | File [112/120] (1.5x/1200/spectra_chunk_05.npz, L=1200) | Loss: 0.01930 (BC: 0.0101, Clean: 0.0077, Asym: 0.0015) |  347.6 spec/s
+Epoch [  5/16] | File [113/120] (2x/2800/spectra_chunk_01.npz, L=2800) | Loss: 0.01724 (BC: 0.0090, Clean: 0.0064, Asym: 0.0018) |  163.5 spec/s
+Epoch [  5/16] | File [114/120] (2x/2032/spectra_chunk_07.npz, L=2032) | Loss: 0.01802 (BC: 0.0094, Clean: 0.0070, Asym: 0.0016) |  219.2 spec/s
+Epoch [  5/16] | File [115/120] (1.5x/1800/spectra_chunk_06.npz, L=1800) | Loss: 0.01562 (BC: 0.0082, Clean: 0.0060, Asym: 0.0013) |  245.1 spec/s
+Epoch [  5/16] | File [116/120] (1x/1016/spectra_chunk_02.npz, L=1016) | Loss: 0.01621 (BC: 0.0085, Clean: 0.0064, Asym: 0.0013) |  399.0 spec/s
+Epoch [  5/16] | File [117/120] (1x/1400/spectra_chunk_06.npz, L=1400) | Loss: 0.01426 (BC: 0.0075, Clean: 0.0054, Asym: 0.0013) |  305.7 spec/s
+Epoch [  5/16] | File [118/120] (1x/1016/spectra_chunk_03.npz, L=1016) | Loss: 0.01588 (BC: 0.0084, Clean: 0.0063, Asym: 0.0013) |  399.0 spec/s
+Epoch [  5/16] | File [119/120] (1x/1200/spectra_chunk_07.npz, L=1200) | Loss: 0.01461 (BC: 0.0076, Clean: 0.0056, Asym: 0.0013) |  349.0 spec/s
+Epoch [  5/16] | File [120/120] (1.5x/2100/spectra_chunk_03.npz, L=2100) | Loss: 0.01563 (BC: 0.0081, Clean: 0.0058, Asym: 0.0017) |  212.1 spec/s
+------------------------------------------------------------------------------
+==> Epoch [  5/16] Completed in 8073.5s (243.5 spectra/s) [Mode: Fully Interleaved (120 chunks across 1x, 1.5x, 2x)]
+    Avg Total Loss: 0.017229 | Avg BC: 0.008999 | Avg Clean: 0.006548 | Avg Asym: 0.001682
+    Learning Rate:  1.000000e-04
+    ★ New best model saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/polygaussnet5.pth' (Loss: 0.017229)
+    Saved checkpoint to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/training_checkpoint5.pth'
+------------------------------------------------------------------------------
+
+>>> Epoch [  6/16] Mode Selection: [Fully Interleaved (120 chunks across 1x, 1.5x, 2x)] (120 files to train)
+Epoch [  6/16] | File [  1/120] (1.5x/1800/spectra_chunk_04.npz, L=1800) | Loss: 0.01581 (BC: 0.0083, Clean: 0.0061, Asym: 0.0014) |  245.3 spec/s
+Epoch [  6/16] | File [  2/120] (2x/1600/spectra_chunk_04.npz, L=1600) | Loss: 0.01855 (BC: 0.0097, Clean: 0.0076, Asym: 0.0013) |  273.6 spec/s
+Epoch [  6/16] | File [  3/120] (2x/2800/spectra_chunk_05.npz, L=2800) | Loss: 0.01734 (BC: 0.0089, Clean: 0.0063, Asym: 0.0022) |  163.2 spec/s
+Epoch [  6/16] | File [  4/120] (1.5x/1200/spectra_chunk_07.npz, L=1200) | Loss: 0.01826 (BC: 0.0096, Clean: 0.0074, Asym: 0.0013) |  347.6 spec/s
+Epoch [  6/16] | File [  5/120] (1.5x/1524/spectra_chunk_06.npz, L=1524) | Loss: 0.01765 (BC: 0.0090, Clean: 0.0066, Asym: 0.0021) |  284.7 spec/s
+Epoch [  6/16] | File [  6/120] (1x/1600/spectra_chunk_01.npz, L=1600) | Loss: 0.01443 (BC: 0.0076, Clean: 0.0054, Asym: 0.0014) |  273.7 spec/s
+Epoch [  6/16] | File [  7/120] (2x/2800/spectra_chunk_04.npz, L=2800) | Loss: 0.01652 (BC: 0.0087, Clean: 0.0063, Asym: 0.0015) |  163.4 spec/s
+Epoch [  6/16] | File [  8/120] (1.5x/2400/spectra_chunk_07.npz, L=2400) | Loss: 0.01539 (BC: 0.0081, Clean: 0.0056, Asym: 0.0018) |  189.5 spec/s
+Epoch [  6/16] | File [  9/120] (1x/800/spectra_chunk_03.npz, L=800) | Loss: 0.01907 (BC: 0.0100, Clean: 0.0076, Asym: 0.0015) |  482.9 spec/s
+Epoch [  6/16] | File [ 10/120] (1.5x/1200/spectra_chunk_06.npz, L=1200) | Loss: 0.01869 (BC: 0.0097, Clean: 0.0075, Asym: 0.0015) |  349.4 spec/s
+Epoch [  6/16] | File [ 11/120] (1x/1200/spectra_chunk_07.npz, L=1200) | Loss: 0.01537 (BC: 0.0081, Clean: 0.0060, Asym: 0.0013) |  349.6 spec/s
+Epoch [  6/16] | File [ 12/120] (2x/1600/spectra_chunk_06.npz, L=1600) | Loss: 0.01842 (BC: 0.0096, Clean: 0.0075, Asym: 0.0014) |  272.8 spec/s
+Epoch [  6/16] | File [ 13/120] (1x/800/spectra_chunk_02.npz, L=800) | Loss: 0.01819 (BC: 0.0094, Clean: 0.0073, Asym: 0.0015) |  484.5 spec/s
+Epoch [  6/16] | File [ 14/120] (1x/1200/spectra_chunk_04.npz, L=1200) | Loss: 0.01480 (BC: 0.0078, Clean: 0.0057, Asym: 0.0014) |  348.6 spec/s
+Epoch [  6/16] | File [ 15/120] (1x/1400/spectra_chunk_04.npz, L=1400) | Loss: 0.01381 (BC: 0.0073, Clean: 0.0052, Asym: 0.0013) |  306.7 spec/s
+Epoch [  6/16] | File [ 16/120] (1x/1400/spectra_chunk_01.npz, L=1400) | Loss: 0.01375 (BC: 0.0072, Clean: 0.0052, Asym: 0.0013) |  306.4 spec/s
+Epoch [  6/16] | File [ 17/120] (1x/1200/spectra_chunk_01.npz, L=1200) | Loss: 0.01514 (BC: 0.0079, Clean: 0.0057, Asym: 0.0015) |  348.7 spec/s
+Epoch [  6/16] | File [ 18/120] (1x/1016/spectra_chunk_04.npz, L=1016) | Loss: 0.01581 (BC: 0.0083, Clean: 0.0062, Asym: 0.0013) |  399.1 spec/s
+Epoch [  6/16] | File [ 19/120] (1x/1200/spectra_chunk_05.npz, L=1200) | Loss: 0.01432 (BC: 0.0076, Clean: 0.0055, Asym: 0.0012) |  348.6 spec/s
+Epoch [  6/16] | File [ 20/120] (1.5x/2400/spectra_chunk_06.npz, L=2400) | Loss: 0.01547 (BC: 0.0081, Clean: 0.0056, Asym: 0.0017) |  189.0 spec/s
+Epoch [  6/16] | File [ 21/120] (1x/1016/spectra_chunk_05.npz, L=1016) | Loss: 0.01732 (BC: 0.0089, Clean: 0.0065, Asym: 0.0019) |  399.0 spec/s
+Epoch [  6/16] | File [ 22/120] (1x/1200/spectra_chunk_06.npz, L=1200) | Loss: 0.01555 (BC: 0.0082, Clean: 0.0059, Asym: 0.0015) |  349.1 spec/s
+Epoch [  6/16] | File [ 23/120] (2x/2400/spectra_chunk_07.npz, L=2400) | Loss: 0.01651 (BC: 0.0086, Clean: 0.0064, Asym: 0.0015) |  189.1 spec/s
+Epoch [  6/16] | File [ 24/120] (2x/2032/spectra_chunk_01.npz, L=2032) | Loss: 0.01752 (BC: 0.0091, Clean: 0.0067, Asym: 0.0017) |  219.1 spec/s
+Epoch [  6/16] | File [ 25/120] (1x/1600/spectra_chunk_08.npz, L=1600) | Loss: 0.01478 (BC: 0.0078, Clean: 0.0055, Asym: 0.0016) |  273.4 spec/s
+Epoch [  6/16] | File [ 26/120] (2x/2400/spectra_chunk_03.npz, L=2400) | Loss: 0.01684 (BC: 0.0088, Clean: 0.0065, Asym: 0.0015) |  189.4 spec/s
+Epoch [  6/16] | File [ 27/120] (1.5x/2100/spectra_chunk_04.npz, L=2100) | Loss: 0.01481 (BC: 0.0078, Clean: 0.0056, Asym: 0.0014) |  213.0 spec/s
+Epoch [  6/16] | File [ 28/120] (1.5x/1800/spectra_chunk_05.npz, L=1800) | Loss: 0.01579 (BC: 0.0082, Clean: 0.0060, Asym: 0.0016) |  244.6 spec/s
+Epoch [  6/16] | File [ 29/120] (1.5x/2400/spectra_chunk_03.npz, L=2400) | Loss: 0.01907 (BC: 0.0097, Clean: 0.0066, Asym: 0.0028) |  188.8 spec/s
+Epoch [  6/16] | File [ 30/120] (1.5x/1524/spectra_chunk_03.npz, L=1524) | Loss: 0.01683 (BC: 0.0089, Clean: 0.0067, Asym: 0.0012) |  283.6 spec/s
+Epoch [  6/16] | File [ 31/120] (1.5x/2400/spectra_chunk_04.npz, L=2400) | Loss: 0.01860 (BC: 0.0097, Clean: 0.0066, Asym: 0.0023) |  189.8 spec/s
+Epoch [  6/16] | File [ 32/120] (1x/1600/spectra_chunk_02.npz, L=1600) | Loss: 0.01371 (BC: 0.0073, Clean: 0.0051, Asym: 0.0013) |  272.4 spec/s
+Epoch [  6/16] | File [ 33/120] (1.5x/1800/spectra_chunk_06.npz, L=1800) | Loss: 0.01566 (BC: 0.0082, Clean: 0.0061, Asym: 0.0014) |  245.0 spec/s
+Epoch [  6/16] | File [ 34/120] (1x/800/spectra_chunk_01.npz, L=800) | Loss: 0.01866 (BC: 0.0097, Clean: 0.0074, Asym: 0.0015) |  488.4 spec/s
+Epoch [  6/16] | File [ 35/120] (1x/800/spectra_chunk_04.npz, L=800) | Loss: 0.01781 (BC: 0.0092, Clean: 0.0070, Asym: 0.0015) |  485.0 spec/s
+Epoch [  6/16] | File [ 36/120] (1.5x/2100/spectra_chunk_08.npz, L=2100) | Loss: 0.01649 (BC: 0.0087, Clean: 0.0061, Asym: 0.0018) |  212.5 spec/s
+Epoch [  6/16] | File [ 37/120] (2x/2800/spectra_chunk_01.npz, L=2800) | Loss: 0.01689 (BC: 0.0088, Clean: 0.0063, Asym: 0.0018) |  163.4 spec/s
+Epoch [  6/16] | File [ 38/120] (2x/3200/spectra_chunk_06.npz, L=3200) | Loss: 0.01607 (BC: 0.0085, Clean: 0.0059, Asym: 0.0017) |  144.8 spec/s
+Epoch [  6/16] | File [ 39/120] (1x/1016/spectra_chunk_06.npz, L=1016) | Loss: 0.01639 (BC: 0.0086, Clean: 0.0064, Asym: 0.0014) |  399.3 spec/s
+Epoch [  6/16] | File [ 40/120] (1.5x/1200/spectra_chunk_05.npz, L=1200) | Loss: 0.01825 (BC: 0.0094, Clean: 0.0073, Asym: 0.0015) |  349.4 spec/s
+Epoch [  6/16] | File [ 41/120] (2x/2400/spectra_chunk_01.npz, L=2400) | Loss: 0.01739 (BC: 0.0089, Clean: 0.0064, Asym: 0.0020) |  189.4 spec/s
+Epoch [  6/16] | File [ 42/120] (1.5x/2100/spectra_chunk_01.npz, L=2100) | Loss: 0.01492 (BC: 0.0079, Clean: 0.0056, Asym: 0.0013) |  213.0 spec/s
+Epoch [  6/16] | File [ 43/120] (2x/2032/spectra_chunk_03.npz, L=2032) | Loss: 0.01732 (BC: 0.0090, Clean: 0.0068, Asym: 0.0016) |  219.8 spec/s
+Epoch [  6/16] | File [ 44/120] (2x/1600/spectra_chunk_05.npz, L=1600) | Loss: 0.01855 (BC: 0.0096, Clean: 0.0075, Asym: 0.0014) |  273.5 spec/s
+Epoch [  6/16] | File [ 45/120] (1x/1016/spectra_chunk_03.npz, L=1016) | Loss: 0.01620 (BC: 0.0085, Clean: 0.0065, Asym: 0.0013) |  400.9 spec/s
+Epoch [  6/16] | File [ 46/120] (1x/800/spectra_chunk_05.npz, L=800) | Loss: 0.01803 (BC: 0.0093, Clean: 0.0071, Asym: 0.0016) |  485.4 spec/s
+Epoch [  6/16] | File [ 47/120] (2x/2032/spectra_chunk_04.npz, L=2032) | Loss: 0.01726 (BC: 0.0090, Clean: 0.0068, Asym: 0.0014) |  219.8 spec/s
+Epoch [  6/16] | File [ 48/120] (2x/2400/spectra_chunk_08.npz, L=2400) | Loss: 0.02208 (BC: 0.0109, Clean: 0.0077, Asym: 0.0034) |  188.7 spec/s
+Epoch [  6/16] | File [ 49/120] (2x/2800/spectra_chunk_08.npz, L=2800) | Loss: 0.01671 (BC: 0.0089, Clean: 0.0063, Asym: 0.0016) |  164.2 spec/s
+Epoch [  6/16] | File [ 50/120] (1x/1400/spectra_chunk_05.npz, L=1400) | Loss: 0.01484 (BC: 0.0079, Clean: 0.0057, Asym: 0.0013) |  306.7 spec/s
+Epoch [  6/16] | File [ 51/120] (1.5x/1200/spectra_chunk_01.npz, L=1200) | Loss: 0.01794 (BC: 0.0094, Clean: 0.0072, Asym: 0.0013) |  348.3 spec/s
+Epoch [  6/16] | File [ 52/120] (2x/2400/spectra_chunk_05.npz, L=2400) | Loss: 0.01576 (BC: 0.0082, Clean: 0.0060, Asym: 0.0015) |  189.2 spec/s
+Epoch [  6/16] | File [ 53/120] (2x/2032/spectra_chunk_02.npz, L=2032) | Loss: 0.01702 (BC: 0.0089, Clean: 0.0067, Asym: 0.0014) |  219.7 spec/s
+Epoch [  6/16] | File [ 54/120] (2x/2032/spectra_chunk_07.npz, L=2032) | Loss: 0.01797 (BC: 0.0090, Clean: 0.0068, Asym: 0.0022) |  220.6 spec/s
+Epoch [  6/16] | File [ 55/120] (1.5x/2400/spectra_chunk_08.npz, L=2400) | Loss: 0.01468 (BC: 0.0078, Clean: 0.0054, Asym: 0.0015) |  189.0 spec/s
+Epoch [  6/16] | File [ 56/120] (1x/1400/spectra_chunk_06.npz, L=1400) | Loss: 0.01389 (BC: 0.0073, Clean: 0.0053, Asym: 0.0013) |  305.3 spec/s
+Epoch [  6/16] | File [ 57/120] (1.5x/1200/spectra_chunk_02.npz, L=1200) | Loss: 0.01833 (BC: 0.0095, Clean: 0.0074, Asym: 0.0014) |  348.7 spec/s
+Epoch [  6/16] | File [ 58/120] (1.5x/2100/spectra_chunk_07.npz, L=2100) | Loss: 0.01547 (BC: 0.0079, Clean: 0.0056, Asym: 0.0020) |  213.3 spec/s
+Epoch [  6/16] | File [ 59/120] (1x/1400/spectra_chunk_08.npz, L=1400) | Loss: 0.01525 (BC: 0.0077, Clean: 0.0055, Asym: 0.0021) |  306.3 spec/s
+Epoch [  6/16] | File [ 60/120] (1x/1200/spectra_chunk_03.npz, L=1200) | Loss: 0.01728 (BC: 0.0093, Clean: 0.0066, Asym: 0.0014) |  347.8 spec/s
+Epoch [  6/16] | File [ 61/120] (1x/1600/spectra_chunk_06.npz, L=1600) | Loss: 0.01381 (BC: 0.0074, Clean: 0.0051, Asym: 0.0013) |  272.3 spec/s
+Epoch [  6/16] | File [ 62/120] (1x/1016/spectra_chunk_07.npz, L=1016) | Loss: 0.01579 (BC: 0.0083, Clean: 0.0062, Asym: 0.0013) |  400.8 spec/s
+Epoch [  6/16] | File [ 63/120] (2x/3200/spectra_chunk_07.npz, L=3200) | Loss: 0.02287 (BC: 0.0114, Clean: 0.0077, Asym: 0.0038) |  143.4 spec/s
+Epoch [  6/16] | File [ 64/120] (1.5x/1524/spectra_chunk_07.npz, L=1524) | Loss: 0.01692 (BC: 0.0089, Clean: 0.0065, Asym: 0.0015) |  283.3 spec/s
+Epoch [  6/16] | File [ 65/120] (2x/2032/spectra_chunk_05.npz, L=2032) | Loss: 0.01668 (BC: 0.0088, Clean: 0.0066, Asym: 0.0013) |  219.7 spec/s
+Epoch [  6/16] | File [ 66/120] (1.5x/2400/spectra_chunk_01.npz, L=2400) | Loss: 0.01539 (BC: 0.0080, Clean: 0.0056, Asym: 0.0019) |  189.0 spec/s
+Epoch [  6/16] | File [ 67/120] (1.5x/1800/spectra_chunk_03.npz, L=1800) | Loss: 0.01503 (BC: 0.0080, Clean: 0.0058, Asym: 0.0012) |  244.6 spec/s
+Epoch [  6/16] | File [ 68/120] (1.5x/1800/spectra_chunk_01.npz, L=1800) | Loss: 0.01591 (BC: 0.0083, Clean: 0.0060, Asym: 0.0016) |  245.3 spec/s
+Epoch [  6/16] | File [ 69/120] (1.5x/1524/spectra_chunk_02.npz, L=1524) | Loss: 0.01671 (BC: 0.0087, Clean: 0.0065, Asym: 0.0016) |  283.7 spec/s
+Epoch [  6/16] | File [ 70/120] (2x/1600/spectra_chunk_08.npz, L=1600) | Loss: 0.01801 (BC: 0.0094, Clean: 0.0073, Asym: 0.0013) |  273.1 spec/s
+Epoch [  6/16] | File [ 71/120] (2x/2032/spectra_chunk_06.npz, L=2032) | Loss: 0.01815 (BC: 0.0091, Clean: 0.0067, Asym: 0.0024) |  219.6 spec/s
+Epoch [  6/16] | File [ 72/120] (1.5x/2400/spectra_chunk_05.npz, L=2400) | Loss: 0.01570 (BC: 0.0084, Clean: 0.0057, Asym: 0.0016) |  189.6 spec/s
+Epoch [  6/16] | File [ 73/120] (1x/1400/spectra_chunk_07.npz, L=1400) | Loss: 0.01395 (BC: 0.0075, Clean: 0.0053, Asym: 0.0012) |  306.7 spec/s
+Epoch [  6/16] | File [ 74/120] (1x/1200/spectra_chunk_02.npz, L=1200) | Loss: 0.01473 (BC: 0.0077, Clean: 0.0056, Asym: 0.0014) |  348.5 spec/s
+Epoch [  6/16] | File [ 75/120] (1x/1200/spectra_chunk_08.npz, L=1200) | Loss: 0.01456 (BC: 0.0075, Clean: 0.0055, Asym: 0.0015) |  347.4 spec/s
+Epoch [  6/16] | File [ 76/120] (1x/800/spectra_chunk_06.npz, L=800) | Loss: 0.01812 (BC: 0.0095, Clean: 0.0073, Asym: 0.0013) |  483.3 spec/s
+Epoch [  6/16] | File [ 77/120] (1.5x/1200/spectra_chunk_03.npz, L=1200) | Loss: 0.01802 (BC: 0.0094, Clean: 0.0072, Asym: 0.0014) |  349.1 spec/s
+Epoch [  6/16] | File [ 78/120] (2x/1600/spectra_chunk_02.npz, L=1600) | Loss: 0.01814 (BC: 0.0094, Clean: 0.0073, Asym: 0.0015) |  273.3 spec/s
+Epoch [  6/16] | File [ 79/120] (2x/2800/spectra_chunk_02.npz, L=2800) | Loss: 0.01646 (BC: 0.0086, Clean: 0.0062, Asym: 0.0017) |  162.7 spec/s
+Epoch [  6/16] | File [ 80/120] (2x/3200/spectra_chunk_01.npz, L=3200) | Loss: 0.01533 (BC: 0.0080, Clean: 0.0056, Asym: 0.0018) |  142.5 spec/s
+Epoch [  6/16] | File [ 81/120] (1.5x/1524/spectra_chunk_04.npz, L=1524) | Loss: 0.01617 (BC: 0.0085, Clean: 0.0064, Asym: 0.0013) |  283.3 spec/s
+Epoch [  6/16] | File [ 82/120] (1.5x/2400/spectra_chunk_02.npz, L=2400) | Loss: 0.01612 (BC: 0.0084, Clean: 0.0058, Asym: 0.0020) |  189.9 spec/s
+Epoch [  6/16] | File [ 83/120] (1x/1600/spectra_chunk_05.npz, L=1600) | Loss: 0.01321 (BC: 0.0070, Clean: 0.0050, Asym: 0.0013) |  273.4 spec/s
+Epoch [  6/16] | File [ 84/120] (1.5x/1524/spectra_chunk_05.npz, L=1524) | Loss: 0.01664 (BC: 0.0084, Clean: 0.0064, Asym: 0.0018) |  283.9 spec/s
+Epoch [  6/16] | File [ 85/120] (1.5x/1800/spectra_chunk_08.npz, L=1800) | Loss: 0.01555 (BC: 0.0082, Clean: 0.0061, Asym: 0.0013) |  245.8 spec/s
+Epoch [  6/16] | File [ 86/120] (1x/1016/spectra_chunk_02.npz, L=1016) | Loss: 0.01553 (BC: 0.0082, Clean: 0.0062, Asym: 0.0012) |  401.7 spec/s
+Epoch [  6/16] | File [ 87/120] (1x/1016/spectra_chunk_01.npz, L=1016) | Loss: 0.01556 (BC: 0.0081, Clean: 0.0061, Asym: 0.0014) |  394.2 spec/s
+Epoch [  6/16] | File [ 88/120] (2x/2400/spectra_chunk_02.npz, L=2400) | Loss: 0.01741 (BC: 0.0090, Clean: 0.0066, Asym: 0.0018) |  185.3 spec/s
+Epoch [  6/16] | File [ 89/120] (1.5x/2100/spectra_chunk_05.npz, L=2100) | Loss: 0.01760 (BC: 0.0092, Clean: 0.0064, Asym: 0.0020) |  211.7 spec/s
+Epoch [  6/16] | File [ 90/120] (2x/3200/spectra_chunk_02.npz, L=3200) | Loss: 0.01862 (BC: 0.0096, Clean: 0.0066, Asym: 0.0025) |  142.2 spec/s
+Epoch [  6/16] | File [ 91/120] (2x/2032/spectra_chunk_08.npz, L=2032) | Loss: 0.01704 (BC: 0.0090, Clean: 0.0068, Asym: 0.0012) |  215.9 spec/s
+Epoch [  6/16] | File [ 92/120] (1x/1600/spectra_chunk_03.npz, L=1600) | Loss: 0.01704 (BC: 0.0086, Clean: 0.0059, Asym: 0.0026) |  273.9 spec/s
+Epoch [  6/16] | File [ 93/120] (1.5x/2100/spectra_chunk_02.npz, L=2100) | Loss: 0.01716 (BC: 0.0088, Clean: 0.0062, Asym: 0.0021) |  212.5 spec/s
+Epoch [  6/16] | File [ 94/120] (1x/1600/spectra_chunk_07.npz, L=1600) | Loss: 0.01393 (BC: 0.0075, Clean: 0.0052, Asym: 0.0012) |  273.0 spec/s
+Epoch [  6/16] | File [ 95/120] (2x/2800/spectra_chunk_03.npz, L=2800) | Loss: 0.01635 (BC: 0.0084, Clean: 0.0060, Asym: 0.0020) |  163.9 spec/s
+Epoch [  6/16] | File [ 96/120] (1.5x/1800/spectra_chunk_07.npz, L=1800) | Loss: 0.01549 (BC: 0.0082, Clean: 0.0060, Asym: 0.0013) |  240.0 spec/s
+Epoch [  6/16] | File [ 97/120] (1.5x/2100/spectra_chunk_06.npz, L=2100) | Loss: 0.01447 (BC: 0.0076, Clean: 0.0054, Asym: 0.0014) |  212.1 spec/s
+Epoch [  6/16] | File [ 98/120] (1.5x/1200/spectra_chunk_04.npz, L=1200) | Loss: 0.01820 (BC: 0.0094, Clean: 0.0073, Asym: 0.0014) |  346.5 spec/s
+Epoch [  6/16] | File [ 99/120] (1x/1400/spectra_chunk_02.npz, L=1400) | Loss: 0.01428 (BC: 0.0074, Clean: 0.0054, Asym: 0.0015) |  306.3 spec/s
+Epoch [  6/16] | File [100/120] (1x/1400/spectra_chunk_03.npz, L=1400) | Loss: 0.01352 (BC: 0.0072, Clean: 0.0052, Asym: 0.0011) |  306.2 spec/s
+Epoch [  6/16] | File [101/120] (1.5x/1524/spectra_chunk_08.npz, L=1524) | Loss: 0.01577 (BC: 0.0082, Clean: 0.0063, Asym: 0.0012) |  284.6 spec/s
+Epoch [  6/16] | File [102/120] (2x/2800/spectra_chunk_07.npz, L=2800) | Loss: 0.01691 (BC: 0.0087, Clean: 0.0061, Asym: 0.0021) |  163.9 spec/s
+Epoch [  6/16] | File [103/120] (2x/2400/spectra_chunk_04.npz, L=2400) | Loss: 0.01615 (BC: 0.0085, Clean: 0.0062, Asym: 0.0015) |  189.5 spec/s
+Epoch [  6/16] | File [104/120] (2x/3200/spectra_chunk_04.npz, L=3200) | Loss: 0.01634 (BC: 0.0086, Clean: 0.0060, Asym: 0.0018) |  144.2 spec/s
+Epoch [  6/16] | File [105/120] (1.5x/1524/spectra_chunk_01.npz, L=1524) | Loss: 0.01649 (BC: 0.0086, Clean: 0.0064, Asym: 0.0015) |  283.5 spec/s
+Epoch [  6/16] | File [106/120] (2x/1600/spectra_chunk_07.npz, L=1600) | Loss: 0.01859 (BC: 0.0096, Clean: 0.0075, Asym: 0.0015) |  272.8 spec/s
+Epoch [  6/16] | File [107/120] (1.5x/1800/spectra_chunk_02.npz, L=1800) | Loss: 0.01510 (BC: 0.0079, Clean: 0.0058, Asym: 0.0014) |  244.1 spec/s
+Epoch [  6/16] | File [108/120] (1x/800/spectra_chunk_08.npz, L=800) | Loss: 0.01798 (BC: 0.0094, Clean: 0.0073, Asym: 0.0013) |  482.4 spec/s
+Epoch [  6/16] | File [109/120] (1.5x/1200/spectra_chunk_08.npz, L=1200) | Loss: 0.01749 (BC: 0.0091, Clean: 0.0071, Asym: 0.0013) |  347.4 spec/s
+Epoch [  6/16] | File [110/120] (2x/3200/spectra_chunk_03.npz, L=3200) | Loss: 0.01666 (BC: 0.0087, Clean: 0.0060, Asym: 0.0020) |  138.8 spec/s
+Epoch [  6/16] | File [111/120] (2x/3200/spectra_chunk_08.npz, L=3200) | Loss: 0.01536 (BC: 0.0081, Clean: 0.0057, Asym: 0.0016) |  141.2 spec/s
+Epoch [  6/16] | File [112/120] (1x/1600/spectra_chunk_04.npz, L=1600) | Loss: 0.01444 (BC: 0.0075, Clean: 0.0053, Asym: 0.0016) |  271.5 spec/s
+Epoch [  6/16] | File [113/120] (1x/1016/spectra_chunk_08.npz, L=1016) | Loss: 0.01649 (BC: 0.0086, Clean: 0.0064, Asym: 0.0015) |  388.5 spec/s
+Epoch [  6/16] | File [114/120] (2x/1600/spectra_chunk_03.npz, L=1600) | Loss: 0.01850 (BC: 0.0096, Clean: 0.0075, Asym: 0.0014) |  268.5 spec/s
+Epoch [  6/16] | File [115/120] (2x/1600/spectra_chunk_01.npz, L=1600) | Loss: 0.01772 (BC: 0.0092, Clean: 0.0071, Asym: 0.0014) |  271.1 spec/s
+Epoch [  6/16] | File [116/120] (2x/3200/spectra_chunk_05.npz, L=3200) | Loss: 0.01637 (BC: 0.0085, Clean: 0.0059, Asym: 0.0019) |  141.2 spec/s
+Epoch [  6/16] | File [117/120] (2x/2800/spectra_chunk_06.npz, L=2800) | Loss: 0.01875 (BC: 0.0097, Clean: 0.0068, Asym: 0.0022) |  163.0 spec/s
+Epoch [  6/16] | File [118/120] (2x/2400/spectra_chunk_06.npz, L=2400) | Loss: 0.01558 (BC: 0.0082, Clean: 0.0060, Asym: 0.0014) |  189.7 spec/s
+Epoch [  6/16] | File [119/120] (1.5x/2100/spectra_chunk_03.npz, L=2100) | Loss: 0.01465 (BC: 0.0077, Clean: 0.0055, Asym: 0.0015) |  213.4 spec/s
+Epoch [  6/16] | File [120/120] (1x/800/spectra_chunk_07.npz, L=800) | Loss: 0.01861 (BC: 0.0096, Clean: 0.0074, Asym: 0.0016) |  481.3 spec/s
+------------------------------------------------------------------------------
+==> Epoch [  6/16] Completed in 8086.6s (243.1 spectra/s) [Mode: Fully Interleaved (120 chunks across 1x, 1.5x, 2x)]
+    Avg Total Loss: 0.016511 | Avg BC: 0.008605 | Avg Clean: 0.006306 | Avg Asym: 0.001600
+    Learning Rate:  1.000000e-04
+    ★ New best model saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/polygaussnet5.pth' (Loss: 0.016511)
+    Saved checkpoint to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/training_checkpoint5.pth'
+------------------------------------------------------------------------------
+
+>>> Epoch [  7/16] Mode Selection: [Fully Interleaved (120 chunks across 1x, 1.5x, 2x)] (120 files to train)
+Epoch [  7/16] | File [  1/120] (1x/1200/spectra_chunk_05.npz, L=1200) | Loss: 0.01420 (BC: 0.0075, Clean: 0.0055, Asym: 0.0011) |  348.6 spec/s
+Epoch [  7/16] | File [  2/120] (2x/1600/spectra_chunk_03.npz, L=1600) | Loss: 0.01842 (BC: 0.0095, Clean: 0.0075, Asym: 0.0014) |  273.2 spec/s
+Epoch [  7/16] | File [  3/120] (1.5x/1524/spectra_chunk_08.npz, L=1524) | Loss: 0.01566 (BC: 0.0081, Clean: 0.0061, Asym: 0.0014) |  284.1 spec/s
+Epoch [  7/16] | File [  4/120] (2x/2032/spectra_chunk_03.npz, L=2032) | Loss: 0.01646 (BC: 0.0085, Clean: 0.0064, Asym: 0.0016) |  219.3 spec/s
+Epoch [  7/16] | File [  5/120] (2x/2800/spectra_chunk_04.npz, L=2800) | Loss: 0.01614 (BC: 0.0085, Clean: 0.0060, Asym: 0.0017) |  163.6 spec/s
+Epoch [  7/16] | File [  6/120] (1.5x/1524/spectra_chunk_01.npz, L=1524) | Loss: 0.01593 (BC: 0.0083, Clean: 0.0062, Asym: 0.0014) |  283.8 spec/s
+Epoch [  7/16] | File [  7/120] (2x/2032/spectra_chunk_04.npz, L=2032) | Loss: 0.01641 (BC: 0.0086, Clean: 0.0064, Asym: 0.0014) |  220.0 spec/s
+Epoch [  7/16] | File [  8/120] (1x/1600/spectra_chunk_06.npz, L=1600) | Loss: 0.01371 (BC: 0.0071, Clean: 0.0051, Asym: 0.0015) |  272.7 spec/s
+Epoch [  7/16] | File [  9/120] (1.5x/1200/spectra_chunk_03.npz, L=1200) | Loss: 0.01792 (BC: 0.0093, Clean: 0.0073, Asym: 0.0013) |  347.9 spec/s
+Epoch [  7/16] | File [ 10/120] (1.5x/1524/spectra_chunk_07.npz, L=1524) | Loss: 0.01556 (BC: 0.0080, Clean: 0.0060, Asym: 0.0016) |  283.9 spec/s
+Epoch [  7/16] | File [ 11/120] (1.5x/2400/spectra_chunk_03.npz, L=2400) | Loss: 0.01564 (BC: 0.0082, Clean: 0.0056, Asym: 0.0018) |  189.0 spec/s
+Epoch [  7/16] | File [ 12/120] (2x/2400/spectra_chunk_06.npz, L=2400) | Loss: 0.01565 (BC: 0.0083, Clean: 0.0062, Asym: 0.0012) |  189.1 spec/s
+Epoch [  7/16] | File [ 13/120] (1.5x/1200/spectra_chunk_02.npz, L=1200) | Loss: 0.01771 (BC: 0.0092, Clean: 0.0071, Asym: 0.0014) |  346.4 spec/s
+Epoch [  7/16] | File [ 14/120] (2x/2032/spectra_chunk_06.npz, L=2032) | Loss: 0.01830 (BC: 0.0093, Clean: 0.0068, Asym: 0.0021) |  219.9 spec/s
+Epoch [  7/16] | File [ 15/120] (1x/1016/spectra_chunk_04.npz, L=1016) | Loss: 0.01588 (BC: 0.0084, Clean: 0.0063, Asym: 0.0012) |  399.0 spec/s
+Epoch [  7/16] | File [ 16/120] (1x/1016/spectra_chunk_06.npz, L=1016) | Loss: 0.01534 (BC: 0.0081, Clean: 0.0061, Asym: 0.0012) |  401.7 spec/s
+Epoch [  7/16] | File [ 17/120] (2x/2800/spectra_chunk_08.npz, L=2800) | Loss: 0.01724 (BC: 0.0088, Clean: 0.0063, Asym: 0.0021) |  163.7 spec/s
+Epoch [  7/16] | File [ 18/120] (1x/1400/spectra_chunk_04.npz, L=1400) | Loss: 0.01460 (BC: 0.0078, Clean: 0.0055, Asym: 0.0013) |  305.1 spec/s
+Epoch [  7/16] | File [ 19/120] (1.5x/2100/spectra_chunk_07.npz, L=2100) | Loss: 0.01398 (BC: 0.0074, Clean: 0.0054, Asym: 0.0012) |  213.4 spec/s
+Epoch [  7/16] | File [ 20/120] (1x/1016/spectra_chunk_03.npz, L=1016) | Loss: 0.01540 (BC: 0.0081, Clean: 0.0061, Asym: 0.0012) |  399.2 spec/s
+Epoch [  7/16] | File [ 21/120] (1.5x/2400/spectra_chunk_01.npz, L=2400) | Loss: 0.01619 (BC: 0.0082, Clean: 0.0057, Asym: 0.0022) |  189.2 spec/s
+Epoch [  7/16] | File [ 22/120] (1x/1600/spectra_chunk_05.npz, L=1600) | Loss: 0.01319 (BC: 0.0070, Clean: 0.0050, Asym: 0.0012) |  272.5 spec/s
+Epoch [  7/16] | File [ 23/120] (2x/2400/spectra_chunk_08.npz, L=2400) | Loss: 0.01683 (BC: 0.0087, Clean: 0.0065, Asym: 0.0016) |  189.0 spec/s
+Epoch [  7/16] | File [ 24/120] (2x/1600/spectra_chunk_02.npz, L=1600) | Loss: 0.01791 (BC: 0.0093, Clean: 0.0073, Asym: 0.0013) |  272.9 spec/s
+Epoch [  7/16] | File [ 25/120] (1x/1400/spectra_chunk_02.npz, L=1400) | Loss: 0.01503 (BC: 0.0077, Clean: 0.0057, Asym: 0.0016) |  305.9 spec/s
+Epoch [  7/16] | File [ 26/120] (2x/3200/spectra_chunk_02.npz, L=3200) | Loss: 0.01645 (BC: 0.0084, Clean: 0.0059, Asym: 0.0021) |  142.9 spec/s
+Epoch [  7/16] | File [ 27/120] (1.5x/2400/spectra_chunk_07.npz, L=2400) | Loss: 0.01550 (BC: 0.0082, Clean: 0.0057, Asym: 0.0016) |  188.2 spec/s
+Epoch [  7/16] | File [ 28/120] (2x/3200/spectra_chunk_04.npz, L=3200) | Loss: 0.01665 (BC: 0.0086, Clean: 0.0060, Asym: 0.0021) |  143.9 spec/s
+Epoch [  7/16] | File [ 29/120] (1.5x/1200/spectra_chunk_04.npz, L=1200) | Loss: 0.01869 (BC: 0.0097, Clean: 0.0074, Asym: 0.0016) |  348.5 spec/s
+Epoch [  7/16] | File [ 30/120] (2x/2800/spectra_chunk_07.npz, L=2800) | Loss: 0.01583 (BC: 0.0084, Clean: 0.0060, Asym: 0.0014) |  164.1 spec/s
+Epoch [  7/16] | File [ 31/120] (2x/1600/spectra_chunk_06.npz, L=1600) | Loss: 0.01797 (BC: 0.0093, Clean: 0.0073, Asym: 0.0013) |  272.1 spec/s
+Epoch [  7/16] | File [ 32/120] (1.5x/1800/spectra_chunk_04.npz, L=1800) | Loss: 0.01570 (BC: 0.0081, Clean: 0.0060, Asym: 0.0016) |  244.6 spec/s
+Epoch [  7/16] | File [ 33/120] (2x/2032/spectra_chunk_05.npz, L=2032) | Loss: 0.01608 (BC: 0.0084, Clean: 0.0064, Asym: 0.0013) |  220.4 spec/s
+Epoch [  7/16] | File [ 34/120] (2x/2800/spectra_chunk_01.npz, L=2800) | Loss: 0.01702 (BC: 0.0085, Clean: 0.0061, Asym: 0.0025) |  163.6 spec/s
+Epoch [  7/16] | File [ 35/120] (1.5x/1524/spectra_chunk_02.npz, L=1524) | Loss: 0.01952 (BC: 0.0102, Clean: 0.0074, Asym: 0.0020) |  284.1 spec/s
+Epoch [  7/16] | File [ 36/120] (2x/1600/spectra_chunk_05.npz, L=1600) | Loss: 0.01851 (BC: 0.0098, Clean: 0.0076, Asym: 0.0012) |  272.8 spec/s
+Epoch [  7/16] | File [ 37/120] (1.5x/2400/spectra_chunk_04.npz, L=2400) | Loss: 0.01484 (BC: 0.0078, Clean: 0.0054, Asym: 0.0016) |  189.2 spec/s
+Epoch [  7/16] | File [ 38/120] (1x/1200/spectra_chunk_08.npz, L=1200) | Loss: 0.01433 (BC: 0.0075, Clean: 0.0055, Asym: 0.0013) |  347.6 spec/s
+Epoch [  7/16] | File [ 39/120] (2x/2800/spectra_chunk_06.npz, L=2800) | Loss: 0.01567 (BC: 0.0082, Clean: 0.0059, Asym: 0.0016) |  163.7 spec/s
+Epoch [  7/16] | File [ 40/120] (1.5x/2100/spectra_chunk_05.npz, L=2100) | Loss: 0.01546 (BC: 0.0081, Clean: 0.0058, Asym: 0.0016) |  213.2 spec/s
+Epoch [  7/16] | File [ 41/120] (1x/1200/spectra_chunk_07.npz, L=1200) | Loss: 0.01479 (BC: 0.0078, Clean: 0.0057, Asym: 0.0013) |  348.6 spec/s
+Epoch [  7/16] | File [ 42/120] (2x/3200/spectra_chunk_03.npz, L=3200) | Loss: 0.01589 (BC: 0.0085, Clean: 0.0059, Asym: 0.0015) |  140.7 spec/s
+Epoch [  7/16] | File [ 43/120] (1.5x/1800/spectra_chunk_07.npz, L=1800) | Loss: 0.01512 (BC: 0.0079, Clean: 0.0058, Asym: 0.0015) |  237.7 spec/s
+Epoch [  7/16] | File [ 44/120] (2x/2800/spectra_chunk_05.npz, L=2800) | Loss: 0.01557 (BC: 0.0081, Clean: 0.0058, Asym: 0.0017) |  162.6 spec/s
+Epoch [  7/16] | File [ 45/120] (1x/800/spectra_chunk_03.npz, L=800) | Loss: 0.01960 (BC: 0.0098, Clean: 0.0075, Asym: 0.0022) |  480.6 spec/s
+Epoch [  7/16] | File [ 46/120] (2x/1600/spectra_chunk_04.npz, L=1600) | Loss: 0.01924 (BC: 0.0101, Clean: 0.0078, Asym: 0.0013) |  273.2 spec/s
+Epoch [  7/16] | File [ 47/120] (1x/1016/spectra_chunk_07.npz, L=1016) | Loss: 0.01589 (BC: 0.0083, Clean: 0.0063, Asym: 0.0013) |  398.6 spec/s
+Epoch [  7/16] | File [ 48/120] (1x/800/spectra_chunk_01.npz, L=800) | Loss: 0.01773 (BC: 0.0093, Clean: 0.0071, Asym: 0.0013) |  484.3 spec/s
+Epoch [  7/16] | File [ 49/120] (1.5x/2100/spectra_chunk_03.npz, L=2100) | Loss: 0.01512 (BC: 0.0078, Clean: 0.0056, Asym: 0.0017) |  212.4 spec/s
+Epoch [  7/16] | File [ 50/120] (1x/1016/spectra_chunk_02.npz, L=1016) | Loss: 0.01545 (BC: 0.0081, Clean: 0.0061, Asym: 0.0012) |  395.7 spec/s
+Epoch [  7/16] | File [ 51/120] (1.5x/1524/spectra_chunk_05.npz, L=1524) | Loss: 0.01543 (BC: 0.0081, Clean: 0.0061, Asym: 0.0013) |  284.0 spec/s
+Epoch [  7/16] | File [ 52/120] (2x/1600/spectra_chunk_07.npz, L=1600) | Loss: 0.01806 (BC: 0.0093, Clean: 0.0073, Asym: 0.0015) |  272.7 spec/s
+Epoch [  7/16] | File [ 53/120] (2x/2400/spectra_chunk_05.npz, L=2400) | Loss: 0.01624 (BC: 0.0084, Clean: 0.0061, Asym: 0.0017) |  189.1 spec/s
+Epoch [  7/16] | File [ 54/120] (1.5x/1800/spectra_chunk_06.npz, L=1800) | Loss: 0.01487 (BC: 0.0078, Clean: 0.0057, Asym: 0.0014) |  245.0 spec/s
+Epoch [  7/16] | File [ 55/120] (1x/1400/spectra_chunk_06.npz, L=1400) | Loss: 0.01364 (BC: 0.0072, Clean: 0.0052, Asym: 0.0013) |  305.5 spec/s
+Epoch [  7/16] | File [ 56/120] (1.5x/1800/spectra_chunk_08.npz, L=1800) | Loss: 0.01491 (BC: 0.0078, Clean: 0.0058, Asym: 0.0013) |  244.7 spec/s
+Epoch [  7/16] | File [ 57/120] (2x/2400/spectra_chunk_03.npz, L=2400) | Loss: 0.01672 (BC: 0.0085, Clean: 0.0061, Asym: 0.0021) |  189.4 spec/s
+Epoch [  7/16] | File [ 58/120] (1.5x/2100/spectra_chunk_08.npz, L=2100) | Loss: 0.01463 (BC: 0.0078, Clean: 0.0056, Asym: 0.0013) |  212.4 spec/s
+Epoch [  7/16] | File [ 59/120] (1x/1200/spectra_chunk_06.npz, L=1200) | Loss: 0.01462 (BC: 0.0076, Clean: 0.0056, Asym: 0.0014) |  348.5 spec/s
+Epoch [  7/16] | File [ 60/120] (1x/1200/spectra_chunk_02.npz, L=1200) | Loss: 0.01419 (BC: 0.0075, Clean: 0.0055, Asym: 0.0011) |  348.8 spec/s
+Epoch [  7/16] | File [ 61/120] (2x/3200/spectra_chunk_08.npz, L=3200) | Loss: 0.01587 (BC: 0.0083, Clean: 0.0059, Asym: 0.0017) |  143.1 spec/s
+Epoch [  7/16] | File [ 62/120] (1x/1400/spectra_chunk_05.npz, L=1400) | Loss: 0.01386 (BC: 0.0073, Clean: 0.0053, Asym: 0.0012) |  306.4 spec/s
+Epoch [  7/16] | File [ 63/120] (1x/1016/spectra_chunk_05.npz, L=1016) | Loss: 0.01601 (BC: 0.0083, Clean: 0.0062, Asym: 0.0016) |  404.7 spec/s
+Epoch [  7/16] | File [ 64/120] (1.5x/2400/spectra_chunk_05.npz, L=2400) | Loss: 0.01542 (BC: 0.0081, Clean: 0.0056, Asym: 0.0017) |  186.7 spec/s
+Epoch [  7/16] | File [ 65/120] (1.5x/1524/spectra_chunk_03.npz, L=1524) | Loss: 0.01576 (BC: 0.0082, Clean: 0.0063, Asym: 0.0013) |  277.2 spec/s
+Epoch [  7/16] | File [ 66/120] (2x/3200/spectra_chunk_06.npz, L=3200) | Loss: 0.01704 (BC: 0.0088, Clean: 0.0061, Asym: 0.0021) |  138.3 spec/s
+Epoch [  7/16] | File [ 67/120] (1x/800/spectra_chunk_07.npz, L=800) | Loss: 0.01846 (BC: 0.0097, Clean: 0.0074, Asym: 0.0014) |  477.7 spec/s
+Epoch [  7/16] | File [ 68/120] (1.5x/1200/spectra_chunk_08.npz, L=1200) | Loss: 0.01742 (BC: 0.0090, Clean: 0.0071, Asym: 0.0013) |  347.8 spec/s
+Epoch [  7/16] | File [ 69/120] (1x/1600/spectra_chunk_01.npz, L=1600) | Loss: 0.01373 (BC: 0.0072, Clean: 0.0052, Asym: 0.0013) |  271.0 spec/s
+Epoch [  7/16] | File [ 70/120] (1.5x/1800/spectra_chunk_03.npz, L=1800) | Loss: 0.01462 (BC: 0.0077, Clean: 0.0057, Asym: 0.0012) |  245.1 spec/s
+Epoch [  7/16] | File [ 71/120] (1.5x/1800/spectra_chunk_02.npz, L=1800) | Loss: 0.01501 (BC: 0.0078, Clean: 0.0058, Asym: 0.0014) |  245.7 spec/s
+Epoch [  7/16] | File [ 72/120] (1.5x/2100/spectra_chunk_04.npz, L=2100) | Loss: 0.01531 (BC: 0.0080, Clean: 0.0057, Asym: 0.0016) |  213.8 spec/s
+Epoch [  7/16] | File [ 73/120] (1x/1600/spectra_chunk_04.npz, L=1600) | Loss: 0.01376 (BC: 0.0073, Clean: 0.0051, Asym: 0.0014) |  274.0 spec/s
+Epoch [  7/16] | File [ 74/120] (1x/800/spectra_chunk_02.npz, L=800) | Loss: 0.01749 (BC: 0.0091, Clean: 0.0070, Asym: 0.0014) |  491.1 spec/s
+Epoch [  7/16] | File [ 75/120] (1x/1400/spectra_chunk_08.npz, L=1400) | Loss: 0.01492 (BC: 0.0077, Clean: 0.0055, Asym: 0.0018) |  308.9 spec/s
+Epoch [  7/16] | File [ 76/120] (1x/1200/spectra_chunk_04.npz, L=1200) | Loss: 0.01427 (BC: 0.0075, Clean: 0.0056, Asym: 0.0012) |  352.4 spec/s
+Epoch [  7/16] | File [ 77/120] (1x/800/spectra_chunk_05.npz, L=800) | Loss: 0.01723 (BC: 0.0089, Clean: 0.0070, Asym: 0.0013) |  492.6 spec/s
+Epoch [  7/16] | File [ 78/120] (2x/2032/spectra_chunk_02.npz, L=2032) | Loss: 0.01753 (BC: 0.0091, Clean: 0.0069, Asym: 0.0015) |  220.8 spec/s
+Epoch [  7/16] | File [ 79/120] (1x/1600/spectra_chunk_02.npz, L=1600) | Loss: 0.01337 (BC: 0.0070, Clean: 0.0050, Asym: 0.0014) |  274.8 spec/s
+Epoch [  7/16] | File [ 80/120] (1.5x/1800/spectra_chunk_05.npz, L=1800) | Loss: 0.01490 (BC: 0.0077, Clean: 0.0057, Asym: 0.0015) |  246.4 spec/s
+Epoch [  7/16] | File [ 81/120] (2x/1600/spectra_chunk_08.npz, L=1600) | Loss: 0.01797 (BC: 0.0093, Clean: 0.0073, Asym: 0.0013) |  274.6 spec/s
+Epoch [  7/16] | File [ 82/120] (1x/1600/spectra_chunk_07.npz, L=1600) | Loss: 0.01408 (BC: 0.0073, Clean: 0.0053, Asym: 0.0015) |  275.1 spec/s
+Epoch [  7/16] | File [ 83/120] (1.5x/1524/spectra_chunk_06.npz, L=1524) | Loss: 0.01655 (BC: 0.0085, Clean: 0.0065, Asym: 0.0016) |  285.7 spec/s
+Epoch [  7/16] | File [ 84/120] (2x/2800/spectra_chunk_02.npz, L=2800) | Loss: 0.01543 (BC: 0.0082, Clean: 0.0059, Asym: 0.0013) |  163.6 spec/s
+Epoch [  7/16] | File [ 85/120] (1.5x/2100/spectra_chunk_01.npz, L=2100) | Loss: 0.01515 (BC: 0.0079, Clean: 0.0056, Asym: 0.0017) |  214.1 spec/s
+Epoch [  7/16] | File [ 86/120] (1.5x/1200/spectra_chunk_07.npz, L=1200) | Loss: 0.01743 (BC: 0.0091, Clean: 0.0071, Asym: 0.0012) |  351.3 spec/s
+Epoch [  7/16] | File [ 87/120] (1.5x/2100/spectra_chunk_02.npz, L=2100) | Loss: 0.01487 (BC: 0.0076, Clean: 0.0055, Asym: 0.0017) |  214.1 spec/s
+Epoch [  7/16] | File [ 88/120] (2x/2400/spectra_chunk_01.npz, L=2400) | Loss: 0.01565 (BC: 0.0082, Clean: 0.0061, Asym: 0.0013) |  190.3 spec/s
+Epoch [  7/16] | File [ 89/120] (1x/800/spectra_chunk_04.npz, L=800) | Loss: 0.01756 (BC: 0.0091, Clean: 0.0070, Asym: 0.0015) |  488.3 spec/s
+Epoch [  7/16] | File [ 90/120] (1x/1016/spectra_chunk_01.npz, L=1016) | Loss: 0.01482 (BC: 0.0078, Clean: 0.0059, Asym: 0.0011) |  404.8 spec/s
+Epoch [  7/16] | File [ 91/120] (2x/2032/spectra_chunk_07.npz, L=2032) | Loss: 0.01746 (BC: 0.0088, Clean: 0.0067, Asym: 0.0019) |  221.0 spec/s
+Epoch [  7/16] | File [ 92/120] (2x/3200/spectra_chunk_07.npz, L=3200) | Loss: 0.01601 (BC: 0.0083, Clean: 0.0058, Asym: 0.0019) |  140.8 spec/s
+Epoch [  7/16] | File [ 93/120] (1x/1200/spectra_chunk_03.npz, L=1200) | Loss: 0.01514 (BC: 0.0081, Clean: 0.0059, Asym: 0.0011) |  347.3 spec/s
+Epoch [  7/16] | File [ 94/120] (1x/1600/spectra_chunk_08.npz, L=1600) | Loss: 0.01333 (BC: 0.0069, Clean: 0.0048, Asym: 0.0016) |  273.8 spec/s
+Epoch [  7/16] | File [ 95/120] (1x/1016/spectra_chunk_08.npz, L=1016) | Loss: 0.01557 (BC: 0.0082, Clean: 0.0062, Asym: 0.0013) |  404.8 spec/s
+Epoch [  7/16] | File [ 96/120] (2x/2400/spectra_chunk_07.npz, L=2400) | Loss: 0.01590 (BC: 0.0084, Clean: 0.0062, Asym: 0.0014) |  190.0 spec/s
+Epoch [  7/16] | File [ 97/120] (1.5x/2100/spectra_chunk_06.npz, L=2100) | Loss: 0.01413 (BC: 0.0074, Clean: 0.0053, Asym: 0.0015) |  212.7 spec/s
+Epoch [  7/16] | File [ 98/120] (2x/2400/spectra_chunk_04.npz, L=2400) | Loss: 0.01511 (BC: 0.0078, Clean: 0.0058, Asym: 0.0015) |  189.0 spec/s
+Epoch [  7/16] | File [ 99/120] (2x/3200/spectra_chunk_01.npz, L=3200) | Loss: 0.01495 (BC: 0.0079, Clean: 0.0055, Asym: 0.0016) |  137.1 spec/s
+Epoch [  7/16] | File [100/120] (2x/1600/spectra_chunk_01.npz, L=1600) | Loss: 0.01823 (BC: 0.0095, Clean: 0.0073, Asym: 0.0014) |  269.7 spec/s
+Epoch [  7/16] | File [101/120] (1.5x/1524/spectra_chunk_04.npz, L=1524) | Loss: 0.01545 (BC: 0.0081, Clean: 0.0061, Asym: 0.0013) |  283.6 spec/s
+Epoch [  7/16] | File [102/120] (1.5x/1800/spectra_chunk_01.npz, L=1800) | Loss: 0.01696 (BC: 0.0086, Clean: 0.0062, Asym: 0.0021) |  245.0 spec/s
+Epoch [  7/16] | File [103/120] (1x/1400/spectra_chunk_01.npz, L=1400) | Loss: 0.01338 (BC: 0.0072, Clean: 0.0052, Asym: 0.0010) |  306.1 spec/s
+Epoch [  7/16] | File [104/120] (1.5x/1200/spectra_chunk_05.npz, L=1200) | Loss: 0.01797 (BC: 0.0093, Clean: 0.0073, Asym: 0.0013) |  348.7 spec/s
+Epoch [  7/16] | File [105/120] (1.5x/1200/spectra_chunk_01.npz, L=1200) | Loss: 0.01687 (BC: 0.0087, Clean: 0.0068, Asym: 0.0013) |  349.5 spec/s
+Epoch [  7/16] | File [106/120] (1.5x/2400/spectra_chunk_08.npz, L=2400) | Loss: 0.01556 (BC: 0.0080, Clean: 0.0056, Asym: 0.0019) |  188.6 spec/s
+Epoch [  7/16] | File [107/120] (2x/2800/spectra_chunk_03.npz, L=2800) | Loss: 0.01529 (BC: 0.0079, Clean: 0.0057, Asym: 0.0016) |  156.5 spec/s
+Epoch [  7/16] | File [108/120] (1x/800/spectra_chunk_06.npz, L=800) | Loss: 0.01805 (BC: 0.0094, Clean: 0.0072, Asym: 0.0014) |  473.7 spec/s
+Epoch [  7/16] | File [109/120] (1.5x/1200/spectra_chunk_06.npz, L=1200) | Loss: 0.01815 (BC: 0.0093, Clean: 0.0072, Asym: 0.0016) |  348.6 spec/s
+Epoch [  7/16] | File [110/120] (1x/1400/spectra_chunk_03.npz, L=1400) | Loss: 0.01377 (BC: 0.0073, Clean: 0.0053, Asym: 0.0011) |  306.1 spec/s
+Epoch [  7/16] | File [111/120] (2x/3200/spectra_chunk_05.npz, L=3200) | Loss: 0.01589 (BC: 0.0083, Clean: 0.0058, Asym: 0.0018) |  143.9 spec/s
+Epoch [  7/16] | File [112/120] (1x/1200/spectra_chunk_01.npz, L=1200) | Loss: 0.01499 (BC: 0.0078, Clean: 0.0057, Asym: 0.0015) |  347.0 spec/s
+Epoch [  7/16] | File [113/120] (2x/2032/spectra_chunk_08.npz, L=2032) | Loss: 0.01596 (BC: 0.0083, Clean: 0.0064, Asym: 0.0012) |  219.6 spec/s
+Epoch [  7/16] | File [114/120] (1.5x/2400/spectra_chunk_02.npz, L=2400) | Loss: 0.01664 (BC: 0.0084, Clean: 0.0058, Asym: 0.0025) |  190.0 spec/s
+Epoch [  7/16] | File [115/120] (1x/1400/spectra_chunk_07.npz, L=1400) | Loss: 0.01348 (BC: 0.0072, Clean: 0.0052, Asym: 0.0011) |  306.7 spec/s
+Epoch [  7/16] | File [116/120] (1x/1600/spectra_chunk_03.npz, L=1600) | Loss: 0.01325 (BC: 0.0070, Clean: 0.0049, Asym: 0.0014) |  273.8 spec/s
+Epoch [  7/16] | File [117/120] (2x/2032/spectra_chunk_01.npz, L=2032) | Loss: 0.01650 (BC: 0.0085, Clean: 0.0066, Asym: 0.0014) |  223.4 spec/s
+Epoch [  7/16] | File [118/120] (1.5x/2400/spectra_chunk_06.npz, L=2400) | Loss: 0.01435 (BC: 0.0075, Clean: 0.0053, Asym: 0.0016) |  192.8 spec/s
+Epoch [  7/16] | File [119/120] (2x/2400/spectra_chunk_02.npz, L=2400) | Loss: 0.01866 (BC: 0.0093, Clean: 0.0067, Asym: 0.0027) |  194.5 spec/s
+Epoch [  7/16] | File [120/120] (1x/800/spectra_chunk_08.npz, L=800) | Loss: 0.01825 (BC: 0.0095, Clean: 0.0073, Asym: 0.0015) |  492.6 spec/s
+------------------------------------------------------------------------------
+==> Epoch [  7/16] Completed in 8083.6s (243.2 spectra/s) [Mode: Fully Interleaved (120 chunks across 1x, 1.5x, 2x)]
+    Avg Total Loss: 0.015933 | Avg BC: 0.008292 | Avg Clean: 0.006129 | Avg Asym: 0.001512
+    Learning Rate:  1.000000e-04
+    ★ New best model saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/polygaussnet5.pth' (Loss: 0.015933)
+    Saved checkpoint to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/training_checkpoint5.pth'
+------------------------------------------------------------------------------
+
+>>> Epoch [  8/16] Mode Selection: [Fully Interleaved (120 chunks across 1x, 1.5x, 2x)] (120 files to train)
+Epoch [  8/16] | File [  1/120] (1x/800/spectra_chunk_08.npz, L=800) | Loss: 0.01750 (BC: 0.0091, Clean: 0.0071, Asym: 0.0013) |  490.8 spec/s
+Epoch [  8/16] | File [  2/120] (2x/1600/spectra_chunk_05.npz, L=1600) | Loss: 0.01796 (BC: 0.0093, Clean: 0.0074, Asym: 0.0013) |  279.3 spec/s
+Epoch [  8/16] | File [  3/120] (1x/1200/spectra_chunk_01.npz, L=1200) | Loss: 0.01447 (BC: 0.0075, Clean: 0.0056, Asym: 0.0013) |  357.0 spec/s
+Epoch [  8/16] | File [  4/120] (1x/1200/spectra_chunk_02.npz, L=1200) | Loss: 0.01386 (BC: 0.0073, Clean: 0.0054, Asym: 0.0012) |  355.0 spec/s
+Epoch [  8/16] | File [  5/120] (2x/2032/spectra_chunk_01.npz, L=2032) | Loss: 0.01630 (BC: 0.0084, Clean: 0.0065, Asym: 0.0014) |  225.7 spec/s
+Epoch [  8/16] | File [  6/120] (1.5x/2100/spectra_chunk_07.npz, L=2100) | Loss: 0.01436 (BC: 0.0076, Clean: 0.0054, Asym: 0.0014) |  218.6 spec/s
+Epoch [  8/16] | File [  7/120] (1.5x/2400/spectra_chunk_06.npz, L=2400) | Loss: 0.01376 (BC: 0.0071, Clean: 0.0051, Asym: 0.0016) |  194.4 spec/s
+Epoch [  8/16] | File [  8/120] (2x/2400/spectra_chunk_03.npz, L=2400) | Loss: 0.01590 (BC: 0.0083, Clean: 0.0061, Asym: 0.0014) |  194.6 spec/s
+Epoch [  8/16] | File [  9/120] (1x/1016/spectra_chunk_02.npz, L=1016) | Loss: 0.01526 (BC: 0.0080, Clean: 0.0061, Asym: 0.0012) |  407.8 spec/s
+Epoch [  8/16] | File [ 10/120] (1.5x/1524/spectra_chunk_05.npz, L=1524) | Loss: 0.01478 (BC: 0.0077, Clean: 0.0059, Asym: 0.0013) |  290.9 spec/s
+Epoch [  8/16] | File [ 11/120] (1.5x/1200/spectra_chunk_06.npz, L=1200) | Loss: 0.01776 (BC: 0.0092, Clean: 0.0071, Asym: 0.0015) |  359.6 spec/s
+Epoch [  8/16] | File [ 12/120] (1.5x/1800/spectra_chunk_08.npz, L=1800) | Loss: 0.01480 (BC: 0.0077, Clean: 0.0058, Asym: 0.0013) |  252.3 spec/s
+Epoch [  8/16] | File [ 13/120] (1x/800/spectra_chunk_01.npz, L=800) | Loss: 0.01784 (BC: 0.0092, Clean: 0.0071, Asym: 0.0016) |  501.4 spec/s
+Epoch [  8/16] | File [ 14/120] (1x/1400/spectra_chunk_01.npz, L=1400) | Loss: 0.01342 (BC: 0.0070, Clean: 0.0051, Asym: 0.0013) |  315.7 spec/s
+Epoch [  8/16] | File [ 15/120] (2x/1600/spectra_chunk_04.npz, L=1600) | Loss: 0.01827 (BC: 0.0094, Clean: 0.0075, Asym: 0.0014) |  280.8 spec/s
+Epoch [  8/16] | File [ 16/120] (1x/1200/spectra_chunk_04.npz, L=1200) | Loss: 0.01417 (BC: 0.0074, Clean: 0.0056, Asym: 0.0012) |  359.7 spec/s
+Epoch [  8/16] | File [ 17/120] (2x/2032/spectra_chunk_07.npz, L=2032) | Loss: 0.01813 (BC: 0.0091, Clean: 0.0069, Asym: 0.0021) |  226.3 spec/s
+Epoch [  8/16] | File [ 18/120] (1x/1600/spectra_chunk_05.npz, L=1600) | Loss: 0.01320 (BC: 0.0070, Clean: 0.0051, Asym: 0.0012) |  279.1 spec/s
+Epoch [  8/16] | File [ 19/120] (2x/2400/spectra_chunk_02.npz, L=2400) | Loss: 0.01582 (BC: 0.0081, Clean: 0.0061, Asym: 0.0016) |  194.3 spec/s
+Epoch [  8/16] | File [ 20/120] (1.5x/1524/spectra_chunk_06.npz, L=1524) | Loss: 0.01600 (BC: 0.0084, Clean: 0.0063, Asym: 0.0013) |  290.3 spec/s
+Epoch [  8/16] | File [ 21/120] (1.5x/1524/spectra_chunk_08.npz, L=1524) | Loss: 0.01509 (BC: 0.0079, Clean: 0.0060, Asym: 0.0012) |  291.3 spec/s
+Epoch [  8/16] | File [ 22/120] (2x/2032/spectra_chunk_06.npz, L=2032) | Loss: 0.01585 (BC: 0.0082, Clean: 0.0062, Asym: 0.0014) |  220.8 spec/s
+Epoch [  8/16] | File [ 23/120] (1.5x/1524/spectra_chunk_01.npz, L=1524) | Loss: 0.01537 (BC: 0.0080, Clean: 0.0060, Asym: 0.0013) |  283.5 spec/s
+Epoch [  8/16] | File [ 24/120] (2x/2400/spectra_chunk_04.npz, L=2400) | Loss: 0.01536 (BC: 0.0080, Clean: 0.0059, Asym: 0.0014) |  189.2 spec/s
+Epoch [  8/16] | File [ 25/120] (1x/1600/spectra_chunk_07.npz, L=1600) | Loss: 0.01540 (BC: 0.0078, Clean: 0.0056, Asym: 0.0020) |  272.5 spec/s
+Epoch [  8/16] | File [ 26/120] (1x/1016/spectra_chunk_05.npz, L=1016) | Loss: 0.01558 (BC: 0.0082, Clean: 0.0062, Asym: 0.0012) |  401.1 spec/s
+Epoch [  8/16] | File [ 27/120] (1.5x/1800/spectra_chunk_07.npz, L=1800) | Loss: 0.01467 (BC: 0.0077, Clean: 0.0057, Asym: 0.0013) |  244.9 spec/s
+Epoch [  8/16] | File [ 28/120] (1x/1016/spectra_chunk_03.npz, L=1016) | Loss: 0.01489 (BC: 0.0077, Clean: 0.0059, Asym: 0.0013) |  399.3 spec/s
+Epoch [  8/16] | File [ 29/120] (1x/1400/spectra_chunk_02.npz, L=1400) | Loss: 0.01394 (BC: 0.0072, Clean: 0.0052, Asym: 0.0016) |  306.2 spec/s
+Epoch [  8/16] | File [ 30/120] (2x/3200/spectra_chunk_07.npz, L=3200) | Loss: 0.01608 (BC: 0.0085, Clean: 0.0059, Asym: 0.0017) |  144.0 spec/s
+Epoch [  8/16] | File [ 31/120] (1x/1600/spectra_chunk_06.npz, L=1600) | Loss: 0.01264 (BC: 0.0067, Clean: 0.0048, Asym: 0.0012) |  272.3 spec/s
+Epoch [  8/16] | File [ 32/120] (1x/800/spectra_chunk_05.npz, L=800) | Loss: 0.01740 (BC: 0.0090, Clean: 0.0070, Asym: 0.0013) |  481.4 spec/s
+Epoch [  8/16] | File [ 33/120] (1.5x/1200/spectra_chunk_02.npz, L=1200) | Loss: 0.01715 (BC: 0.0089, Clean: 0.0070, Asym: 0.0012) |  348.6 spec/s
+Epoch [  8/16] | File [ 34/120] (1x/1600/spectra_chunk_02.npz, L=1600) | Loss: 0.01298 (BC: 0.0068, Clean: 0.0049, Asym: 0.0013) |  272.2 spec/s
+Epoch [  8/16] | File [ 35/120] (2x/3200/spectra_chunk_05.npz, L=3200) | Loss: 0.01552 (BC: 0.0081, Clean: 0.0057, Asym: 0.0017) |  139.6 spec/s
+Epoch [  8/16] | File [ 36/120] (2x/3200/spectra_chunk_06.npz, L=3200) | Loss: 0.01753 (BC: 0.0089, Clean: 0.0062, Asym: 0.0024) |  142.7 spec/s
+Epoch [  8/16] | File [ 37/120] (1x/1200/spectra_chunk_08.npz, L=1200) | Loss: 0.01434 (BC: 0.0076, Clean: 0.0056, Asym: 0.0011) |  346.4 spec/s
+Epoch [  8/16] | File [ 38/120] (2x/1600/spectra_chunk_07.npz, L=1600) | Loss: 0.01800 (BC: 0.0094, Clean: 0.0075, Asym: 0.0011) |  272.7 spec/s
+Epoch [  8/16] | File [ 39/120] (1.5x/1800/spectra_chunk_05.npz, L=1800) | Loss: 0.01588 (BC: 0.0081, Clean: 0.0059, Asym: 0.0018) |  244.1 spec/s
+Epoch [  8/16] | File [ 40/120] (1.5x/2100/spectra_chunk_06.npz, L=2100) | Loss: 0.01405 (BC: 0.0073, Clean: 0.0052, Asym: 0.0015) |  212.9 spec/s
+Epoch [  8/16] | File [ 41/120] (1x/1600/spectra_chunk_08.npz, L=1600) | Loss: 0.01284 (BC: 0.0068, Clean: 0.0048, Asym: 0.0012) |  273.1 spec/s
+Epoch [  8/16] | File [ 42/120] (2x/2800/spectra_chunk_05.npz, L=2800) | Loss: 0.01570 (BC: 0.0081, Clean: 0.0059, Asym: 0.0017) |  163.8 spec/s
+Epoch [  8/16] | File [ 43/120] (1.5x/1800/spectra_chunk_04.npz, L=1800) | Loss: 0.01450 (BC: 0.0077, Clean: 0.0057, Asym: 0.0011) |  245.2 spec/s
+Epoch [  8/16] | File [ 44/120] (2x/3200/spectra_chunk_01.npz, L=3200) | Loss: 0.01386 (BC: 0.0074, Clean: 0.0052, Asym: 0.0013) |  143.6 spec/s
+Epoch [  8/16] | File [ 45/120] (1.5x/2100/spectra_chunk_03.npz, L=2100) | Loss: 0.01436 (BC: 0.0074, Clean: 0.0053, Asym: 0.0016) |  212.0 spec/s
+Epoch [  8/16] | File [ 46/120] (2x/2400/spectra_chunk_07.npz, L=2400) | Loss: 0.01534 (BC: 0.0079, Clean: 0.0059, Asym: 0.0015) |  194.6 spec/s
+Epoch [  8/16] | File [ 47/120] (2x/2800/spectra_chunk_08.npz, L=2800) | Loss: 0.01448 (BC: 0.0076, Clean: 0.0055, Asym: 0.0013) |  168.4 spec/s
+Epoch [  8/16] | File [ 48/120] (1x/1016/spectra_chunk_08.npz, L=1016) | Loss: 0.01553 (BC: 0.0080, Clean: 0.0061, Asym: 0.0014) |  409.1 spec/s
+Epoch [  8/16] | File [ 49/120] (1.5x/1200/spectra_chunk_08.npz, L=1200) | Loss: 0.01713 (BC: 0.0089, Clean: 0.0070, Asym: 0.0012) |  357.5 spec/s
+Epoch [  8/16] | File [ 50/120] (2x/3200/spectra_chunk_03.npz, L=3200) | Loss: 0.01580 (BC: 0.0080, Clean: 0.0057, Asym: 0.0021) |  147.4 spec/s
+Epoch [  8/16] | File [ 51/120] (1x/1600/spectra_chunk_04.npz, L=1600) | Loss: 0.01462 (BC: 0.0077, Clean: 0.0054, Asym: 0.0015) |  279.9 spec/s
+Epoch [  8/16] | File [ 52/120] (1x/800/spectra_chunk_03.npz, L=800) | Loss: 0.01780 (BC: 0.0093, Clean: 0.0072, Asym: 0.0013) |  490.7 spec/s
+Epoch [  8/16] | File [ 53/120] (1.5x/1200/spectra_chunk_03.npz, L=1200) | Loss: 0.01707 (BC: 0.0088, Clean: 0.0069, Asym: 0.0014) |  357.8 spec/s
+Epoch [  8/16] | File [ 54/120] (2x/2032/spectra_chunk_08.npz, L=2032) | Loss: 0.01546 (BC: 0.0081, Clean: 0.0062, Asym: 0.0012) |  226.1 spec/s
+Epoch [  8/16] | File [ 55/120] (1.5x/2400/spectra_chunk_01.npz, L=2400) | Loss: 0.01536 (BC: 0.0079, Clean: 0.0055, Asym: 0.0019) |  194.1 spec/s
+Epoch [  8/16] | File [ 56/120] (2x/2800/spectra_chunk_07.npz, L=2800) | Loss: 0.01519 (BC: 0.0080, Clean: 0.0058, Asym: 0.0014) |  168.6 spec/s
+Epoch [  8/16] | File [ 57/120] (1x/1016/spectra_chunk_07.npz, L=1016) | Loss: 0.01561 (BC: 0.0081, Clean: 0.0061, Asym: 0.0015) |  409.4 spec/s
+Epoch [  8/16] | File [ 58/120] (1x/800/spectra_chunk_06.npz, L=800) | Loss: 0.01694 (BC: 0.0089, Clean: 0.0069, Asym: 0.0012) |  495.3 spec/s
+Epoch [  8/16] | File [ 59/120] (2x/1600/spectra_chunk_02.npz, L=1600) | Loss: 0.01735 (BC: 0.0090, Clean: 0.0072, Asym: 0.0012) |  280.2 spec/s
+Epoch [  8/16] | File [ 60/120] (2x/2400/spectra_chunk_08.npz, L=2400) | Loss: 0.01714 (BC: 0.0087, Clean: 0.0064, Asym: 0.0021) |  194.6 spec/s
+Epoch [  8/16] | File [ 61/120] (2x/2032/spectra_chunk_05.npz, L=2032) | Loss: 0.01628 (BC: 0.0085, Clean: 0.0064, Asym: 0.0013) |  225.4 spec/s
+Epoch [  8/16] | File [ 62/120] (1x/1600/spectra_chunk_01.npz, L=1600) | Loss: 0.01321 (BC: 0.0069, Clean: 0.0050, Asym: 0.0013) |  280.4 spec/s
+Epoch [  8/16] | File [ 63/120] (2x/2800/spectra_chunk_03.npz, L=2800) | Loss: 0.01688 (BC: 0.0087, Clean: 0.0062, Asym: 0.0019) |  167.8 spec/s
+Epoch [  8/16] | File [ 64/120] (1.5x/2100/spectra_chunk_05.npz, L=2100) | Loss: 0.01502 (BC: 0.0079, Clean: 0.0056, Asym: 0.0015) |  213.8 spec/s
+Epoch [  8/16] | File [ 65/120] (2x/1600/spectra_chunk_06.npz, L=1600) | Loss: 0.01763 (BC: 0.0092, Clean: 0.0072, Asym: 0.0012) |  272.5 spec/s
+Epoch [  8/16] | File [ 66/120] (1x/800/spectra_chunk_02.npz, L=800) | Loss: 0.01703 (BC: 0.0088, Clean: 0.0069, Asym: 0.0014) |  483.7 spec/s
+Epoch [  8/16] | File [ 67/120] (2x/1600/spectra_chunk_03.npz, L=1600) | Loss: 0.01757 (BC: 0.0091, Clean: 0.0072, Asym: 0.0013) |  273.3 spec/s
+Epoch [  8/16] | File [ 68/120] (1.5x/1200/spectra_chunk_04.npz, L=1200) | Loss: 0.01697 (BC: 0.0087, Clean: 0.0068, Asym: 0.0015) |  349.3 spec/s
+Epoch [  8/16] | File [ 69/120] (1x/1400/spectra_chunk_07.npz, L=1400) | Loss: 0.01361 (BC: 0.0071, Clean: 0.0052, Asym: 0.0014) |  307.1 spec/s
+Epoch [  8/16] | File [ 70/120] (2x/3200/spectra_chunk_08.npz, L=3200) | Loss: 0.01670 (BC: 0.0086, Clean: 0.0060, Asym: 0.0021) |  143.7 spec/s
+Epoch [  8/16] | File [ 71/120] (1x/800/spectra_chunk_04.npz, L=800) | Loss: 0.01759 (BC: 0.0092, Clean: 0.0070, Asym: 0.0014) |  481.6 spec/s
+Epoch [  8/16] | File [ 72/120] (2x/2400/spectra_chunk_01.npz, L=2400) | Loss: 0.01644 (BC: 0.0084, Clean: 0.0062, Asym: 0.0018) |  189.4 spec/s
+Epoch [  8/16] | File [ 73/120] (1.5x/2100/spectra_chunk_04.npz, L=2100) | Loss: 0.01407 (BC: 0.0073, Clean: 0.0053, Asym: 0.0015) |  212.8 spec/s
+Epoch [  8/16] | File [ 74/120] (2x/2800/spectra_chunk_02.npz, L=2800) | Loss: 0.01524 (BC: 0.0081, Clean: 0.0058, Asym: 0.0014) |  163.4 spec/s
+Epoch [  8/16] | File [ 75/120] (2x/2800/spectra_chunk_04.npz, L=2800) | Loss: 0.01464 (BC: 0.0077, Clean: 0.0056, Asym: 0.0014) |  163.4 spec/s
+Epoch [  8/16] | File [ 76/120] (1.5x/2400/spectra_chunk_08.npz, L=2400) | Loss: 0.01362 (BC: 0.0070, Clean: 0.0050, Asym: 0.0016) |  190.3 spec/s
+Epoch [  8/16] | File [ 77/120] (2x/2800/spectra_chunk_06.npz, L=2800) | Loss: 0.01581 (BC: 0.0083, Clean: 0.0059, Asym: 0.0016) |  160.9 spec/s
+Epoch [  8/16] | File [ 78/120] (1.5x/2100/spectra_chunk_02.npz, L=2100) | Loss: 0.01439 (BC: 0.0075, Clean: 0.0054, Asym: 0.0014) |  212.6 spec/s
+Epoch [  8/16] | File [ 79/120] (1.5x/1800/spectra_chunk_01.npz, L=1800) | Loss: 0.01534 (BC: 0.0078, Clean: 0.0058, Asym: 0.0018) |  244.3 spec/s
+Epoch [  8/16] | File [ 80/120] (1x/1400/spectra_chunk_03.npz, L=1400) | Loss: 0.01342 (BC: 0.0072, Clean: 0.0052, Asym: 0.0010) |  306.5 spec/s
+Epoch [  8/16] | File [ 81/120] (1.5x/1524/spectra_chunk_03.npz, L=1524) | Loss: 0.01549 (BC: 0.0081, Clean: 0.0062, Asym: 0.0012) |  283.8 spec/s
+Epoch [  8/16] | File [ 82/120] (1x/1600/spectra_chunk_03.npz, L=1600) | Loss: 0.01325 (BC: 0.0069, Clean: 0.0049, Asym: 0.0014) |  272.8 spec/s
+Epoch [  8/16] | File [ 83/120] (1x/1016/spectra_chunk_04.npz, L=1016) | Loss: 0.01498 (BC: 0.0077, Clean: 0.0059, Asym: 0.0013) |  398.2 spec/s
+Epoch [  8/16] | File [ 84/120] (1.5x/1200/spectra_chunk_05.npz, L=1200) | Loss: 0.01730 (BC: 0.0090, Clean: 0.0070, Asym: 0.0013) |  348.5 spec/s
+Epoch [  8/16] | File [ 85/120] (2x/3200/spectra_chunk_04.npz, L=3200) | Loss: 0.01733 (BC: 0.0090, Clean: 0.0061, Asym: 0.0022) |  144.0 spec/s
+Epoch [  8/16] | File [ 86/120] (1.5x/1524/spectra_chunk_04.npz, L=1524) | Loss: 0.01550 (BC: 0.0081, Clean: 0.0061, Asym: 0.0013) |  282.1 spec/s
+Epoch [  8/16] | File [ 87/120] (1.5x/1524/spectra_chunk_02.npz, L=1524) | Loss: 0.01560 (BC: 0.0081, Clean: 0.0061, Asym: 0.0014) |  283.8 spec/s
+Epoch [  8/16] | File [ 88/120] (2x/1600/spectra_chunk_08.npz, L=1600) | Loss: 0.01711 (BC: 0.0088, Clean: 0.0070, Asym: 0.0013) |  273.2 spec/s
+Epoch [  8/16] | File [ 89/120] (1.5x/2400/spectra_chunk_07.npz, L=2400) | Loss: 0.01483 (BC: 0.0075, Clean: 0.0054, Asym: 0.0019) |  189.1 spec/s
+Epoch [  8/16] | File [ 90/120] (1.5x/1800/spectra_chunk_06.npz, L=1800) | Loss: 0.01436 (BC: 0.0076, Clean: 0.0056, Asym: 0.0011) |  245.2 spec/s
+Epoch [  8/16] | File [ 91/120] (1x/1400/spectra_chunk_04.npz, L=1400) | Loss: 0.01300 (BC: 0.0068, Clean: 0.0050, Asym: 0.0012) |  306.6 spec/s
+Epoch [  8/16] | File [ 92/120] (1.5x/2400/spectra_chunk_04.npz, L=2400) | Loss: 0.01468 (BC: 0.0076, Clean: 0.0053, Asym: 0.0018) |  188.9 spec/s
+Epoch [  8/16] | File [ 93/120] (1.5x/1800/spectra_chunk_02.npz, L=1800) | Loss: 0.01462 (BC: 0.0077, Clean: 0.0057, Asym: 0.0012) |  244.6 spec/s
+Epoch [  8/16] | File [ 94/120] (1x/1200/spectra_chunk_07.npz, L=1200) | Loss: 0.01407 (BC: 0.0073, Clean: 0.0054, Asym: 0.0014) |  348.7 spec/s
+Epoch [  8/16] | File [ 95/120] (1x/1200/spectra_chunk_05.npz, L=1200) | Loss: 0.01343 (BC: 0.0071, Clean: 0.0053, Asym: 0.0010) |  349.1 spec/s
+Epoch [  8/16] | File [ 96/120] (1x/1016/spectra_chunk_06.npz, L=1016) | Loss: 0.01462 (BC: 0.0076, Clean: 0.0058, Asym: 0.0012) |  399.6 spec/s
+Epoch [  8/16] | File [ 97/120] (1x/1016/spectra_chunk_01.npz, L=1016) | Loss: 0.01435 (BC: 0.0075, Clean: 0.0057, Asym: 0.0011) |  399.7 spec/s
+Epoch [  8/16] | File [ 98/120] (1x/1200/spectra_chunk_06.npz, L=1200) | Loss: 0.01344 (BC: 0.0070, Clean: 0.0052, Asym: 0.0013) |  348.0 spec/s
+Epoch [  8/16] | File [ 99/120] (2x/2032/spectra_chunk_02.npz, L=2032) | Loss: 0.01770 (BC: 0.0090, Clean: 0.0069, Asym: 0.0018) |  220.1 spec/s
+Epoch [  8/16] | File [100/120] (2x/2400/spectra_chunk_06.npz, L=2400) | Loss: 0.01531 (BC: 0.0080, Clean: 0.0060, Asym: 0.0013) |  188.8 spec/s
+Epoch [  8/16] | File [101/120] (2x/2400/spectra_chunk_05.npz, L=2400) | Loss: 0.01450 (BC: 0.0075, Clean: 0.0056, Asym: 0.0014) |  189.5 spec/s
+Epoch [  8/16] | File [102/120] (1.5x/2100/spectra_chunk_01.npz, L=2100) | Loss: 0.01410 (BC: 0.0074, Clean: 0.0053, Asym: 0.0014) |  213.6 spec/s
+Epoch [  8/16] | File [103/120] (1x/1200/spectra_chunk_03.npz, L=1200) | Loss: 0.01366 (BC: 0.0072, Clean: 0.0054, Asym: 0.0011) |  348.3 spec/s
+Epoch [  8/16] | File [104/120] (1x/1400/spectra_chunk_05.npz, L=1400) | Loss: 0.01282 (BC: 0.0067, Clean: 0.0049, Asym: 0.0012) |  306.0 spec/s
+Epoch [  8/16] | File [105/120] (1.5x/2400/spectra_chunk_05.npz, L=2400) | Loss: 0.01398 (BC: 0.0074, Clean: 0.0052, Asym: 0.0015) |  189.5 spec/s
+Epoch [  8/16] | File [106/120] (1.5x/2100/spectra_chunk_08.npz, L=2100) | Loss: 0.01312 (BC: 0.0069, Clean: 0.0051, Asym: 0.0011) |  213.0 spec/s
+Epoch [  8/16] | File [107/120] (1.5x/1800/spectra_chunk_03.npz, L=1800) | Loss: 0.01486 (BC: 0.0077, Clean: 0.0057, Asym: 0.0015) |  245.0 spec/s
+Epoch [  8/16] | File [108/120] (2x/2800/spectra_chunk_01.npz, L=2800) | Loss: 0.01793 (BC: 0.0090, Clean: 0.0064, Asym: 0.0025) |  163.7 spec/s
+Epoch [  8/16] | File [109/120] (2x/1600/spectra_chunk_01.npz, L=1600) | Loss: 0.01763 (BC: 0.0092, Clean: 0.0072, Asym: 0.0012) |  273.0 spec/s
+Epoch [  8/16] | File [110/120] (1x/1400/spectra_chunk_06.npz, L=1400) | Loss: 0.01369 (BC: 0.0071, Clean: 0.0053, Asym: 0.0013) |  306.3 spec/s
+Epoch [  8/16] | File [111/120] (1.5x/1200/spectra_chunk_07.npz, L=1200) | Loss: 0.01698 (BC: 0.0088, Clean: 0.0070, Asym: 0.0012) |  353.6 spec/s
+Epoch [  8/16] | File [112/120] (2x/2032/spectra_chunk_04.npz, L=2032) | Loss: 0.01589 (BC: 0.0082, Clean: 0.0062, Asym: 0.0014) |  225.8 spec/s
+Epoch [  8/16] | File [113/120] (1.5x/1200/spectra_chunk_01.npz, L=1200) | Loss: 0.01665 (BC: 0.0086, Clean: 0.0067, Asym: 0.0013) |  357.5 spec/s
+Epoch [  8/16] | File [114/120] (2x/3200/spectra_chunk_02.npz, L=3200) | Loss: 0.01798 (BC: 0.0092, Clean: 0.0063, Asym: 0.0026) |  147.3 spec/s
+Epoch [  8/16] | File [115/120] (1.5x/1524/spectra_chunk_07.npz, L=1524) | Loss: 0.01510 (BC: 0.0080, Clean: 0.0060, Asym: 0.0011) |  290.7 spec/s
+Epoch [  8/16] | File [116/120] (1.5x/2400/spectra_chunk_02.npz, L=2400) | Loss: 0.01653 (BC: 0.0082, Clean: 0.0057, Asym: 0.0027) |  194.7 spec/s
+Epoch [  8/16] | File [117/120] (1.5x/2400/spectra_chunk_03.npz, L=2400) | Loss: 0.01596 (BC: 0.0084, Clean: 0.0058, Asym: 0.0018) |  194.3 spec/s
+Epoch [  8/16] | File [118/120] (1x/1400/spectra_chunk_08.npz, L=1400) | Loss: 0.01343 (BC: 0.0072, Clean: 0.0052, Asym: 0.0010) |  313.4 spec/s
+Epoch [  8/16] | File [119/120] (1x/800/spectra_chunk_07.npz, L=800) | Loss: 0.01748 (BC: 0.0091, Clean: 0.0071, Asym: 0.0012) |  494.9 spec/s
+Epoch [  8/16] | File [120/120] (2x/2032/spectra_chunk_03.npz, L=2032) | Loss: 0.01576 (BC: 0.0082, Clean: 0.0064, Asym: 0.0012) |  225.7 spec/s
+------------------------------------------------------------------------------
+==> Epoch [  8/16] Completed in 7993.1s (246.0 spectra/s) [Mode: Fully Interleaved (120 chunks across 1x, 1.5x, 2x)]
+    Avg Total Loss: 0.015449 | Avg BC: 0.008031 | Avg Clean: 0.005975 | Avg Asym: 0.001443
+    Learning Rate:  1.000000e-04
+    ★ New best model saved to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/polygaussnet5.pth' (Loss: 0.015449)
+    Saved checkpoint to '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/training_checkpoint5.pth'
+------------------------------------------------------------------------------
+
+>>> Epoch [  9/16] Mode Selection: [Fully Interleaved (120 chunks across 1x, 1.5x, 2x)] (120 files to train)
+Epoch [  9/16] | File [  1/120] (1.5x/2100/spectra_chunk_04.npz, L=2100) | Loss: 0.01336 (BC: 0.0070, Clean: 0.0051, Asym: 0.0012) |  218.2 spec/s
+Epoch [  9/16] | File [  2/120] (1.5x/1524/spectra_chunk_04.npz, L=1524) | Loss: 0.01492 (BC: 0.0078, Clean: 0.0059, Asym: 0.0012) |  291.2 spec/s
+Epoch [  9/16] | File [  3/120] (2x/2800/spectra_chunk_08.npz, L=2800) | Loss: 0.01427 (BC: 0.0075, Clean: 0.0054, Asym: 0.0014) |  168.8 spec/s
+Epoch [  9/16] | File [  4/120] (1.5x/1200/spectra_chunk_08.npz, L=1200) | Loss: 0.01687 (BC: 0.0088, Clean: 0.0069, Asym: 0.0012) |  356.7 spec/s
+Epoch [  9/16] | File [  5/120] (1x/1016/spectra_chunk_03.npz, L=1016) | Loss: 0.01488 (BC: 0.0077, Clean: 0.0059, Asym: 0.0013) |  411.1 spec/s
+Epoch [  9/16] | File [  6/120] (2x/3200/spectra_chunk_07.npz, L=3200) | Loss: 0.01667 (BC: 0.0087, Clean: 0.0061, Asym: 0.0019) |  144.3 spec/s
+Epoch [  9/16] | File [  7/120] (2x/3200/spectra_chunk_03.npz, L=3200) | Loss: 0.01438 (BC: 0.0076, Clean: 0.0054, Asym: 0.0013) |  146.4 spec/s
+Epoch [  9/16] | File [  8/120] (2x/2400/spectra_chunk_03.npz, L=2400) | Loss: 0.01483 (BC: 0.0077, Clean: 0.0058, Asym: 0.0013) |  189.7 spec/s
+Epoch [  9/16] | File [  9/120] (1.5x/1524/spectra_chunk_02.npz, L=1524) | Loss: 0.01529 (BC: 0.0079, Clean: 0.0060, Asym: 0.0013) |  283.0 spec/s
+Epoch [  9/16] | File [ 10/120] (1x/1016/spectra_chunk_02.npz, L=1016) | Loss: 0.01464 (BC: 0.0077, Clean: 0.0059, Asym: 0.0011) |  398.5 spec/s
+Epoch [  9/16] | File [ 11/120] (2x/2032/spectra_chunk_05.npz, L=2032) | Loss: 0.01552 (BC: 0.0080, Clean: 0.0062, Asym: 0.0013) |  219.9 spec/s
+Epoch [  9/16] | File [ 12/120] (1x/1200/spectra_chunk_07.npz, L=1200) | Loss: 0.01395 (BC: 0.0073, Clean: 0.0055, Asym: 0.0011) |  348.3 spec/s
+Epoch [  9/16] | File [ 13/120] (2x/1600/spectra_chunk_05.npz, L=1600) | Loss: 0.01982 (BC: 0.0101, Clean: 0.0078, Asym: 0.0020) |  272.6 spec/s
+Epoch [  9/16] | File [ 14/120] (1x/1200/spectra_chunk_05.npz, L=1200) | Loss: 0.01421 (BC: 0.0075, Clean: 0.0056, Asym: 0.0011) |  348.3 spec/s
+Epoch [  9/16] | File [ 15/120] (2x/1600/spectra_chunk_01.npz, L=1600) | Loss: 0.01753 (BC: 0.0091, Clean: 0.0072, Asym: 0.0012) |  272.6 spec/s
+Epoch [  9/16] | File [ 16/120] (1.5x/2400/spectra_chunk_05.npz, L=2400) | Loss: 0.01416 (BC: 0.0074, Clean: 0.0053, Asym: 0.0015) |  189.2 spec/s
+Epoch [  9/16] | File [ 17/120] (1.5x/2100/spectra_chunk_05.npz, L=2100) | Loss: 0.01387 (BC: 0.0072, Clean: 0.0052, Asym: 0.0014) |  213.5 spec/s
+Epoch [  9/16] | File [ 18/120] (2x/3200/spectra_chunk_08.npz, L=3200) | Loss: 0.01485 (BC: 0.0078, Clean: 0.0055, Asym: 0.0015) |  140.2 spec/s
+Epoch [  9/16] | File [ 19/120] (2x/3200/spectra_chunk_01.npz, L=3200) | Loss: 0.01382 (BC: 0.0073, Clean: 0.0052, Asym: 0.0013) |  137.9 spec/s
+Epoch [  9/16] | File [ 20/120] (1x/1400/spectra_chunk_05.npz, L=1400) | Loss: 0.01315 (BC: 0.0069, Clean: 0.0051, Asym: 0.0012) |  301.8 spec/s
+Epoch [  9/16] | File [ 21/120] (1x/1400/spectra_chunk_06.npz, L=1400) | Loss: 0.01264 (BC: 0.0066, Clean: 0.0048, Asym: 0.0012) |  304.4 spec/s
+Epoch [  9/16] | File [ 22/120] (2x/2032/spectra_chunk_02.npz, L=2032) | Loss: 0.01618 (BC: 0.0084, Clean: 0.0065, Asym: 0.0013) |  217.1 spec/s
+Epoch [  9/16] | File [ 23/120] (2x/2800/spectra_chunk_02.npz, L=2800) | Loss: 0.01427 (BC: 0.0075, Clean: 0.0055, Asym: 0.0012) |  161.0 spec/s
+^C
+==============================================================================
+ Training safely paused by user (Ctrl+C).
+ Checkpoint preserved at: '/Users/bogiekissiov/Desktop/raman preprocessing/training_round5/training_checkpoint5.pth'
+ Resume anytime by running: python training5.py
+==============================================================================
+

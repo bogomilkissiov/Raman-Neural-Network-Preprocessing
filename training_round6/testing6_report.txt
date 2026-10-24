@@ -1,0 +1,60 @@
+
+==================================================================================
+  PolyGaussNet3 vs. Conventional Pipeline Head-to-Head Benchmark (Round 6)  
+==================================================================================
+Hardware Acceleration Device: mps
+Active Dataset Location:      /Users/bogiekissiov/Desktop/raman preprocessing/training_round6/testing_data6
+Discovered Test Bin Sets:     [800, 1016, 1200, 1400, 1600] bins
+  •  800 bins -> 800/spectra_chunk_01.npz
+  • 1016 bins -> 1016/spectra_chunk_01.npz
+  • 1200 bins -> 1200/spectra_chunk_01.npz
+  • 1400 bins -> 1400/spectra_chunk_01.npz
+  • 1600 bins -> 1600/spectra_chunk_01.npz
+
+----------------------------------------------------------------------------------
+1. Loading PolyGaussNet3 Model Weights...
+----------------------------------------------------------------------------------
+✓ Loaded PolyGaussNet3 from '/Users/bogiekissiov/Desktop/raman preprocessing/training_round6/polygaussnet6.pth' [Checkpoint Epoch: 97, Loss: 0.012257]
+  Configuration: Degree 7 Polynomial | Kernel 31 | Amp [0.85, 1.15]
+
+----------------------------------------------------------------------------------
+2. Running Head-to-Head Evaluation Across Multi-Resolution Datasets...
+   (Conventional Pipeline CPU Workers: 8)
+----------------------------------------------------------------------------------
+[ 1/5] Mode: 1x   | L= 800 bins | N=4,096 | Conv: Cos=0.8339, MSE=0.01088, LC=0.00538 (  452 s/s) | PGN3: Cos=0.7881, MSE=0.01290, LC=0.00641 (  2663 s/s,  5.9x)
+[ 2/5] Mode: 1x   | L=1016 bins | N=4,096 | Conv: Cos=0.8332, MSE=0.01045, LC=0.00517 (  441 s/s) | PGN3: Cos=0.8225, MSE=0.00990, LC=0.00492 (  2542 s/s,  5.8x)
+[ 3/5] Mode: 1x   | L=1200 bins | N=4,096 | Conv: Cos=0.8447, MSE=0.00888, LC=0.00440 (  425 s/s) | PGN3: Cos=0.8472, MSE=0.00794, LC=0.00395 (  2079 s/s,  4.9x)
+[ 4/5] Mode: 1x   | L=1400 bins | N=4,096 | Conv: Cos=0.8523, MSE=0.00755, LC=0.00374 (  408 s/s) | PGN3: Cos=0.8562, MSE=0.00708, LC=0.00352 (  1822 s/s,  4.5x)
+[ 5/5] Mode: 1x   | L=1600 bins | N=4,096 | Conv: Cos=0.8541, MSE=0.00677, LC=0.00335 (  384 s/s) | PGN3: Cos=0.8563, MSE=0.00643, LC=0.00320 (  1566 s/s,  4.1x)
+
+==================================================================================
+                HEAD-TO-HEAD BENCHMARK REPORT (N = 20,480 Spectra)                
+==================================================================================
+Metric / Parameter             | Conventional (pre.py)    | PolyGaussNet3         
+----------------------------------------------------------------------------------
+Cosine Similarity (↑)          |   0.84364 (±0.1761)      |   0.83407 (±0.1738)   
+Mean Squared Error (MSE ↓)     |   0.00891 (±0.0147)      |   0.00885 (±0.0112)   
+Log-Cosh Loss (↓)              |   0.00441 (±0.0072)      |   0.00440 (±0.0055)   
+Mean Absolute Error (MAE ↓)    |   0.06329 (±0.0507)      |   0.06978 (±0.0436)   
+Root Mean Sq. Error (RMSE ↓)   |   0.07603 (±0.0559)      |   0.08153 (±0.0469)   
+Peak Summit MAE (↓)            |   0.06344 (±0.0534)      |   0.05624 (±0.0447)   
+Baseline Overshoot Rate        | N/A                      | 1.464% of bins        
+----------------------------------------------------------------------------------
+Total Execution Time           |    48.673 s              |     9.982 s           
+Processing Throughput          |     420.8 spec/s         |    2051.7 spec/s      
+Latency per Spectrum           |      2.38 ms             |    0.4874 ms          
+Speedup Factor                 | 1.0x (Baseline)          | 4.9x Faster           
+==================================================================================
+
+==============================================================================================
+                     SPECTRAL BIN RESOLUTION BREAKDOWN (800 to 1600 Bins)                     
+==============================================================================================
+Bins (L)  | Spectra  | Conv Cos   | PGN3 Cos   | Conv MSE    | PGN3 MSE    | Conv LC    | PGN3 LC   
+----------------------------------------------------------------------------------------------
+800       | 4096     | 0.83388    | 0.78808    | 0.010882    | 0.012900    | 0.005381   | 0.006406  
+1016      | 4096     | 0.83322    | 0.82247    | 0.010448    | 0.009899    | 0.005167   | 0.004918  
+1200      | 4096     | 0.84470    | 0.84725    | 0.008884    | 0.007944    | 0.004399   | 0.003948  
+1400      | 4096     | 0.85232    | 0.85622    | 0.007546    | 0.007083    | 0.003739   | 0.003520  
+1600      | 4096     | 0.85408    | 0.85631    | 0.006766    | 0.006428    | 0.003354   | 0.003195  
+==============================================================================================
+
