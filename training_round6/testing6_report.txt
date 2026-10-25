@@ -23,14 +23,14 @@ Discovered Test Bin Sets:     [800, 1016, 1200, 1400, 1600] bins
 2. Running Head-to-Head Evaluation Across Multi-Resolution Datasets...
    (Conventional Pipeline CPU Workers: 8)
 ----------------------------------------------------------------------------------------------
-[ 1/5] L= 800 bins (N=100) | RAW MSE: Conv=0.01042, PGN3=0.01249 | SHIFTED MSE: Conv=0.00387, PGN3=0.00490 (Conv lower, 19.2x speedup)
-[ 2/5] L=1016 bins (N=100) | RAW MSE: Conv=0.01080, PGN3=0.00955 | SHIFTED MSE: Conv=0.00340, PGN3=0.00282 (PGN3 lower, 89.1x speedup)
-[ 3/5] L=1200 bins (N=100) | RAW MSE: Conv=0.01026, PGN3=0.00926 | SHIFTED MSE: Conv=0.00319, PGN3=0.00246 (PGN3 lower, 58.0x speedup)
-[ 4/5] L=1400 bins (N=100) | RAW MSE: Conv=0.00715, PGN3=0.00631 | SHIFTED MSE: Conv=0.00256, PGN3=0.00193 (PGN3 lower, 45.6x speedup)
-[ 5/5] L=1600 bins (N=100) | RAW MSE: Conv=0.00667, PGN3=0.00590 | SHIFTED MSE: Conv=0.00262, PGN3=0.00203 (PGN3 lower, 40.2x speedup)
+[ 1/5] L= 800 bins (N=4,096) | RAW MSE: Conv=0.01088, PGN3=0.01290 | SHIFTED MSE: Conv=0.00358, PGN3=0.00482 (Conv lower,  7.3x speedup)
+[ 2/5] L=1016 bins (N=4,096) | RAW MSE: Conv=0.01045, PGN3=0.00990 | SHIFTED MSE: Conv=0.00336, PGN3=0.00298 (PGN3 lower,  6.7x speedup)
+[ 3/5] L=1200 bins (N=4,096) | RAW MSE: Conv=0.00888, PGN3=0.00794 | SHIFTED MSE: Conv=0.00304, PGN3=0.00235 (PGN3 lower,  5.5x speedup)
+[ 4/5] L=1400 bins (N=4,096) | RAW MSE: Conv=0.00755, PGN3=0.00708 | SHIFTED MSE: Conv=0.00265, PGN3=0.00221 (PGN3 lower,  5.0x speedup)
+[ 5/5] L=1600 bins (N=4,096) | RAW MSE: Conv=0.00677, PGN3=0.00643 | SHIFTED MSE: Conv=0.00246, PGN3=0.00220 (PGN3 lower,  4.5x speedup)
 
 ==============================================================================================
-                       HEAD-TO-HEAD BENCHMARK REPORT (N = 500 Spectra)                        
+                      HEAD-TO-HEAD BENCHMARK REPORT (N = 20,480 Spectra)                      
 ==============================================================================================
 
 ----------------------------------------------------------------------------------------------
@@ -38,13 +38,13 @@ Discovered Test Bin Sets:     [800, 1016, 1200, 1400, 1600] bins
 ----------------------------------------------------------------------------------------------
 Metric / Parameter             | Conventional (pre.py)    | PolyGaussNet3         
 ----------------------------------------------------------------------------------------------
-Cosine Similarity (↑)          |   0.84742 (±0.1714)      |   0.84189 (±0.1683)   
-Mean Squared Error (MSE ↓)     |   0.00906 (±0.0142)      |   0.00870 (±0.0107)   
-Log-Cosh Loss (↓)              |   0.00449 (±0.0070)      |   0.00432 (±0.0053)   
-Mean Absolute Error (MAE ↓)    |   0.06422 (±0.0502)      |   0.06952 (±0.0431)   
-Root Mean Sq. Error (RMSE ↓)   |   0.07733 (±0.0555)      |   0.08096 (±0.0463)   
-Peak Summit MAE (↓)            |   0.06480 (±0.0536)      |   0.05609 (±0.0443)   
-Baseline Overshoot Rate        | N/A                      | 1.383% of bins        
+Cosine Similarity (↑)          |   0.84364 (±0.1761)      |   0.83407 (±0.1738)   
+Mean Squared Error (MSE ↓)     |   0.00891 (±0.0147)      |   0.00885 (±0.0112)   
+Log-Cosh Loss (↓)              |   0.00441 (±0.0072)      |   0.00440 (±0.0055)   
+Mean Absolute Error (MAE ↓)    |   0.06329 (±0.0507)      |   0.06978 (±0.0436)   
+Root Mean Sq. Error (RMSE ↓)   |   0.07603 (±0.0559)      |   0.08153 (±0.0469)   
+Peak Summit MAE (↓)            |   0.06344 (±0.0534)      |   0.05624 (±0.0447)   
+Baseline Overshoot Rate        | N/A                      | 1.464% of bins        
 
 ----------------------------------------------------------------------------------------------
   PART B: BASELINE-SHIFTED VALIDATION (PEAK SHAPE & CONTOUR FIDELITY)
@@ -52,20 +52,20 @@ Baseline Overshoot Rate        | N/A                      | 1.383% of bins
 ----------------------------------------------------------------------------------------------
 Metric / Parameter             | Conventional (Shifted)   | PolyGaussNet3 (Shifted) | Advantage   
 ----------------------------------------------------------------------------------------------
-Cosine Similarity (↑)          |   0.77023 (±0.2589)      |   0.77458 (±0.2440)    | PGN3 (+)    
-Mean Squared Error (MSE ↓)     |   0.00313 (±0.0034)      |   0.00283 (±0.0028)    | PGN3 (-9.7%)
-Log-Cosh Loss (↓)              |   0.00156 (±0.0017)      |   0.00141 (±0.0014)    | PGN3 (Better)
-Mean Absolute Error (MAE ↓)    |   0.03911 (±0.0224)      |   0.03794 (±0.0200)    | PGN3 (Better)
-Root Mean Sq. Error (RMSE ↓)   |   0.04880 (±0.0274)      |   0.04733 (±0.0242)    | PGN3 (Better)
-Peak Summit MAE (↓)            |   0.04124 (±0.0260)      |   0.04192 (±0.0244)    | Conv (Better)
+Cosine Similarity (↑)          |   0.76780 (±0.2630)      |   0.76093 (±0.2556)    | Conv (+)    
+Mean Squared Error (MSE ↓)     |   0.00302 (±0.0034)      |   0.00291 (±0.0030)    | PGN3 (-3.5%)
+Log-Cosh Loss (↓)              |   0.00150 (±0.0017)      |   0.00145 (±0.0015)    | PGN3 (Better)
+Mean Absolute Error (MAE ↓)    |   0.03825 (±0.0217)      |   0.03862 (±0.0202)    | Conv (Better)
+Root Mean Sq. Error (RMSE ↓)   |   0.04797 (±0.0268)      |   0.04823 (±0.0242)    | Conv (Better)
+Peak Summit MAE (↓)            |   0.04024 (±0.0262)      |   0.04289 (±0.0265)    | Conv (Better)
 
 ----------------------------------------------------------------------------------------------
   PART C: COMPUTATIONAL SPEED & THROUGHPUT
 ----------------------------------------------------------------------------------------------
-Total Execution Time           |    45.826 s              |     1.045 s           
-Processing Throughput          |      10.9 spec/s         |     478.2 spec/s      
-Latency per Spectrum           |     91.65 ms             |    2.0910 ms          
-Speedup Factor                 | 1.0x (Baseline)          | 43.8x Faster          
+Total Execution Time           |    55.992 s              |     9.989 s           
+Processing Throughput          |     365.8 spec/s         |    2050.3 spec/s      
+Latency per Spectrum           |      2.73 ms             |    0.4877 ms          
+Speedup Factor                 | 1.0x (Baseline)          | 5.6x Faster           
 ==============================================================================================
 
 ====================================================================================================================
@@ -73,10 +73,10 @@ Speedup Factor                 | 1.0x (Baseline)          | 43.8x Faster
 ====================================================================================================================
 Bins (L)  | Spectra  | Conv Raw MSE  | PGN3 Raw MSE  | Conv Shift MSE  | PGN3 Shift MSE  | Shifted Advantage 
 --------------------------------------------------------------------------------------------------------------------
-800       | 100      | 0.010425      | 0.012487      | 0.003875        | 0.004902        | Conv +26.5% lower 
-1016      | 100      | 0.010801      | 0.009550      | 0.003399        | 0.002819        | PGN3 +17.1% lower 
-1200      | 100      | 0.010256      | 0.009256      | 0.003187        | 0.002461        | PGN3 +22.8% lower 
-1400      | 100      | 0.007146      | 0.006308      | 0.002564        | 0.001926        | PGN3 +24.9% lower 
-1600      | 100      | 0.006665      | 0.005902      | 0.002621        | 0.002028        | PGN3 +22.6% lower 
+800       | 4096     | 0.010882      | 0.012900      | 0.003579        | 0.004820        | Conv +34.7% lower 
+1016      | 4096     | 0.010448      | 0.009899      | 0.003361        | 0.002983        | PGN3 +11.2% lower 
+1200      | 4096     | 0.008884      | 0.007944      | 0.003039        | 0.002349        | PGN3 +22.7% lower 
+1400      | 4096     | 0.007546      | 0.007083      | 0.002645        | 0.002209        | PGN3 +16.5% lower 
+1600      | 4096     | 0.006766      | 0.006428      | 0.002463        | 0.002203        | PGN3 +10.6% lower 
 ====================================================================================================================
 
