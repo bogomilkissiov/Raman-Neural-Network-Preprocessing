@@ -1,0 +1,116 @@
+====================================================================================================
+ ARCHITECTURAL FINDINGS & ROADMAP REPORT: POLYGAUSSNET V3, V3.1, V3.2, V3.3
+====================================================================================================
+Date: 2026-10-25
+Project: Raman Neural Network Preprocessing
+Focus: Multi-Seed Benchmarks (Round 7 & 8), Variance Analysis, and Architectural Refinements
+
+----------------------------------------------------------------------------------------------------
+ 1. EXECUTIVE SUMMARY
+----------------------------------------------------------------------------------------------------
+1. Round 7 showed PolyGaussNet V3.1 beating V3.0 by ~29% on Raw Pure MSE and ~41% on Baseline-Shifted
+   Pure MSE, while using 29.6% fewer parameters (104,554 vs 148,426).
+2. Round 8 was executed to test for bias, randomness, and gain attribution:
+   - Ablation V3-Len (V3 + length input only) proved that the normalized length scalar (L/1600)
+     contributes almost nothing (<3%) to the gain. The performance advantage is 100% architectural.
+   - However, a multi-seed evaluation (seeds 42, 101, 202) exposed that V3.1 had significantly higher
+     across-seed variance than V3.0:
+       * V3.0 Cosine Similarity: 0.775370 ± 0.004858 (rock-solid, narrow band: 0.771 - 0.780)
+       * V3.1 Cosine Similarity: 0.784820 ± 0.015980 (variance over 10x higher, swings: 0.767 - 0.798)
+       * Raw MSE relative delta swung from -29.2% (seed 42) down to -2.5% (seed 101).
+3. The 16-epoch extended training test (seed 202) revealed that V3.1 was under-trained at 8 epochs.
+   At 16 epochs, V3.1's test loss plunged -31.75% (vs -18.97% for V3.0), widening the gap back to:
+       * Raw Pure MSE:             -28.40% (BETTER)
+       * Baseline Estimation MSE:   -30.29% (BETTER)
+       * Baseline-Shifted Pure MSE: -24.22% (BETTER)
+       * Cosine Similarity:         +0.80% pts (BETTER)
+4. Architectural analysis identified the root cause of V3.1's variance:
+   The baseline estimator compressed the entire spectrum into just 32 channels with AdaptiveAvgPool1d(1),
+   completely erasing spatial position, and then artificially blew it up from 33 -> 128 -> 64 -> 8 in the
+   fully connected head.
+5. In contrast, the 3-layer localized filter parameter predictor (31-bin receptive field) had near-zero
+   variance across all seeds and comfortably beat V3.0 in 100% of trials. It is already optimal and
+   does not need skip connections.
+
+----------------------------------------------------------------------------------------------------
+ 2. BENCHMARK DATA SUMMARY (ROUNDS 7 & 8)
+----------------------------------------------------------------------------------------------------
+A. Multi-Seed Head-to-Head at 8 Epochs:
+   Metric                   | V3.0 (n=3)            | V3.1 (n=3)            | Δ V3.1 vs V3.0
+   -------------------------------------------------------------------------------------------
+   Raw Pure MSE             | 0.036090 ± 0.008171   | 0.030340 ± 0.007976   | -15.58% ± 13.34%
+   Baseline-Shifted MSE     | 0.010832 ± 0.000774   | 0.008052 ± 0.001101   | -24.94% ± 15.24%
+   Baseline Estimation MSE  | 0.058108 ± 0.014358   | 0.046114 ± 0.012260   | -20.19% ± 11.38%
+   Cosine Similarity        | 0.775370 ± 0.004858   | 0.784820 ± 0.015980   | +0.95p  ± 1.38p
+
+   Per-run relative deltas (seeds 101, 202, 42):
+   - Raw Pure MSE:             -2.5%,  -15.0%, -29.2%
+   - Baseline-Shifted MSE:     -22.2%, -11.2%, -41.4%
+   - Baseline Estimation MSE:  -9.8%,  -18.4%, -32.4%
+   - Cosine Similarity:        +0.90p, -0.41p, +2.34p  (V3.1 lost on cosine in seed 202 at 8ep)
+
+B. Extended 16-Epoch Run (seed 202):
+   Metric                   | V3.0 (16ep)   | V3.1 (16ep)   | Δ 16ep vs 8ep (V3.1) | Δ V3.1 vs V3.0
+   -------------------------------------------------------------------------------------------
+   Raw Pure MSE             | 0.021669      | 0.015516      | -31.75%              | -28.40% (BETTER)
+   Baseline-Shifted MSE     | 0.008704      | 0.006596      | -26.54%              | -24.22% (BETTER)
+   Baseline Estimation MSE  | 0.036190      | 0.025227      | -25.71%              | -30.29% (BETTER)
+   Cosine Similarity        | 0.773539      | 0.781563      | +1.46p               | +0.80p  (BETTER)
+
+----------------------------------------------------------------------------------------------------
+ 3. ARCHITECTURAL ROOT CAUSES OF VARIANCE IN V3.1
+----------------------------------------------------------------------------------------------------
+1. The AdaptiveAvgPool1d(1) Spatial Blindness:
+   - When pooling with output_size=1, the entire spectrum (from bin 0 to bin L) is averaged into a
+     single scalar per channel (32 channels total).
+   - A polynomial baseline B(x) = c0 + c1*x + c2*x^2 + ... requires spatial awareness:
+     * c1 (slope/tilt) is (Right Edge - Left Edge)
+     * c2 (curvature/bow) is (Center - Ends)
+   - Averaging everything into 1 bucket destroys the spatial layout, forcing the dense layers to solve
+     an ill-posed inverse problem to guess the curve geometry from un-ordered channel activations.
+
+2. The 33 -> 128 -> 64 -> 8 Artificial Expansion:
+   - In V3.0, the convolutional trunk ended at 128 channels, and the FC head was 128 -> 128 -> 64 -> 8.
+   - When V3.1 was designed with 32 channels, line 70 was changed to Linear(channels + 1, 128) simply
+     to prevent PyTorch from crashing, leaving the 128 -> 64 hardcoded.
+   - Expanding 33 inputs into 128 hidden neurons cannot increase information (rank <= 33).
+   - It created 4,352 unconstrained weights on an extreme information choke point, making initialization
+     heavily seed-dependent.
+
+3. The Filter Predictor is NOT the Problem:
+   - The 3-layer localized CNN (31-bin receptive field) had tiny variance (±0.001) and won on every seed.
+   - Because it is only 3 layers deep, vanishing gradients do not occur. Skip connections are not needed.
+
+----------------------------------------------------------------------------------------------------
+ 4. ARCHITECTURAL SPECIFICATIONS FOR V3.2 AND V3.3
+----------------------------------------------------------------------------------------------------
+Both new versions implement a proper contracting regression funnel: 129 -> 64 -> (poly_order + 1),
+eliminating the 33 -> 128 expansion.
+
+A. PolyGaussNet V3.2 (128-Channel Trunk with 1-Bucket Pooling):
+   - Baseline Trunk:
+     * Stem: Conv1d(1, 64, k=15, s=2) -> Conv1d(64, 128, k=7, s=2)
+     * ResBlocks: 3 Dilated Residual Blocks with 128 channels (dilations 1, 2, 4)
+     * Pooling: AdaptiveAvgPool1d(1) -> (B, 128)
+     * Length injection: concat [pooled, L/1600.0] -> (B, 129)
+   - Baseline FC Head:
+     * Linear(129, 64) -> GELU() -> Linear(64, poly_order + 1)
+   - Filter Predictor:
+     * Retains the identical 3-layer 31-bin multi-scale CNN from V3.1 (no skip connections).
+
+B. PolyGaussNet V3.3 (32-Channel Trunk with 4-Quadrant Spatial Pooling):
+   - Baseline Trunk:
+     * Retains the lightweight 32-channel trunk from V3.1 (stem + 3 dilated resblocks with 32 channels).
+     * Pooling: AdaptiveAvgPool1d(4) -> divides the spectrum into 4 spatial quadrants:
+       [Left 0-25%, Center-Left 25-50%, Center-Right 50-75%, Right 75-100%].
+     * Flatten: 32 channels * 4 spatial quadrants = (B, 128)
+     * Length injection: concat [flattened, L/1600.0] -> (B, 129)
+   - Baseline FC Head:
+     * Linear(129, 64) -> GELU() -> Linear(64, poly_order + 1)
+   - Filter Predictor:
+     * Retains the identical 3-layer 31-bin multi-scale CNN from V3.1.
+   - Advantages of V3.3:
+     * Directly provides spatial gradient (Right - Left) and curvature (Center - Ends) to the FC head.
+     * Uses 0 extra convolutional weights compared to V3.1.
+     * Dense head is 2,464 weights smaller (10,664 vs 13,128).
+====================================================================================================

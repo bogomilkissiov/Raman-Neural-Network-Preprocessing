@@ -1,0 +1,96 @@
+====================================================================================================
+ ROUND 10: EXPERIMENT OBJECTIVES & ARCHITECTURAL COMPARISON GUIDE
+====================================================================================================
+Date: 2026-10-28
+Project: Raman Neural Network Preprocessing
+Directory: training_round10/
+
+----------------------------------------------------------------------------------------------------
+ 1. PRIMARY OBJECTIVES OF ROUND 10
+----------------------------------------------------------------------------------------------------
+1. Validate Architectural Findings on Fresh Synthetic Data:
+   - Round 7, 8, and 9 were evaluated on `training_round7/testing_data7`.
+   - Round 10 generates a brand-new training dataset (40,960 spectra) and a testing dataset
+     doubled in size (10,240 spectra: 5 resolutions x 2,048 spectra) using identical physical
+     generation parameters (polynomial degree up to 16, identical cosmic ray rates, noise levels,
+     and peak distributions).
+   - This prevents any risk of overfitting model design decisions to testing_data7.
+
+2. Rigorous Multi-Seed Validation Across 5 Seeds:
+   - Uses 5 unseen seeds: [300, 301, 302, 303, 304].
+   - Increases sample statistical power (n=5 per model) to clearly distinguish true architectural
+     superiority from random initialization swings.
+
+3. Focused Length-Scalar Ablation:
+   - Isolate the true impact of providing the normalized sequence length scalar (L / 1600.0)
+     to the baseline polynomial regression head:
+       * Removal test: V3.3 (with length) vs V3.3-NoLen (without length).
+       * Does removing length knowledge degrade the 4-quadrant spatial pooling model?
+   - The ablation is strictly paired per seed with identical weight initialization in all other
+     layers and identical batch sequences during training.
+
+----------------------------------------------------------------------------------------------------
+ 2. SUMMARY OF TESTED MODELS (5 MODELS TOTAL)
+----------------------------------------------------------------------------------------------------
+1. V3.0 (Original Reference):
+   - Parameters: 148,426
+   - Baseline Trunk: 128-channel convolutional trunk with AdaptiveAvgPool1d(1) (1-bucket pool).
+   - Baseline Head: 128 -> 128 -> 64 -> 8 FC.
+   - Length Scalar: NO.
+
+2. V3.1 (Intermediate Re-architected Model):
+   - Parameters: 104,554
+   - Baseline Trunk: 32-channel trunk with strided stem + 3 dilated ResBlocks (251-bin RF).
+   - Baseline Head: 33 -> 128 -> 64 -> 8 FC (artificial channel expansion).
+   - Length Scalar: YES (32 + 1 = 33).
+
+3. V3.2 (Conv Projection + Contracting Funnel):
+   - Parameters: 104,746
+   - Baseline Trunk: 32-channel trunk + 1x1 conv projection to 128 channels + 1-bucket pool.
+   - Baseline Head: Clean contracting funnel 129 -> 64 -> 8 FC.
+   - Length Scalar: YES (128 + 1 = 129).
+
+4. V3.3 (4-Quadrant Spatial Pooling + Funnel, WITH Length):
+   - Parameters: 100,266
+   - Baseline Trunk: 32-channel trunk + AdaptiveAvgPool1d(4) preserving spatial layout.
+   - Flattened: 32 channels x 4 quadrants = 128 spatial features.
+   - Baseline Head: Clean contracting funnel 129 -> 64 -> 8 FC.
+   - Length Scalar: YES (128 + 1 = 129).
+
+5. V3.3-NoLen (V3.3 Ablation, WITHOUT Length):
+   - Parameters: 100,202 (-64 weights)
+   - Baseline Trunk: Identical 32-channel trunk + AdaptiveAvgPool1d(4) (128 features).
+   - Baseline Head: Clean contracting funnel 128 -> 64 -> 8 FC.
+   - Length Scalar: NO (purely spatial pooling).
+
+----------------------------------------------------------------------------------------------------
+ 3. DIFFERENCES FROM ROUND 9
+----------------------------------------------------------------------------------------------------
+- Dataset:
+  * Round 9 reused `training_round7/training_data7` and `training_round7/testing_data7` (5 x 1,024).
+  * Round 10 generates brand-new `training_round10/training_data10` (40,960 spectra) and
+    `training_round10/testing_data10` (5 x 2,048 = 10,240 spectra, 2x test size).
+- Seeds:
+  * Round 9 tested 3 seeds: [203, 204, 205].
+  * Round 10 tests 5 seeds: [300, 301, 302, 303, 304].
+- Model Roster:
+  * Round 9 trained 4 models: V3.0, V3.1, V3.2, V3.3.
+  * Round 10 trains 5 models: V3.0, V3.1, V3.2, V3.3, V3.3-NoLen (adding the direct V3.3 ablation).
+- Evaluation:
+  * `testing10.py` includes a dedicated paired per-seed length ablation table with win-loss counters
+    for V3.3-NoLen vs V3.3.
+
+----------------------------------------------------------------------------------------------------
+ 4. EXECUTION INSTRUCTIONS
+----------------------------------------------------------------------------------------------------
+To run the full suite:
+
+Step 1: Generate Dataset
+  python training_round10/create_dataset10.py
+
+Step 2: Train all 5 models across 5 seeds (25 runs total, safe to interrupt/resume)
+  python training_round10/train_round10.py
+
+Step 3: Run comprehensive benchmarking and output validation report
+  python training_round10/testing10.py
+====================================================================================================

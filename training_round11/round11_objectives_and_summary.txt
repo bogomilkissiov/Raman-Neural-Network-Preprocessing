@@ -1,0 +1,85 @@
+====================================================================================================
+ ROUND 11: EXPERIMENT OBJECTIVES & ARCHITECTURAL COMPARISON GUIDE
+====================================================================================================
+Date: 2026-10-29
+Project: Raman Neural Network Preprocessing
+Directory: training_round11/
+
+----------------------------------------------------------------------------------------------------
+ 1. PRIMARY OBJECTIVES OF ROUND 11
+----------------------------------------------------------------------------------------------------
+1. Validate PolyGaussNet V3.4 (Scale-Invariant Architecture):
+   - PolyGaussNet V3.4 eliminates the sequence length scalar entirely while retaining the clean
+     contracting funnel and lightweight 32-channel convolutional trunk with wide 251-bin receptive field.
+   - Evaluates whether spatial pooling alone provides complete scale-invariance and matches or exceeds
+     the performance of the V3.0 reference benchmark without injecting artificial length coordinates.
+
+2. Benchmark 4-Section vs 8-Section Spatial Pooling:
+   - Evaluates the impact of doubling the spatial pooling partitions:
+       * 4 Partitions (V3.4-4sec): Macro-spatial zones [Left, Center-Left, Center-Right, Right]
+         yielding 32 x 4 = 128 inputs to the funnel (100,202 parameters).
+       * 8 Partitions (V3.4-8sec): Octant-level spatial sampling yielding 32 x 8 = 256 inputs
+         to the funnel (108,394 parameters, +8,192 weights).
+   - Core research hypothesis: Since the target baseline is a 7th-order polynomial (8 free coefficients),
+     8 spatial partitions provide sufficient degrees of freedom to directly sample up to 7th-degree
+     inflection points across the spectrum.
+
+3. High-Power Statistical Validation Across 10 Unseen Seeds:
+   - Uses 10 unseen seeds: [400, 401, 402, 403, 404, 405, 406, 407, 408, 409].
+   - Tests 3 models x 10 seeds = 30 training runs total.
+   - High statistical sample size (n=10) provides definitive confidence intervals and paired win-loss
+     counts, extinguishing random seed variance from the architectural conclusion.
+
+----------------------------------------------------------------------------------------------------
+ 2. SUMMARY OF TESTED MODELS (3 MODELS TOTAL)
+----------------------------------------------------------------------------------------------------
+1. V3.0 (Original Reference Baseline):
+   - Parameters: 148,426
+   - Baseline Trunk: 128-channel conv trunk + AdaptiveAvgPool1d(1) (1-bucket pool).
+   - Baseline Head: 128 -> 128 -> 64 -> 8 FC.
+   - Length Scalar: NO.
+
+2. V3.4-4sec (V3.4 with 4-Section Spatial Pooling):
+   - Parameters: 100,202 (-48,224 vs V3.0, -32.5%)
+   - Baseline Trunk: 32-channel conv trunk + 3 dilated ResBlocks (251-bin RF) + AdaptiveAvgPool1d(4).
+   - Flattened: 32 channels x 4 quadrants = 128 spatial features.
+   - Baseline Head: Clean contracting funnel 128 -> 64 -> 8 FC.
+   - Length Scalar: NO.
+
+3. V3.4-8sec (V3.4 with 8-Section Spatial Pooling):
+   - Parameters: 108,394 (-40,032 vs V3.0, +8,192 vs V3.4-4sec)
+   - Baseline Trunk: 32-channel conv trunk + 3 dilated ResBlocks (251-bin RF) + AdaptiveAvgPool1d(8).
+   - Flattened: 32 channels x 8 octants = 256 spatial features.
+   - Baseline Head: Clean contracting funnel 256 -> 64 -> 8 FC.
+   - Length Scalar: NO.
+
+----------------------------------------------------------------------------------------------------
+ 3. TRAINING & TESTING REGIME (IDENTICAL TO ROUNDS 9 & 10)
+----------------------------------------------------------------------------------------------------
+- Training Dataset:
+  * Reuses `training_round10/training_data10` (40,960 spectra across 5 chunk files).
+- Testing Dataset:
+  * Reuses `training_round10/testing_data10` (10,240 spectra: 5 resolutions x 2,048 spectra).
+- Training Schedule:
+  * Epochs: 16 (with 8-epoch snapshot saved to `runs_8ep/`).
+  * Batch Size: 512.
+  * Optimizer: AdamW (lr=1e-4, weight_decay=1e-4).
+  * Scheduler: ReduceLROnPlateau (mode='min', factor=0.8, patience=1, min_lr=9e-8).
+  * Gradient Clipping: max_norm = 5.0.
+  * Deterministic RNG: dedicated generator seeded by (seed, epoch, file) for identical batch sequences.
+- Loss Function:
+  * Dual Log-Cosh (BC target lambda=1.0, Clean target lambda=1.0)
+  * Asymmetric Baseline Penalty Loss (lambda_asym=15.0)
+- Checkpoint Selection:
+  * Best training loss across epochs (testing set is strictly held-out until testing11.py runs).
+
+----------------------------------------------------------------------------------------------------
+ 4. EXECUTION INSTRUCTIONS
+----------------------------------------------------------------------------------------------------
+Step 1: Train all 3 models across 10 seeds (30 runs total, safe to pause and resume anytime)
+  python training_round11/train_round11.py
+
+Step 2: Run benchmark evaluation across all runs and generate report
+  python training_round11/testing11.py
+====================================================================================================
+
