@@ -1,0 +1,760 @@
+
+====================================================================================
+ PolyGaussNet V3.4 (8-Section) Training — Round 12 (Exact Round 6 Regime) 
+====================================================================================
+  - Slurm Job ID:       9146833 (CPUs=8)
+  - Device:             cuda (NVIDIA A40)
+  - AMP / torch.compile: False (fp32) / False
+  - Epochs:             97 | Batch Size: 512
+  - Optimizer:          AdamW (lr=0.0001, weight_decay=0.0001)
+  - LR Scheduler:       ReduceLROnPlateau (factor=0.8, patience=1, min_lr=9e-08)
+  - Architecture:       V3.4 num_quadrants=8, poly_order=7, K=31, amp=[0.85, 1.15]
+  - Loss Weights:       bc=1.0, clean=1.0, asym=15.0
+  - Dataset Dir:        /oscar/scratch/bkissiov/raman_preprocessing/training_round6/training_data6 (40 chunks)
+  - Output Dir:         /oscar/scratch/bkissiov/raman_preprocessing/training_round12
+====================================================================================
+
+PolyGaussNet V3.4 (8-sec) Parameters: 108,394 total (108,394 trainable)
+Preloaded 40 chunks (8.81 GiB float32) into GPU in 16.6s
+====================================================================================
+Starting Training: Epochs 1 to 97 (cache=gpu)
+====================================================================================
+
+Epoch [  1/ 97] | File [ 1/40] (800/spectra_chunk_06.npz, L= 800) | Loss: 5.98057 (BC: 0.1849, Clean: 0.1704, Asym: 5.6253) |  3764.5 spec/s
+Epoch [  1/ 97] | File [ 2/40] (1016/spectra_chunk_08.npz, L=1016) | Loss: 0.41104 (BC: 0.2205, Clean: 0.1893, Asym: 0.0012) |  7812.6 spec/s
+Epoch [  1/ 97] | File [ 3/40] (1600/spectra_chunk_05.npz, L=1600) | Loss: 0.38721 (BC: 0.2069, Clean: 0.1742, Asym: 0.0061) |  5646.2 spec/s
+Epoch [  1/ 97] | File [ 4/40] (1200/spectra_chunk_05.npz, L=1200) | Loss: 0.37157 (BC: 0.2008, Clean: 0.1664, Asym: 0.0043) |  6986.3 spec/s
+Epoch [  1/ 97] | File [ 5/40] (800/spectra_chunk_04.npz, L= 800) | Loss: 0.35325 (BC: 0.1923, Clean: 0.1561, Asym: 0.0048) | 12939.5 spec/s
+Epoch [  1/ 97] | File [ 6/40] (1400/spectra_chunk_06.npz, L=1400) | Loss: 0.31788 (BC: 0.1698, Clean: 0.1373, Asym: 0.0108) |  6233.6 spec/s
+Epoch [  1/ 97] | File [ 7/40] (1600/spectra_chunk_08.npz, L=1600) | Loss: 0.29204 (BC: 0.1568, Clean: 0.1258, Asym: 0.0095) |  7521.5 spec/s
+Epoch [  1/ 97] | File [ 8/40] (1600/spectra_chunk_03.npz, L=1600) | Loss: 0.26586 (BC: 0.1446, Clean: 0.1150, Asym: 0.0062) |  7513.5 spec/s
+Epoch [  1/ 97] | File [ 9/40] (1600/spectra_chunk_02.npz, L=1600) | Loss: 0.24264 (BC: 0.1302, Clean: 0.1025, Asym: 0.0100) |  7518.4 spec/s
+Epoch [  1/ 97] | File [10/40] (1200/spectra_chunk_07.npz, L=1200) | Loss: 0.22887 (BC: 0.1232, Clean: 0.0959, Asym: 0.0098) |  9291.0 spec/s
+Epoch [  1/ 97] | File [11/40] (1600/spectra_chunk_07.npz, L=1600) | Loss: 0.20053 (BC: 0.1061, Clean: 0.0821, Asym: 0.0123) |  7516.5 spec/s
+Epoch [  1/ 97] | File [12/40] (1200/spectra_chunk_01.npz, L=1200) | Loss: 0.18878 (BC: 0.0992, Clean: 0.0759, Asym: 0.0137) |  9288.4 spec/s
+Epoch [  1/ 97] | File [13/40] (1200/spectra_chunk_03.npz, L=1200) | Loss: 0.17337 (BC: 0.0889, Clean: 0.0674, Asym: 0.0171) |  9286.2 spec/s
+Epoch [  1/ 97] | File [14/40] (1600/spectra_chunk_04.npz, L=1600) | Loss: 0.15365 (BC: 0.0787, Clean: 0.0597, Asym: 0.0153) |  7517.1 spec/s
+Epoch [  1/ 97] | File [15/40] (1400/spectra_chunk_03.npz, L=1400) | Loss: 0.14997 (BC: 0.0755, Clean: 0.0568, Asym: 0.0177) |  8189.5 spec/s
+Epoch [  1/ 97] | File [16/40] (1200/spectra_chunk_08.npz, L=1200) | Loss: 0.16104 (BC: 0.0720, Clean: 0.0537, Asym: 0.0354) |  9248.2 spec/s
+Epoch [  1/ 97] | File [17/40] (1016/spectra_chunk_02.npz, L=1016) | Loss: 0.14386 (BC: 0.0710, Clean: 0.0525, Asym: 0.0203) | 10335.6 spec/s
+Epoch [  1/ 97] | File [18/40] (1016/spectra_chunk_05.npz, L=1016) | Loss: 0.14040 (BC: 0.0669, Clean: 0.0492, Asym: 0.0243) | 10356.4 spec/s
+Epoch [  1/ 97] | File [19/40] (1600/spectra_chunk_01.npz, L=1600) | Loss: 0.11775 (BC: 0.0597, Clean: 0.0441, Asym: 0.0139) |  7479.2 spec/s
+Epoch [  1/ 97] | File [20/40] (1400/spectra_chunk_04.npz, L=1400) | Loss: 0.11471 (BC: 0.0561, Clean: 0.0410, Asym: 0.0176) |  8204.7 spec/s
+Epoch [  1/ 97] | File [21/40] (800/spectra_chunk_08.npz, L= 800) | Loss: 0.12690 (BC: 0.0593, Clean: 0.0426, Asym: 0.0250) | 12936.0 spec/s
+Epoch [  1/ 97] | File [22/40] (1200/spectra_chunk_04.npz, L=1200) | Loss: 0.10955 (BC: 0.0543, Clean: 0.0393, Asym: 0.0160) |  9246.0 spec/s
+Epoch [  1/ 97] | File [23/40] (800/spectra_chunk_05.npz, L= 800) | Loss: 0.11951 (BC: 0.0559, Clean: 0.0397, Asym: 0.0240) | 12903.8 spec/s
+Epoch [  1/ 97] | File [24/40] (1200/spectra_chunk_02.npz, L=1200) | Loss: 0.10168 (BC: 0.0504, Clean: 0.0361, Asym: 0.0152) |  9100.4 spec/s
+Epoch [  1/ 97] | File [25/40] (1016/spectra_chunk_03.npz, L=1016) | Loss: 0.10185 (BC: 0.0483, Clean: 0.0341, Asym: 0.0194) | 10211.6 spec/s
+Epoch [  1/ 97] | File [26/40] (1400/spectra_chunk_05.npz, L=1400) | Loss: 0.08740 (BC: 0.0436, Clean: 0.0309, Asym: 0.0128) |  8068.3 spec/s
+Epoch [  1/ 97] | File [27/40] (1400/spectra_chunk_08.npz, L=1400) | Loss: 0.08555 (BC: 0.0415, Clean: 0.0293, Asym: 0.0148) |  8062.9 spec/s
+Epoch [  1/ 97] | File [28/40] (800/spectra_chunk_03.npz, L= 800) | Loss: 0.10327 (BC: 0.0456, Clean: 0.0316, Asym: 0.0260) | 12620.0 spec/s
+Epoch [  1/ 97] | File [29/40] (800/spectra_chunk_02.npz, L= 800) | Loss: 0.09457 (BC: 0.0450, Clean: 0.0310, Asym: 0.0185) | 12757.9 spec/s
+Epoch [  1/ 97] | File [30/40] (1400/spectra_chunk_01.npz, L=1400) | Loss: 0.07985 (BC: 0.0395, Clean: 0.0276, Asym: 0.0128) |  8065.5 spec/s
+Epoch [  1/ 97] | File [31/40] (1400/spectra_chunk_02.npz, L=1400) | Loss: 0.07750 (BC: 0.0370, Clean: 0.0257, Asym: 0.0148) |  8124.8 spec/s
+Epoch [  1/ 97] | File [32/40] (800/spectra_chunk_01.npz, L= 800) | Loss: 0.08803 (BC: 0.0411, Clean: 0.0280, Asym: 0.0189) | 12796.7 spec/s
+Epoch [  1/ 97] | File [33/40] (1016/spectra_chunk_06.npz, L=1016) | Loss: 0.07943 (BC: 0.0373, Clean: 0.0255, Asym: 0.0166) | 10236.6 spec/s
+Epoch [  1/ 97] | File [34/40] (800/spectra_chunk_07.npz, L= 800) | Loss: 0.08162 (BC: 0.0379, Clean: 0.0255, Asym: 0.0181) | 12782.6 spec/s
+Epoch [  1/ 97] | File [35/40] (1016/spectra_chunk_04.npz, L=1016) | Loss: 0.07175 (BC: 0.0350, Clean: 0.0237, Asym: 0.0131) | 10237.6 spec/s
+Epoch [  1/ 97] | File [36/40] (1200/spectra_chunk_06.npz, L=1200) | Loss: 0.06860 (BC: 0.0327, Clean: 0.0221, Asym: 0.0138) |  9131.4 spec/s
+Epoch [  1/ 97] | File [37/40] (1016/spectra_chunk_07.npz, L=1016) | Loss: 0.06952 (BC: 0.0327, Clean: 0.0219, Asym: 0.0150) | 10104.0 spec/s
+Epoch [  1/ 97] | File [38/40] (1600/spectra_chunk_06.npz, L=1600) | Loss: 0.05968 (BC: 0.0285, Clean: 0.0193, Asym: 0.0119) |  7340.9 spec/s
+Epoch [  1/ 97] | File [39/40] (1016/spectra_chunk_01.npz, L=1016) | Loss: 0.06457 (BC: 0.0307, Clean: 0.0204, Asym: 0.0135) | 10036.0 spec/s
+Epoch [  1/ 97] | File [40/40] (1400/spectra_chunk_07.npz, L=1400) | Loss: 0.05704 (BC: 0.0278, Clean: 0.0185, Asym: 0.0108) |  8046.0 spec/s
+------------------------------------------------------------------------------------
+==> Epoch [  1/ 97] Completed in 76.52s (8,564.2 spectra/s)
+    Avg Total Loss: 0.303072 | Avg BC: 0.083205 | Avg Clean: 0.064706 | Avg Asym: 0.155161
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.303072)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [  2/ 97] Completed in 77.74s (8,430.2 spectra/s)
+    Avg Total Loss: 0.043636 | Avg BC: 0.020813 | Avg Clean: 0.013162 | Avg Asym: 0.009660
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.043636)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [  3/ 97] Completed in 86.29s (7,595.0 spectra/s)
+    Avg Total Loss: 0.026402 | Avg BC: 0.012738 | Avg Clean: 0.007432 | Avg Asym: 0.006232
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.026402)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [  4/ 97] Completed in 88.62s (7,395.3 spectra/s)
+    Avg Total Loss: 0.019631 | Avg BC: 0.009546 | Avg Clean: 0.005295 | Avg Asym: 0.004790
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.019631)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [  5/ 97] Completed in 89.09s (7,356.6 spectra/s)
+    Avg Total Loss: 0.015779 | Avg BC: 0.007720 | Avg Clean: 0.004143 | Avg Asym: 0.003916
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.015779)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [  6/ 97] Completed in 90.03s (7,279.1 spectra/s)
+    Avg Total Loss: 0.013178 | Avg BC: 0.006500 | Avg Clean: 0.003416 | Avg Asym: 0.003262
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.013178)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [  7/ 97] Completed in 89.75s (7,302.3 spectra/s)
+    Avg Total Loss: 0.011755 | Avg BC: 0.005844 | Avg Clean: 0.003052 | Avg Asym: 0.002858
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.011755)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [  8/ 97] Completed in 89.84s (7,294.4 spectra/s)
+    Avg Total Loss: 0.010570 | Avg BC: 0.005286 | Avg Clean: 0.002758 | Avg Asym: 0.002526
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.010570)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [  9/ 97] Completed in 90.20s (7,265.5 spectra/s)
+    Avg Total Loss: 0.009405 | Avg BC: 0.004702 | Avg Clean: 0.002429 | Avg Asym: 0.002274
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.009405)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 10/ 97] Completed in 89.95s (7,285.8 spectra/s)
+    Avg Total Loss: 0.008786 | Avg BC: 0.004399 | Avg Clean: 0.002273 | Avg Asym: 0.002115
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.008786)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 11/ 97] Completed in 89.43s (7,328.6 spectra/s)
+    Avg Total Loss: 0.009027 | Avg BC: 0.004546 | Avg Clean: 0.002382 | Avg Asym: 0.002099
+    Learning Rate:  1.000000e-04
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 12/ 97] Completed in 91.38s (7,172.1 spectra/s)
+    Avg Total Loss: 0.008676 | Avg BC: 0.004361 | Avg Clean: 0.002273 | Avg Asym: 0.002042
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.008676)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 13/ 97] Completed in 89.27s (7,341.7 spectra/s)
+    Avg Total Loss: 0.007985 | Avg BC: 0.004000 | Avg Clean: 0.002070 | Avg Asym: 0.001915
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.007985)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 14/ 97] Completed in 89.76s (7,300.9 spectra/s)
+    Avg Total Loss: 0.008032 | Avg BC: 0.004034 | Avg Clean: 0.002093 | Avg Asym: 0.001905
+    Learning Rate:  1.000000e-04
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 15/ 97] Completed in 89.95s (7,286.0 spectra/s)
+    Avg Total Loss: 0.007573 | Avg BC: 0.003796 | Avg Clean: 0.001961 | Avg Asym: 0.001816
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.007573)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 16/ 97] Completed in 88.97s (7,366.2 spectra/s)
+    Avg Total Loss: 0.007610 | Avg BC: 0.003821 | Avg Clean: 0.001973 | Avg Asym: 0.001815
+    Learning Rate:  1.000000e-04
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 17/ 97] Completed in 88.92s (7,369.9 spectra/s)
+    Avg Total Loss: 0.007307 | Avg BC: 0.003667 | Avg Clean: 0.001893 | Avg Asym: 0.001747
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.007307)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 18/ 97] Completed in 89.43s (7,328.0 spectra/s)
+    Avg Total Loss: 0.007156 | Avg BC: 0.003591 | Avg Clean: 0.001848 | Avg Asym: 0.001717
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.007156)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 19/ 97] Completed in 90.36s (7,253.1 spectra/s)
+    Avg Total Loss: 0.007289 | Avg BC: 0.003663 | Avg Clean: 0.001888 | Avg Asym: 0.001737
+    Learning Rate:  1.000000e-04
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 20/ 97] Completed in 90.50s (7,241.5 spectra/s)
+    Avg Total Loss: 0.007087 | Avg BC: 0.003559 | Avg Clean: 0.001832 | Avg Asym: 0.001696
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.007087)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 21/ 97] Completed in 90.33s (7,255.0 spectra/s)
+    Avg Total Loss: 0.006969 | Avg BC: 0.003503 | Avg Clean: 0.001799 | Avg Asym: 0.001666
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006969)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 22/ 97] Completed in 89.80s (7,298.3 spectra/s)
+    Avg Total Loss: 0.006859 | Avg BC: 0.003449 | Avg Clean: 0.001769 | Avg Asym: 0.001641
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006859)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 23/ 97] Completed in 89.55s (7,318.5 spectra/s)
+    Avg Total Loss: 0.006865 | Avg BC: 0.003456 | Avg Clean: 0.001772 | Avg Asym: 0.001638
+    Learning Rate:  1.000000e-04
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 24/ 97] Completed in 90.29s (7,258.5 spectra/s)
+    Avg Total Loss: 0.006839 | Avg BC: 0.003446 | Avg Clean: 0.001766 | Avg Asym: 0.001627
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006839)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 25/ 97] Completed in 89.91s (7,289.2 spectra/s)
+    Avg Total Loss: 0.006787 | Avg BC: 0.003422 | Avg Clean: 0.001752 | Avg Asym: 0.001613
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006787)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 26/ 97] Completed in 90.36s (7,253.1 spectra/s)
+    Avg Total Loss: 0.006798 | Avg BC: 0.003431 | Avg Clean: 0.001756 | Avg Asym: 0.001611
+    Learning Rate:  1.000000e-04
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 27/ 97] Completed in 89.86s (7,293.5 spectra/s)
+    Avg Total Loss: 0.006687 | Avg BC: 0.003376 | Avg Clean: 0.001726 | Avg Asym: 0.001585
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006687)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 28/ 97] Completed in 90.47s (7,243.6 spectra/s)
+    Avg Total Loss: 0.006785 | Avg BC: 0.003429 | Avg Clean: 0.001757 | Avg Asym: 0.001599
+    Learning Rate:  1.000000e-04
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 29/ 97] Completed in 91.81s (7,138.1 spectra/s)
+    Avg Total Loss: 0.006669 | Avg BC: 0.003372 | Avg Clean: 0.001724 | Avg Asym: 0.001572
+    Learning Rate:  1.000000e-04
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006669)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 30/ 97] Completed in 90.76s (7,221.2 spectra/s)
+    Avg Total Loss: 0.006669 | Avg BC: 0.003377 | Avg Clean: 0.001726 | Avg Asym: 0.001566
+    Learning Rate:  1.000000e-04
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 31/ 97] Completed in 90.93s (7,207.0 spectra/s)
+    Avg Total Loss: 0.006705 | Avg BC: 0.003396 | Avg Clean: 0.001738 | Avg Asym: 0.001572
+    Learning Rate:  8.000000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 32/ 97] Completed in 90.50s (7,241.7 spectra/s)
+    Avg Total Loss: 0.006592 | Avg BC: 0.003344 | Avg Clean: 0.001708 | Avg Asym: 0.001540
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006592)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 33/ 97] Completed in 90.03s (7,279.3 spectra/s)
+    Avg Total Loss: 0.006575 | Avg BC: 0.003339 | Avg Clean: 0.001706 | Avg Asym: 0.001530
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006575)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 34/ 97] Completed in 90.24s (7,262.2 spectra/s)
+    Avg Total Loss: 0.006552 | Avg BC: 0.003330 | Avg Clean: 0.001701 | Avg Asym: 0.001521
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006552)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 35/ 97] Completed in 90.12s (7,271.9 spectra/s)
+    Avg Total Loss: 0.006563 | Avg BC: 0.003342 | Avg Clean: 0.001708 | Avg Asym: 0.001513
+    Learning Rate:  8.000000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 36/ 97] Completed in 89.57s (7,316.9 spectra/s)
+    Avg Total Loss: 0.006495 | Avg BC: 0.003311 | Avg Clean: 0.001691 | Avg Asym: 0.001493
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006495)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 37/ 97] Completed in 90.90s (7,209.8 spectra/s)
+    Avg Total Loss: 0.006493 | Avg BC: 0.003315 | Avg Clean: 0.001693 | Avg Asym: 0.001486
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006493)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 38/ 97] Completed in 90.95s (7,205.9 spectra/s)
+    Avg Total Loss: 0.006470 | Avg BC: 0.003307 | Avg Clean: 0.001689 | Avg Asym: 0.001475
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006470)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 39/ 97] Completed in 90.92s (7,207.8 spectra/s)
+    Avg Total Loss: 0.006460 | Avg BC: 0.003306 | Avg Clean: 0.001689 | Avg Asym: 0.001465
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006460)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 40/ 97] Completed in 90.07s (7,276.3 spectra/s)
+    Avg Total Loss: 0.006467 | Avg BC: 0.003312 | Avg Clean: 0.001693 | Avg Asym: 0.001462
+    Learning Rate:  8.000000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 41/ 97] Completed in 89.91s (7,289.2 spectra/s)
+    Avg Total Loss: 0.006441 | Avg BC: 0.003303 | Avg Clean: 0.001688 | Avg Asym: 0.001449
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006441)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 42/ 97] Completed in 89.92s (7,288.0 spectra/s)
+    Avg Total Loss: 0.006408 | Avg BC: 0.003288 | Avg Clean: 0.001680 | Avg Asym: 0.001440
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006408)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 43/ 97] Completed in 89.68s (7,308.1 spectra/s)
+    Avg Total Loss: 0.006405 | Avg BC: 0.003290 | Avg Clean: 0.001681 | Avg Asym: 0.001434
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006405)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 44/ 97] Completed in 90.59s (7,234.5 spectra/s)
+    Avg Total Loss: 0.006381 | Avg BC: 0.003281 | Avg Clean: 0.001677 | Avg Asym: 0.001422
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006381)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 45/ 97] Completed in 91.69s (7,147.7 spectra/s)
+    Avg Total Loss: 0.006378 | Avg BC: 0.003281 | Avg Clean: 0.001677 | Avg Asym: 0.001419
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006378)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 46/ 97] Completed in 90.70s (7,225.3 spectra/s)
+    Avg Total Loss: 0.006352 | Avg BC: 0.003272 | Avg Clean: 0.001672 | Avg Asym: 0.001408
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006352)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 47/ 97] Completed in 90.11s (7,272.9 spectra/s)
+    Avg Total Loss: 0.006358 | Avg BC: 0.003276 | Avg Clean: 0.001674 | Avg Asym: 0.001407
+    Learning Rate:  8.000000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 48/ 97] Completed in 90.74s (7,222.7 spectra/s)
+    Avg Total Loss: 0.006342 | Avg BC: 0.003270 | Avg Clean: 0.001672 | Avg Asym: 0.001400
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006342)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 49/ 97] Completed in 90.53s (7,239.3 spectra/s)
+    Avg Total Loss: 0.006349 | Avg BC: 0.003276 | Avg Clean: 0.001675 | Avg Asym: 0.001398
+    Learning Rate:  8.000000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 50/ 97] Completed in 90.51s (7,241.0 spectra/s)
+    Avg Total Loss: 0.006311 | Avg BC: 0.003259 | Avg Clean: 0.001666 | Avg Asym: 0.001386
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006311)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 51/ 97] Completed in 89.09s (7,356.1 spectra/s)
+    Avg Total Loss: 0.006343 | Avg BC: 0.003276 | Avg Clean: 0.001676 | Avg Asym: 0.001391
+    Learning Rate:  8.000000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 52/ 97] Completed in 90.56s (7,236.9 spectra/s)
+    Avg Total Loss: 0.006287 | Avg BC: 0.003251 | Avg Clean: 0.001662 | Avg Asym: 0.001374
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006287)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 53/ 97] Completed in 91.17s (7,187.9 spectra/s)
+    Avg Total Loss: 0.006296 | Avg BC: 0.003256 | Avg Clean: 0.001665 | Avg Asym: 0.001375
+    Learning Rate:  8.000000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 54/ 97] Completed in 90.02s (7,280.3 spectra/s)
+    Avg Total Loss: 0.006276 | Avg BC: 0.003248 | Avg Clean: 0.001661 | Avg Asym: 0.001367
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006276)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 55/ 97] Completed in 90.80s (7,217.7 spectra/s)
+    Avg Total Loss: 0.006285 | Avg BC: 0.003254 | Avg Clean: 0.001664 | Avg Asym: 0.001367
+    Learning Rate:  8.000000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 56/ 97] Completed in 90.28s (7,258.9 spectra/s)
+    Avg Total Loss: 0.006271 | Avg BC: 0.003248 | Avg Clean: 0.001662 | Avg Asym: 0.001361
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006271)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 57/ 97] Completed in 90.22s (7,264.2 spectra/s)
+    Avg Total Loss: 0.006258 | Avg BC: 0.003245 | Avg Clean: 0.001660 | Avg Asym: 0.001354
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006258)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 58/ 97] Completed in 90.15s (7,269.8 spectra/s)
+    Avg Total Loss: 0.006257 | Avg BC: 0.003245 | Avg Clean: 0.001660 | Avg Asym: 0.001352
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006257)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 59/ 97] Completed in 90.81s (7,216.9 spectra/s)
+    Avg Total Loss: 0.006247 | Avg BC: 0.003241 | Avg Clean: 0.001658 | Avg Asym: 0.001348
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006247)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 60/ 97] Completed in 90.45s (7,245.9 spectra/s)
+    Avg Total Loss: 0.006243 | Avg BC: 0.003241 | Avg Clean: 0.001658 | Avg Asym: 0.001344
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006243)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 61/ 97] Completed in 90.08s (7,275.5 spectra/s)
+    Avg Total Loss: 0.006225 | Avg BC: 0.003234 | Avg Clean: 0.001655 | Avg Asym: 0.001337
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006225)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 62/ 97] Completed in 89.92s (7,288.4 spectra/s)
+    Avg Total Loss: 0.006223 | Avg BC: 0.003233 | Avg Clean: 0.001654 | Avg Asym: 0.001336
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006223)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 63/ 97] Completed in 90.39s (7,250.4 spectra/s)
+    Avg Total Loss: 0.006226 | Avg BC: 0.003237 | Avg Clean: 0.001657 | Avg Asym: 0.001332
+    Learning Rate:  8.000000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 64/ 97] Completed in 90.27s (7,260.3 spectra/s)
+    Avg Total Loss: 0.006211 | Avg BC: 0.003230 | Avg Clean: 0.001653 | Avg Asym: 0.001328
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006211)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 65/ 97] Completed in 90.04s (7,278.6 spectra/s)
+    Avg Total Loss: 0.006212 | Avg BC: 0.003232 | Avg Clean: 0.001654 | Avg Asym: 0.001326
+    Learning Rate:  8.000000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 66/ 97] Completed in 89.87s (7,292.6 spectra/s)
+    Avg Total Loss: 0.006204 | Avg BC: 0.003228 | Avg Clean: 0.001652 | Avg Asym: 0.001324
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006204)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 67/ 97] Completed in 90.07s (7,276.5 spectra/s)
+    Avg Total Loss: 0.006200 | Avg BC: 0.003228 | Avg Clean: 0.001652 | Avg Asym: 0.001319
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006200)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 68/ 97] Completed in 89.61s (7,313.3 spectra/s)
+    Avg Total Loss: 0.006196 | Avg BC: 0.003226 | Avg Clean: 0.001651 | Avg Asym: 0.001318
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006196)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 69/ 97] Completed in 90.05s (7,278.1 spectra/s)
+    Avg Total Loss: 0.006199 | Avg BC: 0.003230 | Avg Clean: 0.001653 | Avg Asym: 0.001316
+    Learning Rate:  8.000000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 70/ 97] Completed in 89.33s (7,336.0 spectra/s)
+    Avg Total Loss: 0.006181 | Avg BC: 0.003221 | Avg Clean: 0.001649 | Avg Asym: 0.001311
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006181)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 71/ 97] Completed in 90.11s (7,272.8 spectra/s)
+    Avg Total Loss: 0.006178 | Avg BC: 0.003222 | Avg Clean: 0.001649 | Avg Asym: 0.001307
+    Learning Rate:  8.000000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006178)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 72/ 97] Completed in 90.03s (7,279.2 spectra/s)
+    Avg Total Loss: 0.006180 | Avg BC: 0.003223 | Avg Clean: 0.001649 | Avg Asym: 0.001308
+    Learning Rate:  8.000000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 73/ 97] Completed in 90.87s (7,212.2 spectra/s)
+    Avg Total Loss: 0.006181 | Avg BC: 0.003224 | Avg Clean: 0.001650 | Avg Asym: 0.001306
+    Learning Rate:  6.400000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 74/ 97] Completed in 89.58s (7,315.6 spectra/s)
+    Avg Total Loss: 0.006159 | Avg BC: 0.003214 | Avg Clean: 0.001645 | Avg Asym: 0.001300
+    Learning Rate:  6.400000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006159)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 75/ 97] Completed in 89.64s (7,310.7 spectra/s)
+    Avg Total Loss: 0.006154 | Avg BC: 0.003212 | Avg Clean: 0.001644 | Avg Asym: 0.001298
+    Learning Rate:  6.400000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006154)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 76/ 97] Completed in 89.56s (7,317.8 spectra/s)
+    Avg Total Loss: 0.006149 | Avg BC: 0.003211 | Avg Clean: 0.001644 | Avg Asym: 0.001294
+    Learning Rate:  6.400000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006149)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 77/ 97] Completed in 89.41s (7,329.4 spectra/s)
+    Avg Total Loss: 0.006153 | Avg BC: 0.003213 | Avg Clean: 0.001645 | Avg Asym: 0.001295
+    Learning Rate:  6.400000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 78/ 97] Completed in 89.52s (7,321.2 spectra/s)
+    Avg Total Loss: 0.006147 | Avg BC: 0.003212 | Avg Clean: 0.001644 | Avg Asym: 0.001291
+    Learning Rate:  6.400000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006147)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 79/ 97] Completed in 89.63s (7,311.7 spectra/s)
+    Avg Total Loss: 0.006139 | Avg BC: 0.003208 | Avg Clean: 0.001642 | Avg Asym: 0.001288
+    Learning Rate:  6.400000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006139)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 80/ 97] Completed in 90.88s (7,211.0 spectra/s)
+    Avg Total Loss: 0.006139 | Avg BC: 0.003209 | Avg Clean: 0.001643 | Avg Asym: 0.001288
+    Learning Rate:  6.400000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 81/ 97] Completed in 89.85s (7,293.9 spectra/s)
+    Avg Total Loss: 0.006132 | Avg BC: 0.003206 | Avg Clean: 0.001641 | Avg Asym: 0.001285
+    Learning Rate:  6.400000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006132)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 82/ 97] Completed in 90.41s (7,248.6 spectra/s)
+    Avg Total Loss: 0.006131 | Avg BC: 0.003206 | Avg Clean: 0.001642 | Avg Asym: 0.001283
+    Learning Rate:  6.400000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006131)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 83/ 97] Completed in 90.11s (7,273.3 spectra/s)
+    Avg Total Loss: 0.006123 | Avg BC: 0.003203 | Avg Clean: 0.001640 | Avg Asym: 0.001281
+    Learning Rate:  6.400000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006123)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 84/ 97] Completed in 89.74s (7,303.2 spectra/s)
+    Avg Total Loss: 0.006122 | Avg BC: 0.003203 | Avg Clean: 0.001640 | Avg Asym: 0.001278
+    Learning Rate:  6.400000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006122)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 85/ 97] Completed in 89.83s (7,295.7 spectra/s)
+    Avg Total Loss: 0.006120 | Avg BC: 0.003203 | Avg Clean: 0.001640 | Avg Asym: 0.001277
+    Learning Rate:  6.400000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006120)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 86/ 97] Completed in 89.41s (7,329.6 spectra/s)
+    Avg Total Loss: 0.006120 | Avg BC: 0.003203 | Avg Clean: 0.001640 | Avg Asym: 0.001276
+    Learning Rate:  6.400000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006120)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 87/ 97] Completed in 89.68s (7,307.5 spectra/s)
+    Avg Total Loss: 0.006122 | Avg BC: 0.003205 | Avg Clean: 0.001641 | Avg Asym: 0.001276
+    Learning Rate:  5.120000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 88/ 97] Completed in 89.87s (7,292.1 spectra/s)
+    Avg Total Loss: 0.006110 | Avg BC: 0.003200 | Avg Clean: 0.001638 | Avg Asym: 0.001272
+    Learning Rate:  5.120000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006110)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 89/ 97] Completed in 89.40s (7,330.4 spectra/s)
+    Avg Total Loss: 0.006105 | Avg BC: 0.003198 | Avg Clean: 0.001637 | Avg Asym: 0.001270
+    Learning Rate:  5.120000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006105)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 90/ 97] Completed in 90.18s (7,267.2 spectra/s)
+    Avg Total Loss: 0.006100 | Avg BC: 0.003196 | Avg Clean: 0.001637 | Avg Asym: 0.001267
+    Learning Rate:  5.120000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006100)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 91/ 97] Completed in 89.90s (7,290.0 spectra/s)
+    Avg Total Loss: 0.006103 | Avg BC: 0.003198 | Avg Clean: 0.001637 | Avg Asym: 0.001267
+    Learning Rate:  5.120000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 92/ 97] Completed in 90.12s (7,272.0 spectra/s)
+    Avg Total Loss: 0.006102 | Avg BC: 0.003197 | Avg Clean: 0.001637 | Avg Asym: 0.001267
+    Learning Rate:  4.096000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 93/ 97] Completed in 88.90s (7,372.2 spectra/s)
+    Avg Total Loss: 0.006090 | Avg BC: 0.003193 | Avg Clean: 0.001635 | Avg Asym: 0.001262
+    Learning Rate:  4.096000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006090)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 94/ 97] Completed in 90.43s (7,247.3 spectra/s)
+    Avg Total Loss: 0.006093 | Avg BC: 0.003194 | Avg Clean: 0.001636 | Avg Asym: 0.001263
+    Learning Rate:  4.096000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 95/ 97] Completed in 89.03s (7,361.5 spectra/s)
+    Avg Total Loss: 0.006088 | Avg BC: 0.003192 | Avg Clean: 0.001635 | Avg Asym: 0.001261
+    Learning Rate:  4.096000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006088)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+==> Epoch [ 96/ 97] Completed in 89.40s (7,331.0 spectra/s)
+    Avg Total Loss: 0.006088 | Avg BC: 0.003193 | Avg Clean: 0.001635 | Avg Asym: 0.001260
+    Learning Rate:  4.096000e-05
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+Epoch [ 97/ 97] | File [ 1/40] (1200/spectra_chunk_07.npz, L=1200) | Loss: 0.00606 (BC: 0.0032, Clean: 0.0016, Asym: 0.0013) |  7366.5 spec/s
+Epoch [ 97/ 97] | File [ 2/40] (1600/spectra_chunk_07.npz, L=1600) | Loss: 0.00510 (BC: 0.0026, Clean: 0.0013, Asym: 0.0011) |  5393.1 spec/s
+Epoch [ 97/ 97] | File [ 3/40] (800/spectra_chunk_03.npz, L= 800) | Loss: 0.00718 (BC: 0.0038, Clean: 0.0020, Asym: 0.0014) | 10340.5 spec/s
+Epoch [ 97/ 97] | File [ 4/40] (1600/spectra_chunk_01.npz, L=1600) | Loss: 0.00513 (BC: 0.0027, Clean: 0.0014, Asym: 0.0011) |  5922.2 spec/s
+Epoch [ 97/ 97] | File [ 5/40] (1600/spectra_chunk_04.npz, L=1600) | Loss: 0.00517 (BC: 0.0027, Clean: 0.0014, Asym: 0.0011) |  5118.2 spec/s
+Epoch [ 97/ 97] | File [ 6/40] (1200/spectra_chunk_02.npz, L=1200) | Loss: 0.00587 (BC: 0.0031, Clean: 0.0016, Asym: 0.0012) |  6624.2 spec/s
+Epoch [ 97/ 97] | File [ 7/40] (1600/spectra_chunk_03.npz, L=1600) | Loss: 0.00520 (BC: 0.0027, Clean: 0.0014, Asym: 0.0011) |  6022.2 spec/s
+Epoch [ 97/ 97] | File [ 8/40] (1400/spectra_chunk_07.npz, L=1400) | Loss: 0.00546 (BC: 0.0029, Clean: 0.0015, Asym: 0.0012) |  5173.2 spec/s
+Epoch [ 97/ 97] | File [ 9/40] (800/spectra_chunk_07.npz, L= 800) | Loss: 0.00748 (BC: 0.0039, Clean: 0.0020, Asym: 0.0015) | 10869.5 spec/s
+Epoch [ 97/ 97] | File [10/40] (800/spectra_chunk_01.npz, L= 800) | Loss: 0.00762 (BC: 0.0040, Clean: 0.0021, Asym: 0.0015) | 10849.7 spec/s
+Epoch [ 97/ 97] | File [11/40] (1016/spectra_chunk_07.npz, L=1016) | Loss: 0.00652 (BC: 0.0034, Clean: 0.0018, Asym: 0.0014) |  8490.5 spec/s
+Epoch [ 97/ 97] | File [12/40] (800/spectra_chunk_02.npz, L= 800) | Loss: 0.00757 (BC: 0.0040, Clean: 0.0021, Asym: 0.0015) | 10785.3 spec/s
+Epoch [ 97/ 97] | File [13/40] (800/spectra_chunk_06.npz, L= 800) | Loss: 0.00737 (BC: 0.0039, Clean: 0.0020, Asym: 0.0015) | 10773.8 spec/s
+Epoch [ 97/ 97] | File [14/40] (1400/spectra_chunk_04.npz, L=1400) | Loss: 0.00546 (BC: 0.0029, Clean: 0.0015, Asym: 0.0011) |  6671.5 spec/s
+Epoch [ 97/ 97] | File [15/40] (1600/spectra_chunk_05.npz, L=1600) | Loss: 0.00511 (BC: 0.0027, Clean: 0.0013, Asym: 0.0011) |  4835.8 spec/s
+Epoch [ 97/ 97] | File [16/40] (1400/spectra_chunk_06.npz, L=1400) | Loss: 0.00555 (BC: 0.0029, Clean: 0.0015, Asym: 0.0011) |  6303.8 spec/s
+Epoch [ 97/ 97] | File [17/40] (1200/spectra_chunk_03.npz, L=1200) | Loss: 0.00591 (BC: 0.0031, Clean: 0.0016, Asym: 0.0013) |  7344.1 spec/s
+Epoch [ 97/ 97] | File [18/40] (1600/spectra_chunk_02.npz, L=1600) | Loss: 0.00497 (BC: 0.0026, Clean: 0.0013, Asym: 0.0010) |  5906.4 spec/s
+Epoch [ 97/ 97] | File [19/40] (1016/spectra_chunk_03.npz, L=1016) | Loss: 0.00641 (BC: 0.0034, Clean: 0.0017, Asym: 0.0013) |  8511.1 spec/s
+Epoch [ 97/ 97] | File [20/40] (1600/spectra_chunk_06.npz, L=1600) | Loss: 0.00502 (BC: 0.0026, Clean: 0.0013, Asym: 0.0011) |  5907.6 spec/s
+Epoch [ 97/ 97] | File [21/40] (1016/spectra_chunk_04.npz, L=1016) | Loss: 0.00658 (BC: 0.0035, Clean: 0.0018, Asym: 0.0014) |  8508.4 spec/s
+Epoch [ 97/ 97] | File [22/40] (1400/spectra_chunk_08.npz, L=1400) | Loss: 0.00542 (BC: 0.0028, Clean: 0.0014, Asym: 0.0011) |  6434.1 spec/s
+Epoch [ 97/ 97] | File [23/40] (1200/spectra_chunk_05.npz, L=1200) | Loss: 0.00596 (BC: 0.0031, Clean: 0.0016, Asym: 0.0012) |  7379.0 spec/s
+Epoch [ 97/ 97] | File [24/40] (800/spectra_chunk_08.npz, L= 800) | Loss: 0.00749 (BC: 0.0039, Clean: 0.0020, Asym: 0.0015) | 10617.1 spec/s
+Epoch [ 97/ 97] | File [25/40] (1400/spectra_chunk_05.npz, L=1400) | Loss: 0.00530 (BC: 0.0028, Clean: 0.0014, Asym: 0.0011) |  6417.0 spec/s
+Epoch [ 97/ 97] | File [26/40] (1200/spectra_chunk_04.npz, L=1200) | Loss: 0.00583 (BC: 0.0031, Clean: 0.0016, Asym: 0.0012) |  7362.7 spec/s
+Epoch [ 97/ 97] | File [27/40] (1400/spectra_chunk_01.npz, L=1400) | Loss: 0.00535 (BC: 0.0028, Clean: 0.0014, Asym: 0.0011) |  6416.7 spec/s
+Epoch [ 97/ 97] | File [28/40] (1016/spectra_chunk_08.npz, L=1016) | Loss: 0.00652 (BC: 0.0034, Clean: 0.0017, Asym: 0.0014) |  8479.6 spec/s
+Epoch [ 97/ 97] | File [29/40] (1016/spectra_chunk_05.npz, L=1016) | Loss: 0.00655 (BC: 0.0034, Clean: 0.0018, Asym: 0.0013) |  8530.7 spec/s
+Epoch [ 97/ 97] | File [30/40] (1400/spectra_chunk_02.npz, L=1400) | Loss: 0.00543 (BC: 0.0029, Clean: 0.0015, Asym: 0.0011) |  6438.7 spec/s
+Epoch [ 97/ 97] | File [31/40] (1016/spectra_chunk_02.npz, L=1016) | Loss: 0.00648 (BC: 0.0034, Clean: 0.0018, Asym: 0.0013) |  8476.5 spec/s
+Epoch [ 97/ 97] | File [32/40] (1200/spectra_chunk_08.npz, L=1200) | Loss: 0.00601 (BC: 0.0032, Clean: 0.0016, Asym: 0.0012) |  7353.1 spec/s
+Epoch [ 97/ 97] | File [33/40] (800/spectra_chunk_04.npz, L= 800) | Loss: 0.00757 (BC: 0.0040, Clean: 0.0021, Asym: 0.0015) | 10576.2 spec/s
+Epoch [ 97/ 97] | File [34/40] (1016/spectra_chunk_06.npz, L=1016) | Loss: 0.00657 (BC: 0.0034, Clean: 0.0018, Asym: 0.0014) |  8536.3 spec/s
+Epoch [ 97/ 97] | File [35/40] (1016/spectra_chunk_01.npz, L=1016) | Loss: 0.00644 (BC: 0.0034, Clean: 0.0017, Asym: 0.0013) |  8539.3 spec/s
+Epoch [ 97/ 97] | File [36/40] (800/spectra_chunk_05.npz, L= 800) | Loss: 0.00714 (BC: 0.0038, Clean: 0.0020, Asym: 0.0014) | 10588.7 spec/s
+Epoch [ 97/ 97] | File [37/40] (1200/spectra_chunk_01.npz, L=1200) | Loss: 0.00599 (BC: 0.0031, Clean: 0.0016, Asym: 0.0012) |  7055.5 spec/s
+Epoch [ 97/ 97] | File [38/40] (1400/spectra_chunk_03.npz, L=1400) | Loss: 0.00547 (BC: 0.0029, Clean: 0.0015, Asym: 0.0011) |  5881.1 spec/s
+Epoch [ 97/ 97] | File [39/40] (1200/spectra_chunk_06.npz, L=1200) | Loss: 0.00581 (BC: 0.0030, Clean: 0.0016, Asym: 0.0012) |  7101.2 spec/s
+Epoch [ 97/ 97] | File [40/40] (1600/spectra_chunk_08.npz, L=1600) | Loss: 0.00526 (BC: 0.0028, Clean: 0.0014, Asym: 0.0011) |  5693.2 spec/s
+------------------------------------------------------------------------------------
+==> Epoch [ 97/ 97] Completed in 90.67s (7,228.0 spectra/s)
+    Avg Total Loss: 0.006084 | Avg BC: 0.003191 | Avg Clean: 0.001634 | Avg Asym: 0.001258
+    Learning Rate:  4.096000e-05
+    * New best model saved to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth' (Loss: 0.006084)
+    Saved resumable checkpoint to '/oscar/scratch/bkissiov/raman_preprocessing/training_round12/training_checkpoint12.pth'
+------------------------------------------------------------------------------------
+
+====================================================================================
+TRAINING PROCESS COMPLETED SUCCESSFULLY
+Best Training Loss: 0.006084
+Best Model Saved:   /oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth
+====================================================================================
+

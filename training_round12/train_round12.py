@@ -29,6 +29,8 @@ OSCAR CLUSTER OPTIMIZATIONS:
   so `--signal=B:TERM@60` checkpoints cleanly and resumes deterministically via `--resume`.
 """
 
+from __future__ import annotations
+
 import argparse
 import glob
 import os

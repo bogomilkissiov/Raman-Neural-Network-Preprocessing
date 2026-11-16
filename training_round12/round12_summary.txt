@@ -1,0 +1,85 @@
+================================================================================
+ROUND 12 SUMMARY: PolyGaussNet V3.4 (8-Section) Training & Head-to-Head Benchmark
+================================================================================
+
+1. PURPOSE
+----------
+Evaluate whether PolyGaussNet V3.4 configured with 8 sections (num_quadrants=8,
+108,394 parameters) outperforms both the Round 6 PolyGaussNet V3 baseline
+(148,426 parameters) and the conventional CPU preprocessing pipeline
+(test_files/conventional/pre.py) when trained under the exact Round 6 training
+regime and dataset.
+
+
+2. METHOD
+---------
+Architecture:
+  - Model: PolyGaussNet V3.4 (polygaussnet3_4.PolyGaussNet, num_quadrants=8)
+  - Parameters: 108,394 (27.0% fewer than V3's 148,426)
+
+Training Regime (OSCAR Slurm Job 9146833, GPU):
+  - Dataset: training_round6/training_data6
+    (40 chunks, 655,360 spectra across 800, 1016, 1200, 1400, 1600 bins)
+  - Epochs: 97 | Batch Size: 512
+  - Optimizer: AdamW (lr=1e-4, weight_decay=1e-4)
+  - Scheduler: ReduceLROnPlateau (factor=0.8, patience=1, min_lr=9e-8)
+  - Model/Loss Config: poly_order=7, K=31, amp=[0.85, 1.15],
+    dual LogCoshLoss (bc=1.0, clean=1.0), AsymmetricBaselinePenalty (lambda_asym=15.0)
+  - Training Time: 02:25:45 (~90s/epoch, ~7,228 spectra/s at Epoch 97)
+  - Final Best Training Loss (Epoch 97): 0.006084
+    (BC: 0.003191 | Clean: 0.001634 | Asym: 0.001258 | LR: 4.096e-05)
+    vs. V3 (Round 6) Epoch 97 Training Loss: 0.012257
+
+Evaluation (testing12.py on NVIDIA A40):
+  - Held-Out Dataset: training_round6/testing_data6
+    (5 resolutions x 4,096 = 20,480 spectra)
+  - 3-Way Comparison: Conventional (pre.py, 8 CPU workers) vs. V3 (Round 6)
+    vs. V3.4-8sec (Round 12)
+  - Dual Evaluation:
+    * Part A (Raw): Unshifted predictions vs. ground truth pure spectra
+    * Part B (Baseline-Shifted): `mean`-aligned DC offset removal
+      (y_pred - mean(y_pred - y_true)) applied identically to all 3 methods
+      to isolate pure spectral shape and peak reconstruction fidelity.
+
+
+3. RESULTS (N = 20,480 Held-Out Spectra)
+----------------------------------------
+Part A — Raw (Unshifted) Metrics:
+  - MSE (lower is better):
+      V3.4-8sec: 0.00351  (-60.32% vs. V3: 0.00885 | -60.55% vs. Conv: 0.00891)
+  - Log-Cosh Loss (lower is better):
+      V3.4-8sec: 0.00175  (-60.28% vs. V3: 0.00440 | -60.37% vs. Conv: 0.00441)
+  - MAE (lower is better):
+      V3.4-8sec: 0.03722  (-46.66% vs. V3: 0.06979 | -41.19% vs. Conv: 0.06329)
+  - RMSE (lower is better):
+      V3.4-8sec: 0.04353  (-46.61% vs. V3: 0.08154 | -42.74% vs. Conv: 0.07603)
+  - Peak Summit MAE (lower is better):
+      V3.4-8sec: 0.03590  (-36.17% vs. V3: 0.05625 | -43.40% vs. Conv: 0.06344)
+  - Cosine Similarity (higher is better):
+      V3.4-8sec: 0.88076  (+4.67p vs. V3: 0.83406 | +3.71p vs. Conv: 0.84364)
+  - Baseline Est. MSE: 0.00672 (-61.29% vs. V3: 0.01737)
+  - Baseline Overshoot Rate: 1.814% of bins (vs. V3: 1.464%)
+
+Part B — Baseline-Shifted (`mean`-aligned) Shape Metrics:
+  - MSE:               V3.4-8sec: 0.00100  (-65.55% vs. V3: 0.00291 | Conv: 0.00302)
+  - Cosine Similarity: V3.4-8sec: 0.86093  (+10.00p vs. V3: 0.76092 | Conv: 0.76780)
+  - Peak Summit MAE:   V3.4-8sec: 0.02545  (-40.68% vs. V3: 0.04289 | Conv: 0.04024)
+
+Part C — Speed & Throughput:
+  - V3.4-8sec:    0.999 s total | 20,505.5 spectra/s | 0.0488 ms/spectrum
+  - V3 (Round 6): 1.267 s total | 16,168.6 spectra/s | 0.0618 ms/spectrum
+  - Conventional: 50.942 s total |   402.0 spectra/s | 2.4874 ms/spectrum
+  -> V3.4-8sec is 51.0x faster than Conventional CPU preprocessing.
+
+Part D/E — Per-Resolution Win Counts (800, 1016, 1200, 1400, 1600 bins):
+  - V3.4-8sec vs. V3 (Round 6): Raw MSE 5/5 | Shifted MSE 5/5 | Raw Cosine 5/5 | Baseline MSE 5/5
+  - V3.4-8sec vs. Conventional: Raw MSE 5/5 | Shifted MSE 5/5 | Raw Cosine 5/5
+
+
+4. CONCLUSION
+-------------
+PolyGaussNet V3.4 (8-section) achieves a ~60% reduction in raw MSE, ~66%
+reduction in baseline-shifted MSE, +10.00p gain in shifted cosine similarity,
+and 51.0x speedup over conventional preprocessing while using 27% fewer
+parameters than V3. It is ready for downstream evaluation on open-source
+real-world Raman databases.

@@ -20,6 +20,8 @@ GENERATES:
   - `testing12_metrics_benchmark.png`: Summary bar chart across all 3 methods (unless `--no-plots`).
 """
 
+from __future__ import annotations
+
 import argparse
 import glob
 import os
@@ -27,6 +29,7 @@ import shutil
 import sys
 import time
 from concurrent.futures import ProcessPoolExecutor, as_completed
+from typing import Optional
 
 import matplotlib
 matplotlib.use("Agg")  # Headless backend safe for OSCAR Slurm compute nodes
@@ -390,7 +393,7 @@ def fmt_cell(val_std) -> str:
     return f"{val:9.5f} (±{std:.4f})"
 
 
-def fmt_delta(metric_name: str, new_val: float, ref_val: float | None) -> str:
+def fmt_delta(metric_name: str, new_val: float, ref_val: Optional[float]) -> str:
     if ref_val is None or ref_val == 0:
         return "N/A"
     if "Cosine" in metric_name:
