@@ -1,0 +1,31 @@
+{
+  "run_id": "mlrod_xgb_conventional",
+  "dataset": "mlrod",
+  "classifier": "xgb",
+  "preprocessor": "conventional",
+  "input_dim": 1836,
+  "n_classes": 12,
+  "is_discovery_run": false,
+  "epochs_run": 500,
+  "target_rounds": 500,
+  "patience_rounds": null,
+  "best_epoch": 403,
+  "best_val_acc": 0.9899082011064503,
+  "best_loss_epoch": 364,
+  "best_val_loss": 0.03365953900427514,
+  "final_train_loss": 0.00050263713389827,
+  "final_train_acc": 1.0,
+  "final_val_loss": 0.03378961779248187,
+  "final_val_acc": 0.9897866131679738,
+  "train_time_sec": 137.8476817740011,
+  "hyperparameters": {
+    "max_depth": 6,
+    "learning_rate": 0.05,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "seed": 42
+  },
+  "model_path": "training_round12/downstream_models/mlrod_xgb_conventional.json",
+  "history_txt_path": "training_round12/downstream_logs/mlrod_xgb_conventional_training_history12.txt",
+  "history_csv_path": "training_round12/downstream_logs/mlrod_xgb_conventional_training_history12.csv"
+}

@@ -1,0 +1,38 @@
+============================================================================================
+ Downstream Classification Training — Round 12 (bacteria_id | resnet1d (BacteriaResNetClassifier) | pgnet_v34)
+============================================================================================
+  - Slurm Job ID:         9217535
+  - Dataset:              Bacteria-ID (Isolates: Reference / Finetune / Test, Clinical Excluded)
+  - Split Shapes:         train=(60000, 1000), val=(3000, 1000), test=(3000, 1000) (classes=30)
+  - Upfront Norm:         Per-spectrum [0, 1] min-max scaling before preprocessing
+  - Preprocessor:         pgnet_v34
+  - Classifier:           resnet1d (BacteriaResNetClassifier)
+  - Architecture:         ResNet1D (Ho et al. 2019: 6 stages x 2 blocks, channels=64->100, kernel=5)
+  - Hyperparameters:      Adam(lr=0.001, betas=(0.5, 0.999)), batch_size=64, device='cuda', seed=42
+  - Convergence Policy:   Matched fixed budget from 'raw' (epochs=14, patience=None)
+============================================================================================
+
+ResNet1D Parameters: 1,340,878 total
+Starting ResNet1D Training (up to 14 epochs)...
+Epoch [  1/ 14] | Train Loss: 0.53928 | Train Acc: 0.8242 ( 82.42%) | Val Loss: 3.36910 | Val Acc: 0.4913 ( 49.13%) *BEST* | 19.38s (3,096 spec/s)
+Epoch [  2/ 14] | Train Loss: 0.26544 | Train Acc: 0.9074 ( 90.74%) | Val Loss: 2.53504 | Val Acc: 0.5593 ( 55.93%) *BEST* | 19.37s (3,098 spec/s)
+Epoch [  3/ 14] | Train Loss: 0.23285 | Train Acc: 0.9185 ( 91.85%) | Val Loss: 3.26419 | Val Acc: 0.5390 ( 53.90%) | 19.38s (3,096 spec/s)
+Epoch [  4/ 14] | Train Loss: 0.19686 | Train Acc: 0.9298 ( 92.98%) | Val Loss: 3.72637 | Val Acc: 0.5467 ( 54.67%) | 19.38s (3,097 spec/s)
+Epoch [  5/ 14] | Train Loss: 0.18186 | Train Acc: 0.9353 ( 93.53%) | Val Loss: 3.53394 | Val Acc: 0.5330 ( 53.30%) | 19.38s (3,096 spec/s)
+Epoch [  6/ 14] | Train Loss: 0.16298 | Train Acc: 0.9415 ( 94.14%) | Val Loss: 3.24096 | Val Acc: 0.5520 ( 55.20%) | 19.38s (3,096 spec/s)
+Epoch [  7/ 14] | Train Loss: 0.14118 | Train Acc: 0.9499 ( 94.99%) | Val Loss: 2.55734 | Val Acc: 0.6100 ( 61.00%) *BEST* | 19.38s (3,095 spec/s)
+Epoch [  8/ 14] | Train Loss: 0.13086 | Train Acc: 0.9525 ( 95.25%) | Val Loss: 3.77495 | Val Acc: 0.5707 ( 57.07%) | 19.38s (3,096 spec/s)
+Epoch [  9/ 14] | Train Loss: 0.11329 | Train Acc: 0.9588 ( 95.88%) | Val Loss: 3.79490 | Val Acc: 0.5703 ( 57.03%) | 19.38s (3,095 spec/s)
+Epoch [ 10/ 14] | Train Loss: 0.09544 | Train Acc: 0.9652 ( 96.52%) | Val Loss: 3.88881 | Val Acc: 0.5610 ( 56.10%) | 19.38s (3,097 spec/s)
+Epoch [ 11/ 14] | Train Loss: 0.08344 | Train Acc: 0.9702 ( 97.02%) | Val Loss: 4.00410 | Val Acc: 0.5657 ( 56.57%) | 19.37s (3,097 spec/s)
+Epoch [ 12/ 14] | Train Loss: 0.07256 | Train Acc: 0.9726 ( 97.26%) | Val Loss: 5.12048 | Val Acc: 0.5190 ( 51.90%) | 19.37s (3,097 spec/s)
+Epoch [ 13/ 14] | Train Loss: 0.06204 | Train Acc: 0.9771 ( 97.71%) | Val Loss: 5.22944 | Val Acc: 0.5280 ( 52.80%) | 19.35s (3,100 spec/s)
+Epoch [ 14/ 14] | Train Loss: 0.05241 | Train Acc: 0.9806 ( 98.06%) | Val Loss: 5.79564 | Val Acc: 0.5270 ( 52.70%) | 19.35s (3,101 spec/s)
+
+============================================================================================
+Finished bacteria_id_resnet1d_pgnet_v34 in 271.27s | Epochs Run: 14
+Best Val Acc:  0.6100 (Epoch 7, Val Loss: 2.55734)
+Final Epoch (14) -> Val Loss: 5.79564 | Val Acc: 0.5270
+Saved Best Weights: /oscar/scratch/bkissiov/raman_preprocessing/training_round12/downstream_models/bacteria_id_resnet1d_pgnet_v34_best.pth
+Saved Last Weights: /oscar/scratch/bkissiov/raman_preprocessing/training_round12/downstream_models/bacteria_id_resnet1d_pgnet_v34_last.pth
+============================================================================================

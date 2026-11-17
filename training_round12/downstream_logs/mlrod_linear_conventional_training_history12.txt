@@ -1,0 +1,23 @@
+============================================================================================
+ Downstream Classification Training — Round 12 (mlrod | linear (LinearSpectralClassifier) | conventional)
+============================================================================================
+  - Slurm Job ID:         9217535
+  - Dataset:              MLROD (12 Pure Single-Mineral Classes, Stratified 65/15/20)
+  - Split Shapes:         train=(71275, 1836), val=(16449, 1836), test=(21931, 1836) (classes=12)
+  - Upfront Norm:         Per-spectrum [0, 1] min-max scaling before preprocessing
+  - Preprocessor:         conventional
+  - Classifier:           linear (LinearSpectralClassifier)
+  - Architecture:         GlobalRangeScaler + LogisticRegression (multinomial L2)
+  - Hyperparameters:      C=1.0, solver='lbfgs', max_iter=2000, tol=1e-4, seed=42
+  - Convergence Policy:   Identical L-BFGS solver budget (max_iter=2000) across preprocessors
+============================================================================================
+
+Starting L-BFGS Optimization...
+Epoch [  1/  1] (L-BFGS iters= 175/2000) | Train Loss: 0.06499 | Train Acc: 0.9850 ( 98.50%) | Val Loss: 0.08724 | Val Acc: 0.9787 ( 97.87%) *BEST* | 76.60s
+
+============================================================================================
+Finished mlrod_linear_conventional in 76.60s | L-BFGS Iters: 175
+Final Train Loss: 0.06499 | Train Acc: 0.9850
+Final Val Loss:   0.08724 | Val Acc:   0.9787
+Saved Model:      /oscar/scratch/bkissiov/raman_preprocessing/training_round12/downstream_models/mlrod_linear_conventional.joblib
+============================================================================================

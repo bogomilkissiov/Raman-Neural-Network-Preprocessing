@@ -1,0 +1,51 @@
+{
+  "run_id": "bacteria_id_resnet1d_raw",
+  "dataset": "bacteria_id",
+  "classifier": "resnet1d",
+  "preprocessor": "raw",
+  "input_dim": 1000,
+  "n_classes": 30,
+  "hidden_sizes": [
+    100,
+    100,
+    100,
+    100,
+    100,
+    100
+  ],
+  "num_blocks": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "in_channels": 64,
+  "epochs_run": 14,
+  "best_epoch": 7,
+  "best_val_acc": 0.5746666666666667,
+  "best_val_loss": 3.140548051317533,
+  "final_val_acc": 0.4683333333333333,
+  "final_val_loss": 6.609373916308085,
+  "is_discovery_run": true,
+  "target_epochs": 50,
+  "patience": 7,
+  "parameters": 1340878,
+  "final_train_loss": 0.049407707337165874,
+  "final_train_acc": 0.9815666666666667,
+  "train_time_sec": 272.4330906739997,
+  "hyperparameters": {
+    "lr": 0.001,
+    "betas": [
+      0.5,
+      0.999
+    ],
+    "batch_size": 64,
+    "seed": 42
+  },
+  "best_model_path": "training_round12/downstream_models/bacteria_id_resnet1d_raw_best.pth",
+  "last_model_path": "training_round12/downstream_models/bacteria_id_resnet1d_raw_last.pth",
+  "history_txt_path": "training_round12/downstream_logs/bacteria_id_resnet1d_raw_training_history12.txt",
+  "history_csv_path": "training_round12/downstream_logs/bacteria_id_resnet1d_raw_training_history12.csv"
+}

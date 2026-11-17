@@ -1,0 +1,51 @@
+{
+  "run_id": "mlrod_resnet1d_pgnet_v34",
+  "dataset": "mlrod",
+  "classifier": "resnet1d",
+  "preprocessor": "pgnet_v34",
+  "input_dim": 1836,
+  "n_classes": 12,
+  "hidden_sizes": [
+    100,
+    100,
+    100,
+    100,
+    100,
+    100
+  ],
+  "num_blocks": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "in_channels": 64,
+  "epochs_run": 26,
+  "best_epoch": 10,
+  "best_val_acc": 0.9906985227065475,
+  "best_val_loss": 0.038403841910035534,
+  "final_val_acc": 0.9891786734755912,
+  "final_val_loss": 0.07113159465845938,
+  "is_discovery_run": false,
+  "target_epochs": 26,
+  "patience": null,
+  "parameters": 1314460,
+  "final_train_loss": 0.0020328920819845642,
+  "final_train_acc": 0.9992423710978604,
+  "train_time_sec": 1090.2613982269977,
+  "hyperparameters": {
+    "lr": 0.001,
+    "betas": [
+      0.5,
+      0.999
+    ],
+    "batch_size": 64,
+    "seed": 42
+  },
+  "best_model_path": "training_round12/downstream_models/mlrod_resnet1d_pgnet_v34_best.pth",
+  "last_model_path": "training_round12/downstream_models/mlrod_resnet1d_pgnet_v34_last.pth",
+  "history_txt_path": "training_round12/downstream_logs/mlrod_resnet1d_pgnet_v34_training_history12.txt",
+  "history_csv_path": "training_round12/downstream_logs/mlrod_resnet1d_pgnet_v34_training_history12.csv"
+}

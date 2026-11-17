@@ -57,3 +57,9 @@ test_data*/
 
 # Scratch & Testing Scripts
 testing_round1.py
+
+# Downstream benchmark datasets (stored locally / synced to OSCAR)
+datasets/
+
+# Downstream cache
+training_round12/downstream_cache/

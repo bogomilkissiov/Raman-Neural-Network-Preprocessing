@@ -1,0 +1,31 @@
+{
+  "run_id": "bacteria_id_xgb_conventional",
+  "dataset": "bacteria_id",
+  "classifier": "xgb",
+  "preprocessor": "conventional",
+  "input_dim": 1000,
+  "n_classes": 30,
+  "is_discovery_run": false,
+  "epochs_run": 128,
+  "target_rounds": 128,
+  "patience_rounds": null,
+  "best_epoch": 127,
+  "best_val_acc": 0.3943333333333333,
+  "best_loss_epoch": 87,
+  "best_val_loss": 2.3183381970295063,
+  "final_train_loss": 0.2167840193342883,
+  "final_train_acc": 0.9946333333333334,
+  "final_val_loss": 2.3553079084117585,
+  "final_val_acc": 0.3943333333333333,
+  "train_time_sec": 73.44757626900537,
+  "hyperparameters": {
+    "max_depth": 6,
+    "learning_rate": 0.05,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "seed": 42
+  },
+  "model_path": "training_round12/downstream_models/bacteria_id_xgb_conventional.json",
+  "history_txt_path": "training_round12/downstream_logs/bacteria_id_xgb_conventional_training_history12.txt",
+  "history_csv_path": "training_round12/downstream_logs/bacteria_id_xgb_conventional_training_history12.csv"
+}

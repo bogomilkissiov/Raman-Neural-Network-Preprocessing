@@ -1,0 +1,124 @@
+================================================================================================
+ ROUND 12 DOWNSTREAM CLASSIFICATION TRAINING SUITE (18 RUNS)
+================================================================================================
+  - Slurm Job ID:       9217535
+  - PyTorch Device:     cuda (NVIDIA RTX A5000)
+  - XGBoost Device:     cuda
+  - CPU Workers:        8
+  - Datasets:           ['bacteria_id', 'mlrod'] (MLROD subset=pure12)
+  - Preprocessors:      ['raw', 'conventional', 'pgnet_v34']
+  - Classifiers:        ['linear', 'xgb', 'resnet1d']
+  - Upfront Norm:       Per-spectrum [0, 1] min-max scaling on ALL spectra
+  - Resume Completed:   True
+  - Smoke Test Mode:    False
+  - Logs Dir:           /oscar/scratch/bkissiov/raman_preprocessing/training_round12/downstream_logs
+  - Models Dir:         /oscar/scratch/bkissiov/raman_preprocessing/training_round12/downstream_models
+  - Cache Dir:          /oscar/scratch/bkissiov/raman_preprocessing/training_round12/downstream_cache
+================================================================================================
+
+Loaded PolyGaussNet V3.4-8sec: /oscar/scratch/bkissiov/raman_preprocessing/training_round12/polygaussnet12.pth (108,394 params, epoch=97, train_loss=0.006083706402387179)
+
+------------------------------------------------------------------------------------------------
+STEP 1: Loading & Normalizing Dataset 'bacteria_id'
+------------------------------------------------------------------------------------------------
+  Display Name: Bacteria-ID (Isolates: Reference / Finetune / Test, Clinical Excluded)
+  Shapes:       train=(60000, 1000), val=(3000, 1000), test=(3000, 1000) | classes=30
+  Range Check:  train=[0.0000, 1.0000], val=[0.0000, 1.0000], test=[0.0000, 1.0000]
+
+STEP 2: Running Preprocessors for 'bacteria_id' (raw, conventional, pgnet_v34)
+  [Preprocess] bacteria_id | raw          | train ( 60000 x 1000) |    0.03s (1944381.5 spec/s)
+  [Preprocess] bacteria_id | raw          | val   (  3000 x 1000) |    0.00s (2577100.4 spec/s)
+  [Preprocess] bacteria_id | raw          | test  (  3000 x 1000) |    0.00s (2395402.7 spec/s)
+  [Preprocess] bacteria_id | conventional | train ( 60000 x 1000) |   82.94s (   723.4 spec/s)
+  [Preprocess] bacteria_id | conventional | val   (  3000 x 1000) |    4.63s (   648.3 spec/s)
+  [Preprocess] bacteria_id | conventional | test  (  3000 x 1000) |    4.35s (   689.9 spec/s)
+  [Preprocess] bacteria_id | pgnet_v34    | train ( 60000 x 1000) |    2.67s ( 22480.3 spec/s)
+  [Preprocess] bacteria_id | pgnet_v34    | val   (  3000 x 1000) |    0.23s ( 13050.2 spec/s)
+  [Preprocess] bacteria_id | pgnet_v34    | test  (  3000 x 1000) |    0.11s ( 26659.0 spec/s)
+
+STEP 3: Training Classifiers on 'bacteria_id' (Raw sets convergence budget -> Conventional & PGNet V3.4 match exact epochs/rounds)
+
+>>> Training Run: dataset=bacteria_id | classifier=linear | preprocessor=raw | target_budget=DISCOVER_FROM_RAW
+
+>>> Training Run: dataset=bacteria_id | classifier=linear | preprocessor=conventional | target_budget=2000
+
+>>> Training Run: dataset=bacteria_id | classifier=linear | preprocessor=pgnet_v34 | target_budget=2000
+
+>>> Training Run: dataset=bacteria_id | classifier=xgb | preprocessor=raw | target_budget=DISCOVER_FROM_RAW
+
+>>> Training Run: dataset=bacteria_id | classifier=xgb | preprocessor=conventional | target_budget=128
+
+>>> Training Run: dataset=bacteria_id | classifier=xgb | preprocessor=pgnet_v34 | target_budget=128
+
+>>> Training Run: dataset=bacteria_id | classifier=resnet1d | preprocessor=raw | target_budget=DISCOVER_FROM_RAW
+
+>>> Training Run: dataset=bacteria_id | classifier=resnet1d | preprocessor=conventional | target_budget=14
+
+>>> Training Run: dataset=bacteria_id | classifier=resnet1d | preprocessor=pgnet_v34 | target_budget=14
+
+------------------------------------------------------------------------------------------------
+STEP 1: Loading & Normalizing Dataset 'mlrod'
+------------------------------------------------------------------------------------------------
+  Display Name: MLROD (12 Pure Single-Mineral Classes, Stratified 65/15/20)
+  Shapes:       train=(71275, 1836), val=(16449, 1836), test=(21931, 1836) | classes=12
+  Range Check:  train=[0.0000, 1.0000], val=[0.0000, 1.0000], test=[0.0000, 1.0000]
+
+STEP 2: Running Preprocessors for 'mlrod' (raw, conventional, pgnet_v34)
+  [Preprocess] mlrod       | raw          | train ( 71275 x 1836) |    0.07s (1017302.3 spec/s)
+  [Preprocess] mlrod       | raw          | val   ( 16449 x 1836) |    0.02s (674755.3 spec/s)
+  [Preprocess] mlrod       | raw          | test  ( 21931 x 1836) |    0.02s (1037854.7 spec/s)
+  [Preprocess] mlrod       | conventional | train ( 71275 x 1836) |  172.43s (   413.4 spec/s)
+  [Preprocess] mlrod       | conventional | val   ( 16449 x 1836) |   40.85s (   402.7 spec/s)
+  [Preprocess] mlrod       | conventional | test  ( 21931 x 1836) |   54.11s (   405.3 spec/s)
+  [Preprocess] mlrod       | pgnet_v34    | train ( 71275 x 1836) |    4.38s ( 16282.5 spec/s)
+  [Preprocess] mlrod       | pgnet_v34    | val   ( 16449 x 1836) |    0.98s ( 16799.9 spec/s)
+  [Preprocess] mlrod       | pgnet_v34    | test  ( 21931 x 1836) |    1.42s ( 15393.9 spec/s)
+
+STEP 3: Training Classifiers on 'mlrod' (Raw sets convergence budget -> Conventional & PGNet V3.4 match exact epochs/rounds)
+
+>>> Training Run: dataset=mlrod | classifier=linear | preprocessor=raw | target_budget=DISCOVER_FROM_RAW
+
+>>> Training Run: dataset=mlrod | classifier=linear | preprocessor=conventional | target_budget=2000
+
+>>> Training Run: dataset=mlrod | classifier=linear | preprocessor=pgnet_v34 | target_budget=2000
+
+>>> Training Run: dataset=mlrod | classifier=xgb | preprocessor=raw | target_budget=DISCOVER_FROM_RAW
+
+>>> Training Run: dataset=mlrod | classifier=xgb | preprocessor=conventional | target_budget=500
+
+>>> Training Run: dataset=mlrod | classifier=xgb | preprocessor=pgnet_v34 | target_budget=500
+
+>>> Training Run: dataset=mlrod | classifier=resnet1d | preprocessor=raw | target_budget=DISCOVER_FROM_RAW
+
+>>> Training Run: dataset=mlrod | classifier=resnet1d | preprocessor=conventional | target_budget=26
+
+>>> Training Run: dataset=mlrod | classifier=resnet1d | preprocessor=pgnet_v34 | target_budget=26
+
+================================================================================================
+ TRAINING SUMMARY ACROSS ALL COMPLETED RUNS
+================================================================================================
+Run ID                               | Epochs/Rnds | Best Ep | Best Val Acc | Final Val Acc | Final Val Loss | Time (s)
+-----------------------------------------------------------------------------------------------------------------------
+bacteria_id_linear_raw               |           1 |       1 |       53.87% |        53.87% |        3.28176 |   133.17
+bacteria_id_linear_conventional      |           1 |       1 |       50.83% |        50.83% |        2.99276 |   129.61
+bacteria_id_linear_pgnet_v34         |           1 |       1 |       54.97% |        54.97% |        2.29531 |   156.17
+bacteria_id_xgb_raw                  |         128 |     121 |       34.03% |        34.00% |        2.52421 |    76.13
+bacteria_id_xgb_conventional         |         128 |     127 |       39.43% |        39.43% |        2.35531 |    73.45
+bacteria_id_xgb_pgnet_v34            |         128 |     125 |       45.93% |        45.83% |        2.13807 |    72.08
+bacteria_id_resnet1d_raw             |          14 |       7 |       57.47% |        46.83% |        6.60937 |   272.43
+bacteria_id_resnet1d_conventional    |          14 |       3 |       58.43% |        50.83% |        6.25097 |   270.91
+bacteria_id_resnet1d_pgnet_v34       |          14 |       7 |       61.00% |        52.70% |        5.79564 |   271.27
+mlrod_linear_raw                     |           1 |       1 |       97.50% |        97.50% |        0.09203 |   113.39
+mlrod_linear_conventional            |           1 |       1 |       97.87% |        97.87% |        0.08724 |    76.60
+mlrod_linear_pgnet_v34               |           1 |       1 |       97.32% |        97.32% |        0.10215 |   104.54
+mlrod_xgb_raw                        |         500 |     493 |       98.88% |        98.88% |        0.03487 |   142.23
+mlrod_xgb_conventional               |         500 |     403 |       98.99% |        98.98% |        0.03379 |   137.85
+mlrod_xgb_pgnet_v34                  |         500 |     495 |       98.96% |        98.96% |        0.03226 |   136.91
+mlrod_resnet1d_raw                   |          26 |      19 |       99.13% |        99.06% |        0.06860 |  1091.53
+mlrod_resnet1d_conventional          |          26 |      16 |       99.06% |        98.92% |        0.07881 |  1091.02
+mlrod_resnet1d_pgnet_v34             |          26 |      10 |       99.07% |        98.92% |        0.07113 |  1090.26
+-----------------------------------------------------------------------------------------------------------------------
+Total Suite Wall-Clock Time: 5840.46s (97.34 min)
+Saved Training Manifest:     /oscar/scratch/bkissiov/raman_preprocessing/training_round12/downstream_logs/training_manifest12.json
+Saved Training Summary:      /oscar/scratch/bkissiov/raman_preprocessing/training_round12/downstream_logs/training_summary12.txt
+================================================================================================

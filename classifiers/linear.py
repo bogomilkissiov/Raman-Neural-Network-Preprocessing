@@ -1,10 +1,31 @@
-"""Standard linear classifier baseline (StandardScaler + LogisticRegression)."""
+"""Linear classifier baseline (global [0, 1] range scaling + LogisticRegression)."""
 
 from typing import Optional
 import numpy as np
+from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
+
+
+class GlobalRangeScaler(BaseEstimator, TransformerMixin):
+    """Scale all spectra by a single global (min, max) from training data.
+
+    Preserves relative peak heights across wavenumbers and amplitude fidelity
+    across spectra, avoiding per-channel variance distortion.
+    """
+
+    def fit(self, X: np.ndarray, y: Optional[np.ndarray] = None) -> "GlobalRangeScaler":
+        del y
+        arr = np.asarray(X, dtype=np.float64)
+        self.data_min_ = float(np.min(arr))
+        data_max = float(np.max(arr))
+        span = data_max - self.data_min_
+        self.data_scale_ = span if span > 0.0 else 1.0
+        return self
+
+    def transform(self, X: np.ndarray) -> np.ndarray:
+        arr = np.asarray(X, dtype=np.float64)
+        return (arr - self.data_min_) / self.data_scale_
 
 
 class LinearSpectralClassifier:
@@ -25,7 +46,7 @@ class LinearSpectralClassifier:
         self.n_jobs = n_jobs
         self.pipeline = Pipeline(
             [
-                ("scaler", StandardScaler()),
+                ("scaler", GlobalRangeScaler()),
                 (
                     "clf",
                     LogisticRegression(

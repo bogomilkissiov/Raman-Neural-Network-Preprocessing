@@ -1,0 +1,5 @@
+  File "/oscar/scratch/bkissiov/raman_preprocessing/training_round12/test_downstream12.py", line 397
+    f.write(f"  {'True\\Pred':>9s} | {header_cols}\n")
+                                                     ^
+SyntaxError: f-string expression part cannot include a backslash
+srun: error: gpu2254: task 0: Exited with exit code 1

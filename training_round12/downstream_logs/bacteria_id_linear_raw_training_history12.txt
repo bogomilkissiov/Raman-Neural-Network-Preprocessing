@@ -1,0 +1,23 @@
+============================================================================================
+ Downstream Classification Training — Round 12 (bacteria_id | linear (LinearSpectralClassifier) | raw)
+============================================================================================
+  - Slurm Job ID:         9217535
+  - Dataset:              Bacteria-ID (Isolates: Reference / Finetune / Test, Clinical Excluded)
+  - Split Shapes:         train=(60000, 1000), val=(3000, 1000), test=(3000, 1000) (classes=30)
+  - Upfront Norm:         Per-spectrum [0, 1] min-max scaling before preprocessing
+  - Preprocessor:         raw
+  - Classifier:           linear (LinearSpectralClassifier)
+  - Architecture:         GlobalRangeScaler + LogisticRegression (multinomial L2)
+  - Hyperparameters:      C=1.0, solver='lbfgs', max_iter=2000, tol=1e-4, seed=42
+  - Convergence Policy:   Identical L-BFGS solver budget (max_iter=2000) across preprocessors
+============================================================================================
+
+Starting L-BFGS Optimization...
+Epoch [  1/  1] (L-BFGS iters= 398/2000) | Train Loss: 0.07668 | Train Acc: 0.9866 ( 98.66%) | Val Loss: 3.28176 | Val Acc: 0.5387 ( 53.87%) *BEST* | 133.17s
+
+============================================================================================
+Finished bacteria_id_linear_raw in 133.17s | L-BFGS Iters: 398
+Final Train Loss: 0.07668 | Train Acc: 0.9866
+Final Val Loss:   3.28176 | Val Acc:   0.5387
+Saved Model:      /oscar/scratch/bkissiov/raman_preprocessing/training_round12/downstream_models/bacteria_id_linear_raw.joblib
+============================================================================================

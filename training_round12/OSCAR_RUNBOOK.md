@@ -101,3 +101,48 @@ cp training_round12/{polygaussnet12.pth,training_checkpoint12.pth,training_histo
 rsync -azvp "<USERNAME>@ssh.ccv.brown.edu:~/scratch/raman_preprocessing/training_round12/" \
   "/Users/bogiekissiov/Desktop/raman preprocessing/training_round12/"
 ```
+
+---
+
+## Downstream Classification Benchmark (18 Runs: Bacteria-ID & MLROD)
+
+### 1. Sync Datasets & Code to `~/scratch/raman_preprocessing`
+Because `datasets/` is ignored by git and `MLROD` + `bacteria-ID` total ~1.5 GB, sync them into `~/scratch` (512 GB quota, not `~/home`):
+
+```bash
+rsync -azvp --progress \
+  training_round12/ classifiers/ datasets/bacteria-ID datasets/MLROD \
+  <USERNAME>@ssh.ccv.brown.edu:~/scratch/raman_preprocessing/
+```
+
+### 2. Ensure Classifier Dependencies in `~/pytorch.venv`
+On OSCAR (login or interactive node):
+
+```bash
+source ~/pytorch.venv/bin/activate
+pip install --upgrade scikit-learn xgboost joblib
+```
+
+### 3. Submit the Downstream Training + Evaluation Job
+```bash
+cd ~/scratch/raman_preprocessing
+chmod +x training_round12/submit_downstream_train12.sh
+sbatch training_round12/submit_downstream_train12.sh
+```
+- Uses `#SBATCH -p gpu --gres=gpu:1 --cpus-per-task=8 --mem=48G -t 08:00:00` (well within OSCAR's `norm-gpu` QoS limits of `cpu=12, gres/gpu=2, mem=192G` and `34,560` TRES core-minutes).
+- If preempted or interrupted (`SIGTERM`), resubmitting `sbatch training_round12/submit_downstream_train12.sh` automatically skips already-completed runs and reuses cached preprocessed splits in `training_round12/downstream_cache/`.
+
+### 4. Sync Logs, Model Weights, Results, and Test Cache Back to Mac
+Exclude the large `*_train_*.npy` cache files when syncing back so local re-testing stays lightweight (~500 MB):
+
+```bash
+rsync -azvp --progress \
+  --exclude '*_train_*.npy' \
+  "<USERNAME>@ssh.ccv.brown.edu:~/scratch/raman_preprocessing/training_round12/downstream_*" \
+  "/Users/bogiekissiov/Desktop/raman preprocessing/training_round12/"
+```
+Once synced, you can re-run test evaluation locally on your Mac at any time in seconds:
+```bash
+venv/bin/python training_round12/test_downstream12.py --checkpoint-mode best
+venv/bin/python training_round12/test_downstream12.py --checkpoint-mode last
+```

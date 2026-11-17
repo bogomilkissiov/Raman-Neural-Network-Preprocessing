@@ -1,0 +1,50 @@
+============================================================================================
+ Downstream Classification Training — Round 12 (mlrod | resnet1d (BacteriaResNetClassifier) | pgnet_v34)
+============================================================================================
+  - Slurm Job ID:         9217535
+  - Dataset:              MLROD (12 Pure Single-Mineral Classes, Stratified 65/15/20)
+  - Split Shapes:         train=(71275, 1836), val=(16449, 1836), test=(21931, 1836) (classes=12)
+  - Upfront Norm:         Per-spectrum [0, 1] min-max scaling before preprocessing
+  - Preprocessor:         pgnet_v34
+  - Classifier:           resnet1d (BacteriaResNetClassifier)
+  - Architecture:         ResNet1D (Ho et al. 2019: 6 stages x 2 blocks, channels=64->100, kernel=5)
+  - Hyperparameters:      Adam(lr=0.001, betas=(0.5, 0.999)), batch_size=64, device='cuda', seed=42
+  - Convergence Policy:   Matched fixed budget from 'raw' (epochs=26, patience=None)
+============================================================================================
+
+ResNet1D Parameters: 1,314,460 total
+Starting ResNet1D Training (up to 26 epochs)...
+Epoch [  1/ 26] | Train Loss: 0.09457 | Train Acc: 0.9739 ( 97.39%) | Val Loss: 0.04279 | Val Acc: 0.9853 ( 98.53%) *BEST* | 41.91s (1,701 spec/s)
+Epoch [  2/ 26] | Train Loss: 0.03488 | Train Acc: 0.9882 ( 98.82%) | Val Loss: 0.03558 | Val Acc: 0.9897 ( 98.97%) *BEST* | 41.94s (1,699 spec/s)
+Epoch [  3/ 26] | Train Loss: 0.04266 | Train Acc: 0.9871 ( 98.71%) | Val Loss: 0.03873 | Val Acc: 0.9894 ( 98.94%) | 41.93s (1,700 spec/s)
+Epoch [  4/ 26] | Train Loss: 0.02756 | Train Acc: 0.9905 ( 99.05%) | Val Loss: 0.03467 | Val Acc: 0.9903 ( 99.03%) *BEST* | 41.92s (1,700 spec/s)
+Epoch [  5/ 26] | Train Loss: 0.02348 | Train Acc: 0.9918 ( 99.18%) | Val Loss: 0.04337 | Val Acc: 0.9872 ( 98.72%) | 41.93s (1,700 spec/s)
+Epoch [  6/ 26] | Train Loss: 0.02089 | Train Acc: 0.9923 ( 99.23%) | Val Loss: 0.03416 | Val Acc: 0.9899 ( 98.99%) | 41.93s (1,700 spec/s)
+Epoch [  7/ 26] | Train Loss: 0.01866 | Train Acc: 0.9934 ( 99.34%) | Val Loss: 0.04116 | Val Acc: 0.9877 ( 98.77%) | 41.93s (1,700 spec/s)
+Epoch [  8/ 26] | Train Loss: 0.01616 | Train Acc: 0.9942 ( 99.42%) | Val Loss: 0.03408 | Val Acc: 0.9894 ( 98.94%) | 41.95s (1,699 spec/s)
+Epoch [  9/ 26] | Train Loss: 0.01413 | Train Acc: 0.9950 ( 99.50%) | Val Loss: 0.04295 | Val Acc: 0.9880 ( 98.80%) | 41.95s (1,699 spec/s)
+Epoch [ 10/ 26] | Train Loss: 0.01279 | Train Acc: 0.9954 ( 99.54%) | Val Loss: 0.03840 | Val Acc: 0.9907 ( 99.07%) *BEST* | 41.95s (1,699 spec/s)
+Epoch [ 11/ 26] | Train Loss: 0.00981 | Train Acc: 0.9965 ( 99.65%) | Val Loss: 0.04644 | Val Acc: 0.9896 ( 98.96%) | 41.95s (1,699 spec/s)
+Epoch [ 12/ 26] | Train Loss: 0.00914 | Train Acc: 0.9966 ( 99.66%) | Val Loss: 0.03914 | Val Acc: 0.9897 ( 98.97%) | 41.94s (1,700 spec/s)
+Epoch [ 13/ 26] | Train Loss: 0.00735 | Train Acc: 0.9974 ( 99.74%) | Val Loss: 0.05070 | Val Acc: 0.9891 ( 98.91%) | 41.94s (1,700 spec/s)
+Epoch [ 14/ 26] | Train Loss: 0.00639 | Train Acc: 0.9977 ( 99.77%) | Val Loss: 0.04695 | Val Acc: 0.9886 ( 98.86%) | 41.94s (1,699 spec/s)
+Epoch [ 15/ 26] | Train Loss: 0.00571 | Train Acc: 0.9980 ( 99.80%) | Val Loss: 0.04874 | Val Acc: 0.9901 ( 99.01%) | 41.95s (1,699 spec/s)
+Epoch [ 16/ 26] | Train Loss: 0.00579 | Train Acc: 0.9979 ( 99.79%) | Val Loss: 0.05345 | Val Acc: 0.9903 ( 99.03%) | 41.93s (1,700 spec/s)
+Epoch [ 17/ 26] | Train Loss: 0.00427 | Train Acc: 0.9984 ( 99.84%) | Val Loss: 0.10351 | Val Acc: 0.9864 ( 98.64%) | 41.93s (1,700 spec/s)
+Epoch [ 18/ 26] | Train Loss: 0.00397 | Train Acc: 0.9987 ( 99.87%) | Val Loss: 0.05942 | Val Acc: 0.9896 ( 98.96%) | 41.94s (1,699 spec/s)
+Epoch [ 19/ 26] | Train Loss: 0.00313 | Train Acc: 0.9988 ( 99.88%) | Val Loss: 0.05807 | Val Acc: 0.9899 ( 98.99%) | 41.93s (1,700 spec/s)
+Epoch [ 20/ 26] | Train Loss: 0.00370 | Train Acc: 0.9987 ( 99.87%) | Val Loss: 0.05610 | Val Acc: 0.9902 ( 99.02%) | 41.94s (1,699 spec/s)
+Epoch [ 21/ 26] | Train Loss: 0.00314 | Train Acc: 0.9990 ( 99.90%) | Val Loss: 0.06253 | Val Acc: 0.9891 ( 98.91%) | 41.93s (1,700 spec/s)
+Epoch [ 22/ 26] | Train Loss: 0.00339 | Train Acc: 0.9989 ( 99.89%) | Val Loss: 0.07001 | Val Acc: 0.9891 ( 98.91%) | 41.92s (1,700 spec/s)
+Epoch [ 23/ 26] | Train Loss: 0.00263 | Train Acc: 0.9991 ( 99.91%) | Val Loss: 0.06695 | Val Acc: 0.9894 ( 98.94%) | 41.92s (1,700 spec/s)
+Epoch [ 24/ 26] | Train Loss: 0.00216 | Train Acc: 0.9991 ( 99.91%) | Val Loss: 0.07175 | Val Acc: 0.9895 ( 98.95%) | 41.91s (1,701 spec/s)
+Epoch [ 25/ 26] | Train Loss: 0.00270 | Train Acc: 0.9991 ( 99.91%) | Val Loss: 0.06828 | Val Acc: 0.9902 ( 99.02%) | 41.91s (1,701 spec/s)
+Epoch [ 26/ 26] | Train Loss: 0.00203 | Train Acc: 0.9992 ( 99.92%) | Val Loss: 0.07113 | Val Acc: 0.9892 ( 98.92%) | 41.91s (1,701 spec/s)
+
+============================================================================================
+Finished mlrod_resnet1d_pgnet_v34 in 1090.26s | Epochs Run: 26
+Best Val Acc:  0.9907 (Epoch 10, Val Loss: 0.03840)
+Final Epoch (26) -> Val Loss: 0.07113 | Val Acc: 0.9892
+Saved Best Weights: /oscar/scratch/bkissiov/raman_preprocessing/training_round12/downstream_models/mlrod_resnet1d_pgnet_v34_best.pth
+Saved Last Weights: /oscar/scratch/bkissiov/raman_preprocessing/training_round12/downstream_models/mlrod_resnet1d_pgnet_v34_last.pth
+============================================================================================
