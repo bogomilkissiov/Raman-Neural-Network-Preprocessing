@@ -1,0 +1,187 @@
+================================================================================
+PUBLICATION DOWNSTREAM TESTING PIPELINE (STREAMLINED 5-DATASET BENCHMARK)
+================================================================================
+
+End-to-End Preprocessing & Evaluation Protocol
+----------------------------------------------
+1. Synthetic Training (Controlled Comparison):
+   - Train PolyGaussNet and the 2-3 competing preprocessing neural networks
+     on the EXACT SAME synthetic training dataset.
+   - Fair Convergence Rule: Train every preprocessor with the same generous
+     `max_epochs` ceiling and the same LR scheduler + validation early-stopping
+     rule so each architecture reaches its true converged performance (rather
+     than handicapping slower-converging models with an arbitrary early epoch
+     cutoff). Report epochs-to-convergence and training wall-clock time as an
+     efficiency metric alongside reconstruction quality.
+2. Synthetic Held-Out Evaluation:
+   - Evaluate all trained preprocessing neural networks alongside `Raw` and
+     `Conventional (pre.py)` on the EXACT SAME held-out synthetic test set
+     (Raw MSE, Baseline-Shifted MSE, Cosine Similarity, Peak Summit MAE, and
+     inference throughput).
+3. Downstream Real-World Evaluation (Zero-Shot):
+   - Run all preprocessors (`Raw`, `Conventional`, PolyGaussNet, and the 2-3
+     neural baselines) downstream on Benchmark 1 (`Bacteria-ID` with `ResNet1D`)
+     and Benchmark 2 (`MLROD`, `pharmaceutical_ingredients`, `covid19_salvia`,
+     `rruff_mineral_raw` with `Linear` + `XGBoost`).
+
+Purpose
+-------
+A reusable, plug-and-play downstream evaluation harness for benchmarking any
+version of PolyGaussNet against:
+  1. Raw spectra (no baseline/denoising preprocessing)
+  2. Conventional CPU preprocessing (`test_files/conventional/pre.py`)
+  3. 2-3 Neural preprocessing baselines from the literature (TBD; trained on
+     the identical synthetic training corpus and budget as PolyGaussNet)
+
+Across the full suite, preprocessing is evaluated across 3 distinct classifier
+families (`ResNet1D`, `LinearSpectralClassifier`, `XGBSpectralClassifier`) and
+5 real-world datasets spanning 1,000 to 3,276 wavenumber bins.
+
+Design principle: Cache `Raw` and `Conventional` preprocessed splits (and
+their trained classifier baselines) once per dataset so any new PolyGaussNet
+checkpoint or neural baseline can be plugged in and compared apples-to-apples.
+
+================================================================================
+BENCHMARK 1: BACTERIA-ID (EXACT NUMERICAL BENCHMARK VS. HO ET AL. 2019)
+================================================================================
+Goal:
+  Isolate the effect of preprocessing on the canonical Raman deep-learning
+  benchmark (`datasets/bacteria-ID/`, Ho et al., Nature Communications 2019),
+  holding the exact 1D ResNet architecture and two-stage training regime fixed.
+
+Dataset:
+  - 30 classes (bacterial/yeast isolates), 1,000 bins (381.98 - 1792.4 cm^-1)
+  - `X_reference`: 60,000 spectra (pretraining library)
+  - `X_finetune`:  3,000 spectra (target measurement conditions)
+  - `X_test`:      3,000 spectra (held-out test set)
+
+Classifier:
+  - `ResNet1D` (`classifiers/resnet1d.py`, exact Ho et al. layout:
+    6 stages x 2 blocks, channels 64 -> 100, kernel_size=5, strides [1,2,2,2,2,2])
+
+Training Regime (per preprocessor):
+  Stage 1 — Pretraining on `X_reference`:
+    - Preprocess `X_reference` with the target preprocessor.
+    - Split `X_reference` into train / internal-val (e.g., 90/10 stratified)
+      so `X_finetune` is NEVER leaked into pretraining early stopping.
+    - Train `ResNet1D` from scratch: Adam(lr=1e-3, betas=(0.5, 0.999)).
+  Stage 2 — Fine-tuning on `X_finetune` (5 random folds):
+    - Preprocess `X_finetune` and `X_test` with the same preprocessor.
+    - Across 5 random 90/10 train/val splits of `X_finetune` (2,700 train /
+      300 val), fine-tune the pretrained weights using:
+        * batch_size = 10
+        * Adam(lr=1e-3, betas=(0.5, 0.999))
+        * max_epochs = 30, early stopping patience = 5 on val accuracy
+    - Allow each preprocessor to converge independently under the same
+      `(max_epochs=30, patience=5)` rule (do not lock to `Raw`'s stopping epoch).
+  Evaluation:
+    - Evaluate each of the 5 fine-tuned checkpoints on `X_test` (3,000 spectra).
+    - Report mean +/- std accuracy across the 5 folds (sanity check: `Raw`
+      should reproduce ~82.2% +/- 0.3% from Ho et al. 2019).
+
+================================================================================
+BENCHMARK 2: MULTI-DATASET GENERALIZATION (LINEAR + XGBOOST)
+================================================================================
+Goal:
+  Test whether preprocessing gains generalize across diverse spectral regimes
+  (clean high-SNR minerals, raw wide-band chemicals, and noisy clinical saliva)
+  using two lightweight, non-CNN classifier families without ResNet1D
+  overfitting on smaller datasets.
+
+Classifiers (2 distinct model families):
+  1. `LinearSpectralClassifier` (`classifiers/linear.py`):
+     `GlobalRangeScaler` + `LogisticRegression` (lbfgs, C=1.0, max_iter=2000)
+     — tests linear separability.
+  2. `XGBSpectralClassifier` (`classifiers/xgb.py`):
+     `XGBClassifier` (tree_method="hist", max_depth=6, lr=0.05)
+     — tests non-linear tabular separability without 1D spatial inductive bias.
+
+Datasets (4 datasets):
+  1. `MLROD` (`datasets/MLROD/`, Berlanga et al. 2022) — Clean-Regime Control:
+     - 12 classes (pure single-mineral subset), 109,655 spectra, 1,836 bins
+     - Split: Deterministic stratified 65% train / 15% val / 20% test (`seed=42`)
+     - What it proves: Shows PolyGaussNet does NOT degrade clean, high-SNR
+       spectra while delivering 30-50x higher preprocessing throughput than
+       conventional CPU pipelines (`pre.py`).
+
+  2. `pharmaceutical_ingredients` (`RamanBench`, Flanagan & Glavin 2025) — Wide-Band Raw Instrument Test:
+     - 32 classes (pure organic solvents & API reagents), 3,510 spectra,
+       3,276 bins (150 - 3,425 cm^-1)
+     - Raw status: Raw instrument export (firmware dark/cosmic/intensity only;
+       no baseline removal or normalization). `has_group_id=False`.
+     - Split: Deterministic stratified 65% train / 15% val / 20% test (`seed=42`).
+     - What it proves: Tests PolyGaussNet's input-length agnosticism on wide
+       3,276-bin spectra and verifies chemical peak preservation across 32
+       classes (verify `Raw` does not saturate near 98-99% like MLROD).
+
+  3. `covid19_salvia` (`RamanBench`, Bertazioli et al. 2024) — Noisy Clinical/Biological Test:
+     - 3 classes (`COV+`, `COV-`, `CTRL`), ~2,500 spectra across 101 patients
+       (~25 replicates per subject)
+     - Split: MUST group by `group_id` (patient ID) using `StratifiedGroupKFold`
+       or a patient-level train/val/test split so patient background is never
+       leaked across splits.
+     - What it proves: Tests whether PolyGaussNet removes fluorescence/noise
+       in messy biological spectra and improves cross-patient generalization
+       (inspect raw parquet spectra upfront to confirm unremoved baselines).
+
+  4. `rruff_mineral_raw` (`RamanBench`) — Few-Shot / Low-Sample-Per-Class Test:
+     - 1,685 total mineral species (filter out singleton/ultra-rare classes,
+       e.g., keep only species with >= 3-5 spectra so every class appears in
+       train/val/test)
+     - What it proves: Low-sample-per-class regime where classifiers cannot
+       rely on large training sets to learn away varying fluorescence
+       baselines, directly isolating whether PolyGaussNet's baseline removal
+       and denoising improve few-shot mineral identification.
+
+================================================================================
+METRICS, SIGNIFICANCE & FINAL HPO PLAN
+================================================================================
+Metrics & Statistical Testing (`classifiers/benchmark.py`):
+  - Accuracy, Balanced Accuracy, Macro F1, Top-3 Accuracy, Test Log-Loss
+  - Preprocessing wall-clock time & throughput (spectra/s)
+  - Exact two-sided McNemar's test p-values on paired test predictions
+    (plus optional bootstrap confidence intervals on test predictions without
+    retraining classifiers)
+
+Final Publication HPO & Convergence Plan (after pipeline is locked):
+  1. Keep PolyGaussNet trained strictly on synthetic data (zero leakage from
+     downstream datasets).
+  2. Run synthetic-only HPO on physical/architectural knobs (`poly_order` +
+     `num_quadrants`, `filter_kernel_size` + `sigma`/`amplitude` bounds,
+     `lambda_asym`) using held-out synthetic + non-polynomial fluorescence
+     validation sets.
+  3. Train the final PolyGaussNet and the 1-2 neural baselines to full
+     convergence on the expanded synthetic corpus, then run this locked
+     4-dataset downstream suite once for camera-ready tables.
+
+
+================================================================================
+OPEN NOTE: CLASSIFIER HYPERPARAMETER TUNING (C IN LOGISTIC REGRESSION)
+================================================================================
+- Currently `LinearSpectralClassifier` fixes `C=1.0` (inverse L2 regularization
+  strength) and `XGBSpectralClassifier` fixes `max_depth=6, lr=0.05` across all
+  preprocessors.
+- Consideration: Because different preprocessors output spectra with different
+  SNR, baseline variance, and feature scales, a fixed `C=1.0` may favor one
+  preprocessor over another. Tuning `C` (e.g., `[0.01, 0.1, 1.0, 10.0, 100.0]`)
+  and `XGBoost` early stopping on the 15% `val` split per preprocessor would
+  evaluate each preprocessor at its own optimal classifier setting without
+  leaking test data.
+- Trade-off: Keeping classifier hyperparameters fixed vs. tuning per
+  preprocessor on `val` is left open for now.
+
+================================================================================
+PRACTICAL IMPLEMENTATION
+================================================================================
+- `benchmark1.py`: Dedicated script for Benchmark 1 (`Bacteria-ID`) that
+  implements the two-stage `ResNet1D` pretraining (`X_reference`) + 5-fold
+  fine-tuning (`X_finetune`) loop from scratch, reusing metric and McNemar
+  helpers from `classifiers/benchmark.py`.
+- `benchmark2.py`: Runner script for Benchmark 2 that loops over the 4 datasets
+  (`MLROD`, `pharmaceutical_ingredients`, `covid19_salvia` with patient-level
+  grouping, `rruff_mineral_raw`) and delegates each 2-classifier (`Linear` +
+  `XGBoost`) evaluation to `run_downstream_benchmark(...)` in
+  `classifiers/benchmark.py`.
+- Initial Pilot Run: Before the full-scale publication run with neural
+  literature baselines, run `benchmark1.py` and `benchmark2.py` on
+  `PolyGaussNet`, `Raw`, and `Conventional` first.
